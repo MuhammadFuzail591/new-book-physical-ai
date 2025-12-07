@@ -79,7 +79,7 @@
             "items": [
               {
                 "type": "link",
-                "label": "nodes-topics",
+                "label": "Nodes and Topics in ROS 2",
                 "href": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics",
                 "docId": "physical-ai/ros2-architecture/nodes-topics",
                 "unlisted": false
@@ -109,21 +109,21 @@
             "items": [
               {
                 "type": "link",
-                "label": "building-packages",
+                "label": "Building ROS 2 Packages",
                 "href": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
                 "docId": "physical-ai/ros2-packages/building-packages",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "launch-files",
+                "label": "Launch Files in ROS 2",
                 "href": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files",
                 "docId": "physical-ai/ros2-packages/launch-files",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
+                "label": "Chapter 5 Summary - Building ROS 2 Packages, Launch Files & Parameters",
                 "href": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary",
                 "docId": "physical-ai/ros2-packages/chapter-summary",
                 "unlisted": false
@@ -139,21 +139,21 @@
             "items": [
               {
                 "type": "link",
-                "label": "urdf-basics",
+                "label": "URDF Basics - Links, Joints, and Robot Modeling",
                 "href": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics",
                 "docId": "physical-ai/ros2-urdf/urdf-basics",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "sdf-for-simulation",
+                "label": "SDF for Simulation - Advanced Physics and Sensor Modeling",
                 "href": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation",
                 "docId": "physical-ai/ros2-urdf/sdf-for-simulation",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
+                "label": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
                 "href": "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary",
                 "docId": "physical-ai/ros2-urdf/chapter-summary",
                 "unlisted": false
@@ -199,21 +199,21 @@
             "items": [
               {
                 "type": "link",
-                "label": "physics-engines",
+                "label": "Physics Engines in Gazebo - ODE, Bullet, and Simbody",
                 "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines",
                 "docId": "physical-ai/gazebo-simulation/physics-engines",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "world-building",
+                "label": "World Building in Gazebo - Environments, Objects, and Scenarios",
                 "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building",
                 "docId": "physical-ai/gazebo-simulation/world-building",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
+                "label": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
                 "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary",
                 "docId": "physical-ai/gazebo-simulation/chapter-summary",
                 "unlisted": false
@@ -236,7 +236,7 @@
               },
               {
                 "type": "link",
-                "label": "visualization",
+                "label": "Unity Visualization Techniques for Robotics",
                 "href": "/physical-ai-textbook/physical-ai/unity-visualization/visualization",
                 "docId": "physical-ai/unity-visualization/visualization",
                 "unlisted": false
@@ -515,26 +515,26 @@
     },
     "physical-ai/gazebo-simulation/chapter-summary": {
       "id": "physical-ai/gazebo-simulation/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
+      "description": "Key Concepts Covered",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/gazebo-simulation/index": {
       "id": "physical-ai/gazebo-simulation/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 7 - Gazebo Simulation: Physics, Sensors & World Building",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/gazebo-simulation/physics-engines": {
       "id": "physical-ai/gazebo-simulation/physics-engines",
-      "title": "physics-engines",
-      "description": "",
+      "title": "Physics Engines in Gazebo - ODE, Bullet, and Simbody",
+      "description": "Introduction to Physics Simulation",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/gazebo-simulation/world-building": {
       "id": "physical-ai/gazebo-simulation/world-building",
-      "title": "world-building",
-      "description": "",
+      "title": "World Building in Gazebo - Environments, Objects, and Scenarios",
+      "description": "Introduction to World Building",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/glossary": {
@@ -551,8 +551,8 @@
     },
     "physical-ai/humanoid-robotics/index": {
       "id": "physical-ai/humanoid-robotics/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/humanoid-robotics/landscape": {
@@ -705,14 +705,14 @@
     },
     "physical-ai/ros2-architecture/index": {
       "id": "physical-ai/ros2-architecture/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 3 - Understanding the Robotic Nervous System: ROS 2 Architecture",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-architecture/nodes-topics": {
       "id": "physical-ai/ros2-architecture/nodes-topics",
-      "title": "nodes-topics",
-      "description": "",
+      "title": "Nodes and Topics in ROS 2",
+      "description": "Introduction",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-architecture/services-actions": {
@@ -721,52 +721,67 @@
       "description": "",
       "sidebar": "tutorialSidebar"
     },
+    "physical-ai/ros2-communication/index": {
+      "id": "physical-ai/ros2-communication/index",
+      "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2",
+      "description": "Chapter Overview"
+    },
+    "physical-ai/ros2-communication/topics-services-actions": {
+      "id": "physical-ai/ros2-communication/topics-services-actions",
+      "title": "Topics, Services & Actions in ROS 2",
+      "description": "Introduction"
+    },
     "physical-ai/ros2-packages/building-packages": {
       "id": "physical-ai/ros2-packages/building-packages",
-      "title": "building-packages",
-      "description": "",
+      "title": "Building ROS 2 Packages",
+      "description": "Package Creation Process",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-packages/chapter-summary": {
       "id": "physical-ai/ros2-packages/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 5 Summary - Building ROS 2 Packages, Launch Files & Parameters",
+      "description": "Key Concepts Covered",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-packages/index": {
       "id": "physical-ai/ros2-packages/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-packages/launch-files": {
       "id": "physical-ai/ros2-packages/launch-files",
-      "title": "launch-files",
-      "description": "",
+      "title": "Launch Files in ROS 2",
+      "description": "Introduction to Launch Systems",
       "sidebar": "tutorialSidebar"
+    },
+    "physical-ai/ros2-packages/parameters": {
+      "id": "physical-ai/ros2-packages/parameters",
+      "title": "ROS 2 Parameters System",
+      "description": "Introduction to Parameters"
     },
     "physical-ai/ros2-urdf/chapter-summary": {
       "id": "physical-ai/ros2-urdf/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
+      "description": "Key Concepts Covered",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-urdf/index": {
       "id": "physical-ai/ros2-urdf/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 6 - URDF/SDF for Humanoid Robots",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-urdf/sdf-for-simulation": {
       "id": "physical-ai/ros2-urdf/sdf-for-simulation",
-      "title": "sdf-for-simulation",
-      "description": "",
+      "title": "SDF for Simulation - Advanced Physics and Sensor Modeling",
+      "description": "Introduction to Simulation Description Format (SDF)",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-urdf/urdf-basics": {
       "id": "physical-ai/ros2-urdf/urdf-basics",
-      "title": "urdf-basics",
-      "description": "",
+      "title": "URDF Basics - Links, Joints, and Robot Modeling",
+      "description": "Understanding URDF Structure",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/unity-visualization/chapter-summary": {
@@ -783,14 +798,14 @@
     },
     "physical-ai/unity-visualization/index": {
       "id": "physical-ai/unity-visualization/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/unity-visualization/visualization": {
       "id": "physical-ai/unity-visualization/visualization",
-      "title": "visualization",
-      "description": "",
+      "title": "Unity Visualization Techniques for Robotics",
+      "description": "Introduction to Robotics Visualization",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/voice-robotics/chapter-summary": {

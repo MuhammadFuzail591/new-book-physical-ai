@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/ros2-urdf/chapter-summary",
-  "title": "chapter-summary",
-  "description": "",
+  "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
+  "description": "Key Concepts Covered",
   "source": "@site/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
   "sourceDirName": "physical-ai/ros2-urdf",
   "slug": "/physical-ai/ros2-urdf/chapter-summary",
@@ -11,10 +11,12 @@
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "sdf-for-simulation",
+    "title": "SDF for Simulation - Advanced Physics and Sensor Modeling",
     "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation"
   },
   "next": {

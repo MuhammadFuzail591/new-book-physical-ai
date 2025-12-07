@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/unity-visualization/visualization",
-  "title": "visualization",
-  "description": "",
+  "title": "Unity Visualization Techniques for Robotics",
+  "description": "Introduction to Robotics Visualization",
   "source": "@site/docs/physical-ai/unity-visualization/visualization.mdx",
   "sourceDirName": "physical-ai/unity-visualization",
   "slug": "/physical-ai/unity-visualization/visualization",
@@ -11,7 +11,9 @@
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/visualization.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Unity Visualization Techniques for Robotics"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "human-robot-interaction",

@@ -1,0 +1,17 @@
+{
+  "id": "physical-ai/ros2-packages/parameters",
+  "title": "ROS 2 Parameters System",
+  "description": "Introduction to Parameters",
+  "source": "@site/docs/physical-ai/ros2-packages/parameters.mdx",
+  "sourceDirName": "physical-ai/ros2-packages",
+  "slug": "/physical-ai/ros2-packages/parameters",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/parameters",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/parameters.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "ROS 2 Parameters System"
+  }
+}

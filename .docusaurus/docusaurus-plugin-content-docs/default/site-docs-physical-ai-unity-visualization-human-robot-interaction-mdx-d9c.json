@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "index",
+    "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
     "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/"
   },
   "next": {
-    "title": "visualization",
+    "title": "Unity Visualization Techniques for Robotics",
     "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
   }
 }
