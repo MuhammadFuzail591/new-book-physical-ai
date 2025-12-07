@@ -113,3 +113,12 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+### Constitution Alignment Requirements
+
+- **Technical Accuracy**: All technical content, explanations, and code examples MUST be technically accurate across robotics, AI, ROS 2, Gazebo, Isaac, and VLA modules
+- **Consistency**: All terminology MUST be consistent across all chapters and content modules
+- **RAG-Friendly Structure**: Content MUST be structured with short paragraphs, clean headings, no filler text, and summaries at end of each section
+- **Reproducibility**: All code examples and robotics pipelines MUST be fully reproducible on specified environments (Ubuntu 22.04 with ROS 2 Humble/Iron)
+- **Pedagogical Quality**: Content MUST include clearly defined learning outcomes, relevant examples, executable code, illustrative diagrams, and concise summaries
+- **Maintainability**: Docusaurus/Markdown structure MUST be maintainable and deployable on GitHub Pages without build errors

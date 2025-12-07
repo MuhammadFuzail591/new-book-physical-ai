@@ -31,7 +31,35 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### Technical Accuracy Validation
+- Verify all technical claims align with official documentation for robotics, AI, ROS 2, Gazebo, Isaac, and VLA modules
+- Ensure zero hallucination tolerance for robotics and AI frameworks is maintained
+- Validate code examples follow PEP8, rclpy conventions, and URDF/SDF standards
+
+### Consistency and Clarity Validation
+- Confirm terminology consistency across all chapters/modules
+- Verify content clarity for students with diverse CS and robotics backgrounds
+- Check adherence to unified chapter structure (intro, outcomes, concepts, examples, exercises)
+
+### AI-Native Structure Validation
+- Ensure content is RAG-friendly with short paragraphs and clean headings
+- Verify modular, chunkable structure for efficient information retrieval
+- Confirm summaries exist at end of each section for RAG use
+
+### Reproducibility Validation
+- Validate all code examples can run on specified environments (Ubuntu 22.04 with ROS 2 Humble/Iron)
+- Confirm all robotics pipelines are fully reproducible
+- Check that all dependencies are properly specified
+
+### Pedagogical Quality Validation
+- Verify clear learning outcomes for each section
+- Ensure practical examples and executable code are included
+- Confirm diagrams are referenced textually for RAG use
+
+### Maintainability Validation
+- Confirm Docusaurus/Markdown structure is maintainable
+- Verify compatibility with GitHub Pages deployment
+- Check uniform file naming, folder structure, and sidebar hierarchy
 
 ## Project Structure
 

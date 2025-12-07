@@ -150,12 +150,15 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
+- [ ] TXXX [P] Documentation updates in docs/ ensuring RAG-friendly structure (short paragraphs, clean headings, summaries)
+- [ ] TXXX Code cleanup and refactoring ensuring technical accuracy across robotics, AI, ROS 2, Gazebo, Isaac, and VLA modules
 - [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
+- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/ with pedagogical quality focus
+- [ ] TXXX Security hardening with BetterAuth implementation if authentication is required
+- [ ] TXXX Run quickstart.md validation ensuring compatibility with GitHub Pages deployment
+- [ ] TXXX Verify terminology consistency across all content modules
+- [ ] TXXX Validate all code examples are reproducible on Ubuntu 22.04 with ROS 2 Humble/Iron
+- [ ] TXXX Confirm all diagrams are referenced textually for RAG use
 
 ---
 
@@ -237,6 +240,15 @@ With multiple developers:
    - Developer B: User Story 2
    - Developer C: User Story 3
 3. Stories complete and integrate independently
+
+### Constitution Compliance Throughout Implementation
+
+- **Technical Accuracy**: All code examples and technical content must be verified against official documentation for robotics, AI, ROS 2, Gazebo, Isaac, and VLA modules
+- **Consistency**: Maintain consistent terminology across all chapters and content modules
+- **RAG-Friendly Structure**: Ensure all content has short paragraphs, clean headings, no filler text, and summaries at end of each section
+- **Reproducibility**: Validate all code examples and robotics pipelines are reproducible on Ubuntu 22.04 with ROS 2 Humble/Iron
+- **Pedagogical Quality**: Include learning outcomes, examples, executable code, diagrams, and summaries in all content
+- **Maintainability**: Ensure Docusaurus/Markdown structure remains maintainable and deployable on GitHub Pages
 
 ---
 
