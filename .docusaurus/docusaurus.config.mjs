@@ -39,13 +39,26 @@ export default {
       }
     ]
   ],
+  "markdown": {
+    "mermaid": true,
+    "format": "mdx",
+    "mdx1Compat": {
+      "comments": true,
+      "admonitions": true,
+      "headingIds": true
+    }
+  },
+  "themes": [
+    "@docusaurus/theme-mermaid"
+  ],
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
       "title": "Physical AI Textbook",
       "logo": {
         "alt": "Physical AI Logo",
-        "src": "img/logo.svg"
+        "src": "img/logo.svg",
+        "href": "/physical-ai"
       },
       "items": [
         {
@@ -70,7 +83,7 @@ export default {
           "items": [
             {
               "label": "Introduction",
-              "to": "/docs/physical-ai/"
+              "to": "/physical-ai/introduction"
             }
           ]
         },
@@ -294,7 +307,7 @@ export default {
       "additionalLanguages": [
         "python",
         "bash",
-        "xml",
+        "markup",
         "json",
         "yaml"
       ],
@@ -325,6 +338,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
@@ -335,20 +355,10 @@ export default {
   ],
   "customFields": {},
   "plugins": [],
-  "themes": [],
   "scripts": [],
   "headTags": [],
   "stylesheets": [],
   "clientModules": [],
   "titleDelimiter": "|",
-  "noIndex": false,
-  "markdown": {
-    "format": "mdx",
-    "mermaid": false,
-    "mdx1Compat": {
-      "comments": true,
-      "admonitions": true,
-      "headingIds": true
-    }
-  }
+  "noIndex": false
 };

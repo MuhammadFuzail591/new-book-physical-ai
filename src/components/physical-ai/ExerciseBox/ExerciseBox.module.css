@@ -1,0 +1,86 @@
+.exerciseBox {
+  margin: 20px 0;
+  border-left: 4px solid #4a90e2;
+}
+
+.exerciseBox.beginner {
+  border-left-color: #4CAF50;
+}
+
+.exerciseBox.intermediate {
+  border-left-color: #FFC107;
+}
+
+.exerciseBox.advanced {
+  border-left-color: #F44336;
+}
+
+.exerciseTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.difficultyBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.difficultyBadge.beginner {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.difficultyBadge.intermediate {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+.difficultyBadge.advanced {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.exerciseType {
+  font-size: 0.875rem;
+  color: #666;
+  background-color: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.exerciseDescription {
+  margin: 15px 0;
+}
+
+.hintsSection {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.hintItem {
+  margin: 5px 0;
+}
+
+.solutionSection {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f0f8ff;
+  border-radius: 4px;
+  border: 1px dashed #4a90e2;
+}
+
+.solutionContent {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}

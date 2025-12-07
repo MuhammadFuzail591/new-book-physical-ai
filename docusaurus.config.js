@@ -51,6 +51,10 @@ const config = {
       }),
     ],
   ],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -62,6 +66,7 @@ const config = {
         logo: {
           alt: 'Physical AI Logo',
           src: 'img/logo.svg',
+          href: '/physical-ai', // Point to the main docs page
         },
         items: [
           {
@@ -85,7 +90,7 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/physical-ai/',
+                to: '/physical-ai/introduction',
               },
             ],
           },
@@ -117,7 +122,7 @@ const config = {
       prism: {
         theme: require('prism-react-renderer').themes.github,
         darkTheme: require('prism-react-renderer').themes.dracula,
-        additionalLanguages: ['python', 'bash', 'xml', 'json', 'yaml'],
+        additionalLanguages: ['python', 'bash', 'markup', 'json', 'yaml'],
       },
     }),
 };

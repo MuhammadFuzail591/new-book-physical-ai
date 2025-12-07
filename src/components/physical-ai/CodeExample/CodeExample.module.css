@@ -1,0 +1,55 @@
+.codeExample {
+  margin: 20px 0;
+  border-left: 4px solid #2196F3;
+}
+
+.codeTitle {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.languageBadge {
+  font-size: 0.875rem;
+  color: #fff;
+  background-color: #2196F3;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.codeDescription {
+  margin: 15px 0;
+}
+
+.codeBlock {
+  margin: 15px 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: 15px;
+  background-color: #f8f8f8;
+  overflow-x: auto;
+}
+
+.environmentInfo {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.executionInstructions {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #fff3e0;
+  border-radius: 4px;
+}
+
+.instructionsContent {
+  margin-top: 8px;
+  line-height: 1.5;
+}

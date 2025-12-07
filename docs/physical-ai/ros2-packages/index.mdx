@@ -1,1 +1,421 @@
----\ntitle: Chapter Placeholder - ros2-packages\n---\n\n# Chapter Placeholder\n\nThis is a placeholder for the ros2-packages chapter. The actual content will be added during the implementation phase.\n\n## Learning Outcomes\n\n- Learning outcome 1\n- Learning outcome 2\n- Learning outcome 3\n\n## Content\n\nDetailed content for this chapter will be added here.\n\n## Summary\n\nSummary of the chapter content for RAG optimization.
+---
+title: Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters
+---
+
+# Chapter 5: Building ROS 2 Packages, Launch Files & Parameters
+
+## Chapter Overview
+
+This chapter delves into the fundamental building blocks of ROS 2 development: packages, launch files, and parameters. We'll explore how to create, structure, and organize ROS 2 packages effectively, implement sophisticated launch systems for managing complex robotic applications, and utilize the powerful parameter system for runtime configuration. These elements form the foundation for developing maintainable, scalable, and configurable robotic systems.
+
+## Learning Outcomes
+
+By the end of this chapter, you will be able to:
+- Create and structure ROS 2 packages following best practices
+- Implement comprehensive launch files for managing complex robot systems
+- Design and utilize the ROS 2 parameter system for runtime configuration
+- Create custom message, service, and action definitions
+- Build and install ROS 2 packages with proper dependencies
+- Implement parameter validation and dynamic reconfiguration
+- Design launch file architectures for multi-robot systems
+
+## Understanding ROS 2 Package Structure
+
+### Package Anatomy and Organization
+
+A ROS 2 package is the basic unit of software organization that contains source code, launch files, configuration files, and build configuration. Understanding the proper structure is crucial for maintainable robotic applications:
+
+```
+my_robot_package/
+├── CMakeLists.txt              # Build configuration for C++
+├── package.xml                 # Package metadata and dependencies
+├── setup.py                    # Python build configuration
+├── setup.cfg                   # Installation configuration
+├── src/                        # Source code
+│   ├── cpp/                    # C++ source files
+│   └── python/                 # Python source files
+├── include/                    # C++ header files
+├── launch/                     # Launch files
+├── config/                     # Configuration files
+├── params/                     # Parameter files
+├── test/                       # Test files
+├── scripts/                    # Executable scripts
+├── msg/                        # Custom message definitions
+├── srv/                        # Custom service definitions
+├── action/                     # Custom action definitions
+└── resource/                   # Package resource files
+```
+
+Let's examine the essential files and their roles:
+
+```xml
+<!-- package.xml -->
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>my_robot_package</name>
+  <version>1.0.0</version>
+  <description>My Robot Package for Physical AI Applications</description>
+  <maintainer email="maintainer@example.com">Maintainer Name</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>message_runtime</depend>
+
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+
+```cmake
+# CMakeLists.txt for C++ packages
+cmake_minimum_required(VERSION 3.8)
+project(my_robot_package)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# Find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+# Custom message generation
+find_package(rosidl_default_generators REQUIRED)
+
+# Define custom messages
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/RobotState.msg"
+  "msg/SensorData.msg"
+  "srv/RobotControl.srv"
+  "action/Navigation.action"
+  DEPENDENCIES std_msgs sensor_msgs geometry_msgs
+)
+
+# Build C++ nodes
+add_executable(robot_controller src/cpp/robot_controller.cpp)
+ament_target_dependencies(robot_controller
+  rclcpp
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+)
+
+# Install targets
+install(TARGETS
+  robot_controller
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  config
+  params
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+ament_package()
+```
+
+```python
+# setup.py for Python packages
+from setuptools import setup
+from glob import glob
+import os
+
+package_name = 'my_robot_package'
+
+setup(
+    name=package_name,
+    version='1.0.0',
+    packages=[package_name],
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
+        (os.path.join('share', package_name, 'params'), glob('params/*.yaml')),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='Maintainer Name',
+    maintainer_email='maintainer@example.com',
+    description='My Robot Package for Physical AI Applications',
+    license='Apache License 2.0',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'robot_controller = my_robot_package.robot_controller:main',
+            'sensor_processor = my_robot_package.sensor_processor:main',
+            'navigation_node = my_robot_package.navigation_node:main',
+        ],
+    },
+)
+```
+
+### Creating a Complete Package Example
+
+Let's create a comprehensive example package that demonstrates proper structure:
+
+```python
+# my_robot_package/my_robot_package/robot_controller.py
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile, qos_profile_sensor_data
+from std_msgs.msg import String, Float64
+from geometry_msgs.msg import Twist
+from sensor_msgs.msg import LaserScan, Imu
+from my_robot_package.msg import RobotState, SensorData
+from my_robot_package.srv import RobotControl
+from my_robot_package.action import Navigation
+from rclpy.action import ActionServer, ActionClient
+from rclpy.parameter import Parameter
+from collections import deque
+import math
+import time
+
+class RobotControllerNode(Node):
+    def __init__(self):
+        super().__init__('robot_controller')
+
+        # Declare parameters with default values and descriptions
+        self.declare_parameter('robot_name', 'default_robot',
+                              ParameterDescriptor(description='Name of the robot'))
+        self.declare_parameter('max_linear_velocity', 1.0,
+                              ParameterDescriptor(description='Maximum linear velocity (m/s)'))
+        self.declare_parameter('max_angular_velocity', 1.0,
+                              ParameterDescriptor(description='Maximum angular velocity (rad/s)'))
+        self.declare_parameter('safety_distance', 0.5,
+                              ParameterDescriptor(description='Minimum safety distance (m)'))
+        self.declare_parameter('control_frequency', 50.0,
+                              ParameterDescriptor(description='Control loop frequency (Hz)'))
+
+        # Get parameter values
+        self.robot_name = self.get_parameter('robot_name').value
+        self.max_linear_vel = self.get_parameter('max_linear_velocity').value
+        self.max_angular_vel = self.get_parameter('max_angular_velocity').value
+        self.safety_distance = self.get_parameter('safety_distance').value
+        self.control_frequency = self.get_parameter('control_frequency').value
+
+        # Publishers
+        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.status_pub = self.create_publisher(String, 'robot_status', 10)
+        self.state_pub = self.create_publisher(RobotState, 'robot_state', 10)
+
+        # Subscribers
+        self.laser_sub = self.create_subscription(
+            LaserScan, 'laser_scan', self.laser_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+        self.imu_sub = self.create_subscription(
+            Imu, 'imu/data', self.imu_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+
+        # Service server
+        self.control_srv = self.create_service(
+            RobotControl, 'robot_control', self.control_service_callback
+        )
+
+        # Action server
+        self.navigation_action_server = ActionServer(
+            self, Navigation, 'navigate_to_waypoint',
+            self.navigation_execute_callback
+        )
+
+        # Robot state tracking
+        self.robot_state = {
+            'position': {'x': 0.0, 'y': 0.0, 'theta': 0.0},
+            'velocity': {'linear': 0.0, 'angular': 0.0},
+            'safety_status': 'normal',
+            'battery_level': 100.0
+        }
+
+        # Sensor data storage
+        self.sensor_data = {
+            'laser_ranges': [],
+            'imu_orientation': None,
+            'imu_angular_velocity': None
+        }
+
+        # Control loop timer
+        self.control_timer = self.create_timer(
+            1.0 / self.control_frequency, self.control_loop
+        )
+
+        # Statistics
+        self.stats = {
+            'messages_received': 0,
+            'commands_sent': 0,
+            'safety_interventions': 0
+        }
+
+        self.get_logger().info(f'Robot Controller initialized for {self.robot_name}')
+
+    def laser_callback(self, msg):
+        """Handle laser scan data."""
+        self.stats['messages_received'] += 1
+        self.sensor_data['laser_ranges'] = msg.ranges
+
+        # Check for obstacles
+        if msg.ranges:
+            min_range = min([r for r in msg.ranges if not math.isnan(r)], default=float('inf'))
+            if min_range < self.safety_distance:
+                self.robot_state['safety_status'] = 'obstacle_detected'
+                self.get_logger().warn(f'Obstacle detected at {min_range:.2f}m')
+            else:
+                self.robot_state['safety_status'] = 'normal'
+
+    def imu_callback(self, msg):
+        """Handle IMU data."""
+        self.stats['messages_received'] += 1
+        self.sensor_data['imu_orientation'] = msg.orientation
+        self.sensor_data['imu_angular_velocity'] = msg.angular_velocity
+
+    def control_service_callback(self, request, response):
+        """Handle robot control service requests."""
+        command = request.command.lower()
+
+        if command == 'emergency_stop':
+            self.emergency_stop()
+            response.success = True
+            response.message = 'Emergency stop activated'
+        elif command == 'reset':
+            self.reset_robot()
+            response.success = True
+            response.message = 'Robot reset'
+        elif command == 'get_status':
+            response.success = True
+            response.message = f'Robot status: {self.robot_state["safety_status"]}'
+        else:
+            response.success = False
+            response.message = f'Unknown command: {command}'
+
+        return response
+
+    def navigation_execute_callback(self, goal_handle):
+        """Execute navigation goal."""
+        self.get_logger().info('Executing navigation goal...')
+
+        target_x = goal_handle.request.target_pose.position.x
+        target_y = goal_handle.request.target_pose.position.y
+
+        # Navigation execution logic
+        current_x = self.robot_state['position']['x']
+        current_y = self.robot_state['position']['y']
+
+        distance = math.sqrt((target_x - current_x)**2 + (target_y - current_y)**2)
+
+        if distance < 0.1:  # Already at goal
+            goal_handle.succeed()
+            result = Navigation.Result()
+            result.success = True
+            result.message = 'Already at target position'
+            goal_handle.publish_result(result)
+            return
+
+        # Move towards target (simplified)
+        cmd_msg = Twist()
+        cmd_msg.linear.x = min(0.5, distance)  # Move at 0.5 m/s or distance if closer
+        cmd_msg.angular.z = 0.0  # Simplified navigation
+
+        self.cmd_vel_pub.publish(cmd_msg)
+
+        # Wait for navigation to complete (simplified)
+        time.sleep(min(10.0, distance / 0.5))  # Wait based on distance
+
+        # Check if goal was achieved
+        new_distance = math.sqrt(
+            (target_x - self.robot_state['position']['x'])**2 +
+            (target_y - self.robot_state['position']['y'])**2
+        )
+
+        if new_distance < 0.2:  # Within tolerance
+            goal_handle.succeed()
+            result = Navigation.Result()
+            result.success = True
+            result.message = f'Navigated to ({target_x:.2f}, {target_y:.2f})'
+        else:
+            goal_handle.abort()
+            result = Navigation.Result()
+            result.success = False
+            result.message = f'Failed to reach target, {new_distance:.2f}m away'
+
+        goal_handle.publish_result(result)
+
+    def control_loop(self):
+        """Main control loop."""
+        # Publish robot status
+        status_msg = String()
+        status_msg.data = f'Robot: {self.robot_name}, Status: {self.robot_state["safety_status"]}'
+        self.status_pub.publish(status_msg)
+
+        # Publish robot state
+        state_msg = RobotState()
+        state_msg.header.stamp = self.get_clock().now().to_msg()
+        state_msg.header.frame_id = 'base_link'
+        state_msg.position.x = self.robot_state['position']['x']
+        state_msg.position.y = self.robot_state['position']['y']
+        state_msg.position.z = 0.0
+        state_msg.velocity.linear = self.robot_state['velocity']['linear']
+        state_msg.velocity.angular = self.robot_state['velocity']['angular']
+        state_msg.safety_status = self.robot_state['safety_status']
+        state_msg.battery_level = self.robot_state['battery_level']
+        self.state_pub.publish(state_msg)
+
+    def emergency_stop(self):
+        """Emergency stop the robot."""
+        cmd_msg = Twist()
+        cmd_msg.linear.x = 0.0
+        cmd_msg.angular.z = 0.0
+        self.cmd_vel_pub.publish(cmd_msg)
+        self.robot_state['safety_status'] = 'emergency_stop'
+        self.get_logger().error('EMERGENCY STOP ACTIVATED')
+
+    def reset_robot(self):
+        """Reset robot state."""
+        self.robot_state['position'] = {'x': 0.0, 'y': 0.0, 'theta': 0.0}
+        self.robot_state['velocity'] = {'linear': 0.0, 'angular': 0.0}
+        self.robot_state['safety_status'] = 'normal'
+        self.get_logger().info('Robot reset to initial state')
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = RobotControllerNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info('Shutting down robot controller...')
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```

@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/glossary",
-  "title": "Glossary",
-  "description": "This glossary contains technical terminology used throughout the Physical AI & Humanoid Robotics textbook.",
+  "title": "Glossary of Physical AI & Humanoid Robotics Terms",
+  "description": "This comprehensive glossary contains technical terminology used throughout the Physical AI & Humanoid Robotics textbook. Each term is defined with its specific meaning in the context of Physical AI, robotics, and embodied intelligence.",
   "source": "@site/docs/physical-ai/glossary.mdx",
   "sourceDirName": "physical-ai",
   "slug": "/physical-ai/glossary",
@@ -12,7 +12,7 @@
   "tags": [],
   "version": "current",
   "frontMatter": {
-    "title": "Glossary"
+    "title": "Glossary of Physical AI & Humanoid Robotics Terms"
   },
   "sidebar": "tutorialSidebar",
   "previous": {

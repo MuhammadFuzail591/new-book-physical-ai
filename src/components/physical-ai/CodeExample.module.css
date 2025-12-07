@@ -1,0 +1,82 @@
+.codeExample {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2e8555;
+}
+
+.languageTag {
+  background-color: #e8f4fd;
+  color: #1a73e8;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.description {
+  margin: 1rem 0;
+  color: #333;
+}
+
+.codeContainer {
+  margin: 1rem 0;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1rem;
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.environment {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-left: 4px solid #4caf50;
+}
+
+.instructions {
+  margin-top: 1rem;
+}
+
+.instructionsButton {
+  margin-bottom: 0.5rem;
+}
+
+.instructionsContent {
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    width: 100%;
+  }
+}

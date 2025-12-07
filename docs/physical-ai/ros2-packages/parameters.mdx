@@ -1,0 +1,624 @@
+---
+title: ROS 2 Parameters System
+---
+
+# ROS 2 Parameters System
+
+## Introduction to Parameters
+
+The ROS 2 parameter system provides a powerful mechanism for runtime configuration of nodes. Parameters allow you to modify node behavior without recompiling, making your robotic applications more flexible and configurable. The parameter system supports various data types and provides validation capabilities.
+
+### Parameter Declaration and Usage
+
+Parameters in ROS 2 are declared within nodes and can be set at runtime through various mechanisms:
+
+```python
+import rclpy
+from rclpy.node import Node
+from rclpy.parameter import Parameter
+from rcl_interfaces.msg import ParameterDescriptor, ParameterType
+from rcl_interfaces.srv import ListParameters, GetParameters, SetParameters
+
+class ParameterExampleNode(Node):
+    def __init__(self):
+        super().__init__('parameter_example_node')
+
+        # Declare parameters with descriptors for validation
+        self.declare_parameter(
+            'robot_name',
+            'default_robot',
+            ParameterDescriptor(
+                name='robot_name',
+                type=ParameterType.PARAMETER_STRING,
+                description='Name of the robot',
+                read_only=False
+            )
+        )
+
+        self.declare_parameter(
+            'max_velocity',
+            1.0,
+            ParameterDescriptor(
+                name='max_velocity',
+                type=ParameterType.PARAMETER_DOUBLE,
+                description='Maximum linear velocity of the robot',
+                additional_constraints='Must be positive and less than 5.0',
+                read_only=False
+            )
+        )
+
+        self.declare_parameter(
+            'safety_enabled',
+            True,
+            ParameterDescriptor(
+                name='safety_enabled',
+                type=ParameterType.PARAMETER_BOOL,
+                description='Whether safety checks are enabled',
+                read_only=False
+            )
+        )
+
+        # Declare parameter with integer range
+        self.declare_parameter(
+            'control_frequency',
+            50,
+            ParameterDescriptor(
+                name='control_frequency',
+                type=ParameterType.PARAMETER_INTEGER,
+                description='Control loop frequency in Hz',
+                integer_range=[Parameter.IntegerRange(from_value=10, to_value=500, step=1)]
+            )
+        )
+
+        # Declare parameter with floating point range
+        self.declare_parameter(
+            'kp_gain',
+            1.0,
+            ParameterDescriptor(
+                name='kp_gain',
+                type=ParameterType.PARAMETER_DOUBLE,
+                description='Proportional gain for PID controller',
+                floating_point_range=[Parameter.FloatingPointRange(from_value=0.0, to_value=10.0, step=0.01)]
+            )
+        )
+
+        # Add callback for parameter changes
+        self.add_on_set_parameters_callback(self.parameter_callback)
+
+        # Timer to periodically check parameter values
+        self.timer = self.create_timer(1.0, self.check_parameters)
+
+    def parameter_callback(self, params):
+        """Callback function for parameter changes."""
+        for param in params:
+            self.get_logger().info(f'Parameter {param.name} changed to {param.value}')
+
+            # Validate specific parameters
+            if param.name == 'max_velocity':
+                if param.value <= 0 or param.value > 5.0:
+                    self.get_logger().error(f'Invalid max_velocity value: {param.value}')
+                    return SetParametersResult(successful=False, reason='Invalid velocity value')
+
+            elif param.name == 'control_frequency':
+                if param.value < 10 or param.value > 500:
+                    self.get_logger().error(f'Invalid control_frequency value: {param.value}')
+                    return SetParametersResult(successful=False, reason='Frequency out of range')
+
+        return SetParametersResult(successful=True)
+
+    def check_parameters(self):
+        """Periodically check parameter values."""
+        robot_name = self.get_parameter('robot_name').value
+        max_velocity = self.get_parameter('max_velocity').value
+        safety_enabled = self.get_parameter('safety_enabled').value
+        control_frequency = self.get_parameter('control_frequency').value
+        kp_gain = self.get_parameter('kp_gain').value
+
+        self.get_logger().info(
+            f'Current parameters: {robot_name}, vel={max_velocity}, '
+            f'safety={safety_enabled}, freq={control_frequency}, kp={kp_gain}'
+        )
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ParameterExampleNode()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info('Shutting down parameter example node...')
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+## Parameter Types and Validation
+
+### Basic Parameter Types
+
+ROS 2 supports several parameter types that can be used to configure your nodes:
+
+```python
+# Example showing all parameter types
+class AllParameterTypesNode(Node):
+    def __init__(self):
+        super().__init__('all_parameter_types_node')
+
+        # String parameter
+        self.declare_parameter('string_param', 'default_value')
+
+        # Integer parameter
+        self.declare_parameter('integer_param', 42)
+
+        # Double parameter
+        self.declare_parameter('double_param', 3.14159)
+
+        # Boolean parameter
+        self.declare_parameter('bool_param', True)
+
+        # Byte parameter
+        self.declare_parameter('byte_param', 255)
+
+        # String array parameter
+        self.declare_parameter('string_array_param', ['value1', 'value2', 'value3'])
+
+        # Integer array parameter
+        self.declare_parameter('int_array_param', [1, 2, 3, 4, 5])
+
+        # Double array parameter
+        self.declare_parameter('double_array_param', [1.1, 2.2, 3.3])
+
+        # Boolean array parameter
+        self.declare_parameter('bool_array_param', [True, False, True])
+
+    def get_all_parameters(self):
+        """Get all parameter values."""
+        params = {}
+        params['string'] = self.get_parameter('string_param').value
+        params['integer'] = self.get_parameter('integer_param').value
+        params['double'] = self.get_parameter('double_param').value
+        params['bool'] = self.get_parameter('bool_param').value
+        params['byte'] = self.get_parameter('byte_param').value
+        params['string_array'] = self.get_parameter('string_array_param').value
+        params['int_array'] = self.get_parameter('int_array_param').value
+        params['double_array'] = self.get_parameter('double_array_param').value
+        params['bool_array'] = self.get_parameter('bool_array_param').value
+
+        return params
+```
+
+### Advanced Parameter Validation
+
+For safety-critical robotic applications, parameter validation is essential:
+
+```python
+from rcl_interfaces.msg import SetParametersResult
+import math
+
+class ValidatedParametersNode(Node):
+    def __init__(self):
+        super().__init__('validated_parameters_node')
+
+        # Safety-related parameters with strict validation
+        self.declare_parameter('safety_distance', 0.5)
+        self.declare_parameter('max_acceleration', 2.0)
+        self.declare_parameter('emergency_timeout', 5.0)
+        self.declare_parameter('battery_threshold', 20.0)
+
+        # Add validation callback
+        self.add_on_set_parameters_callback(self.validate_parameters)
+
+    def validate_parameters(self, parameters):
+        """Validate parameters before setting them."""
+        for param in parameters:
+            if param.name == 'safety_distance':
+                if param.value <= 0.0 or param.value > 5.0:
+                    return SetParametersResult(
+                        successful=False,
+                        reason=f'Safety distance must be between 0.0 and 5.0, got {param.value}'
+                    )
+
+            elif param.name == 'max_acceleration':
+                if param.value <= 0.0 or param.value > 10.0:
+                    return SetParametersResult(
+                        successful=False,
+                        reason=f'Max acceleration must be between 0.0 and 10.0, got {param.value}'
+                    )
+
+            elif param.name == 'emergency_timeout':
+                if param.value <= 0.0 or param.value > 60.0:
+                    return SetParametersResult(
+                        successful=False,
+                        reason=f'Emergency timeout must be between 0.0 and 60.0, got {param.value}'
+                    )
+
+            elif param.name == 'battery_threshold':
+                if param.value < 0.0 or param.value > 100.0:
+                    return SetParametersResult(
+                        successful=False,
+                        reason=f'Battery threshold must be between 0.0 and 100.0, got {param.value}'
+                    )
+
+        return SetParametersResult(successful=True)
+```
+
+## Parameter Configuration Files
+
+### YAML Parameter Files
+
+Parameters can be loaded from YAML configuration files, which is the preferred method for complex robotic systems:
+
+```yaml
+# config/robot_params.yaml
+/**:
+  ros__parameters:
+    # Robot identification
+    robot_name: "my_robot"
+    robot_type: "differential_drive"
+
+    # Motion control parameters
+    motion_control:
+      max_linear_velocity: 1.0
+      max_angular_velocity: 1.0
+      max_acceleration: 2.0
+      max_deceleration: 3.0
+      min_turn_radius: 0.2
+
+    # Safety parameters
+    safety:
+      safety_distance: 0.5
+      collision_threshold: 0.3
+      emergency_stop_enabled: true
+      max_operational_time: 3600.0  # 1 hour
+
+    # Sensor parameters
+    sensors:
+      laser_frequency: 10.0
+      camera_frequency: 30.0
+      imu_frequency: 100.0
+      enable_filtering: true
+
+    # Control parameters
+    control:
+      pid_gains:
+        linear:
+          kp: 1.0
+          ki: 0.1
+          kd: 0.05
+        angular:
+          kp: 2.0
+          ki: 0.05
+          kd: 0.1
+      control_frequency: 50.0
+```
+
+### Loading Parameters from Files
+
+```python
+import yaml
+from ament_index_python.packages import get_package_share_directory
+import os
+
+class ParameterFileNode(Node):
+    def __init__(self):
+        super().__init__('parameter_file_node')
+
+        # Load parameters from file
+        self.load_parameters_from_file()
+
+        # Timer to monitor parameter changes
+        self.monitor_timer = self.create_timer(2.0, self.monitor_parameters)
+
+    def load_parameters_from_file(self):
+        """Load parameters from a YAML file."""
+        try:
+            # Get the path to the config file
+            config_dir = get_package_share_directory('my_robot_package')
+            config_file = os.path.join(config_dir, 'config', 'robot_params.yaml')
+
+            with open(config_file, 'r') as file:
+                param_data = yaml.safe_load(file)
+
+            # Set parameters from the file
+            for param_name, param_value in param_data.get('/**', {}).get('ros__parameters', {}).items():
+                if isinstance(param_value, dict):
+                    # Handle nested parameters
+                    self.set_nested_parameters(param_name, param_value)
+                else:
+                    # Handle simple parameters
+                    if not self.has_parameter(param_name):
+                        self.declare_parameter(param_name, param_value)
+                    else:
+                        self.set_parameters([Parameter(param_name, value=param_value)])
+
+            self.get_logger().info(f'Parameters loaded from {config_file}')
+
+        except FileNotFoundError:
+            self.get_logger().warn(f'Parameter file not found: {config_file}')
+        except yaml.YAMLError as e:
+            self.get_logger().error(f'Error parsing parameter file: {e}')
+
+    def set_nested_parameters(self, prefix, param_dict):
+        """Set nested parameters using dot notation."""
+        for key, value in param_dict.items():
+            full_name = f"{prefix}.{key}"
+            if isinstance(value, dict):
+                self.set_nested_parameters(full_name, value)
+            else:
+                if not self.has_parameter(full_name):
+                    self.declare_parameter(full_name, value)
+                else:
+                    self.set_parameters([Parameter(full_name, value=value)])
+
+    def monitor_parameters(self):
+        """Monitor and log parameter values."""
+        # Example of accessing nested parameters
+        max_lin_vel = self.get_parameter('motion_control.max_linear_velocity').value
+        safety_dist = self.get_parameter('safety.safety_distance').value
+
+        self.get_logger().info(f'Monitoring - Max Vel: {max_lin_vel}, Safety Dist: {safety_dist}')
+```
+
+## Dynamic Parameter Reconfiguration
+
+### Runtime Parameter Changes
+
+Parameters can be changed at runtime through various mechanisms:
+
+```python
+import rclpy
+from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+from std_msgs.msg import String
+from rcl_interfaces.msg import Parameter, ParameterType
+from rcl_interfaces.srv import SetParameters, GetParameters
+
+class DynamicParameterNode(Node):
+    def __init__(self):
+        super().__init__('dynamic_parameter_node')
+
+        # Declare dynamic parameters
+        self.declare_parameter('operational_mode', 'autonomous')
+        self.declare_parameter('control_strategy', 'pid')
+        self.declare_parameter('debug_level', 1)
+
+        # Create service for external parameter setting
+        self.param_set_service = self.create_service(
+            SetParameters, 'set_robot_parameters', self.set_parameters_callback
+        )
+
+        # Create service for external parameter getting
+        self.param_get_service = self.create_service(
+            GetParameters, 'get_robot_parameters', self.get_parameters_callback
+        )
+
+        # Create publisher for parameter changes
+        self.param_change_pub = self.create_publisher(String, 'parameter_changes', 10)
+
+        # Create subscriber for parameter commands
+        self.param_cmd_sub = self.create_subscription(
+            String, 'parameter_commands', self.parameter_command_callback, 10
+        )
+
+        # Timer for parameter monitoring
+        self.monitor_timer = self.create_timer(0.5, self.monitor_parameters)
+
+    def set_parameters_callback(self, request, response):
+        """Handle external parameter setting requests."""
+        result = SetParametersResult()
+
+        for param in request.parameters:
+            try:
+                # Set the parameter
+                set_result = self.set_parameters([param])
+                if not set_result[0].successful:
+                    result.results.append(set_result[0])
+                    continue
+
+                # Publish parameter change notification
+                change_msg = String()
+                change_msg.data = f'Parameter {param.name} set to {param.value}'
+                self.param_change_pub.publish(change_msg)
+
+                result.results.append(set_result[0])
+
+            except Exception as e:
+                result.results.append(
+                    SetParametersResult(successful=False, reason=str(e))
+                )
+
+        return result
+
+    def get_parameters_callback(self, request, response):
+        """Handle external parameter getting requests."""
+        response.values = []
+
+        for param_name in request.names:
+            if self.has_parameter(param_name):
+                param = self.get_parameter(param_name)
+                response.values.append(param.value)
+            else:
+                # Return a default value or handle the missing parameter
+                response.values.append(None)
+
+        return response
+
+    def parameter_command_callback(self, msg):
+        """Handle parameter commands from string messages."""
+        try:
+            # Parse command: "set_param parameter_name value"
+            parts = msg.data.split(' ', 2)
+            if len(parts) >= 3 and parts[0] == 'set_param':
+                param_name = parts[1]
+                param_value_str = parts[2]
+
+                # Try to convert string value to appropriate type
+                param_value = self.parse_parameter_value(param_value_str)
+
+                if param_value is not None:
+                    # Set the parameter
+                    param = Parameter(param_name, value=param_value)
+                    result = self.set_parameters([param])
+
+                    if result[0].successful:
+                        self.get_logger().info(f'Set {param_name} to {param_value}')
+                    else:
+                        self.get_logger().error(f'Failed to set {param_name}: {result[0].reason}')
+        except Exception as e:
+            self.get_logger().error(f'Error processing parameter command: {e}')
+
+    def parse_parameter_value(self, value_str):
+        """Parse string value to appropriate parameter type."""
+        # Try boolean
+        if value_str.lower() in ['true', 'false']:
+            return value_str.lower() == 'true'
+
+        # Try integer
+        try:
+            return int(value_str)
+        except ValueError:
+            pass
+
+        # Try float
+        try:
+            return float(value_str)
+        except ValueError:
+            pass
+
+        # Default to string
+        return value_str
+
+    def monitor_parameters(self):
+        """Monitor parameter changes."""
+        operational_mode = self.get_parameter('operational_mode').value
+        control_strategy = self.get_parameter('control_strategy').value
+        debug_level = self.get_parameter('debug_level').value
+
+        # Log parameter values periodically
+        self.get_logger().debug(
+            f'Parameters - Mode: {operational_mode}, '
+            f'Strategy: {control_strategy}, Debug: {debug_level}'
+        )
+```
+
+## Parameter Best Practices
+
+### Organizing Parameters
+
+For large robotic systems, organizing parameters hierarchically improves maintainability:
+
+```python
+class WellOrganizedParametersNode(Node):
+    def __init__(self):
+        super().__init__('organized_parameters_node')
+
+        # Organize parameters in logical groups
+        self.declare_parameter('robot.identification.name', 'robot1')
+        self.declare_parameter('robot.identification.type', 'differential_drive')
+
+        self.declare_parameter('robot.motion.max_linear_velocity', 1.0)
+        self.declare_parameter('robot.motion.max_angular_velocity', 1.0)
+        self.declare_parameter('robot.motion.acceleration_limit', 2.0)
+
+        self.declare_parameter('sensors.lidar.enabled', True)
+        self.declare_parameter('sensors.lidar.range_min', 0.1)
+        self.declare_parameter('sensors.lidar.range_max', 30.0)
+
+        self.declare_parameter('safety.emergency_stop.enabled', True)
+        self.declare_parameter('safety.emergency_stop.timeout', 5.0)
+
+        self.declare_parameter('control.pid.linear.kp', 1.0)
+        self.declare_parameter('control.pid.linear.ki', 0.1)
+        self.declare_parameter('control.pid.linear.kd', 0.05)
+
+    def get_robot_config(self):
+        """Get robot configuration organized by subsystem."""
+        config = {
+            'identification': {
+                'name': self.get_parameter('robot.identification.name').value,
+                'type': self.get_parameter('robot.identification.type').value
+            },
+            'motion': {
+                'max_linear_velocity': self.get_parameter('robot.motion.max_linear_velocity').value,
+                'max_angular_velocity': self.get_parameter('robot.motion.max_angular_velocity').value,
+                'acceleration_limit': self.get_parameter('robot.motion.acceleration_limit').value
+            },
+            'sensors': {
+                'lidar': {
+                    'enabled': self.get_parameter('sensors.lidar.enabled').value,
+                    'range_min': self.get_parameter('sensors.lidar.range_min').value,
+                    'range_max': self.get_parameter('sensors.lidar.range_max').value
+                }
+            },
+            'safety': {
+                'emergency_stop': {
+                    'enabled': self.get_parameter('safety.emergency_stop.enabled').value,
+                    'timeout': self.get_parameter('safety.emergency_stop.timeout').value
+                }
+            },
+            'control': {
+                'pid': {
+                    'linear': {
+                        'kp': self.get_parameter('control.pid.linear.kp').value,
+                        'ki': self.get_parameter('control.pid.linear.ki').value,
+                        'kd': self.get_parameter('control.pid.linear.kd').value
+                    }
+                }
+            }
+        }
+        return config
+```
+
+### Parameter Documentation
+
+Documenting parameters is crucial for maintainable robotic systems:
+
+```python
+class DocumentedParametersNode(Node):
+    def __init__(self):
+        super().__init__('documented_parameters_node')
+
+        # Well-documented parameters with clear descriptions
+        self.declare_parameter(
+            'navigation.planner.global_planner',
+            'navfn',
+            ParameterDescriptor(
+                name='navigation.planner.global_planner',
+                type=ParameterType.PARAMETER_STRING,
+                description='Global path planner algorithm to use',
+                additional_constraints='Valid values: navfn, global_planner, teb_planner',
+                read_only=False
+            )
+        )
+
+        self.declare_parameter(
+            'navigation.planner.local_planner',
+            'dwa_local_planner',
+            ParameterDescriptor(
+                name='navigation.planner.local_planner',
+                type=ParameterType.PARAMETER_STRING,
+                description='Local path planner algorithm to use',
+                additional_constraints='Valid values: dwa_local_planner, teb_local_planner, mbf_local_planner',
+                read_only=False
+            )
+        )
+
+        self.declare_parameter(
+            'navigation.costmap.resolution',
+            0.05,
+            ParameterDescriptor(
+                name='navigation.costmap.resolution',
+                type=ParameterType.PARAMETER_DOUBLE,
+                description='Resolution of the costmap in meters/cell',
+                additional_constraints='Should be between 0.01 and 0.5 for optimal performance',
+                floating_point_range=[Parameter.FloatingPointRange(from_value=0.01, to_value=0.5, step=0.01)],
+                read_only=False
+            )
+        )
+```
+
+The ROS 2 parameter system provides a flexible and powerful mechanism for configuring robotic applications at runtime. Proper use of parameters enables the creation of adaptable, maintainable, and configurable robotic systems that can be tuned for different environments and operational requirements.

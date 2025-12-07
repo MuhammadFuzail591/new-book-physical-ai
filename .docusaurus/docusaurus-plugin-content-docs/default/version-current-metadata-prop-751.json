@@ -442,7 +442,7 @@
           },
           {
             "type": "link",
-            "label": "Glossary",
+            "label": "Glossary of Physical AI & Humanoid Robotics Terms",
             "href": "/physical-ai-textbook/physical-ai/glossary",
             "docId": "physical-ai/glossary",
             "unlisted": false
@@ -539,8 +539,8 @@
     },
     "physical-ai/glossary": {
       "id": "physical-ai/glossary",
-      "title": "Glossary",
-      "description": "This glossary contains technical terminology used throughout the Physical AI & Humanoid Robotics textbook.",
+      "title": "Glossary of Physical AI & Humanoid Robotics Terms",
+      "description": "This comprehensive glossary contains technical terminology used throughout the Physical AI & Humanoid Robotics textbook. Each term is defined with its specific meaning in the context of Physical AI, robotics, and embodied intelligence.",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/humanoid-robotics/chapter-summary": {
