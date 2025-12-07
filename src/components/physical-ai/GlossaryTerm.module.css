@@ -1,0 +1,89 @@
+.glossaryTerm {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.term {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2e8555;
+  flex: 1;
+}
+
+.termText {
+  font-weight: bold;
+}
+
+.expandButton {
+  margin-left: 0.5rem;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.definition {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.examples,
+.relatedTerms {
+  margin: 1rem 0;
+}
+
+.examples h5,
+.relatedTerms h5 {
+  margin-top: 0;
+  color: #555;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.examples ul,
+.relatedTerms ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.relatedTerm {
+  cursor: pointer;
+  color: #2e8555;
+  text-decoration: underline;
+}
+
+.relatedTerm:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .expandButton {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}

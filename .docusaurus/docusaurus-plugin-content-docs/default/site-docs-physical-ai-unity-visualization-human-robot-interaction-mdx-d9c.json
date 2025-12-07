@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/unity-visualization/human-robot-interaction",
+  "title": "human-robot-interaction",
+  "description": "",
+  "source": "@site/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+  "sourceDirName": "physical-ai/unity-visualization",
+  "slug": "/physical-ai/unity-visualization/human-robot-interaction",
+  "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/"
+  },
+  "next": {
+    "title": "visualization",
+    "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
+  }
+}

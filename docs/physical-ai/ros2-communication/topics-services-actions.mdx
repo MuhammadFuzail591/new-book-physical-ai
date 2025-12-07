@@ -1,0 +1,1465 @@
+---
+title: Topics, Services & Actions in ROS 2
+---
+
+# Topics, Services & Actions in ROS 2
+
+## Introduction
+
+Topics, services, and actions represent the three fundamental communication patterns in ROS 2, each designed for specific types of interactions between nodes. Understanding these patterns is crucial for designing effective robotic systems. Topics enable asynchronous, many-to-many communication for continuous data streams. Services provide synchronous, request-response communication for immediate computations. Actions handle goal-oriented, long-running tasks with feedback and cancellation capabilities.
+
+## Comprehensive Topic Implementation
+
+### Advanced Topic Patterns and Best Practices
+
+Topics form the backbone of ROS 2's publish/subscribe communication model. They enable asynchronous, decoupled communication between multiple publishers and subscribers:
+
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String, Int32, Float64
+from sensor_msgs.msg import LaserScan, Imu, JointState
+from geometry_msgs.msg import Twist, PoseStamped
+from nav_msgs.msg import Odometry
+import threading
+import time
+from collections import deque
+import numpy as np
+
+class AdvancedTopicNode(Node):
+    def __init__(self):
+        super().__init__('advanced_topic_node')
+
+        # Multiple publishers for different data types
+        self.status_publisher = self.create_publisher(String, 'robot_status', 10)
+        self.odometry_publisher = self.create_publisher(Odometry, 'odometry', 10)
+        self.cmd_vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.joint_states_publisher = self.create_publisher(JointState, 'joint_states', 10)
+
+        # Multiple subscribers with different QoS profiles
+        self.command_subscriber = self.create_subscription(
+            Twist, 'cmd_vel', self.cmd_vel_callback, 10
+        )
+        self.sensor_subscriber = self.create_subscription(
+            LaserScan, 'laser_scan', self.laser_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+        self.imu_subscriber = self.create_subscription(
+            Imu, 'imu/data', self.imu_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+
+        # Pre-allocated messages for optimization
+        self.odom_msg = Odometry()
+        self.joint_msg = JointState()
+        self.status_msg = String()
+
+        # Timer for periodic publishing
+        self.publish_timer = self.create_timer(0.1, self.publish_robot_state)
+
+        # Data storage for state management
+        self.robot_state = {
+            'position': {'x': 0.0, 'y': 0.0, 'theta': 0.0},
+            'velocity': {'linear': 0.0, 'angular': 0.0},
+            'joint_positions': [0.0] * 6,  # Example 6-DOF robot
+            'battery_level': 100.0
+        }
+
+        # Statistics tracking
+        self.message_stats = {
+            'received': 0,
+            'published': 0,
+            'timestamps': deque(maxlen=100)
+        }
+
+    def cmd_vel_callback(self, msg):
+        """Handle velocity commands."""
+        self.message_stats['received'] += 1
+        self.message_stats['timestamps'].append(self.get_clock().now().nanoseconds)
+
+        # Update robot state based on command
+        self.robot_state['velocity']['linear'] = msg.linear.x
+        self.robot_state['velocity']['angular'] = msg.angular.z
+
+        self.get_logger().info(
+            f'Received velocity command: linear={msg.linear.x}, angular={msg.angular.z}'
+        )
+
+    def laser_callback(self, msg):
+        """Handle laser scan data."""
+        # Process laser data for obstacle detection
+        min_range = min([r for r in msg.ranges if not np.isnan(r)], default=float('inf'))
+
+        if min_range < 1.0:  # Obstacle within 1 meter
+            self.get_logger().warn(f'Obstacle detected at {min_range:.2f}m')
+
+    def imu_callback(self, msg):
+        """Handle IMU data."""
+        # Extract orientation and angular velocity
+        orientation = msg.orientation
+        angular_velocity = msg.angular_velocity
+
+        self.get_logger().info(
+            f'IMU: orientation=({orientation.x:.3f}, {orientation.y:.3f}, {orientation.z:.3f}, {orientation.w:.3f})'
+        )
+
+    def publish_robot_state(self):
+        """Publish robot state information."""
+        # Update odometry message
+        self.odom_msg.header.stamp = self.get_clock().now().to_msg()
+        self.odom_msg.header.frame_id = 'odom'
+        self.odom_msg.child_frame_id = 'base_link'
+
+        # Set position (simplified for example)
+        self.odom_msg.pose.pose.position.x = self.robot_state['position']['x']
+        self.odom_msg.pose.pose.position.y = self.robot_state['position']['y']
+
+        # Set velocity
+        self.odom_msg.twist.twist.linear.x = self.robot_state['velocity']['linear']
+        self.odom_msg.twist.twist.angular.z = self.robot_state['velocity']['angular']
+
+        # Update joint states
+        self.joint_msg.header.stamp = self.get_clock().now().to_msg()
+        self.joint_msg.name = [f'joint_{i}' for i in range(6)]
+        self.joint_msg.position = self.robot_state['joint_positions']
+
+        # Update status
+        self.status_msg.data = f'Battery: {self.robot_state["battery_level"]:.1f}%, Pos: ({self.robot_state["position"]["x"]:.2f}, {self.robot_state["position"]["y"]:.2f})'
+
+        # Publish all messages
+        self.odometry_publisher.publish(self.odom_msg)
+        self.joint_states_publisher.publish(self.joint_msg)
+        self.status_publisher.publish(self.status_msg)
+
+        self.message_stats['published'] += 3  # 3 messages published
+```
+
+### Topic Filtering and Transformation
+
+Advanced topic handling often requires filtering, transforming, or aggregating data:
+
+```python
+from sensor_msgs.msg import PointCloud2, LaserScan
+import sensor_msgs.point_cloud2 as pc2
+from std_msgs.msg import Header
+from geometry_msgs.msg import Point32
+
+class TopicFilterNode(Node):
+    def __init__(self):
+        super().__init__('topic_filter_node')
+
+        # Subscribe to raw sensor data
+        self.pointcloud_sub = self.create_subscription(
+            PointCloud2, 'raw_pointcloud', self.pointcloud_callback, 10
+        )
+
+        self.laser_sub = self.create_subscription(
+            LaserScan, 'raw_laser', self.laser_callback, 10
+        )
+
+        # Publish filtered data
+        self.filtered_pc_pub = self.create_publisher(PointCloud2, 'filtered_pointcloud', 10)
+        self.filtered_laser_pub = self.create_publisher(LaserScan, 'filtered_laser', 10)
+
+        # Parameters for filtering
+        self.declare_parameter('min_distance', 0.5)
+        self.declare_parameter('max_distance', 10.0)
+        self.declare_parameter('x_min', -5.0)
+        self.declare_parameter('x_max', 5.0)
+        self.declare_parameter('y_min', -5.0)
+        self.declare_parameter('y_max', 5.0)
+
+    def pointcloud_callback(self, msg):
+        """Filter point cloud data."""
+        try:
+            # Convert PointCloud2 to list of points
+            points = list(pc2.read_points(msg, field_names=("x", "y", "z"), skip_nans=True))
+
+            # Apply spatial filtering
+            filtered_points = []
+            min_dist = self.get_parameter('min_distance').value
+            max_dist = self.get_parameter('max_distance').value
+            x_min = self.get_parameter('x_min').value
+            x_max = self.get_parameter('x_max').value
+            y_min = self.get_parameter('y_min').value
+            y_max = self.get_parameter('y_max').value
+
+            for point in points:
+                x, y, z = point
+                distance = np.sqrt(x**2 + y**2 + z**2)
+
+                if (min_dist <= distance <= max_dist and
+                    x_min <= x <= x_max and
+                    y_min <= y <= y_max):
+                    filtered_points.append([x, y, z])
+
+            # Create new PointCloud2 message with filtered points
+            header = Header()
+            header.stamp = msg.header.stamp
+            header.frame_id = msg.header.frame_id
+
+            filtered_msg = pc2.create_cloud_xyz32(header, filtered_points)
+            self.filtered_pc_pub.publish(filtered_msg)
+
+        except Exception as e:
+            self.get_logger().error(f'Error filtering point cloud: {e}')
+
+    def laser_callback(self, msg):
+        """Filter laser scan data."""
+        # Apply range filtering
+        filtered_ranges = []
+        min_range = self.get_parameter('min_distance').value
+        max_range = self.get_parameter('max_distance').value
+
+        for range_val in msg.ranges:
+            if np.isnan(range_val) or range_val < min_range or range_val > max_range:
+                filtered_ranges.append(float('inf'))  # Mark as invalid
+            else:
+                filtered_ranges.append(range_val)
+
+        # Create filtered message
+        filtered_msg = LaserScan()
+        filtered_msg.header = msg.header
+        filtered_msg.angle_min = msg.angle_min
+        filtered_msg.angle_max = msg.angle_max
+        filtered_msg.angle_increment = msg.angle_increment
+        filtered_msg.time_increment = msg.time_increment
+        filtered_msg.scan_time = msg.scan_time
+        filtered_msg.range_min = min_range
+        filtered_msg.range_max = max_range
+        filtered_msg.ranges = filtered_ranges
+        filtered_msg.intensities = msg.intensities  # Keep original intensities
+
+        self.filtered_laser_pub.publish(filtered_msg)
+```
+
+### Topic Monitoring and Statistics
+
+Monitoring topic performance is essential for robust robotic systems:
+
+```python
+from rclpy.qos import qos_profile_sensor_data
+from std_msgs.msg import String
+import time
+from collections import deque
+import statistics
+
+class TopicMonitorNode(Node):
+    def __init__(self):
+        super().__init__('topic_monitor')
+
+        # Subscribe to topic with monitoring
+        self.monitored_sub = self.create_subscription(
+            String, 'monitored_topic', self.monitored_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+
+        # Statistics publishers
+        self.stats_pub = self.create_publisher(String, 'topic_statistics', 10)
+        self.health_pub = self.create_publisher(String, 'topic_health', 10)
+
+        # Statistics tracking
+        self.message_count = 0
+        self.message_times = deque(maxlen=1000)  # Store timestamps
+        self.message_sizes = deque(maxlen=1000)  # Store sizes
+        self.message_intervals = deque(maxlen=1000)  # Store intervals
+        self.start_time = self.get_clock().now()
+
+        # Monitoring timer
+        self.monitor_timer = self.create_timer(5.0, self.publish_monitoring_data)
+
+        # Health monitoring
+        self.last_message_time = self.get_clock().now()
+        self.health_timer = self.create_timer(1.0, self.check_health)
+
+    def monitored_callback(self, msg):
+        """Monitor incoming messages."""
+        current_time = self.get_clock().now()
+        self.message_count += 1
+
+        # Store timing information
+        self.message_times.append(current_time.nanoseconds)
+        self.message_sizes.append(len(msg.data.encode('utf-8')))
+
+        # Calculate interval if we have previous message
+        if len(self.message_times) > 1:
+            interval = (self.message_times[-1] - self.message_times[-2]) / 1e9
+            self.message_intervals.append(interval)
+
+        # Update last message time for health monitoring
+        self.last_message_time = current_time
+
+        # Process the message
+        self.process_monitored_message(msg)
+
+    def process_monitored_message(self, msg):
+        """Process the monitored message."""
+        # Implement specific message processing logic here
+        self.get_logger().debug(f'Monitored: {msg.data}')
+
+    def publish_monitoring_data(self):
+        """Publish monitoring statistics."""
+        if self.message_count == 0:
+            return
+
+        # Calculate statistics
+        elapsed_time = (self.get_clock().now() - self.start_time).nanoseconds / 1e9
+        message_rate = self.message_count / elapsed_time if elapsed_time > 0 else 0
+
+        # Calculate interval statistics
+        avg_interval = statistics.mean(self.message_intervals) if self.message_intervals else 0
+        std_interval = statistics.stdev(self.message_intervals) if len(self.message_intervals) > 1 else 0
+        min_interval = min(self.message_intervals) if self.message_intervals else 0
+        max_interval = max(self.message_intervals) if self.message_intervals else 0
+
+        # Calculate size statistics
+        avg_size = statistics.mean(self.message_sizes) if self.message_sizes else 0
+        std_size = statistics.stdev(self.message_sizes) if len(self.message_sizes) > 1 else 0
+
+        # Create statistics message
+        stats_msg = String()
+        stats_msg.data = (
+            f"Topic Statistics:\n"
+            f"  Total Messages: {self.message_count}\n"
+            f"  Message Rate: {message_rate:.2f} Hz\n"
+            f"  Avg Interval: {avg_interval:.4f}s (±{std_interval:.4f}s)\n"
+            f"  Interval Range: {min_interval:.4f}s - {max_interval:.4f}s\n"
+            f"  Avg Size: {avg_size:.2f} bytes (±{std_size:.2f} bytes)\n"
+            f"  Elapsed Time: {elapsed_time:.2f}s\n"
+        )
+
+        self.stats_pub.publish(stats_msg)
+
+    def check_health(self):
+        """Check topic health."""
+        current_time = self.get_clock().now()
+        time_since_last = (current_time - self.last_message_time).nanoseconds / 1e9
+
+        health_msg = String()
+        if time_since_last > 5.0:  # No message in 5 seconds
+            health_msg.data = f"ALERT: No messages received for {time_since_last:.2f}s"
+        else:
+            health_msg.data = f"OK: Last message {time_since_last:.2f}s ago"
+
+        self.health_pub.publish(health_msg)
+```
+
+## Advanced Service Implementation
+
+### Robust Service Architecture
+
+Services provide synchronous request/response communication for immediate computations and operations:
+
+```python
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
+from example_interfaces.srv import AddTwoInts, SetBool
+from std_srvs.srv import Trigger, Empty
+from sensor_msgs.srv import SetCameraInfo
+import time
+import threading
+from rclpy.task import Future
+
+class AdvancedServiceNode(Node):
+    def __init__(self):
+        super().__init__('advanced_service_node')
+
+        # Multiple service servers
+        self.add_service = self.create_service(
+            AddTwoInts, 'robust_add_two_ints', self.robust_add_callback
+        )
+
+        self.toggle_service = self.create_service(
+            SetBool, 'toggle_device', self.toggle_callback
+        )
+
+        self.trigger_service = self.create_service(
+            Trigger, 'trigger_operation', self.trigger_callback
+        )
+
+        # Service clients for internal coordination
+        self.dependency_client = self.create_client(
+            Trigger, 'dependency_service'
+        )
+
+        # Statistics for monitoring
+        self.service_stats = {
+            'add': {'requests': 0, 'errors': 0, 'avg_time': 0.0},
+            'toggle': {'requests': 0, 'errors': 0, 'avg_time': 0.0},
+            'trigger': {'requests': 0, 'errors': 0, 'avg_time': 0.0}
+        }
+
+        # Thread-safe statistics
+        self.stats_lock = threading.Lock()
+
+    def robust_add_callback(self, request, response):
+        """Robust addition service with error handling."""
+        start_time = time.time()
+        self._update_stats('add', 'requests')
+
+        try:
+            # Validate inputs
+            if not self._validate_numbers(request.a, request.b):
+                self.get_logger().error('Invalid numbers provided to add service')
+                response.success = False
+                response.message = 'Invalid input numbers'
+                self._update_stats('add', 'errors')
+                return response
+
+            # Perform calculation
+            result = self._safe_add(request.a, request.b)
+            response.sum = result
+            response.success = True
+            response.message = f'Successfully calculated {request.a} + {request.b} = {result}'
+
+            # Log successful operation
+            processing_time = time.time() - start_time
+            self._update_avg_time('add', processing_time)
+            self.get_logger().info(
+                f'Add service: {request.a} + {request.b} = {result} '
+                f'(time: {processing_time:.4f}s)'
+            )
+
+        except Exception as e:
+            self.get_logger().error(f'Add service error: {e}')
+            response.success = False
+            response.message = f'Calculation error: {str(e)}'
+            self._update_stats('add', 'errors')
+
+        return response
+
+    def toggle_callback(self, request, response):
+        """Toggle service with state management."""
+        start_time = time.time()
+        self._update_stats('toggle', 'requests')
+
+        try:
+            # Simulate device toggle operation
+            device_state = request.data
+            self.get_logger().info(f'Toggling device to state: {device_state}')
+
+            # Simulate hardware operation time
+            time.sleep(0.1)
+
+            response.success = True
+            response.message = f'Device toggled to {"ON" if device_state else "OFF"}'
+
+            processing_time = time.time() - start_time
+            self._update_avg_time('toggle', processing_time)
+
+        except Exception as e:
+            self.get_logger().error(f'Toggle service error: {e}')
+            response.success = False
+            response.message = f'Toggle operation failed: {str(e)}'
+            self._update_stats('toggle', 'errors')
+
+        return response
+
+    def trigger_callback(self, request, response):
+        """Trigger service with complex operations."""
+        start_time = time.time()
+        self._update_stats('trigger', 'requests')
+
+        try:
+            # Check dependencies
+            if not self._check_dependencies():
+                response.success = False
+                response.message = 'Required dependencies not available'
+                self._update_stats('trigger', 'errors')
+                return response
+
+            # Perform complex operation
+            success = self._perform_complex_operation()
+
+            response.success = success
+            response.message = 'Operation completed successfully' if success else 'Operation failed'
+
+            processing_time = time.time() - start_time
+            self._update_avg_time('trigger', processing_time)
+
+        except Exception as e:
+            self.get_logger().error(f'Trigger service error: {e}')
+            response.success = False
+            response.message = f'Trigger operation failed: {str(e)}'
+            self._update_stats('trigger', 'errors')
+
+        return response
+
+    def _validate_numbers(self, a, b):
+        """Validate number inputs."""
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            return False
+        if abs(a) > 1e10 or abs(b) > 1e10:
+            self.get_logger().warn('Very large numbers detected')
+        return True
+
+    def _safe_add(self, a, b):
+        """Perform safe addition with overflow protection."""
+        try:
+            result = a + b
+            if not np.isfinite(result):
+                raise ValueError('Result is not finite')
+            return result
+        except OverflowError:
+            raise ValueError('Addition resulted in overflow')
+
+    def _check_dependencies(self):
+        """Check if required dependencies are available."""
+        # Simulate dependency check
+        return True
+
+    def _perform_complex_operation(self):
+        """Perform a complex operation."""
+        # Simulate complex operation
+        time.sleep(0.5)
+        return True
+
+    def _update_stats(self, service_name, stat_type):
+        """Thread-safe statistics update."""
+        with self.stats_lock:
+            if stat_type == 'requests':
+                self.service_stats[service_name]['requests'] += 1
+            elif stat_type == 'errors':
+                self.service_stats[service_name]['errors'] += 1
+
+    def _update_avg_time(self, service_name, processing_time):
+        """Update average processing time."""
+        with self.stats_lock:
+            stats = self.service_stats[service_name]
+            current_avg = stats['avg_time']
+            count = stats['requests']
+            stats['avg_time'] = ((current_avg * (count - 1)) + processing_time) / count
+```
+
+### Service Chaining and Coordination
+
+Complex robotic systems often require services that coordinate with other services:
+
+```python
+from rclpy.qos import qos_profile_services_default
+from example_interfaces.srv import AddTwoInts, SetBool
+from std_srvs.srv import Trigger
+import asyncio
+
+class ServiceCoordinatorNode(Node):
+    def __init__(self):
+        super().__init__('service_coordinator')
+
+        # Main service that coordinates other services
+        self.complex_calc_service = self.create_service(
+            AddTwoInts, 'complex_calculation', self.complex_calc_callback
+        )
+
+        # Client for dependency services
+        self.add_client = self.create_client(AddTwoInts, 'robust_add_two_ints')
+        self.multiply_client = self.create_client(AddTwoInts, 'multiply_service')
+        self.validation_client = self.create_client(SetBool, 'validate_inputs')
+
+        # Wait for services to be available
+        self.get_logger().info('Waiting for dependency services...')
+        while not self.add_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Add service not available, waiting...')
+        while not self.multiply_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Multiply service not available, waiting...')
+        while not self.validation_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Validation service not available, waiting...')
+
+    def complex_calc_callback(self, request, response):
+        """Complex calculation that chains multiple services."""
+        try:
+            # First, validate inputs
+            validation_request = SetBool.Request()
+            validation_request.data = True  # Simplified validation
+            validation_future = self.validation_client.call_async(validation_request)
+
+            # Wait for validation result
+            rclpy.spin_until_future_complete(self, validation_future)
+            validation_result = validation_future.result()
+
+            if not validation_result.success:
+                response.success = False
+                response.message = validation_result.message
+                return response
+
+            # Perform addition using dependency service
+            add_request = AddTwoInts.Request()
+            add_request.a = request.a
+            add_request.b = request.b
+            add_future = self.add_client.call_async(add_request)
+
+            # Wait for addition result
+            rclpy.spin_until_future_complete(self, add_future)
+            add_result = add_future.result()
+
+            if not add_result.sum:
+                response.success = False
+                response.message = 'Addition service failed'
+                return response
+
+            # Multiply result by a factor (simplified example)
+            multiply_request = AddTwoInts.Request()
+            multiply_request.a = add_result.sum
+            multiply_request.b = 2  # Factor of 2
+            multiply_future = self.multiply_client.call_async(multiply_request)
+
+            # Wait for multiplication result
+            rclpy.spin_until_future_complete(self, multiply_future)
+            multiply_result = multiply_future.result()
+
+            response.sum = multiply_result.sum
+            response.success = True
+            response.message = f'Complex calculation completed: ({request.a} + {request.b}) * 2 = {multiply_result.sum}'
+
+        except Exception as e:
+            self.get_logger().error(f'Complex calculation error: {e}')
+            response.success = False
+            response.message = f'Complex calculation failed: {str(e)}'
+
+        return response
+
+class ServiceLoadBalancerNode(Node):
+    def __init__(self):
+        super().__init__('service_load_balancer')
+
+        # Main service interface
+        self.load_balanced_service = self.create_service(
+            AddTwoInts, 'load_balanced_calc', self.load_balanced_callback
+        )
+
+        # Multiple backend services
+        self.backend_clients = [
+            self.create_client(AddTwoInts, 'backend_calc_1'),
+            self.create_client(AddTwoInts, 'backend_calc_2'),
+            self.create_client(AddTwoInts, 'backend_calc_3')
+        ]
+
+        # Load balancing state
+        self.current_backend = 0
+        self.backend_stats = [0] * len(self.backend_clients)  # Request counts
+
+        # Wait for all backends
+        for i, client in enumerate(self.backend_clients):
+            while not client.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info(f'Backend {i+1} not available, waiting...')
+
+    def load_balanced_callback(self, request, response):
+        """Distribute requests across multiple backend services."""
+        # Select backend using round-robin
+        selected_client = self.backend_clients[self.current_backend]
+        self.backend_stats[self.current_backend] += 1
+
+        # Update for next request
+        self.current_backend = (self.current_backend + 1) % len(self.backend_clients)
+
+        try:
+            # Call backend service
+            backend_request = AddTwoInts.Request()
+            backend_request.a = request.a
+            backend_request.b = request.b
+
+            backend_future = selected_client.call_async(backend_request)
+            rclpy.spin_until_future_complete(self, backend_future)
+            backend_result = backend_future.result()
+
+            response.sum = backend_result.sum
+            response.success = backend_result.sum is not None
+            response.message = f'Processed by backend {self.current_backend}'
+
+        except Exception as e:
+            self.get_logger().error(f'Load balancer error: {e}')
+            response.success = False
+            response.message = f'Load balancing failed: {str(e)}'
+
+        return response
+```
+
+## Comprehensive Action Implementation
+
+### Advanced Action Server with Complex State Management
+
+Actions provide goal-oriented communication with feedback and cancellation for long-running tasks:
+
+```python
+from rclpy.action import ActionServer, CancelResponse, GoalResponse
+from rclpy.callback_groups import ReentrantCallbackGroup
+from example_interfaces.action import Fibonacci
+from geometry_msgs.action import NavigateToPose
+from control_msgs.action import FollowJointTrajectory
+import threading
+import time
+import math
+from collections import deque
+
+class AdvancedNavigationActionServer(Node):
+    def __init__(self):
+        super().__init__('advanced_navigation_action_server')
+
+        # Use reentrant callback group for concurrent access
+        callback_group = ReentrantCallbackGroup()
+
+        self._action_server = ActionServer(
+            self,
+            NavigateToPose,
+            'navigate_to_pose',
+            self.execute_callback,
+            goal_callback=self.goal_callback,
+            handle_accepted_callback=self.handle_accepted_callback,
+            cancel_callback=self.cancel_callback,
+            callback_group=callback_group
+        )
+
+        # State tracking
+        self.current_pose = {'x': 0.0, 'y': 0.0, 'theta': 0.0}
+        self.active_goals = {}
+        self.navigation_history = deque(maxlen=100)
+
+        # Publishers for navigation state
+        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.pose_pub = self.create_publisher(PoseStamped, 'current_pose', 10)
+
+        # Timer for periodic state updates
+        self.state_timer = self.create_timer(0.1, self.update_navigation_state)
+
+    def goal_callback(self, goal_request):
+        """Validate and accept/reject navigation goals."""
+        target_pose = goal_request.pose.pose
+        current_pose = self.current_pose
+
+        # Calculate distance to goal
+        distance = math.sqrt(
+            (target_pose.position.x - current_pose['x'])**2 +
+            (target_pose.position.y - current_pose['y'])**2
+        )
+
+        # Validate goal
+        if distance > 100.0:  # Max navigation distance
+            self.get_logger().warn(f'Navigation goal too far: {distance:.2f}m')
+            return GoalResponse.REJECT
+        elif distance < 0.1:  # Already at goal
+            self.get_logger().info('Already at navigation goal')
+            return GoalResponse.REJECT
+        else:
+            self.get_logger().info(f'Accepting navigation goal, distance: {distance:.2f}m')
+            return GoalResponse.ACCEPT
+
+    def handle_accepted_callback(self, goal_handle):
+        """Handle accepted goal by starting execution."""
+        self.get_logger().info('Navigation goal accepted, starting execution')
+
+        # Store goal in active goals
+        goal_id = goal_handle.goal_id.uuid
+        self.active_goals[goal_id] = goal_handle
+
+        # Start execution in separate thread
+        thread = threading.Thread(target=self.execute_navigation, args=(goal_handle,))
+        thread.start()
+
+    def cancel_callback(self, goal_handle):
+        """Handle cancel request."""
+        self.get_logger().info('Navigation goal cancellation requested')
+        return CancelResponse.ACCEPT
+
+    def execute_navigation(self, goal_handle):
+        """Execute navigation in separate thread."""
+        self.get_logger().info('Starting navigation execution...')
+
+        # Extract goal pose
+        target_pose = goal_handle.request.pose.pose
+        target_x = target_pose.position.x
+        target_y = target_pose.position.y
+
+        # Navigation parameters
+        linear_speed = 0.5
+        angular_speed = 0.5
+        tolerance = 0.1  # Distance tolerance in meters
+
+        # Navigation loop
+        while rclpy.ok():
+            # Check for cancellation
+            if goal_handle.is_cancel_requested:
+                self.get_logger().info('Navigation goal cancelled')
+                goal_handle.canceled()
+
+                # Stop robot
+                stop_msg = Twist()
+                self.cmd_vel_pub.publish(stop_msg)
+
+                # Remove from active goals
+                goal_id = goal_handle.goal_id.uuid
+                if goal_id in self.active_goals:
+                    del self.active_goals[goal_id]
+                return
+
+            # Calculate distance to goal
+            distance = math.sqrt(
+                (target_x - self.current_pose['x'])**2 +
+                (target_y - self.current_pose['y'])**2
+            )
+
+            # Check if reached goal
+            if distance <= tolerance:
+                self.get_logger().info('Navigation goal reached')
+
+                # Stop robot
+                stop_msg = Twist()
+                self.cmd_vel_pub.publish(stop_msg)
+
+                # Create result
+                result = NavigateToPose.Result()
+                result.result_code = 1  # Success
+
+                goal_handle.succeed()
+                goal_handle.publish_result(result)
+
+                # Add to history
+                history_entry = {
+                    'start': (self.current_pose['x'], self.current_pose['y']),
+                    'goal': (target_x, target_y),
+                    'distance': distance,
+                    'time': time.time()
+                }
+                self.navigation_history.append(history_entry)
+
+                # Remove from active goals
+                goal_id = goal_handle.goal_id.uuid
+                if goal_id in self.active_goals:
+                    del self.active_goals[goal_id]
+                return
+
+            # Calculate control commands
+            cmd_vel = self.calculate_navigation_command(target_x, target_y, linear_speed, angular_speed)
+
+            # Publish command
+            self.cmd_vel_pub.publish(cmd_vel)
+
+            # Publish feedback
+            feedback = NavigateToPose.Feedback()
+            feedback.current_pose.pose.position.x = self.current_pose['x']
+            feedback.current_pose.pose.position.y = self.current_pose['y']
+            feedback.distance_remaining = distance
+            goal_handle.publish_feedback(feedback)
+
+            # Log progress
+            self.get_logger().info(f'Navigating: {distance:.2f}m remaining')
+
+            # Sleep to control loop rate
+            time.sleep(0.1)
+
+    def calculate_navigation_command(self, target_x, target_y, linear_speed, angular_speed):
+        """Calculate navigation commands."""
+        # Calculate desired angle
+        desired_angle = math.atan2(
+            target_y - self.current_pose['y'],
+            target_x - self.current_pose['x']
+        )
+
+        # Calculate angle difference
+        angle_diff = desired_angle - self.current_pose['theta']
+
+        # Normalize angle
+        while angle_diff > math.pi:
+            angle_diff -= 2 * math.pi
+        while angle_diff < -math.pi:
+            angle_diff += 2 * math.pi
+
+        # Create command message
+        cmd_vel = Twist()
+        cmd_vel.linear.x = min(linear_speed, linear_speed * (abs(angle_diff) < 0.1))
+        cmd_vel.angular.z = angular_speed * angle_diff
+
+        return cmd_vel
+
+    def update_navigation_state(self):
+        """Update navigation state periodically."""
+        # Simulate state updates (in real system, this would come from localization)
+        self.current_pose['x'] += 0.01  # Simulated movement
+        self.current_pose['y'] += 0.005  # Simulated movement
+
+        # Publish current pose
+        pose_msg = PoseStamped()
+        pose_msg.header.stamp = self.get_clock().now().to_msg()
+        pose_msg.header.frame_id = 'map'
+        pose_msg.pose.position.x = self.current_pose['x']
+        pose_msg.pose.position.y = self.current_pose['y']
+        pose_msg.pose.orientation.w = 1.0  # Simplified orientation
+
+        self.pose_pub.publish(pose_msg)
+
+    def execute_callback(self, goal_handle):
+        """Execute callback (placeholder - actual execution in separate thread)."""
+        # This method is required by the action server interface
+        # Actual execution happens in execute_navigation in separate thread
+        pass
+```
+
+### Advanced Action Client with Comprehensive Features
+
+Action clients need to handle various scenarios including timeouts, feedback, and result processing:
+
+```python
+from rclpy.action import ActionClient
+from geometry_msgs.action import NavigateToPose
+from control_msgs.action import FollowJointTrajectory
+import time
+
+class AdvancedNavigationActionClient(Node):
+    def __init__(self):
+        super().__init__('advanced_navigation_action_client')
+
+        # Create action client
+        self._action_client = ActionClient(
+            self, NavigateToPose, 'navigate_to_pose'
+        )
+
+        # Wait for action server
+        self.get_logger().info('Waiting for navigation action server...')
+        self._action_client.wait_for_server()
+        self.get_logger().info('Navigation action server available')
+
+        # Statistics tracking
+        self.navigation_stats = {
+            'completed': 0,
+            'cancelled': 0,
+            'failed': 0,
+            'avg_duration': 0.0
+        }
+
+    def send_navigation_goal(self, x, y, theta=0.0, timeout_sec=60.0):
+        """Send navigation goal with comprehensive handling."""
+        # Create goal message
+        goal_msg = NavigateToPose.Goal()
+        goal_msg.pose.header.stamp = self.get_clock().now().to_msg()
+        goal_msg.pose.header.frame_id = 'map'
+        goal_msg.pose.pose.position.x = x
+        goal_msg.pose.pose.position.y = y
+        goal_msg.pose.pose.orientation.z = math.sin(theta / 2.0)
+        goal_msg.pose.pose.orientation.w = math.cos(theta / 2.0)
+
+        self.get_logger().info(f'Sending navigation goal to ({x}, {y}, {theta})')
+
+        # Send goal asynchronously
+        goal_future = self._action_client.send_goal_async(
+            goal_msg,
+            feedback_callback=self.feedback_callback
+        )
+
+        # Add goal response callback
+        goal_future.add_done_callback(
+            lambda future: self.goal_response_callback(future, timeout_sec)
+        )
+
+        return goal_future
+
+    def goal_response_callback(self, future, timeout_sec):
+        """Handle goal response."""
+        goal_handle = future.result()
+
+        if not goal_handle.accepted:
+            self.get_logger().info('Navigation goal rejected by server')
+            return
+
+        self.get_logger().info('Navigation goal accepted by server')
+
+        # Get result future
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self.result_callback)
+
+        # Set up timeout monitoring
+        start_time = time.time()
+        self.monitor_navigation_timeout(goal_handle, start_time, timeout_sec)
+
+    def feedback_callback(self, feedback_msg):
+        """Handle navigation feedback."""
+        current_pos = feedback_msg.current_pose.pose.position
+        remaining = feedback_msg.distance_remaining
+
+        self.get_logger().info(
+            f'Navigation progress: position=({current_pos.x:.2f}, {current_pos.y:.2f}), '
+            f'distance remaining={remaining:.2f}m'
+        )
+
+    def result_callback(self, result_future):
+        """Handle navigation result."""
+        result = result_future.result().result
+        status = result_future.result().status
+
+        if status == GoalStatus.STATUS_SUCCEEDED:
+            self.get_logger().info('Navigation completed successfully')
+            self.navigation_stats['completed'] += 1
+        elif status == GoalStatus.STATUS_CANCELED:
+            self.get_logger().info('Navigation was cancelled')
+            self.navigation_stats['cancelled'] += 1
+        elif status == GoalStatus.STATUS_ABORTED:
+            self.get_logger().info('Navigation failed')
+            self.navigation_stats['failed'] += 1
+
+    def monitor_navigation_timeout(self, goal_handle, start_time, timeout_sec):
+        """Monitor navigation for timeout."""
+        if time.time() - start_time > timeout_sec:
+            self.get_logger().warn('Navigation timeout, cancelling goal...')
+            self.cancel_current_navigation(goal_handle)
+        else:
+            # Schedule next check
+            timer = self.create_timer(
+                1.0,
+                lambda: self.monitor_navigation_timeout(goal_handle, start_time, timeout_sec)
+            )
+
+    def cancel_current_navigation(self, goal_handle):
+        """Cancel current navigation goal."""
+        cancel_future = goal_handle.cancel_goal_async()
+        cancel_future.add_done_callback(self.cancel_response_callback)
+
+    def cancel_response_callback(self, future):
+        """Handle cancellation response."""
+        cancel_response = future.result()
+        if len(cancel_response.goals_canceling) > 0:
+            self.get_logger().info('Navigation goal successfully cancelled')
+        else:
+            self.get_logger().info('Navigation goal could not be cancelled')
+
+    def send_multiple_goals(self, waypoints):
+        """Send multiple navigation goals in sequence."""
+        for i, (x, y, theta) in enumerate(waypoints):
+            self.get_logger().info(f'Sending waypoint {i+1}: ({x}, {y}, {theta})')
+            self.send_navigation_goal(x, y, theta)
+
+            # Wait between goals (in a real implementation, this would be more sophisticated)
+            time.sleep(2)
+```
+
+## Communication Pattern Integration
+
+### Comprehensive Multi-Pattern System
+
+Here's a complete example that demonstrates all three communication patterns working together in a sophisticated robotic system:
+
+```python
+from rclpy.qos import QoSProfile, qos_profile_sensor_data, qos_profile_services_default
+from std_msgs.msg import String, Float64, Bool
+from sensor_msgs.msg import LaserScan, Imu
+from geometry_msgs.msg import Twist, PoseStamped
+from nav_msgs.msg import Odometry
+from example_interfaces.srv import SetBool, AddTwoInts
+from example_interfaces.action import Fibonacci
+from rclpy.action import ActionClient, ActionServer, GoalResponse, CancelResponse
+import threading
+import time
+import math
+
+class IntegratedRobotSystemNode(Node):
+    def __init__(self):
+        super().__init__('integrated_robot_system')
+
+        # TOPIC: Publishers for system state
+        self.status_pub = self.create_publisher(String, 'system_status', 10)
+        self.odom_pub = self.create_publisher(Odometry, 'robot_odometry', 10)
+        self.cmd_vel_pub = self.create_publisher(Twist, 'robot_cmd_vel', 10)
+        self.sensor_fusion_pub = self.create_publisher(String, 'sensor_fusion_result', 10)
+
+        # TOPIC: Subscribers for sensor data and commands
+        self.laser_sub = self.create_subscription(
+            LaserScan, 'laser_scan', self.laser_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+        self.imu_sub = self.create_subscription(
+            Imu, 'imu_data', self.imu_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+        self.cmd_sub = self.create_subscription(
+            Twist, 'teleop_cmd', self.teleop_cmd_callback, 10
+        )
+
+        # SERVICE: Servers for immediate system control
+        self.emergency_stop_srv = self.create_service(
+            SetBool, 'emergency_stop', self.emergency_stop_callback
+        )
+        self.system_diag_srv = self.create_service(
+            SetBool, 'system_diagnostics', self.system_diagnostics_callback
+        )
+
+        # SERVICE: Clients for external services
+        self.navigation_client = self.create_client(
+            SetBool, 'navigation_service'
+        )
+        self.manipulation_client = self.create_client(
+            SetBool, 'manipulation_service'
+        )
+
+        # ACTION: Action server for complex missions
+        self.mission_action_server = ActionServer(
+            self, Fibonacci, 'mission_execution',
+            self.mission_execute_callback,
+            goal_callback=self.mission_goal_callback,
+            cancel_callback=self.mission_cancel_callback
+        )
+
+        # ACTION: Action client for external actions
+        self.external_action_client = ActionClient(
+            self, Fibonacci, 'external_task'
+        )
+
+        # System state
+        self.system_state = {
+            'is_active': True,
+            'is_emergency_stopped': False,
+            'safety_level': 'normal',
+            'current_mission': None,
+            'battery_level': 100.0,
+            'sensor_data': {}
+        }
+
+        # Timers for periodic updates
+        self.status_timer = self.create_timer(1.0, self.publish_system_status)
+        self.safety_timer = self.create_timer(0.1, self.check_safety_conditions)
+
+        # Statistics
+        self.stats = {
+            'messages_processed': 0,
+            'services_called': 0,
+            'actions_completed': 0
+        }
+
+    def laser_callback(self, msg):
+        """Handle laser data via topic."""
+        self.stats['messages_processed'] += 1
+
+        # Process laser data for obstacle detection
+        if msg.ranges:
+            min_range = min([r for r in msg.ranges if not math.isnan(r)], default=float('inf'))
+            self.system_state['sensor_data']['min_obstacle_dist'] = min_range
+
+            if min_range < 0.5 and self.system_state['is_active']:
+                self.get_logger().warn(f'Obstacle detected at {min_range:.2f}m')
+                if self.system_state['safety_level'] == 'normal':
+                    self.system_state['safety_level'] = 'caution'
+
+    def imu_callback(self, msg):
+        """Handle IMU data via topic."""
+        self.stats['messages_processed'] += 1
+
+        # Extract orientation and acceleration data
+        self.system_state['sensor_data']['orientation'] = {
+            'x': msg.orientation.x,
+            'y': msg.orientation.y,
+            'z': msg.orientation.z,
+            'w': msg.orientation.w
+        }
+        self.system_state['sensor_data']['linear_accel'] = {
+            'x': msg.linear_acceleration.x,
+            'y': msg.linear_acceleration.y,
+            'z': msg.linear_acceleration.z
+        }
+
+    def teleop_cmd_callback(self, msg):
+        """Handle teleoperation commands via topic."""
+        self.stats['messages_processed'] += 1
+
+        if not self.system_state['is_emergency_stopped']:
+            # Forward command to robot
+            self.cmd_vel_pub.publish(msg)
+        else:
+            self.get_logger().warn('Command ignored due to emergency stop')
+
+    def emergency_stop_callback(self, request, response):
+        """Handle emergency stop via service."""
+        self.stats['services_called'] += 1
+
+        if request.data:  # Activate emergency stop
+            self.system_state['is_emergency_stopped'] = True
+            self.system_state['is_active'] = False
+            self.system_state['safety_level'] = 'emergency'
+
+            # Stop all robot movement
+            stop_cmd = Twist()
+            self.cmd_vel_pub.publish(stop_cmd)
+
+            response.success = True
+            response.message = 'Emergency stop activated'
+            self.get_logger().error('EMERGENCY STOP ACTIVATED')
+        else:  # Release emergency stop
+            self.system_state['is_emergency_stopped'] = False
+            self.system_state['is_active'] = True
+            self.system_state['safety_level'] = 'normal'
+
+            response.success = True
+            response.message = 'Emergency stop released'
+            self.get_logger().info('Emergency stop released')
+
+        return response
+
+    def system_diagnostics_callback(self, request, response):
+        """Handle system diagnostics via service."""
+        self.stats['services_called'] += 1
+
+        # Perform system diagnostics
+        diagnostics = self.perform_system_diagnostics()
+
+        response.success = diagnostics['overall_status']
+        response.message = f"System diagnostics: {diagnostics['summary']}"
+
+        return response
+
+    def perform_system_diagnostics(self):
+        """Perform comprehensive system diagnostics."""
+        diagnostics = {
+            'overall_status': True,
+            'summary': '',
+            'components': {}
+        }
+
+        # Check sensor systems
+        if 'min_obstacle_dist' in self.system_state['sensor_data']:
+            diagnostics['components']['sensors'] = {
+                'status': True,
+                'details': f"Laser: min obstacle {self.system_state['sensor_data']['min_obstacle_dist']:.2f}m"
+            }
+        else:
+            diagnostics['components']['sensors'] = {
+                'status': False,
+                'details': "No sensor data received"
+            }
+            diagnostics['overall_status'] = False
+
+        # Check battery level
+        diagnostics['components']['power'] = {
+            'status': self.system_state['battery_level'] > 20.0,
+            'details': f"Battery: {self.system_state['battery_level']:.1f}%"
+        }
+        if not diagnostics['components']['power']['status']:
+            diagnostics['overall_status'] = False
+
+        # Compile summary
+        status_list = [name for name, comp in diagnostics['components'].items() if comp['status']]
+        diagnostics['summary'] = f"OK: {', '.join(status_list)}" if diagnostics['overall_status'] else "Issues detected"
+
+        return diagnostics
+
+    def mission_goal_callback(self, goal_request):
+        """Handle mission goal requests."""
+        self.get_logger().info(f'Received mission goal: order {goal_request.order}')
+
+        # Validate mission goal
+        if goal_request.order < 0 or goal_request.order > 50:
+            return GoalResponse.REJECT
+        else:
+            return GoalResponse.ACCEPT
+
+    def mission_cancel_callback(self, goal_handle):
+        """Handle mission cancellation requests."""
+        self.get_logger().info('Mission cancellation requested')
+        return CancelResponse.ACCEPT
+
+    def mission_execute_callback(self, goal_handle):
+        """Execute complex mission."""
+        self.stats['actions_completed'] += 1
+
+        self.get_logger().info('Starting mission execution...')
+        self.system_state['current_mission'] = goal_handle.goal_id.uuid
+
+        # Create feedback and result messages
+        feedback_msg = Fibonacci.Feedback()
+        feedback_msg.sequence = [0, 1]
+
+        result_msg = Fibonacci.Result()
+
+        try:
+            # Execute mission steps
+            for i in range(1, goal_handle.request.order):
+                # Check for cancellation
+                if goal_handle.is_cancel_requested:
+                    goal_handle.canceled()
+                    result_msg.sequence = feedback_msg.sequence
+                    self.system_state['current_mission'] = None
+                    return
+
+                # Simulate mission step (e.g., navigation, manipulation, etc.)
+                next_step = feedback_msg.sequence[i] + feedback_msg.sequence[i-1]
+                feedback_msg.sequence.append(next_step)
+
+                # Publish feedback
+                goal_handle.publish_feedback(feedback_msg)
+
+                # Log progress
+                self.get_logger().info(f'Mission step {i} completed')
+
+                # Simulate processing time
+                time.sleep(0.5)
+
+            # Complete mission successfully
+            goal_handle.succeed()
+            result_msg.sequence = feedback_msg.sequence
+
+        except Exception as e:
+            self.get_logger().error(f'Mission execution error: {e}')
+            goal_handle.abort()
+            result_msg.sequence = feedback_msg.sequence
+
+        finally:
+            self.system_state['current_mission'] = None
+            goal_handle.publish_result(result_msg)
+
+    def publish_system_status(self):
+        """Publish system status via topic."""
+        status_msg = String()
+        status_msg.data = (
+            f"Status: {'ACTIVE' if self.system_state['is_active'] else 'INACTIVE'}, "
+            f"Safety: {self.system_state['safety_level']}, "
+            f"Battery: {self.system_state['battery_level']:.1f}%, "
+            f"Missions: {self.stats['actions_completed']}"
+        )
+        self.status_pub.publish(status_msg)
+
+    def check_safety_conditions(self):
+        """Check safety conditions and update state."""
+        # Check for critical safety violations
+        if ('min_obstacle_dist' in self.system_state['sensor_data'] and
+            self.system_state['sensor_data']['min_obstacle_dist'] < 0.2):
+            self.get_logger().error('CRITICAL: Very close obstacle detected!')
+            if self.system_state['safety_level'] != 'emergency':
+                self.system_state['safety_level'] = 'critical'
+
+                # Emergency stop if needed
+                if self.system_state['safety_level'] == 'critical':
+                    stop_cmd = Twist()
+                    self.cmd_vel_pub.publish(stop_cmd)
+
+    def get_system_summary(self):
+        """Get comprehensive system summary."""
+        summary = {
+            'state': self.system_state,
+            'stats': self.stats,
+            'timestamp': self.get_clock().now().nanoseconds
+        }
+        return summary
+```
+
+## Performance Optimization and Best Practices
+
+### Memory and Resource Optimization
+
+```python
+class OptimizedCommunicationNode(Node):
+    def __init__(self):
+        super().__init__('optimized_communication')
+
+        # Pre-allocate message objects to reduce allocation overhead
+        self._string_msg = String()
+        self._float_msg = Float64()
+        self._twist_msg = Twist()
+        self._pose_msg = PoseStamped()
+
+        # Publishers with optimized QoS
+        self.optimized_topic_pub = self.create_publisher(
+            String, 'optimized_topic', 10
+        )
+
+        # Message pools for high-frequency operations
+        self.message_pool = []
+        self.pool_lock = threading.Lock()
+
+        # Optimized timer for high-frequency publishing
+        self.fast_timer = self.create_timer(0.001, self.optimized_publish)
+
+    def optimized_publish(self):
+        """Optimized publishing using pre-allocated messages."""
+        # Reuse message object
+        self._string_msg.data = f'Optimized: {self.get_clock().now().nanoseconds}'
+        self.optimized_topic_pub.publish(self._string_msg)
+
+    def get_message_from_pool(self, msg_type):
+        """Get message from pool or create new one."""
+        with self.pool_lock:
+            if self.message_pool and len(self.message_pool) > 0:
+                return self.message_pool.pop()
+            else:
+                return msg_type()
+
+    def return_message_to_pool(self, msg):
+        """Return message to pool for reuse."""
+        with self.pool_lock:
+            if len(self.message_pool) < 100:  # Limit pool size
+                self.message_pool.append(msg)
+
+class CommunicationBridgeNode(Node):
+    def __init__(self):
+        super().__init__('communication_bridge')
+
+        # Bridge between different message types and patterns
+        self.input_topic_sub = self.create_subscription(
+            String, 'input_topic', self.topic_bridge_callback, 10
+        )
+
+        self.input_service = self.create_service(
+            SetBool, 'input_service', self.service_bridge_callback
+        )
+
+        # Output interfaces
+        self.output_topic_pub = self.create_publisher(
+            Float64, 'output_topic', 10
+        )
+
+        self.output_service_client = self.create_client(
+            SetBool, 'output_service'
+        )
+
+    def topic_bridge_callback(self, msg):
+        """Bridge topic to other patterns."""
+        try:
+            # Convert string to number
+            value = float(msg.data)
+
+            # Publish to output topic
+            output_msg = Float64()
+            output_msg.data = value * 2  # Example transformation
+            self.output_topic_pub.publish(output_msg)
+
+            # Call output service (if needed)
+            if value > 10.0:
+                service_request = SetBool.Request()
+                service_request.data = True
+                self.output_service_client.call_async(service_request)
+
+        except ValueError:
+            self.get_logger().error(f'Cannot convert {msg.data} to float')
+
+    def service_bridge_callback(self, request, response):
+        """Bridge service to other patterns."""
+        # Forward service call to topic
+        topic_msg = String()
+        topic_msg.data = f'Service called with: {request.data}'
+        self.output_topic_pub.publish(topic_msg)
+
+        response.success = True
+        response.message = 'Service bridged to topic'
+        return response
+```
+
+## Chapter Summary
+
+This comprehensive section has explored the three fundamental communication patterns in ROS 2: topics, services, and actions. We've covered advanced implementation techniques, best practices, and practical examples that demonstrate how these patterns work together in sophisticated robotic applications.
+
+The key concepts covered include:
+
+1. **Topics**: Advanced publish/subscribe patterns with filtering, monitoring, and optimization techniques for continuous data streams.
+
+2. **Services**: Robust request/response implementations with error handling, chaining, and load balancing for immediate computations.
+
+3. **Actions**: Complex goal-oriented communication with feedback, cancellation, and state management for long-running tasks.
+
+4. **Integration**: How all three patterns work together in comprehensive robotic systems to provide seamless communication and coordination.
+
+These communication patterns form the foundation for all complex robotic applications, enabling the coordination of multiple subsystems in sophisticated systems like humanoid robots where precise timing, reliability, and feedback are critical.
+
+## Exercises
+
+1. **Implementation**: Create a ROS 2 node that implements a sensor fusion system using topics for individual sensor data, services for calibration requests, and actions for complex processing tasks that require feedback.
+
+2. **Analysis**: Design a communication architecture for a multi-robot coordination system. Identify which communication patterns would be most appropriate for robot-to-robot communication, task coordination, and shared state management.
+
+3. **Optimization**: Implement a message filtering and transformation node that receives high-frequency sensor data, applies various filtering techniques, and publishes the processed data with appropriate QoS settings.
+
+## Further Reading
+
+- ROS 2 Documentation: Communication Patterns - https://docs.ros.org/en/humble/Concepts/About-Topics-Services-Actions.html
+- ROS 2 Design: Quality of Service - https://design.ros2.org/articles/qos.html
+- Real-time ROS 2: Communication Optimization - https://ros-realtime.github.io/

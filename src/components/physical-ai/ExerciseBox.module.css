@@ -1,0 +1,68 @@
+.exerciseBox {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background-color: #fafafa;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  flex: 1;
+}
+
+.difficultyBadge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.typeIcon {
+  font-size: 1.25rem;
+}
+
+.description {
+  margin: 1rem 0;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.hintButton,
+.solutionButton {
+  margin-right: 0.5rem;
+}
+
+.hints,
+.solution {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+@media (max-width: 576px) {
+  .titleRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    width: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/perception-pipelines/synthetic-data",
+  "title": "synthetic-data",
+  "description": "",
+  "source": "@site/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
+  "sourceDirName": "physical-ai/perception-pipelines",
+  "slug": "/physical-ai/perception-pipelines/synthetic-data",
+  "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
+  },
+  "next": {
+    "title": "perception-stacks",
+    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+  }
+}

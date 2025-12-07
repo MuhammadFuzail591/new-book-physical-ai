@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/ros2-urdf/index",
+  "title": "index",
+  "description": "",
+  "source": "@site/docs/physical-ai/ros2-urdf/index.mdx",
+  "sourceDirName": "physical-ai/ros2-urdf",
+  "slug": "/physical-ai/ros2-urdf/",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "chapter-summary",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary"
+  },
+  "next": {
+    "title": "urdf-basics",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics"
+  }
+}

@@ -1,0 +1,361 @@
+---
+title: Building ROS 2 Packages
+---
+
+# Building ROS 2 Packages
+
+## Package Creation Process
+
+Creating a ROS 2 package involves several steps that establish the proper structure and dependencies for your robotic application. The process differs slightly between C++ and Python packages, but both follow the same fundamental principles.
+
+### Creating C++ Packages
+
+To create a C++ package, use the `ament_cmake` build system:
+
+```bash
+# Create a C++ package
+ros2 pkg create --build-type ament_cmake my_robot_controller
+```
+
+This command creates the basic package structure with CMakeLists.txt and package.xml files properly configured for C++ development.
+
+### Creating Python Packages
+
+For Python packages, you can specify the build type:
+
+```bash
+# Create a Python package
+ros2 pkg create --build-type ament_python my_robot_controller_py
+```
+
+### Package Dependencies and Management
+
+Managing dependencies is crucial for maintainable ROS 2 packages. Dependencies are declared in the `package.xml` file and must be properly specified to ensure proper building and execution.
+
+```xml
+<!-- Example package.xml with comprehensive dependencies -->
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>my_robot_controller</name>
+  <version>1.0.0</version>
+  <description>Advanced Robot Controller Package</description>
+  <maintainer email="maintainer@example.com">Maintainer Name</maintainer>
+  <license>Apache License 2.0</license>
+
+  <!-- Build tool dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core ROS 2 dependencies -->
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+
+  <!-- Custom message dependencies -->
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <!-- Testing dependencies -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+
+### Advanced Build Configuration
+
+For complex packages with multiple components, the CMakeLists.txt requires careful configuration:
+
+```cmake
+cmake_minimum_required(VERSION 3.8)
+project(my_robot_controller)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# Find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+
+# Custom message generation (if needed)
+find_package(rosidl_default_generators REQUIRED)
+
+# Define custom messages and services
+set(MSG_FILES
+  "msg/RobotState.msg"
+  "msg/SensorData.msg"
+)
+
+set(SRV_FILES
+  "srv/RobotControl.srv"
+  "srv/Navigation.srv"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${MSG_FILES}
+  ${SRV_FILES}
+  DEPENDENCIES std_msgs geometry_msgs sensor_msgs
+)
+
+# Build multiple executables
+add_executable(robot_controller src/robot_controller.cpp)
+add_executable(sensor_processor src/sensor_processor.cpp)
+add_executable(path_planner src/path_planner.cpp)
+
+# Link dependencies
+ament_target_dependencies(robot_controller
+  rclcpp
+  std_msgs
+  geometry_msgs
+  sensor_msgs
+  ${PROJECT_NAME}  # For custom messages
+)
+
+ament_target_dependencies(sensor_processor
+  rclcpp
+  sensor_msgs
+  std_msgs
+)
+
+ament_target_dependencies(path_planner
+  rclcpp
+  geometry_msgs
+  nav_msgs
+)
+
+# Install targets
+install(TARGETS
+  robot_controller
+  sensor_processor
+  path_planner
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  config
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
+```
+
+## Build Process and Best Practices
+
+### Building Packages
+
+The build process in ROS 2 is managed by `colcon`, the build tool that handles multiple packages efficiently:
+
+```bash
+# Build a single package
+colcon build --packages-select my_robot_controller
+
+# Build with specific options
+colcon build --packages-select my_robot_controller --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# Build all packages in workspace
+colcon build
+
+# Build with parallel jobs
+colcon build --parallel-workers 4
+```
+
+### Testing and Quality Assurance
+
+Comprehensive testing is essential for reliable robotic applications:
+
+```cpp
+// Example test file: test/test_robot_controller.cpp
+#include <gtest/gtest.h>
+#include <rclcpp/rclcpp.hpp>
+#include "my_robot_controller/robot_controller.hpp"
+
+class TestRobotController : public ::testing::Test {
+protected:
+    void SetUp() override {
+        rclcpp::init(0, nullptr);
+    }
+
+    void TearDown() override {
+        rclcpp::shutdown();
+    }
+};
+
+TEST_F(TestRobotController, TestInitialization) {
+    auto node = std::make_shared<RobotController>();
+    ASSERT_NE(node, nullptr);
+    EXPECT_TRUE(node->is_initialized());
+}
+
+int main(int argc, char ** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+```
+
+Add test configuration to CMakeLists.txt:
+
+```cmake
+# Add testing configuration
+if(BUILD_TESTING)
+  find_package(ament_cmake_gtest REQUIRED)
+  find_package(ament_lint_auto REQUIRED)
+
+  ament_add_gtest(test_robot_controller
+    test/test_robot_controller.cpp
+  )
+  ament_target_dependencies(test_robot_controller
+    rclcpp
+    std_msgs
+    geometry_msgs
+  )
+
+  ament_lint_auto_find_test_dependencies()
+endif()
+```
+
+## Package Distribution and Installation
+
+### Creating Installable Packages
+
+For distribution, packages need proper installation rules:
+
+```cmake
+# Installation rules for executables
+install(TARGETS
+  robot_controller
+  sensor_processor
+  path_planner
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
+# Installation rules for libraries
+install(TARGETS
+  robot_core_lib
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+
+# Installation rules for other files
+install(DIRECTORY
+  launch/
+  config/
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+install(FILES
+  README.md
+  DESTINATION share/${PROJECT_NAME}/
+)
+```
+
+### Creating Debian Packages
+
+For distribution to end users, you can create Debian packages:
+
+```xml
+<!-- Additional metadata for packaging in package.xml -->
+<export>
+  <build_type>ament_cmake</build_type>
+  <rosdoc2>rosdoc2.standard</rosdoc2>
+</export>
+```
+
+## Common Package Patterns
+
+### Node Container Pattern
+
+For organizing multiple related nodes:
+
+```cpp
+// robot_system.cpp - Container for multiple nodes
+#include <rclcpp/rclcpp.hpp>
+#include "robot_controller.hpp"
+#include "sensor_processor.hpp"
+#include "path_planner.hpp"
+
+int main(int argc, char * argv[]) {
+    rclcpp::init(argc, argv);
+
+    // Create multiple nodes in the same process
+    auto controller = std::make_shared<RobotController>();
+    auto sensor_processor = std::make_shared<SensorProcessor>();
+    auto path_planner = std::make_shared<PathPlanner>();
+
+    // Create executor to manage all nodes
+    rclcpp::executors::MultiThreadedExecutor executor;
+    executor.add_node(controller);
+    executor.add_node(sensor_processor);
+    executor.add_node(path_planner);
+
+    executor.spin();
+
+    rclcpp::shutdown();
+    return 0;
+}
+```
+
+### Library Package Pattern
+
+For creating reusable libraries:
+
+```cmake
+# Create a shared library
+add_library(robot_core_lib
+  src/pid_controller.cpp
+  src/kinematics.cpp
+  src/utils.cpp
+)
+
+target_include_directories(robot_core_lib PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+ament_target_dependencies(robot_core_lib
+  rclcpp
+  geometry_msgs
+)
+
+# Export the library
+ament_export_targets(robot_core_lib HAS_LIBRARY_TARGET)
+ament_export_dependencies(rclcpp geometry_msgs)
+
+# Install headers
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+install(
+  TARGETS robot_core_lib
+  EXPORT robot_core_lib
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+```
+
+This comprehensive approach to building ROS 2 packages ensures that your robotic applications are well-structured, maintainable, and follow best practices for the ROS 2 ecosystem.

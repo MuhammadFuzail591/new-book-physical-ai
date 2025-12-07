@@ -1,0 +1,48 @@
+.glossaryTerm {
+  margin: 20px 0;
+  border-left: 4px solid #FF9800;
+}
+
+.termTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #FF9800;
+}
+
+.definition {
+  margin: 15px 0;
+}
+
+.usageExamples {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #fff8e1;
+  border-radius: 4px;
+}
+
+.exampleItem {
+  margin: 5px 0;
+}
+
+.relatedTerms {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #e8f5e8;
+  border-radius: 4px;
+}
+
+.relatedTermItem {
+  display: inline-block;
+  margin: 2px 5px;
+}
+
+.relatedTermItem a {
+  color: #2e7d32;
+  text-decoration: none;
+  border-bottom: 1px dotted #2e7d32;
+}
+
+.relatedTermItem a:hover {
+  color: #1b5e20;
+  border-bottom-style: solid;
+}

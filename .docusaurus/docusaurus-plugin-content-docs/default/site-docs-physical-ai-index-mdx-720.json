@@ -1,0 +1,17 @@
+{
+  "id": "physical-ai/index",
+  "title": "Physical AI & Humanoid Robotics Textbook",
+  "description": "Welcome to the comprehensive textbook on Physical AI and Humanoid Robotics. This AI-native educational resource covers the complete journey from foundational concepts to advanced integration, providing both theoretical understanding and practical implementation skills.",
+  "source": "@site/docs/physical-ai/index.mdx",
+  "sourceDirName": "physical-ai",
+  "slug": "/physical-ai/",
+  "permalink": "/physical-ai-textbook/physical-ai/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Physical AI & Humanoid Robotics Textbook"
+  }
+}

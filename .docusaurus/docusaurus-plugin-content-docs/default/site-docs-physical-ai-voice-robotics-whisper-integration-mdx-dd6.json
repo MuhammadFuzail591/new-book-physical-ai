@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/voice-robotics/whisper-integration",
+  "title": "whisper-integration",
+  "description": "",
+  "source": "@site/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+  "sourceDirName": "physical-ai/voice-robotics",
+  "slug": "/physical-ai/voice-robotics/whisper-integration",
+  "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
+  },
+  "next": {
+    "title": "voice-to-action",
+    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action"
+  }
+}

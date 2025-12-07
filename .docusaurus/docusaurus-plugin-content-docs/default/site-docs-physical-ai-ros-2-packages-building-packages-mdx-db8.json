@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/ros2-packages/building-packages",
+  "title": "building-packages",
+  "description": "",
+  "source": "@site/docs/physical-ai/ros2-packages/building-packages.mdx",
+  "sourceDirName": "physical-ai/ros2-packages",
+  "slug": "/physical-ai/ros2-packages/building-packages",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/building-packages.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/"
+  },
+  "next": {
+    "title": "launch-files",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files"
+  }
+}
