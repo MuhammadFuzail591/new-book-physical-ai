@@ -1,1 +1,353 @@
----\ntitle: Chapter Placeholder - ros2-urdf\n---\n\n# Chapter Placeholder\n\nThis is a placeholder for the ros2-urdf chapter. The actual content will be added during the implementation phase.\n\n## Learning Outcomes\n\n- Learning outcome 1\n- Learning outcome 2\n- Learning outcome 3\n\n## Content\n\nDetailed content for this chapter will be added here.\n\n## Summary\n\nSummary of the chapter content for RAG optimization.
+---
+title: Chapter 6 - URDF/SDF for Humanoid Robots
+---
+
+# Chapter 6: URDF/SDF for Humanoid Robots
+
+## Chapter Overview
+
+This chapter provides a comprehensive exploration of Unified Robot Description Format (URDF) and Simulation Description Format (SDF) - the fundamental tools for describing robot models in ROS 2 and Gazebo simulation. We'll examine how to create detailed robot models for humanoid robots, including proper kinematic chains, joint definitions, collision geometry, and visual properties. These descriptions are essential for both simulation and real-world robot operation, particularly in Physical AI applications where the robot's physical form directly impacts its intelligence and interaction capabilities.
+
+## Learning Outcomes
+
+By the end of this chapter, you will be able to:
+- Create detailed URDF models for complex humanoid robots with proper kinematic chains
+- Define appropriate collision and visual geometries for simulation and real-world applications
+- Implement SDF models for advanced Gazebo simulation with realistic physics properties
+- Design parametric robot models that can be easily customized for different configurations
+- Integrate sensor definitions and plugin configurations in robot descriptions
+- Validate robot models for kinematic correctness and simulation performance
+
+## Introduction to Robot Description Formats
+
+### URDF vs SDF: When to Use Which
+
+The Robot Operating System provides two primary formats for describing robot models: URDF (Unified Robot Description Format) and SDF (Simulation Description Format). Understanding when to use each is crucial for effective robot development.
+
+URDF is primarily used for:
+- Robot model description for ROS applications
+- Kinematic chain definition for forward and inverse kinematics
+- TF (Transform) tree generation
+- Real robot operation and control
+
+SDF is used for:
+- Gazebo simulation environments
+- Detailed physics simulation with complex properties
+- Sensor simulation with realistic noise models
+- Environment and world description
+
+### Basic URDF Structure
+
+A URDF file is an XML document that describes a robot's physical and kinematic properties. The basic structure includes:
+
+- **Links**: Rigid parts of the robot
+- **Joints**: Connections between links
+- **Materials**: Visual appearance properties
+- **Transmissions**: Motor and actuator definitions
+- **Gazebo plugins**: Simulation-specific configurations
+
+## URDF for Humanoid Robot Design
+
+### Kinematic Chain Design for Humanoid Robots
+
+Humanoid robots require careful kinematic design to achieve human-like movement capabilities. The typical humanoid robot structure includes:
+
+```xml
+<?xml version="1.0"?>
+<robot name="humanoid_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 1.0"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Torso -->
+  <link name="torso">
+    <inertial>
+      <mass value="8.0"/>
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+      <inertia ixx="0.8" ixy="0.0" ixz="0.0" iyy="0.8" iyz="0.0" izz="0.4"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.15"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint connecting base to torso -->
+  <joint name="base_to_torso" type="fixed">
+    <parent link="base_link"/>
+    <child link="torso"/>
+    <origin xyz="0 0 1.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Head -->
+  <link name="head">
+    <inertial>
+      <mass value="2.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="torso_to_head" type="revolute">
+    <parent link="torso"/>
+    <child link="head"/>
+    <origin xyz="0 0 0.6" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="100" velocity="1.0"/>
+  </joint>
+
+  <!-- Left Arm -->
+  <link name="left_shoulder">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="torso_to_left_shoulder" type="revolute">
+    <parent link="torso"/>
+    <child link="left_shoulder"/>
+    <origin xyz="0 0.2 0.3" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="50" velocity="2.0"/>
+  </joint>
+
+  <!-- More links and joints for complete humanoid model -->
+  <!-- This is a simplified example - full model would include all limbs -->
+
+</robot>
+```
+
+### Advanced URDF with Xacro Macros
+
+For complex humanoid robots, using Xacro (XML Macros) makes the model more maintainable and parameterizable:
+
+```xml
+<?xml version="1.0"?>
+<robot name="advanced_humanoid" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Define properties -->
+  <xacro:property name="PI" value="3.14159"/>
+  <xacro:property name="robot_mass" value="50.0"/>
+  <xacro:property name="torso_height" value="0.8"/>
+  <xacro:property name="torso_radius" value="0.15"/>
+
+  <!-- Macro for creating a cylindrical link -->
+  <xacro:macro name="cylindrical_link" params="name mass radius length xyz rpy material">
+    <link name="${name}">
+      <inertial>
+        <mass value="${mass}"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <inertia
+          ixx="${0.0833 * mass * (3*radius*radius + length*length)}"
+          ixy="0.0"
+          ixz="0.0"
+          iyy="${0.0833 * mass * (3*radius*radius + length*length)}"
+          iyz="0.0"
+          izz="${0.5 * mass * radius * radius}"/>
+      </inertial>
+      <visual>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${length}"/>
+        </geometry>
+        <material name="${material}"/>
+      </visual>
+      <collision>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${length}"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- Macro for creating a revolute joint -->
+  <xacro:macro name="revolute_joint" params="name parent child xyz rpy axis lower upper effort velocity">
+    <joint name="${name}" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <axis xyz="${axis}"/>
+      <limit lower="${lower}" upper="${upper}" effort="${effort}" velocity="${velocity}"/>
+      <dynamics damping="0.1" friction="0.0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Define materials -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+  <material name="brown">
+    <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <!-- Base link -->
+  <link name="base_link">
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- Torso -->
+  <xacro:cylindrical_link name="torso" mass="8.0" radius="${torso_radius}" length="${torso_height}"
+                         xyz="0 0 ${torso_height/2}" rpy="0 0 0" material="orange"/>
+
+  <xacro:revolute_joint name="base_to_torso" parent="base_link" child="torso"
+                       xyz="0 0 0" rpy="0 0 0" axis="1 0 0"
+                       lower="${-PI/2}" upper="${PI/2}" effort="100" velocity="1.0"/>
+
+  <!-- Head -->
+  <link name="head">
+    <inertial>
+      <mass value="2.0"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="torso_to_head" type="revolute">
+    <parent link="torso"/>
+    <child link="head"/>
+    <origin xyz="0 0 ${torso_height}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-PI/2}" upper="${PI/2}" effort="20" velocity="1.5"/>
+  </joint>
+
+  <!-- Left Arm (Simplified) -->
+  <xacro:cylindrical_link name="left_upper_arm" mass="1.5" radius="0.05" length="0.3"
+                         xyz="0 0 0" rpy="0 0 0" material="grey"/>
+
+  <xacro:revolute_joint name="left_shoulder_pitch" parent="torso" child="left_upper_arm"
+                       xyz="0 ${torso_radius} ${torso_height*0.7}" rpy="0 0 0" axis="0 1 0"
+                       lower="${-PI}" upper="${PI}" effort="50" velocity="2.0"/>
+
+  <!-- Right Arm (Simplified) -->
+  <xacro:cylindrical_link name="right_upper_arm" mass="1.5" radius="0.05" length="0.3"
+                         xyz="0 0 0" rpy="0 0 0" material="grey"/>
+
+  <xacro:revolute_joint name="right_shoulder_pitch" parent="torso" child="right_upper_arm"
+                       xyz="0 ${-torso_radius} ${torso_height*0.7}" rpy="0 0 0" axis="0 1 0"
+                       lower="${-PI}" upper="${PI}" effort="50" velocity="2.0"/>
+
+  <!-- Left Leg (Simplified) -->
+  <xacro:cylindrical_link name="left_thigh" mass="2.0" radius="0.06" length="0.4"
+                         xyz="0 0 ${-0.2}" rpy="0 0 0" material="blue"/>
+
+  <xacro:revolute_joint name="left_hip_pitch" parent="torso" child="left_thigh"
+                       xyz="0 0.1 0" rpy="0 0 0" axis="0 1 0"
+                       lower="${-PI/2}" upper="${PI/2}" effort="100" velocity="1.5"/>
+
+  <!-- Right Leg (Simplified) -->
+  <xacro:cylindrical_link name="right_thigh" mass="2.0" radius="0.06" length="0.4"
+                         xyz="0 0 ${-0.2}" rpy="0 0 0" material="blue"/>
+
+  <xacro:revolute_joint name="right_hip_pitch" parent="torso" child="right_thigh"
+                       xyz="0 -0.1 0" rpy="0 0 0" axis="0 1 0"
+                       lower="${-PI/2}" upper="${PI/2}" effort="100" velocity="1.5"/>
+
+  <!-- Gazebo plugin for ros_control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/humanoid_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>
+```
