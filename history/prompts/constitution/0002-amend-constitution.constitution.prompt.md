@@ -1,4 +1,4 @@
----
+<!--
 id: 0002
 title: Amend Constitution
 stage: constitution
@@ -22,7 +22,7 @@ files:
   - .specify/templates/tasks-template.md
 tests:
   - null
----
+--->
 
 ## Prompt
 
