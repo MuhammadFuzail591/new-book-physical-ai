@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/humanoid-robotics/sensor-foundations",
+  "title": "sensor-foundations",
+  "description": "",
+  "source": "@site/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
+  "sourceDirName": "physical-ai/humanoid-robotics",
+  "slug": "/physical-ai/humanoid-robotics/sensor-foundations",
+  "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "landscape",
+    "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape"
+  },
+  "next": {
+    "title": "chapter-summary",
+    "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
+  }
+}

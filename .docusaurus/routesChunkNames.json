@@ -1,0 +1,302 @@
+{
+  "/physical-ai-textbook/__docusaurus/debug-d8f": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/__docusaurus/debug/config-4cd": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/__docusaurus/debug/content-1e9": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    },
+    "allContent": "allContent---physical-ai-textbook-docusaurus-debug-content-246-42a"
+  },
+  "/physical-ai-textbook/__docusaurus/debug/globalData-bb2": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/__docusaurus/debug/metadata-bab": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/__docusaurus/debug/registry-463": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/__docusaurus/debug/routes-e98": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-docusaurus-debugbbb-9ae"
+    }
+  },
+  "/physical-ai-textbook/-4a1": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---physical-ai-textbook-724-a19"
+    }
+  },
+  "/physical-ai-textbook/-31a": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "version": "version---physical-ai-textbook-935-990"
+  },
+  "/physical-ai-textbook/-9f0": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/physical-ai-textbook/physical-ai-7fa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-720-b57"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project-d51": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-87-e-49c"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project/chapter-summary-9ba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-chapter-summary-82-d-45f"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project/conclusion-93f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-conclusion-01-d-e8e"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project/deployment-dba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-deployment-67-d-f9b"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project/implementation-50d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-implementationce-4-0a6"
+  },
+  "/physical-ai-textbook/physical-ai/capstone-project/project-overview-c46": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-capstone-project-project-overview-06-f-afe"
+  },
+  "/physical-ai-textbook/physical-ai/cognitive-planning-474": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-cognitive-planningbfa-3bd"
+  },
+  "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary-5b2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-cognitive-planning-chapter-summary-835-78a"
+  },
+  "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration-aeb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-cognitive-planning-llm-integrationcf-8-d67"
+  },
+  "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems-447": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-cognitive-planning-vla-systems-725-15b"
+  },
+  "/physical-ai-textbook/physical-ai/gazebo-simulation-707": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-gazebo-simulationf-2-d-777"
+  },
+  "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary-3b4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-gazebo-simulation-chapter-summarye-91-4df"
+  },
+  "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines-4ae": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-gazebo-simulation-physics-enginesdcb-cb2"
+  },
+  "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building-d1b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-gazebo-simulation-world-building-11-a-a53"
+  },
+  "/physical-ai-textbook/physical-ai/glossary-7cf": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-glossary-65-a-31d"
+  },
+  "/physical-ai-textbook/physical-ai/humanoid-robotics-085": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-humanoid-roboticsf-85-34f"
+  },
+  "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary-224": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-humanoid-robotics-chapter-summary-69-f-203"
+  },
+  "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape-81c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-humanoid-robotics-landscape-3-bf-be3"
+  },
+  "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations-9ce": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-humanoid-robotics-sensor-foundations-98-b-d21"
+  },
+  "/physical-ai-textbook/physical-ai/introduction-f10": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-introductionedd-32e"
+  },
+  "/physical-ai-textbook/physical-ai/introduction/chapter-summary-c32": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-introduction-chapter-summarye-5-f-4be"
+  },
+  "/physical-ai-textbook/physical-ai/introduction/embodied-intelligence-c00": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-introduction-embodied-intelligence-341-ab4"
+  },
+  "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai-97f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-introduction-what-is-physical-ai-2-f-5-076"
+  },
+  "/physical-ai-textbook/physical-ai/navigation-systems-252": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-navigation-systemsbfd-12e"
+  },
+  "/physical-ai-textbook/physical-ai/navigation-systems/chapter-summary-821": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-navigation-systems-chapter-summary-9-c-7-4a5"
+  },
+  "/physical-ai-textbook/physical-ai/navigation-systems/navigation-7f4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-navigation-systems-navigation-42-f-f34"
+  },
+  "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real-459": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-navigation-systems-sim-to-real-658-bee"
+  },
+  "/physical-ai-textbook/physical-ai/navigation-systems/vslam-fe7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-navigation-systems-vslam-1-d-4-005"
+  },
+  "/physical-ai-textbook/physical-ai/nvidia-isaac-e20": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-nvidia-isaac-9-b-5-a67"
+  },
+  "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary-1f3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-nvidia-isaac-chapter-summarya-06-d85"
+  },
+  "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim-5b7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-nvidia-isaac-isaac-sim-81-e-d47"
+  },
+  "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview-145": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-nvidia-isaac-sdk-overview-543-06c"
+  },
+  "/physical-ai-textbook/physical-ai/perception-pipelines-f13": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-perception-pipelinese-30-1e4"
+  },
+  "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary-d29": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-perception-pipelines-chapter-summary-098-7ea"
+  },
+  "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks-33c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-perception-pipelines-perception-stacks-4-b-7-977"
+  },
+  "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data-250": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-perception-pipelines-synthetic-datae-1-c-680"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-advanced-71b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-advanced-233-10a"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-advanced/chapter-summary-0bb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-advanced-chapter-summary-038-1cb"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-advanced/parameters-35a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-advanced-parametersf-4-a-d92"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service-22e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-advanced-quality-of-service-094-6b5"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-architecture-58b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-architecture-634-20a"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary-9b0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-architecture-chapter-summary-48-f-b85"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics-768": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-architecture-nodes-topics-85-c-0da"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions-3b2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-architecture-services-actions-038-983"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-packages-b99": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-packagesceb-05a"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-packages/building-packages-ef1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-packages-building-packagesdb-8-f1c"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary-24d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-packages-chapter-summaryd-2-f-778"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-packages/launch-files-d81": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-packages-launch-files-50-d-624"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-urdf-a25": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-urdf-89-f-940"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary-cd6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-urdf-chapter-summary-929-067"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation-b85": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-urdf-sdf-for-simulation-2-ed-9bc"
+  },
+  "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics-0d1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-ros-2-urdf-urdf-basicsd-46-dd8"
+  },
+  "/physical-ai-textbook/physical-ai/unity-visualization-135": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-unity-visualization-751-b94"
+  },
+  "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary-3d2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-unity-visualization-chapter-summary-13-c-cf3"
+  },
+  "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction-6a0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-unity-visualization-human-robot-interactiond-9-c-be9"
+  },
+  "/physical-ai-textbook/physical-ai/unity-visualization/visualization-39f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-unity-visualization-visualization-912-d23"
+  },
+  "/physical-ai-textbook/physical-ai/voice-robotics-6f4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-voice-robotics-5-d-3-ea3"
+  },
+  "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary-f9d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-voice-robotics-chapter-summary-6-c-7-bd5"
+  },
+  "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action-3db": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-voice-robotics-voice-to-action-0-b-3-4a4"
+  },
+  "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration-1bb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---physical-ai-textbook-physical-ai-voice-robotics-whisper-integrationdd-6-b43"
+  }
+}

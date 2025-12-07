@@ -1,0 +1,22 @@
+{
+  "id": "physical-ai/introduction/index",
+  "title": "Chapter 1 - Introduction to Physical AI & Embodied Intelligence",
+  "description": "Chapter Overview",
+  "source": "@site/docs/physical-ai/introduction/index.mdx",
+  "sourceDirName": "physical-ai/introduction",
+  "slug": "/physical-ai/introduction/",
+  "permalink": "/physical-ai-textbook/physical-ai/introduction/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Chapter 1 - Introduction to Physical AI & Embodied Intelligence"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "What is Physical AI?",
+    "permalink": "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai"
+  }
+}

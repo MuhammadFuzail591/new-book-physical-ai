@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/navigation-systems/vslam",
+  "title": "vslam",
+  "description": "",
+  "source": "@site/docs/physical-ai/navigation-systems/vslam.mdx",
+  "sourceDirName": "physical-ai/navigation-systems",
+  "slug": "/physical-ai/navigation-systems/vslam",
+  "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/vslam.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
+  },
+  "next": {
+    "title": "navigation",
+    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/cognitive-planning/index",
+  "title": "index",
+  "description": "",
+  "source": "@site/docs/physical-ai/cognitive-planning/index.mdx",
+  "sourceDirName": "physical-ai/cognitive-planning",
+  "slug": "/physical-ai/cognitive-planning/",
+  "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "chapter-summary",
+    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary"
+  },
+  "next": {
+    "title": "vla-systems",
+    "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems"
+  }
+}

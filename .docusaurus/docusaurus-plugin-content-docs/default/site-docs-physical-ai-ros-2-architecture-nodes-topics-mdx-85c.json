@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/ros2-architecture/nodes-topics",
+  "title": "nodes-topics",
+  "description": "",
+  "source": "@site/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
+  "sourceDirName": "physical-ai/ros2-architecture",
+  "slug": "/physical-ai/ros2-architecture/nodes-topics",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/"
+  },
+  "next": {
+    "title": "services-actions",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
+  }
+}

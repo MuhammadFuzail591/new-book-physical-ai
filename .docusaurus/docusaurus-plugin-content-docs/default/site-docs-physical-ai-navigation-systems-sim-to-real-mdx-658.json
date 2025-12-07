@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/navigation-systems/sim-to-real",
+  "title": "sim-to-real",
+  "description": "",
+  "source": "@site/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+  "sourceDirName": "physical-ai/navigation-systems",
+  "slug": "/physical-ai/navigation-systems/sim-to-real",
+  "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "navigation",
+    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
+  },
+  "next": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
+  }
+}

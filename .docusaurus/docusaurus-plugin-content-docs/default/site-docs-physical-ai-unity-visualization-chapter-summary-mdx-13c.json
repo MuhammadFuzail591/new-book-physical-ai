@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/unity-visualization/chapter-summary",
+  "title": "chapter-summary",
+  "description": "",
+  "source": "@site/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+  "sourceDirName": "physical-ai/unity-visualization",
+  "slug": "/physical-ai/unity-visualization/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "visualization",
+    "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
+  },
+  "next": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
+  }
+}

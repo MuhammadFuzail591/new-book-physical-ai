@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/cognitive-planning/chapter-summary",
+  "title": "chapter-summary",
+  "description": "",
+  "source": "@site/docs/physical-ai/cognitive-planning/chapter-summary.mdx",
+  "sourceDirName": "physical-ai/cognitive-planning",
+  "slug": "/physical-ai/cognitive-planning/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/chapter-summary.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "llm-integration",
+    "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
+  },
+  "next": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/capstone-project/"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/cognitive-planning/vla-systems",
+  "title": "vla-systems",
+  "description": "",
+  "source": "@site/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+  "sourceDirName": "physical-ai/cognitive-planning",
+  "slug": "/physical-ai/cognitive-planning/vla-systems",
+  "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/"
+  },
+  "next": {
+    "title": "llm-integration",
+    "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
+  }
+}

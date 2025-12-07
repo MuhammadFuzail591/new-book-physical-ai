@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/voice-robotics/index",
+  "title": "index",
+  "description": "",
+  "source": "@site/docs/physical-ai/voice-robotics/index.mdx",
+  "sourceDirName": "physical-ai/voice-robotics",
+  "slug": "/physical-ai/voice-robotics/",
+  "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "sim-to-real",
+    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
+  },
+  "next": {
+    "title": "whisper-integration",
+    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration"
+  }
+}

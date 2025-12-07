@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/ros2-advanced/parameters",
+  "title": "parameters",
+  "description": "",
+  "source": "@site/docs/physical-ai/ros2-advanced/parameters.mdx",
+  "sourceDirName": "physical-ai/ros2-advanced",
+  "slug": "/physical-ai/ros2-advanced/parameters",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/parameters",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/"
+  },
+  "next": {
+    "title": "quality-of-service",
+    "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service"
+  }
+}

@@ -1,0 +1,1835 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/physical-ai-textbook/",
+          "tagsPath": "/physical-ai-textbook/tags",
+          "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs",
+          "editUrlLocalized": "https://github.com/your-username/physical-ai-textbook/tree/main/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/sidebars.js",
+          "contentPath": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/docs",
+          "contentPathLocalized": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "id": "physical-ai/capstone-project/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "physical-ai/capstone-project/conclusion",
+              "title": "conclusion",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/conclusion.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/conclusion",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/conclusion",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/conclusion.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "deployment",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/deployment"
+              },
+              "next": {
+                "title": "Glossary",
+                "permalink": "/physical-ai-textbook/physical-ai/glossary"
+              }
+            },
+            {
+              "id": "physical-ai/capstone-project/deployment",
+              "title": "deployment",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/deployment.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/deployment",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/deployment",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/deployment.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "implementation",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/implementation"
+              },
+              "next": {
+                "title": "conclusion",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/conclusion"
+              }
+            },
+            {
+              "id": "physical-ai/capstone-project/implementation",
+              "title": "implementation",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/implementation.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/implementation",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/implementation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/implementation.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "project-overview",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/project-overview"
+              },
+              "next": {
+                "title": "deployment",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/deployment"
+              }
+            },
+            {
+              "id": "physical-ai/capstone-project/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/index.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary"
+              },
+              "next": {
+                "title": "project-overview",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/project-overview"
+              }
+            },
+            {
+              "id": "physical-ai/capstone-project/project-overview",
+              "title": "project-overview",
+              "description": "",
+              "source": "@site/docs/physical-ai/capstone-project/project-overview.mdx",
+              "sourceDirName": "physical-ai/capstone-project",
+              "slug": "/physical-ai/capstone-project/project-overview",
+              "permalink": "/physical-ai-textbook/physical-ai/capstone-project/project-overview",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/"
+              },
+              "next": {
+                "title": "implementation",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/implementation"
+              }
+            },
+            {
+              "id": "physical-ai/cognitive-planning/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/cognitive-planning/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "llm-integration",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/"
+              }
+            },
+            {
+              "id": "physical-ai/cognitive-planning/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/cognitive-planning/index.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary"
+              },
+              "next": {
+                "title": "vla-systems",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems"
+              }
+            },
+            {
+              "id": "physical-ai/cognitive-planning/llm-integration",
+              "title": "llm-integration",
+              "description": "",
+              "source": "@site/docs/physical-ai/cognitive-planning/llm-integration.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/llm-integration",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/llm-integration.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "vla-systems",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/cognitive-planning/vla-systems",
+              "title": "vla-systems",
+              "description": "",
+              "source": "@site/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/vla-systems",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/"
+              },
+              "next": {
+                "title": "llm-integration",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
+              }
+            },
+            {
+              "id": "physical-ai/gazebo-simulation/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/gazebo-simulation",
+              "slug": "/physical-ai/gazebo-simulation/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "world-building",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/"
+              }
+            },
+            {
+              "id": "physical-ai/gazebo-simulation/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/gazebo-simulation/index.mdx",
+              "sourceDirName": "physical-ai/gazebo-simulation",
+              "slug": "/physical-ai/gazebo-simulation/",
+              "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/chapter-summary"
+              },
+              "next": {
+                "title": "physics-engines",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines"
+              }
+            },
+            {
+              "id": "physical-ai/gazebo-simulation/physics-engines",
+              "title": "physics-engines",
+              "description": "",
+              "source": "@site/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
+              "sourceDirName": "physical-ai/gazebo-simulation",
+              "slug": "/physical-ai/gazebo-simulation/physics-engines",
+              "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/"
+              },
+              "next": {
+                "title": "world-building",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building"
+              }
+            },
+            {
+              "id": "physical-ai/gazebo-simulation/world-building",
+              "title": "world-building",
+              "description": "",
+              "source": "@site/docs/physical-ai/gazebo-simulation/world-building.mdx",
+              "sourceDirName": "physical-ai/gazebo-simulation",
+              "slug": "/physical-ai/gazebo-simulation/world-building",
+              "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/world-building.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "physics-engines",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/glossary",
+              "title": "Glossary",
+              "description": "This glossary contains technical terminology used throughout the Physical AI & Humanoid Robotics textbook.",
+              "source": "@site/docs/physical-ai/glossary.mdx",
+              "sourceDirName": "physical-ai",
+              "slug": "/physical-ai/glossary",
+              "permalink": "/physical-ai-textbook/physical-ai/glossary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/glossary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Glossary"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "conclusion",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/conclusion"
+              }
+            },
+            {
+              "id": "physical-ai/humanoid-robotics/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/humanoid-robotics",
+              "slug": "/physical-ai/humanoid-robotics/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "sensor-foundations",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/"
+              }
+            },
+            {
+              "id": "physical-ai/humanoid-robotics/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/humanoid-robotics/index.mdx",
+              "sourceDirName": "physical-ai/humanoid-robotics",
+              "slug": "/physical-ai/humanoid-robotics/",
+              "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 1 Summary",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/chapter-summary"
+              },
+              "next": {
+                "title": "landscape",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape"
+              }
+            },
+            {
+              "id": "physical-ai/humanoid-robotics/landscape",
+              "title": "landscape",
+              "description": "",
+              "source": "@site/docs/physical-ai/humanoid-robotics/landscape.mdx",
+              "sourceDirName": "physical-ai/humanoid-robotics",
+              "slug": "/physical-ai/humanoid-robotics/landscape",
+              "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/landscape.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/"
+              },
+              "next": {
+                "title": "sensor-foundations",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations"
+              }
+            },
+            {
+              "id": "physical-ai/humanoid-robotics/sensor-foundations",
+              "title": "sensor-foundations",
+              "description": "",
+              "source": "@site/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
+              "sourceDirName": "physical-ai/humanoid-robotics",
+              "slug": "/physical-ai/humanoid-robotics/sensor-foundations",
+              "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "landscape",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/index",
+              "title": "Physical AI & Humanoid Robotics Textbook",
+              "description": "Welcome to the comprehensive textbook on Physical AI and Humanoid Robotics. This AI-native educational resource covers the complete journey from foundational concepts to advanced integration, providing both theoretical understanding and practical implementation skills.",
+              "source": "@site/docs/physical-ai/index.mdx",
+              "sourceDirName": "physical-ai",
+              "slug": "/physical-ai/",
+              "permalink": "/physical-ai-textbook/physical-ai/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Physical AI & Humanoid Robotics Textbook"
+              }
+            },
+            {
+              "id": "physical-ai/introduction/chapter-summary",
+              "title": "Chapter 1 Summary",
+              "description": "Key Concepts",
+              "source": "@site/docs/physical-ai/introduction/03-chapter-summary.mdx",
+              "sourceDirName": "physical-ai/introduction",
+              "slug": "/physical-ai/introduction/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/introduction/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/03-chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Chapter 1 Summary"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Embodied Intelligence",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/embodied-intelligence"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/"
+              }
+            },
+            {
+              "id": "physical-ai/introduction/embodied-intelligence",
+              "title": "Embodied Intelligence",
+              "description": "Introduction",
+              "source": "@site/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
+              "sourceDirName": "physical-ai/introduction",
+              "slug": "/physical-ai/introduction/embodied-intelligence",
+              "permalink": "/physical-ai-textbook/physical-ai/introduction/embodied-intelligence",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Embodied Intelligence"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "What is Physical AI?",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai"
+              },
+              "next": {
+                "title": "Chapter 1 Summary",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/introduction/index",
+              "title": "Chapter 1 - Introduction to Physical AI & Embodied Intelligence",
+              "description": "Chapter Overview",
+              "source": "@site/docs/physical-ai/introduction/index.mdx",
+              "sourceDirName": "physical-ai/introduction",
+              "slug": "/physical-ai/introduction/",
+              "permalink": "/physical-ai-textbook/physical-ai/introduction/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Chapter 1 - Introduction to Physical AI & Embodied Intelligence"
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "What is Physical AI?",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai"
+              }
+            },
+            {
+              "id": "physical-ai/introduction/what-is-physical-ai",
+              "title": "What is Physical AI?",
+              "description": "Introduction",
+              "source": "@site/docs/physical-ai/introduction/01-what-is-physical-ai.mdx",
+              "sourceDirName": "physical-ai/introduction",
+              "slug": "/physical-ai/introduction/what-is-physical-ai",
+              "permalink": "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/01-what-is-physical-ai.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "What is Physical AI?"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 1 - Introduction to Physical AI & Embodied Intelligence",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/"
+              },
+              "next": {
+                "title": "Embodied Intelligence",
+                "permalink": "/physical-ai-textbook/physical-ai/introduction/embodied-intelligence"
+              }
+            },
+            {
+              "id": "physical-ai/navigation-systems/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/navigation-systems/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/navigation-systems",
+              "slug": "/physical-ai/navigation-systems/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "physical-ai/navigation-systems/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/navigation-systems/index.mdx",
+              "sourceDirName": "physical-ai/navigation-systems",
+              "slug": "/physical-ai/navigation-systems/",
+              "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary"
+              },
+              "next": {
+                "title": "vslam",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam"
+              }
+            },
+            {
+              "id": "physical-ai/navigation-systems/navigation",
+              "title": "navigation",
+              "description": "",
+              "source": "@site/docs/physical-ai/navigation-systems/navigation.mdx",
+              "sourceDirName": "physical-ai/navigation-systems",
+              "slug": "/physical-ai/navigation-systems/navigation",
+              "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/navigation.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "vslam",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam"
+              },
+              "next": {
+                "title": "sim-to-real",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
+              }
+            },
+            {
+              "id": "physical-ai/navigation-systems/sim-to-real",
+              "title": "sim-to-real",
+              "description": "",
+              "source": "@site/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+              "sourceDirName": "physical-ai/navigation-systems",
+              "slug": "/physical-ai/navigation-systems/sim-to-real",
+              "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "navigation",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
+              }
+            },
+            {
+              "id": "physical-ai/navigation-systems/vslam",
+              "title": "vslam",
+              "description": "",
+              "source": "@site/docs/physical-ai/navigation-systems/vslam.mdx",
+              "sourceDirName": "physical-ai/navigation-systems",
+              "slug": "/physical-ai/navigation-systems/vslam",
+              "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/vslam.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
+              },
+              "next": {
+                "title": "navigation",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
+              }
+            },
+            {
+              "id": "physical-ai/nvidia-isaac/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/nvidia-isaac",
+              "slug": "/physical-ai/nvidia-isaac/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "isaac-sim",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
+              }
+            },
+            {
+              "id": "physical-ai/nvidia-isaac/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/nvidia-isaac/index.mdx",
+              "sourceDirName": "physical-ai/nvidia-isaac",
+              "slug": "/physical-ai/nvidia-isaac/",
+              "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary"
+              },
+              "next": {
+                "title": "sdk-overview",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview"
+              }
+            },
+            {
+              "id": "physical-ai/nvidia-isaac/isaac-sim",
+              "title": "isaac-sim",
+              "description": "",
+              "source": "@site/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
+              "sourceDirName": "physical-ai/nvidia-isaac",
+              "slug": "/physical-ai/nvidia-isaac/isaac-sim",
+              "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "sdk-overview",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/nvidia-isaac/sdk-overview",
+              "title": "sdk-overview",
+              "description": "",
+              "source": "@site/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
+              "sourceDirName": "physical-ai/nvidia-isaac",
+              "slug": "/physical-ai/nvidia-isaac/sdk-overview",
+              "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
+              },
+              "next": {
+                "title": "isaac-sim",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim"
+              }
+            },
+            {
+              "id": "physical-ai/perception-pipelines/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/perception-pipelines",
+              "slug": "/physical-ai/perception-pipelines/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "perception-stacks",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
+              }
+            },
+            {
+              "id": "physical-ai/perception-pipelines/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/perception-pipelines/index.mdx",
+              "sourceDirName": "physical-ai/perception-pipelines",
+              "slug": "/physical-ai/perception-pipelines/",
+              "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary"
+              },
+              "next": {
+                "title": "synthetic-data",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data"
+              }
+            },
+            {
+              "id": "physical-ai/perception-pipelines/perception-stacks",
+              "title": "perception-stacks",
+              "description": "",
+              "source": "@site/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
+              "sourceDirName": "physical-ai/perception-pipelines",
+              "slug": "/physical-ai/perception-pipelines/perception-stacks",
+              "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "synthetic-data",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/perception-pipelines/synthetic-data",
+              "title": "synthetic-data",
+              "description": "",
+              "source": "@site/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
+              "sourceDirName": "physical-ai/perception-pipelines",
+              "slug": "/physical-ai/perception-pipelines/synthetic-data",
+              "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
+              },
+              "next": {
+                "title": "perception-stacks",
+                "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-advanced/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/ros2-advanced",
+              "slug": "/physical-ai/ros2-advanced/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "quality-of-service",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-advanced/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-advanced/index.mdx",
+              "sourceDirName": "physical-ai/ros2-advanced",
+              "slug": "/physical-ai/ros2-advanced/",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary"
+              },
+              "next": {
+                "title": "parameters",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/parameters"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-advanced/parameters",
+              "title": "parameters",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-advanced/parameters.mdx",
+              "sourceDirName": "physical-ai/ros2-advanced",
+              "slug": "/physical-ai/ros2-advanced/parameters",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/parameters",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/"
+              },
+              "next": {
+                "title": "quality-of-service",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-advanced/quality-of-service",
+              "title": "quality-of-service",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
+              "sourceDirName": "physical-ai/ros2-advanced",
+              "slug": "/physical-ai/ros2-advanced/quality-of-service",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "parameters",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/parameters"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-architecture/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/ros2-architecture",
+              "slug": "/physical-ai/ros2-architecture/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "services-actions",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-architecture/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-architecture/index.mdx",
+              "sourceDirName": "physical-ai/ros2-architecture",
+              "slug": "/physical-ai/ros2-architecture/",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
+              },
+              "next": {
+                "title": "nodes-topics",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-architecture/nodes-topics",
+              "title": "nodes-topics",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
+              "sourceDirName": "physical-ai/ros2-architecture",
+              "slug": "/physical-ai/ros2-architecture/nodes-topics",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/"
+              },
+              "next": {
+                "title": "services-actions",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-architecture/services-actions",
+              "title": "services-actions",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-architecture/services-actions.mdx",
+              "sourceDirName": "physical-ai/ros2-architecture",
+              "slug": "/physical-ai/ros2-architecture/services-actions",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/services-actions.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "nodes-topics",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-packages/building-packages",
+              "title": "building-packages",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-packages/building-packages.mdx",
+              "sourceDirName": "physical-ai/ros2-packages",
+              "slug": "/physical-ai/ros2-packages/building-packages",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/building-packages.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/"
+              },
+              "next": {
+                "title": "launch-files",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-packages/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-packages/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/ros2-packages",
+              "slug": "/physical-ai/ros2-packages/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "launch-files",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-packages/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-packages/index.mdx",
+              "sourceDirName": "physical-ai/ros2-packages",
+              "slug": "/physical-ai/ros2-packages/",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
+              },
+              "next": {
+                "title": "building-packages",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-packages/launch-files",
+              "title": "launch-files",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-packages/launch-files.mdx",
+              "sourceDirName": "physical-ai/ros2-packages",
+              "slug": "/physical-ai/ros2-packages/launch-files",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/launch-files.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "building-packages",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-urdf/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/ros2-urdf",
+              "slug": "/physical-ai/ros2-urdf/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "sdf-for-simulation",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-advanced/"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-urdf/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-urdf/index.mdx",
+              "sourceDirName": "physical-ai/ros2-urdf",
+              "slug": "/physical-ai/ros2-urdf/",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary"
+              },
+              "next": {
+                "title": "urdf-basics",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-urdf/sdf-for-simulation",
+              "title": "sdf-for-simulation",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
+              "sourceDirName": "physical-ai/ros2-urdf",
+              "slug": "/physical-ai/ros2-urdf/sdf-for-simulation",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "urdf-basics",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-urdf/urdf-basics",
+              "title": "urdf-basics",
+              "description": "",
+              "source": "@site/docs/physical-ai/ros2-urdf/urdf-basics.mdx",
+              "sourceDirName": "physical-ai/ros2-urdf",
+              "slug": "/physical-ai/ros2-urdf/urdf-basics",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/urdf-basics.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/"
+              },
+              "next": {
+                "title": "sdf-for-simulation",
+                "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation"
+              }
+            },
+            {
+              "id": "physical-ai/unity-visualization/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/unity-visualization",
+              "slug": "/physical-ai/unity-visualization/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "visualization",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
+              }
+            },
+            {
+              "id": "physical-ai/unity-visualization/human-robot-interaction",
+              "title": "human-robot-interaction",
+              "description": "",
+              "source": "@site/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+              "sourceDirName": "physical-ai/unity-visualization",
+              "slug": "/physical-ai/unity-visualization/human-robot-interaction",
+              "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/"
+              },
+              "next": {
+                "title": "visualization",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
+              }
+            },
+            {
+              "id": "physical-ai/unity-visualization/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/unity-visualization/index.mdx",
+              "sourceDirName": "physical-ai/unity-visualization",
+              "slug": "/physical-ai/unity-visualization/",
+              "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
+              },
+              "next": {
+                "title": "human-robot-interaction",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction"
+              }
+            },
+            {
+              "id": "physical-ai/unity-visualization/visualization",
+              "title": "visualization",
+              "description": "",
+              "source": "@site/docs/physical-ai/unity-visualization/visualization.mdx",
+              "sourceDirName": "physical-ai/unity-visualization",
+              "slug": "/physical-ai/unity-visualization/visualization",
+              "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/visualization.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "human-robot-interaction",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/voice-robotics/chapter-summary",
+              "title": "chapter-summary",
+              "description": "",
+              "source": "@site/docs/physical-ai/voice-robotics/chapter-summary.mdx",
+              "sourceDirName": "physical-ai/voice-robotics",
+              "slug": "/physical-ai/voice-robotics/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "voice-to-action",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/"
+              }
+            },
+            {
+              "id": "physical-ai/voice-robotics/index",
+              "title": "index",
+              "description": "",
+              "source": "@site/docs/physical-ai/voice-robotics/index.mdx",
+              "sourceDirName": "physical-ai/voice-robotics",
+              "slug": "/physical-ai/voice-robotics/",
+              "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "sim-to-real",
+                "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
+              },
+              "next": {
+                "title": "whisper-integration",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration"
+              }
+            },
+            {
+              "id": "physical-ai/voice-robotics/voice-to-action",
+              "title": "voice-to-action",
+              "description": "",
+              "source": "@site/docs/physical-ai/voice-robotics/voice-to-action.mdx",
+              "sourceDirName": "physical-ai/voice-robotics",
+              "slug": "/physical-ai/voice-robotics/voice-to-action",
+              "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/voice-to-action.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "whisper-integration",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration"
+              },
+              "next": {
+                "title": "chapter-summary",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/voice-robotics/whisper-integration",
+              "title": "whisper-integration",
+              "description": "",
+              "source": "@site/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+              "sourceDirName": "physical-ai/voice-robotics",
+              "slug": "/physical-ai/voice-robotics/whisper-integration",
+              "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
+              },
+              "next": {
+                "title": "voice-to-action",
+                "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "category",
+                "label": "Physical AI & Humanoid Robotics",
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "1. Introduction to Physical AI",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/introduction/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/introduction/what-is-physical-ai"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/introduction/embodied-intelligence"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/introduction/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "2. Humanoid Robotics Landscape",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/humanoid-robotics/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/humanoid-robotics/landscape"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/humanoid-robotics/sensor-foundations"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/humanoid-robotics/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "3. ROS 2 Architecture",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/ros2-architecture/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-architecture/nodes-topics"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-architecture/services-actions"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-architecture/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "4. Building ROS 2 Packages",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/ros2-packages/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-packages/building-packages"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-packages/launch-files"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-packages/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "5. URDF/SDF for Humanoid Robots",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/ros2-urdf/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-urdf/urdf-basics"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-urdf/sdf-for-simulation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-urdf/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "6. Advanced ROS 2 Concepts",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/ros2-advanced/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-advanced/parameters"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-advanced/quality-of-service"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/ros2-advanced/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "7. Gazebo Simulation",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/gazebo-simulation/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/gazebo-simulation/physics-engines"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/gazebo-simulation/world-building"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/gazebo-simulation/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "8. Unity Visualization",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/unity-visualization/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/unity-visualization/human-robot-interaction"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/unity-visualization/visualization"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/unity-visualization/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "9. NVIDIA Isaac SDK",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/nvidia-isaac/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/nvidia-isaac/sdk-overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/nvidia-isaac/isaac-sim"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/nvidia-isaac/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "10. AI Perception & Manipulation",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/perception-pipelines/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/perception-pipelines/synthetic-data"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/perception-pipelines/perception-stacks"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/perception-pipelines/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "11. VSLAM & Navigation",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/navigation-systems/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/navigation-systems/vslam"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/navigation-systems/navigation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/navigation-systems/sim-to-real"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "12. Voice-to-Action Robotics",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/voice-robotics/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/voice-robotics/whisper-integration"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/voice-robotics/voice-to-action"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/voice-robotics/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "13. Cognitive Planning with VLA",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/cognitive-planning/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/cognitive-planning/vla-systems"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/cognitive-planning/llm-integration"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/cognitive-planning/chapter-summary"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "14. Capstone Project",
+                    "link": {
+                      "type": "doc",
+                      "id": "physical-ai/capstone-project/index"
+                    },
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/capstone-project/project-overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/capstone-project/implementation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/capstone-project/deployment"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "physical-ai/capstone-project/conclusion"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "doc",
+                    "id": "physical-ai/glossary"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": null
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

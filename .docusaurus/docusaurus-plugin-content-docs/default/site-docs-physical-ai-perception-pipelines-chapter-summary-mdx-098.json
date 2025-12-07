@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/perception-pipelines/chapter-summary",
+  "title": "chapter-summary",
+  "description": "",
+  "source": "@site/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
+  "sourceDirName": "physical-ai/perception-pipelines",
+  "slug": "/physical-ai/perception-pipelines/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "perception-stacks",
+    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+  },
+  "next": {
+    "title": "index",
+    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
+  }
+}

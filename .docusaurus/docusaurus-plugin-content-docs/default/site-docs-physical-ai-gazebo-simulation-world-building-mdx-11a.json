@@ -1,0 +1,24 @@
+{
+  "id": "physical-ai/gazebo-simulation/world-building",
+  "title": "world-building",
+  "description": "",
+  "source": "@site/docs/physical-ai/gazebo-simulation/world-building.mdx",
+  "sourceDirName": "physical-ai/gazebo-simulation",
+  "slug": "/physical-ai/gazebo-simulation/world-building",
+  "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/world-building.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "physics-engines",
+    "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines"
+  },
+  "next": {
+    "title": "chapter-summary",
+    "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
+  }
+}
