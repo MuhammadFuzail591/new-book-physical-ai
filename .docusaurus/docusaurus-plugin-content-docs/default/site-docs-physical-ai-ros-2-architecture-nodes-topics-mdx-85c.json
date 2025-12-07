@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/ros2-architecture/nodes-topics",
-  "title": "nodes-topics",
-  "description": "",
+  "title": "Nodes and Topics in ROS 2",
+  "description": "Introduction",
   "source": "@site/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
   "sourceDirName": "physical-ai/ros2-architecture",
   "slug": "/physical-ai/ros2-architecture/nodes-topics",
@@ -11,10 +11,12 @@
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Nodes and Topics in ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "index",
+    "title": "Chapter 3 - Understanding the Robotic Nervous System: ROS 2 Architecture",
     "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/"
   },
   "next": {

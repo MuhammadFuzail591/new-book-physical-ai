@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/ros2-architecture/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 3 - Understanding the Robotic Nervous System: ROS 2 Architecture",
+  "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/ros2-architecture/index.mdx",
   "sourceDirName": "physical-ai/ros2-architecture",
   "slug": "/physical-ai/ros2-architecture/",
@@ -11,14 +11,16 @@
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 3 - Understanding the Robotic Nervous System: ROS 2 Architecture"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "chapter-summary",
     "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
   },
   "next": {
-    "title": "nodes-topics",
+    "title": "Nodes and Topics in ROS 2",
     "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
   }
 }

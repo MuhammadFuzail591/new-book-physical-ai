@@ -233,6 +233,14 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "physical-ai/ros2-communication/index",
+              "path": "/physical-ai-textbook/physical-ai/ros2-communication/"
+            },
+            {
+              "id": "physical-ai/ros2-communication/topics-services-actions",
+              "path": "/physical-ai-textbook/physical-ai/ros2-communication/topics-services-actions"
+            },
+            {
               "id": "physical-ai/ros2-packages/building-packages",
               "path": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
               "sidebar": "tutorialSidebar"
@@ -251,6 +259,10 @@
               "id": "physical-ai/ros2-packages/launch-files",
               "path": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files",
               "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "physical-ai/ros2-packages/parameters",
+              "path": "/physical-ai-textbook/physical-ai/ros2-packages/parameters"
             },
             {
               "id": "physical-ai/ros2-urdf/chapter-summary",

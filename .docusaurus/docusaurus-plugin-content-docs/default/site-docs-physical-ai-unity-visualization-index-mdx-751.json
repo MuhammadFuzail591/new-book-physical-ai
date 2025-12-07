@@ -1,7 +1,7 @@
 {
   "id": "physical-ai/unity-visualization/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
+  "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/unity-visualization/index.mdx",
   "sourceDirName": "physical-ai/unity-visualization",
   "slug": "/physical-ai/unity-visualization/",
@@ -11,10 +11,12 @@
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "chapter-summary",
+    "title": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
     "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
   },
   "next": {

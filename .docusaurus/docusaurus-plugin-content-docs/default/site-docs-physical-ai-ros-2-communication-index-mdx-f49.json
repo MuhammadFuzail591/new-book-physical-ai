@@ -1,0 +1,17 @@
+{
+  "id": "physical-ai/ros2-communication/index",
+  "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2",
+  "description": "Chapter Overview",
+  "source": "@site/docs/physical-ai/ros2-communication/index.mdx",
+  "sourceDirName": "physical-ai/ros2-communication",
+  "slug": "/physical-ai/ros2-communication/",
+  "permalink": "/physical-ai-textbook/physical-ai/ros2-communication/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2"
+  }
+}

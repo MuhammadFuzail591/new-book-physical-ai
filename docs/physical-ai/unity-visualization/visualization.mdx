@@ -1,1 +1,1226 @@
----\ntitle: Chapter Placeholder - Visualization\n---\n\n# Visualization\n\nPlaceholder content for visualization section.
+---
+title: Unity Visualization Techniques for Robotics
+---
+
+# Unity Visualization Techniques for Robotics
+
+## Introduction to Robotics Visualization
+
+Visualization in robotics serves multiple critical purposes: debugging robot behaviors, monitoring system states, presenting sensor data to human operators, and creating immersive interfaces for human-robot interaction. Unity's powerful rendering engine and flexible architecture make it an ideal platform for creating sophisticated visualization systems that can handle the complex data streams typical in robotics applications.
+
+## Robot Model Visualization
+
+### Creating Accurate Robot Representations
+
+Accurate robot visualization requires faithful representation of the physical robot's geometry, kinematics, and dynamics. Unity provides several approaches to visualize robot models:
+
+```csharp
+using UnityEngine;
+
+public class RobotModelVisualizer : MonoBehaviour
+{
+    [Header("Model Configuration")]
+    public GameObject robotPrefab;
+    public Transform[] jointTransforms;
+    public string[] jointNames;
+    public float[] jointLimitsMin;
+    public float[] jointLimitsMax;
+
+    [Header("Visualization Settings")]
+    public bool showJointAxes = true;
+    public bool showEndEffectors = true;
+    public Color jointColor = Color.yellow;
+    public Color endEffectorColor = Color.red;
+
+    private GameObject robotInstance;
+    private LineRenderer[] jointAxes;
+    private GameObject[] endEffectors;
+
+    void Start()
+    {
+        CreateRobotModel();
+        SetupJointVisualization();
+        SetupEndEffectorVisualization();
+    }
+
+    void CreateRobotModel()
+    {
+        robotInstance = Instantiate(robotPrefab, transform.position, transform.rotation);
+        robotInstance.transform.SetParent(transform);
+
+        // Get joint transforms from the instantiated model
+        jointTransforms = GetJointTransforms(robotInstance);
+    }
+
+    Transform[] GetJointTransforms(GameObject robot)
+    {
+        // Find all joint transforms in the robot hierarchy
+        Transform[] allTransforms = robot.GetComponentsInChildren<Transform>();
+        System.Collections.Generic.List<Transform> joints = new System.Collections.Generic.List<Transform>();
+
+        foreach (Transform t in allTransforms)
+        {
+            if (t.name.ToLower().Contains("joint") || t.name.ToLower().Contains("link"))
+            {
+                joints.Add(t);
+            }
+        }
+
+        return joints.ToArray();
+    }
+
+    void SetupJointVisualization()
+    {
+        if (!showJointAxes) return;
+
+        jointAxes = new LineRenderer[jointTransforms.Length];
+
+        for (int i = 0; i < jointTransforms.Length; i++)
+        {
+            GameObject axisObject = new GameObject($"JointAxis_{i}");
+            axisObject.transform.SetParent(jointTransforms[i]);
+            axisObject.transform.localPosition = Vector3.zero;
+            axisObject.transform.localRotation = Quaternion.identity;
+
+            LineRenderer lineRenderer = axisObject.AddComponent<LineRenderer>();
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.color = jointColor;
+            lineRenderer.startWidth = 0.02f;
+            lineRenderer.endWidth = 0.02f;
+            lineRenderer.positionCount = 2;
+
+            // Set positions for the axis line (X-axis direction)
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.right * 0.1f);
+
+            jointAxes[i] = lineRenderer;
+        }
+    }
+
+    void SetupEndEffectorVisualization()
+    {
+        if (!showEndEffectors) return;
+
+        // Find end effectors (typically at the end of kinematic chains)
+        endEffectors = new GameObject[jointTransforms.Length];
+
+        for (int i = 0; i < jointTransforms.Length; i++)
+        {
+            if (IsEndEffector(jointTransforms[i]))
+            {
+                GameObject effector = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                effector.transform.SetParent(jointTransforms[i]);
+                effector.transform.localPosition = Vector3.zero;
+                effector.transform.localScale = Vector3.one * 0.05f;
+
+                Renderer renderer = effector.GetComponent<Renderer>();
+                renderer.material = new Material(Shader.Find("Sprites/Default"));
+                renderer.material.color = endEffectorColor;
+
+                // Make it non-interactive
+                Destroy(effector.GetComponent<Collider>());
+
+                endEffectors[i] = effector;
+            }
+        }
+    }
+
+    bool IsEndEffector(Transform joint)
+    {
+        // Simple heuristic: joints with no children are likely end effectors
+        return joint.childCount == 0;
+    }
+
+    public void UpdateRobotJoints(float[] jointAngles)
+    {
+        for (int i = 0; i < jointTransforms.Length && i < jointAngles.Length; i++)
+        {
+            // Clamp joint angles to limits
+            float clampedAngle = Mathf.Clamp(jointAngles[i] * Mathf.Rad2Deg,
+                                           jointLimitsMin[i], jointLimitsMax[i]);
+
+            // Apply rotation to joint
+            jointTransforms[i].localRotation = Quaternion.Euler(0, 0, clampedAngle);
+        }
+    }
+
+    void Update()
+    {
+        // Update visualization based on current robot state
+        UpdateJointAxes();
+    }
+
+    void UpdateJointAxes()
+    {
+        if (!showJointAxes) return;
+
+        for (int i = 0; i < jointAxes.Length; i++)
+        {
+            // Update joint axis orientation to match current joint rotation
+            Vector3 axisDirection = jointTransforms[i].TransformDirection(Vector3.right);
+            jointAxes[i].SetPosition(1, axisDirection * 0.1f);
+        }
+    }
+}
+```
+
+### Real-time Robot State Visualization
+
+Visualizing real-time robot states requires efficient data processing and rendering:
+
+```csharp
+using UnityEngine;
+
+public class RealTimeRobotVisualizer : MonoBehaviour
+{
+    [Header("State Visualization")]
+    public GameObject robotModel;
+    public GameObject trajectoryTrail;
+    public Material trajectoryMaterial;
+    public Color trajectoryColor = Color.blue;
+    public int maxTrajectoryPoints = 1000;
+
+    [Header("State Data")]
+    public float[] jointPositions;
+    public float[] jointVelocities;
+    public Vector3 robotPosition;
+    public Quaternion robotOrientation;
+
+    [Header("Visualization Settings")]
+    public bool showTrajectory = true;
+    public bool showVelocityVectors = true;
+    public bool showAccelerationZones = true;
+    public float velocityScale = 0.1f;
+
+    private LineRenderer trajectoryRenderer;
+    private System.Collections.Generic.List<Vector3> trajectoryPoints;
+    private GameObject[] velocityVectors;
+    private MaterialPropertyBlock materialPropertyBlock;
+
+    void Start()
+    {
+        InitializeVisualization();
+    }
+
+    void InitializeVisualization()
+    {
+        trajectoryPoints = new System.Collections.Generic.List<Vector3>();
+
+        // Setup trajectory renderer
+        if (showTrajectory)
+        {
+            trajectoryRenderer = trajectoryTrail.GetComponent<LineRenderer>();
+            if (trajectoryRenderer == null)
+            {
+                trajectoryRenderer = trajectoryTrail.AddComponent<LineRenderer>();
+            }
+
+            trajectoryRenderer.material = trajectoryMaterial ?? new Material(Shader.Find("Sprites/Default"));
+            trajectoryRenderer.startColor = trajectoryColor;
+            trajectoryRenderer.endColor = trajectoryColor;
+            trajectoryRenderer.startWidth = 0.05f;
+            trajectoryRenderer.endWidth = 0.02f;
+        }
+
+        // Setup velocity vectors
+        if (showVelocityVectors)
+        {
+            velocityVectors = new GameObject[1]; // For robot velocity
+            CreateVelocityVector(0, "RobotVelocity");
+        }
+
+        materialPropertyBlock = new MaterialPropertyBlock();
+    }
+
+    public void UpdateRobotState(Vector3 newPosition, Quaternion newOrientation,
+                                float[] newJointPositions, float[] newJointVelocities)
+    {
+        robotPosition = newPosition;
+        robotOrientation = newOrientation;
+        jointPositions = newJointPositions;
+        jointVelocities = newJointVelocities;
+
+        UpdateRobotModel();
+        UpdateTrajectory();
+        UpdateVelocityVectors();
+    }
+
+    void UpdateRobotModel()
+    {
+        if (robotModel != null)
+        {
+            robotModel.transform.position = robotPosition;
+            robotModel.transform.rotation = robotOrientation;
+        }
+
+        // Update joint positions if we have a RobotModelVisualizer
+        RobotModelVisualizer modelVis = robotModel.GetComponent<RobotModelVisualizer>();
+        if (modelVis != null && jointPositions != null)
+        {
+            modelVis.UpdateRobotJoints(jointPositions);
+        }
+    }
+
+    void UpdateTrajectory()
+    {
+        if (!showTrajectory) return;
+
+        trajectoryPoints.Add(robotPosition);
+
+        // Limit trajectory length
+        if (trajectoryPoints.Count > maxTrajectoryPoints)
+        {
+            trajectoryPoints.RemoveAt(0);
+        }
+
+        if (trajectoryRenderer != null)
+        {
+            trajectoryRenderer.positionCount = trajectoryPoints.Count;
+            trajectoryRenderer.SetPositions(trajectoryPoints.ToArray());
+        }
+    }
+
+    void UpdateVelocityVectors()
+    {
+        if (!showVelocityVectors || velocityVectors == null) return;
+
+        // For now, just update the robot's velocity vector
+        // In a real implementation, this would come from velocity data
+        Vector3 velocity = CalculateRobotVelocity();
+        UpdateVelocityVector(0, velocity);
+    }
+
+    Vector3 CalculateRobotVelocity()
+    {
+        // This would typically come from odometry or state estimation
+        // For demonstration, we'll use a simple approximation
+        return Vector3.forward * 0.5f; // Placeholder
+    }
+
+    void UpdateVelocityVector(int index, Vector3 velocity)
+    {
+        if (index >= velocityVectors.Length) return;
+
+        GameObject velocityObj = velocityVectors[index];
+        if (velocityObj == null) return;
+
+        // Set the direction and magnitude of the velocity vector
+        velocityObj.transform.position = robotPosition;
+        velocityObj.transform.LookAt(robotPosition + velocity * velocityScale);
+        velocityObj.transform.localScale = new Vector3(
+            0.02f, 0.02f, velocity.magnitude * velocityScale
+        );
+    }
+
+    void CreateVelocityVector(int index, string name)
+    {
+        GameObject velocityObj = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        velocityObj.name = name;
+        velocityObj.transform.SetParent(transform);
+
+        // Make it look like an arrow
+        GameObject arrowHead = GameObject.CreatePrimitive(PrimitiveType.Cone);
+        arrowHead.transform.SetParent(velocityObj.transform);
+        arrowHead.transform.localPosition = Vector3.forward;
+        arrowHead.transform.localRotation = Quaternion.Euler(0, 0, -90); // Rotate to point forward
+        arrowHead.transform.localScale = Vector3.one * 0.1f;
+
+        // Color it
+        Renderer[] renderers = velocityObj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            r.material = new Material(Shader.Find("Sprites/Default"));
+            r.material.color = Color.green;
+        }
+
+        velocityVectors[index] = velocityObj;
+
+        // Make non-interactive
+        Collider[] colliders = velocityObj.GetComponentsInChildren<Collider>();
+        foreach (Collider c in colliders)
+        {
+            Destroy(c);
+        }
+    }
+
+    public void ClearTrajectory()
+    {
+        trajectoryPoints.Clear();
+        if (trajectoryRenderer != null)
+        {
+            trajectoryRenderer.positionCount = 0;
+        }
+    }
+}
+```
+
+## Sensor Data Visualization
+
+### Point Cloud Visualization
+
+Visualizing 3D sensor data like LiDAR or depth cameras requires efficient rendering techniques:
+
+```csharp
+using UnityEngine;
+
+public class PointCloudVisualizer : MonoBehaviour
+{
+    [Header("Point Cloud Settings")]
+    public int maxPoints = 100000;
+    public float pointSize = 0.02f;
+    public Color pointColor = Color.white;
+    public bool useIntensityColor = true;
+    public Gradient intensityGradient;
+
+    [Header("Performance Settings")]
+    public int pointsPerFrame = 1000; // Limit points updated per frame
+    public bool useObjectPooling = true;
+
+    private Vector3[] points;
+    private float[] intensities;
+    private GameObject[] pointPool;
+    private int poolIndex = 0;
+    private int currentPointCount = 0;
+
+    void Start()
+    {
+        InitializePointCloud();
+    }
+
+    void InitializePointCloud()
+    {
+        points = new Vector3[maxPoints];
+        intensities = new float[maxPoints];
+
+        if (useObjectPooling)
+        {
+            CreatePointPool();
+        }
+
+        // Setup intensity gradient if using intensity colors
+        if (useIntensityColor && intensityGradient == null)
+        {
+            intensityGradient = new Gradient();
+            GradientColorKey[] colorKeys = new GradientColorKey[3];
+            colorKeys[0] = new GradientColorKey(Color.blue, 0.0f);
+            colorKeys[1] = new GradientColorKey(Color.yellow, 0.5f);
+            colorKeys[2] = new GradientColorKey(Color.red, 1.0f);
+            intensityGradient.colorKeys = colorKeys;
+        }
+    }
+
+    void CreatePointPool()
+    {
+        pointPool = new GameObject[maxPoints];
+
+        for (int i = 0; i < maxPoints; i++)
+        {
+            GameObject point = CreatePointObject();
+            point.SetActive(false);
+            pointPool[i] = point;
+        }
+    }
+
+    GameObject CreatePointObject()
+    {
+        GameObject point = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        point.transform.SetParent(transform);
+        point.transform.localScale = Vector3.one * pointSize;
+
+        Renderer renderer = point.GetComponent<Renderer>();
+        renderer.material = new Material(Shader.Find("Sprites/Default"));
+
+        // Make non-interactive
+        Destroy(point.GetComponent<Collider>());
+
+        return point;
+    }
+
+    public void UpdatePointCloud(Vector3[] newPoints, float[] newIntensities = null)
+    {
+        int newPointCount = Mathf.Min(newPoints.Length, maxPoints);
+
+        // Clear existing points
+        ClearPoints();
+
+        // Update with new data
+        for (int i = 0; i < newPointCount; i++)
+        {
+            points[i] = newPoints[i];
+            intensities[i] = (newIntensities != null && i < newIntensities.Length) ?
+                            newIntensities[i] : 1.0f;
+        }
+
+        currentPointCount = newPointCount;
+
+        if (useObjectPooling)
+        {
+            UpdatePointPool();
+        }
+        else
+        {
+            CreateNewPointObjects();
+        }
+    }
+
+    void ClearPoints()
+    {
+        if (useObjectPooling)
+        {
+            for (int i = 0; i < pointPool.Length; i++)
+            {
+                if (pointPool[i] != null)
+                {
+                    pointPool[i].SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            // Destroy all child objects
+            foreach (Transform child in transform)
+            {
+                DestroyImmediate(child.gameObject);
+            }
+        }
+
+        poolIndex = 0;
+    }
+
+    void UpdatePointPool()
+    {
+        for (int i = 0; i < currentPointCount; i++)
+        {
+            if (poolIndex >= pointPool.Length) break;
+
+            GameObject pointObj = pointPool[poolIndex];
+            pointObj.SetActive(true);
+            pointObj.transform.position = points[i];
+
+            // Set color based on intensity if enabled
+            if (useIntensityColor)
+            {
+                Color pointColor = intensityGradient.Evaluate(intensities[i]);
+                Renderer renderer = pointObj.GetComponent<Renderer>();
+                renderer.material.color = pointColor;
+            }
+
+            poolIndex++;
+        }
+    }
+
+    void CreateNewPointObjects()
+    {
+        for (int i = 0; i < currentPointCount; i++)
+        {
+            GameObject pointObj = CreatePointObject();
+            pointObj.transform.position = points[i];
+
+            // Set color based on intensity if enabled
+            if (useIntensityColor)
+            {
+                Color pointColor = intensityGradient.Evaluate(intensities[i]);
+                Renderer renderer = pointObj.GetComponent<Renderer>();
+                renderer.material.color = pointColor;
+            }
+        }
+    }
+
+    public void UpdateIncrementally(Vector3[] newPoints, float[] newIntensities = null)
+    {
+        // Update points incrementally to avoid frame drops
+        int pointsToAdd = Mathf.Min(newPoints.Length, pointsPerFrame);
+
+        for (int i = 0; i < pointsToAdd; i++)
+        {
+            if (currentPointCount + i >= maxPoints) break;
+
+            points[currentPointCount + i] = newPoints[i];
+            intensities[currentPointCount + i] = (newIntensities != null && i < newIntensities.Length) ?
+                                                newIntensities[i] : 1.0f;
+
+            if (useObjectPooling && poolIndex < pointPool.Length)
+            {
+                GameObject pointObj = pointPool[poolIndex];
+                pointObj.SetActive(true);
+                pointObj.transform.position = points[currentPointCount + i];
+
+                if (useIntensityColor)
+                {
+                    Color pointColor = intensityGradient.Evaluate(intensities[currentPointCount + i]);
+                    Renderer renderer = pointObj.GetComponent<Renderer>();
+                    renderer.material.color = pointColor;
+                }
+
+                poolIndex++;
+            }
+        }
+
+        currentPointCount += pointsToAdd;
+    }
+}
+```
+
+### Camera Feed Visualization
+
+Displaying camera feeds in Unity for robotics applications:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CameraFeedVisualizer : MonoBehaviour
+{
+    [Header("Camera Feed Settings")]
+    public RawImage cameraDisplay;
+    public AspectRatioFitter aspectRatioFitter;
+    public bool showCameraFeed = true;
+    public bool showDetectionOverlay = true;
+    public Color detectionColor = Color.red;
+
+    [Header("Performance Settings")]
+    public int targetResolutionWidth = 640;
+    public int targetResolutionHeight = 480;
+    public float updateInterval = 0.1f;
+
+    [Header("Detection Overlay")]
+    public GameObject detectionPrefab;
+    public float detectionMinConfidence = 0.5f;
+
+    private Texture2D cameraTexture;
+    private float lastUpdateTime;
+    private System.Collections.Generic.List<DetectedObject> detections;
+
+    [System.Serializable]
+    public class DetectedObject
+    {
+        public string label;
+        public float confidence;
+        public Rect boundingBox; // Normalized coordinates (0-1)
+    }
+
+    void Start()
+    {
+        InitializeCameraFeed();
+    }
+
+    void InitializeCameraFeed()
+    {
+        cameraTexture = new Texture2D(targetResolutionWidth, targetResolutionHeight, TextureFormat.RGB24, false);
+        cameraDisplay.texture = cameraTexture;
+
+        if (aspectRatioFitter != null)
+        {
+            aspectRatioFitter.aspectRatio = (float)targetResolutionWidth / targetResolutionHeight;
+        }
+
+        detections = new System.Collections.Generic.List<DetectedObject>();
+    }
+
+    public void UpdateCameraFeed(byte[] imageData)
+    {
+        if (!showCameraFeed || cameraTexture == null) return;
+
+        if (Time.time - lastUpdateTime >= updateInterval)
+        {
+            // Load image data into texture
+            cameraTexture.LoadImage(imageData);
+            lastUpdateTime = Time.time;
+        }
+    }
+
+    public void UpdateCameraFeed(Texture2D newTexture)
+    {
+        if (!showCameraFeed || newTexture == null) return;
+
+        if (Time.time - lastUpdateTime >= updateInterval)
+        {
+            // Resize texture if needed
+            if (newTexture.width != cameraTexture.width || newTexture.height != cameraTexture.height)
+            {
+                cameraTexture.Resize(newTexture.width, newTexture.height);
+            }
+
+            // Copy texture data
+            Graphics.CopyTexture(newTexture, cameraTexture);
+            lastUpdateTime = Time.time;
+        }
+    }
+
+    public void UpdateDetections(System.Collections.Generic.List<DetectedObject> newDetections)
+    {
+        if (!showDetectionOverlay) return;
+
+        detections.Clear();
+        detections.AddRange(newDetections);
+
+        UpdateDetectionOverlay();
+    }
+
+    void UpdateDetectionOverlay()
+    {
+        if (!showDetectionOverlay || detectionPrefab == null) return;
+
+        // Clear existing detection objects
+        foreach (Transform child in cameraDisplay.transform)
+        {
+            if (child.name.StartsWith("Detection_"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // Create new detection objects
+        foreach (DetectedObject detection in detections)
+        {
+            if (detection.confidence < detectionMinConfidence) continue;
+
+            GameObject detectionObj = Instantiate(detectionPrefab, cameraDisplay.transform);
+            detectionObj.name = $"Detection_{detection.label}";
+
+            // Convert normalized coordinates to UI coordinates
+            RectTransform rectTransform = detectionObj.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                // Calculate position and size based on normalized bounding box
+                float width = detection.boundingBox.width * cameraDisplay.rectTransform.rect.width;
+                float height = detection.boundingBox.height * cameraDisplay.rectTransform.rect.height;
+                float x = (detection.boundingBox.x - 0.5f) * cameraDisplay.rectTransform.rect.width;
+                float y = (detection.boundingBox.y - 0.5f) * cameraDisplay.rectTransform.rect.height;
+
+                rectTransform.anchoredPosition = new Vector2(x, -y); // Flip Y for UI
+                rectTransform.sizeDelta = new Vector2(width, height);
+            }
+
+            // Set detection label
+            Text labelComponent = detectionObj.GetComponentInChildren<Text>();
+            if (labelComponent != null)
+            {
+                labelComponent.text = $"{detection.label}: {(detection.confidence * 100):F1}%";
+            }
+
+            // Set detection color
+            Image imageComponent = detectionObj.GetComponent<Image>();
+            if (imageComponent != null)
+            {
+                Color color = detectionColor;
+                color.a = 0.3f; // Semi-transparent
+                imageComponent.color = color;
+            }
+        }
+    }
+
+    public void SetCameraVisibility(bool visible)
+    {
+        showCameraFeed = visible;
+        cameraDisplay.gameObject.SetActive(visible);
+    }
+
+    public void SetDetectionVisibility(bool visible)
+    {
+        showDetectionOverlay = visible;
+
+        // Hide all detection objects
+        foreach (Transform child in cameraDisplay.transform)
+        {
+            if (child.name.StartsWith("Detection_"))
+            {
+                child.gameObject.SetActive(visible);
+            }
+        }
+    }
+}
+```
+
+## Advanced Visualization Techniques
+
+### Custom Shaders for Robotics Visualization
+
+Creating custom shaders for specialized robotics visualization:
+
+```csharp
+// This would typically be in a separate .shader file, but shown here as a string for context
+public class RoboticsShaders : MonoBehaviour
+{
+    public static string GetPointCloudShader()
+    {
+        return @"
+            Shader ""Custom/PointCloudShader""
+            {
+                Properties
+                {
+                    _PointSize (""Point Size"", Range(0.01, 0.1)) = 0.02
+                    _PointColor (""Point Color"", Color) = (1,1,1,1)
+                    _MinIntensity (""Min Intensity"", Range(0, 1)) = 0
+                    _MaxIntensity (""Max Intensity"", Range(0, 1)) = 1
+                }
+                SubShader
+                {
+                    Pass
+                    {
+                        CGPROGRAM
+                        #pragma vertex vert
+                        #pragma fragment frag
+                        #include ""UnityCG.cginc""
+
+                        struct appdata
+                        {
+                            float4 vertex : POSITION;
+                            float intensity : TEXCOORD0;
+                        };
+
+                        struct v2f
+                        {
+                            float4 pos : SV_POSITION;
+                            fixed4 color : COLOR;
+                        };
+
+                        float _PointSize;
+                        fixed4 _PointColor;
+                        float _MinIntensity;
+                        float _MaxIntensity;
+
+                        v2f vert (appdata v)
+                        {
+                            v2f o;
+                            o.pos = UnityObjectToClipPos(v.vertex);
+                            o.color = _PointColor;
+
+                            // Map intensity to color
+                            float intensity = saturate((v.intensity - _MinIntensity) / (_MaxIntensity - _MinIntensity));
+                            o.color.rgb = lerp(fixed3(0,0,1), fixed3(1,0,0), intensity);
+
+                            return o;
+                        }
+
+                        fixed4 frag (v2f i) : SV_Target
+                        {
+                            return i.color;
+                        }
+                        ENDCG
+                    }
+                }
+            }";
+    }
+}
+```
+
+### Performance Optimization for Large-Scale Visualization
+
+Optimizing Unity applications for handling large amounts of robotics data:
+
+```csharp
+using UnityEngine;
+using System.Collections.Generic;
+
+public class VisualizationOptimizer : MonoBehaviour
+{
+    [Header("LOD Settings")]
+    public int[] lodDistances = { 10, 20, 50 }; // Distances for each LOD level
+    public int maxLODLevel = 3;
+
+    [Header("Culling Settings")]
+    public float maxVisualizationDistance = 100.0f;
+    public bool enableFrustumCulling = true;
+    public bool enableOcclusionCulling = false;
+
+    [Header("Performance Settings")]
+    public float targetFrameRate = 60.0f;
+    public bool dynamicQualityAdjustment = true;
+    public float qualityAdjustmentInterval = 1.0f;
+
+    [Header("Visualization Toggles")]
+    public bool showTrajectories = true;
+    public bool showSensorData = true;
+    public bool showDebugInfo = false;
+
+    private float lastQualityAdjustmentTime;
+    private int currentQualityLevel = 2; // Start at medium quality
+    private float currentFrameRate;
+    private Queue<float> frameRateHistory = new Queue<float>();
+    private const int frameRateHistorySize = 30;
+
+    void Start()
+    {
+        SetupOptimization();
+    }
+
+    void SetupOptimization()
+    {
+        Application.targetFrameRate = Mathf.RoundToInt(targetFrameRate);
+
+        // Setup quality settings
+        SetupQualityLevels();
+    }
+
+    void SetupQualityLevels()
+    {
+        // Define different quality levels
+        QualitySettings.SetQualityLevel(currentQualityLevel);
+    }
+
+    void Update()
+    {
+        UpdateFrameRate();
+
+        if (dynamicQualityAdjustment &&
+            Time.time - lastQualityAdjustmentTime >= qualityAdjustmentInterval)
+        {
+            AdjustQualityBasedOnPerformance();
+            lastQualityAdjustmentTime = Time.time;
+        }
+
+        ApplyVisualizationSettings();
+    }
+
+    void UpdateFrameRate()
+    {
+        float frameRate = 1.0f / Time.unscaledDeltaTime;
+
+        // Maintain history for smoothing
+        frameRateHistory.Enqueue(frameRate);
+        if (frameRateHistory.Count > frameRateHistorySize)
+        {
+            frameRateHistory.Dequeue();
+        }
+
+        // Calculate average frame rate
+        float sum = 0;
+        foreach (float rate in frameRateHistory)
+        {
+            sum += rate;
+        }
+        currentFrameRate = sum / frameRateHistory.Count;
+    }
+
+    void AdjustQualityBasedOnPerformance()
+    {
+        // Adjust quality based on current frame rate
+        if (currentFrameRate < targetFrameRate * 0.7f)
+        {
+            // Performance is poor, reduce quality
+            if (currentQualityLevel > 0)
+            {
+                currentQualityLevel--;
+                QualitySettings.SetQualityLevel(currentQualityLevel);
+
+                // Also reduce visualization complexity
+                ReduceVisualizationComplexity();
+            }
+        }
+        else if (currentFrameRate > targetFrameRate * 0.9f)
+        {
+            // Performance is good, increase quality
+            if (currentQualityLevel < QualitySettings.names.Length - 1)
+            {
+                currentQualityLevel++;
+                QualitySettings.SetQualityLevel(currentQualityLevel);
+
+                // Restore visualization complexity
+                RestoreVisualizationComplexity();
+            }
+        }
+    }
+
+    void ReduceVisualizationComplexity()
+    {
+        // Reduce visualization complexity to improve performance
+        showTrajectories = false;
+        showSensorData = false;
+        showDebugInfo = false;
+    }
+
+    void RestoreVisualizationComplexity()
+    {
+        // Restore visualization complexity
+        showTrajectories = true;
+        showSensorData = true;
+        showDebugInfo = false; // Keep debug off by default
+    }
+
+    void ApplyVisualizationSettings()
+    {
+        // Apply visualization settings to child components
+        RobotVisualizer[] robotVisualizers = GetComponentsInChildren<RobotVisualizer>();
+        foreach (RobotVisualizer visualizer in robotVisualizers)
+        {
+            if (visualizer != null)
+            {
+                visualizer.showTrajectory = showTrajectories;
+                visualizer.showSensorData = showSensorData;
+            }
+        }
+
+        RealTimeRobotVisualizer[] realTimeVisualizers = GetComponentsInChildren<RealTimeRobotVisualizer>();
+        foreach (RealTimeRobotVisualizer visualizer in realTimeVisualizers)
+        {
+            if (visualizer != null)
+            {
+                visualizer.showTrajectory = showTrajectories;
+                visualizer.showVelocityVectors = showSensorData;
+            }
+        }
+    }
+
+    public void SetVisualizationQuality(int qualityLevel)
+    {
+        currentQualityLevel = Mathf.Clamp(qualityLevel, 0, QualitySettings.names.Length - 1);
+        QualitySettings.SetQualityLevel(currentQualityLevel);
+    }
+
+    public float GetCurrentFrameRate()
+    {
+        return currentFrameRate;
+    }
+
+    public float GetTargetFrameRate()
+    {
+        return targetFrameRate;
+    }
+
+    public bool IsPerformanceOptimal()
+    {
+        return currentFrameRate >= targetFrameRate * 0.9f;
+    }
+
+    public void ForceQualityAdjustment()
+    {
+        AdjustQualityBasedOnPerformance();
+    }
+}
+```
+
+## Best Practices for Robotics Visualization
+
+### Data Management and Memory Optimization
+
+Efficiently handling large amounts of robotics data:
+
+```csharp
+using UnityEngine;
+using System.Collections.Generic;
+
+public class RoboticsDataManager : MonoBehaviour
+{
+    [Header("Data Management")]
+    public int maxDataPoints = 10000;
+    public float dataRetentionTime = 30.0f; // seconds
+    public bool compressOldData = true;
+
+    private Dictionary<string, CircularBuffer<Vector3>> positionBuffers;
+    private Dictionary<string, CircularBuffer<float>> scalarBuffers;
+    private Dictionary<string, float> lastUpdateTime;
+
+    [System.Serializable]
+    public class CircularBuffer<T>
+    {
+        private T[] buffer;
+        private int head;
+        private int count;
+        private int capacity;
+
+        public CircularBuffer(int size)
+        {
+            capacity = size;
+            buffer = new T[capacity];
+            head = 0;
+            count = 0;
+        }
+
+        public void Add(T item)
+        {
+            if (count < capacity)
+            {
+                buffer[count] = item;
+                count++;
+            }
+            else
+            {
+                buffer[head] = item;
+                head = (head + 1) % capacity;
+            }
+        }
+
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= count) throw new System.IndexOutOfRangeException();
+                int actualIndex = (head + index) % capacity;
+                return buffer[actualIndex];
+            }
+        }
+
+        public int Count { get { return count; } }
+        public int Capacity { get { return capacity; } }
+    }
+
+    void Start()
+    {
+        InitializeDataBuffers();
+    }
+
+    void InitializeDataBuffers()
+    {
+        positionBuffers = new Dictionary<string, CircularBuffer<Vector3>>();
+        scalarBuffers = new Dictionary<string, CircularBuffer<float>>();
+        lastUpdateTime = new Dictionary<string, float>();
+    }
+
+    public void AddPositionData(string topic, Vector3 position)
+    {
+        if (!positionBuffers.ContainsKey(topic))
+        {
+            positionBuffers[topic] = new CircularBuffer<Vector3>(maxDataPoints);
+        }
+
+        positionBuffers[topic].Add(position);
+        lastUpdateTime[topic] = Time.time;
+    }
+
+    public void AddScalarData(string topic, float value)
+    {
+        if (!scalarBuffers.ContainsKey(topic))
+        {
+            scalarBuffers[topic] = new CircularBuffer<float>(maxDataPoints);
+        }
+
+        scalarBuffers[topic].Add(value);
+        lastUpdateTime[topic] = Time.time;
+    }
+
+    public List<Vector3> GetPositionHistory(string topic, int count = -1)
+    {
+        if (!positionBuffers.ContainsKey(topic)) return new List<Vector3>();
+
+        CircularBuffer<Vector3> buffer = positionBuffers[topic];
+        int actualCount = count == -1 ? buffer.Count : Mathf.Min(count, buffer.Count);
+
+        List<Vector3> result = new List<Vector3>(actualCount);
+
+        for (int i = 0; i < actualCount; i++)
+        {
+            int bufferIndex = buffer.Count - actualCount + i;
+            result.Add(buffer[bufferIndex]);
+        }
+
+        return result;
+    }
+
+    public List<float> GetScalarHistory(string topic, int count = -1)
+    {
+        if (!scalarBuffers.ContainsKey(topic)) return new List<float>();
+
+        CircularBuffer<float> buffer = scalarBuffers[topic];
+        int actualCount = count == -1 ? buffer.Count : Mathf.Min(count, buffer.Count);
+
+        List<float> result = new List<float>(actualCount);
+
+        for (int i = 0; i < actualCount; i++)
+        {
+            int bufferIndex = buffer.Count - actualCount + i;
+            result.Add(buffer[bufferIndex]);
+        }
+
+        return result;
+    }
+
+    public Vector3 GetLatestPosition(string topic)
+    {
+        if (!positionBuffers.ContainsKey(topic) || positionBuffers[topic].Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        CircularBuffer<Vector3> buffer = positionBuffers[topic];
+        return buffer[buffer.Count - 1];
+    }
+
+    public float GetLatestScalar(string topic)
+    {
+        if (!scalarBuffers.ContainsKey(topic) || scalarBuffers[topic].Count == 0)
+        {
+            return 0.0f;
+        }
+
+        CircularBuffer<float> buffer = scalarBuffers[topic];
+        return buffer[buffer.Count - 1];
+    }
+
+    void Update()
+    {
+        // Clean up old data periodically
+        if (Time.frameCount % 60 == 0) // Every ~1 second at 60 FPS
+        {
+            CleanupOldData();
+        }
+    }
+
+    void CleanupOldData()
+    {
+        List<string> topicsToRemove = new List<string>();
+
+        foreach (var pair in lastUpdateTime)
+        {
+            if (Time.time - pair.Value > dataRetentionTime)
+            {
+                topicsToRemove.Add(pair.Key);
+            }
+        }
+
+        foreach (string topic in topicsToRemove)
+        {
+            if (positionBuffers.ContainsKey(topic))
+            {
+                positionBuffers.Remove(topic);
+            }
+            if (scalarBuffers.ContainsKey(topic))
+            {
+                scalarBuffers.Remove(topic);
+            }
+            if (lastUpdateTime.ContainsKey(topic))
+            {
+                lastUpdateTime.Remove(topic);
+            }
+        }
+    }
+
+    public void ClearAllData()
+    {
+        positionBuffers.Clear();
+        scalarBuffers.Clear();
+        lastUpdateTime.Clear();
+    }
+
+    public void ClearTopicData(string topic)
+    {
+        if (positionBuffers.ContainsKey(topic))
+        {
+            positionBuffers.Remove(topic);
+        }
+        if (scalarBuffers.ContainsKey(topic))
+        {
+            scalarBuffers.Remove(topic);
+        }
+        if (lastUpdateTime.ContainsKey(topic))
+        {
+            lastUpdateTime.Remove(topic);
+        }
+    }
+
+    public int GetBufferCount(string topic)
+    {
+        if (positionBuffers.ContainsKey(topic))
+        {
+            return positionBuffers[topic].Count;
+        }
+        if (scalarBuffers.ContainsKey(topic))
+        {
+            return scalarBuffers[topic].Count;
+        }
+        return 0;
+    }
+}
+```
+
+Unity visualization techniques for robotics provide powerful tools for creating immersive and informative interfaces. By implementing efficient data management, optimized rendering techniques, and proper performance optimization, you can create visualization systems that effectively support human-robot interaction and robot monitoring in Physical AI applications.

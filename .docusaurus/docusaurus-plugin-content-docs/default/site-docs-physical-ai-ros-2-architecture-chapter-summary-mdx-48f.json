@@ -18,7 +18,7 @@
     "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
   },
   "next": {
-    "title": "index",
+    "title": "Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters",
     "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/"
   }
 }

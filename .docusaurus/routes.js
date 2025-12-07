@@ -3,16 +3,51 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
+    path: '/physical-ai-textbook/__docusaurus/debug',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug', 'd8f'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/config',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/config', '4cd'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/content',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/content', '1e9'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/globalData',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/globalData', 'bb2'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/metadata',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/metadata', 'bab'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/registry',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/registry', '463'),
+    exact: true
+  },
+  {
+    path: '/physical-ai-textbook/__docusaurus/debug/routes',
+    component: ComponentCreator('/physical-ai-textbook/__docusaurus/debug/routes', 'e98'),
+    exact: true
+  },
+  {
     path: '/physical-ai-textbook/',
-    component: ComponentCreator('/physical-ai-textbook/', '4a1'),
+    component: ComponentCreator('/physical-ai-textbook/', 'acb'),
     routes: [
       {
         path: '/physical-ai-textbook/',
-        component: ComponentCreator('/physical-ai-textbook/', '31a'),
+        component: ComponentCreator('/physical-ai-textbook/', '290'),
         routes: [
           {
             path: '/physical-ai-textbook/',
-            component: ComponentCreator('/physical-ai-textbook/', '9f0'),
+            component: ComponentCreator('/physical-ai-textbook/', 'd92'),
             routes: [
               {
                 path: '/physical-ai-textbook/physical-ai',
@@ -282,6 +317,16 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/physical-ai-textbook/physical-ai/ros2-communication',
+                component: ComponentCreator('/physical-ai-textbook/physical-ai/ros2-communication', '542'),
+                exact: true
+              },
+              {
+                path: '/physical-ai-textbook/physical-ai/ros2-communication/topics-services-actions',
+                component: ComponentCreator('/physical-ai-textbook/physical-ai/ros2-communication/topics-services-actions', '358'),
+                exact: true
+              },
+              {
                 path: '/physical-ai-textbook/physical-ai/ros2-packages',
                 component: ComponentCreator('/physical-ai-textbook/physical-ai/ros2-packages', 'b99'),
                 exact: true,
@@ -304,6 +349,11 @@ export default [
                 component: ComponentCreator('/physical-ai-textbook/physical-ai/ros2-packages/launch-files', 'd81'),
                 exact: true,
                 sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai-textbook/physical-ai/ros2-packages/parameters',
+                component: ComponentCreator('/physical-ai-textbook/physical-ai/ros2-packages/parameters', 'f0a'),
+                exact: true
               },
               {
                 path: '/physical-ai-textbook/physical-ai/ros2-urdf',
