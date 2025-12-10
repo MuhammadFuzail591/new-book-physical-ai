@@ -1,1 +1,274 @@
----\ntitle: Chapter Placeholder - SDK Overview\n---\n\n# SDK Overview\n\nPlaceholder content for Isaac SDK overview section.
+---
+title: NVIDIA Isaac SDK - Core Components and Architecture
+---
+
+# NVIDIA Isaac SDK: Core Components and Architecture
+
+## Introduction to Isaac SDK
+
+The NVIDIA Isaac SDK is a comprehensive software development kit designed specifically for robotics applications. It provides a rich set of libraries, tools, and frameworks that enable developers to create sophisticated robotic systems with advanced perception, planning, and control capabilities. The SDK is optimized for NVIDIA hardware platforms and leverages GPU acceleration for computationally intensive tasks.
+
+## Core Architecture
+
+The Isaac SDK follows a modular architecture built around the Alice framework, which provides a component-based approach to robotics development. This architecture enables developers to compose complex robotic applications from reusable components while maintaining high performance and flexibility.
+
+### Alice Framework
+
+The Alice framework is the core runtime environment of the Isaac SDK. It provides:
+
+- **Component-based Architecture**: Applications are built from reusable components called "Codelets"
+- **Message Passing**: Components communicate through typed messages
+- **Lifecycle Management**: Automatic initialization, start, and shutdown of components
+- **Resource Management**: Efficient allocation and deallocation of system resources
+- **Real-time Execution**: Deterministic execution for time-critical applications
+
+```cpp
+// Example of an Isaac SDK component (Codelet)
+#include "engine/alice/alice.hpp"
+
+namespace nvidia {
+namespace isaac {
+namespace perception {
+
+class ImageProcessor : public alice::Codelet {
+ public:
+  void start() override {
+    // Initialize the component
+    tickPeriodically();
+  }
+
+  void tick() override {
+    // Process input messages and generate outputs
+    auto input = message_rx().getProto();
+    auto output = tx_message().initProto();
+
+    // Apply image processing algorithms
+    processImage(input, output);
+  }
+
+  void stop() override {
+    // Clean up resources
+  }
+
+ private:
+  void processImage(const capnp::DynamicStruct::Reader& input,
+                   capnp::DynamicStruct::Builder& output);
+
+  // Input and output message handlers
+  ISAAC_PROTO_RX(ImageProto, image_rx);
+  ISAAC_PROTO_TX(ImageProto, tx_message);
+};
+
+}  // namespace perception
+}  // namespace isaac
+}  // namespace nvidia
+
+// Register the component for use in applications
+ISAAC_ALICE_REGISTER_CODELET(nvidia::isaac::perception::ImageProcessor);
+```
+
+## Key SDK Components
+
+### 1. Isaac Perception Library
+
+The Perception library provides state-of-the-art computer vision and sensor processing capabilities:
+
+- **Object Detection**: Pre-trained models for detecting and classifying objects
+- **Semantic Segmentation**: Pixel-level scene understanding
+- **Depth Estimation**: Stereo vision and monocular depth estimation
+- **SLAM**: Simultaneous Localization and Mapping algorithms
+- **Feature Extraction**: Keypoint detection and descriptor computation
+
+```cpp
+// Example: Using Isaac Perception for object detection
+#include "isaac_perception/object_detection.hpp"
+
+class ObjectDetectionNode : public alice::Codelet {
+ public:
+  void tick() override {
+    // Get input image
+    auto image = image_rx().getProto();
+
+    // Run object detection
+    auto detections = object_detector_.detect(image);
+
+    // Process results
+    for (const auto& detection : detections) {
+      if (detection.confidence > 0.7) {
+        // Handle high-confidence detections
+        publishDetection(detection);
+      }
+    }
+  }
+
+ private:
+  ObjectDetector object_detector_;
+  ISAAC_PROTO_RX(ImageProto, image_rx);
+  ISAAC_PROTO_TX(DetectionArrayProto, detections_tx);
+};
+```
+
+### 2. Isaac Planning Library
+
+The Planning library provides motion planning and navigation capabilities:
+
+- **Path Planning**: A*, Dijkstra, and RRT-based algorithms
+- **Trajectory Generation**: Smooth trajectory computation for robot motion
+- **Collision Avoidance**: Real-time obstacle avoidance algorithms
+- **Multi-robot Coordination**: Algorithms for coordinating multiple robots
+- **Task Planning**: High-level task and motion planning
+
+### 3. Isaac Control Library
+
+The Control library provides advanced control algorithms:
+
+- **PID Controllers**: Proportional-Integral-Derivative controllers
+- **MPC**: Model Predictive Control for optimal trajectory following
+- **Adaptive Control**: Controllers that adapt to changing conditions
+- **Robust Control**: Controllers designed to handle uncertainties
+- **Learning-based Control**: AI-powered control strategies
+
+## Isaac Message System
+
+The Isaac SDK uses a sophisticated message passing system based on Cap'n Proto for efficient serialization and communication between components:
+
+```cpp
+// Example: Defining a custom message type
+@0xdbd50eb08c779f0f;
+
+using import "/capnp/c++.capnp";
+$import("c++").namespace("nvidia::isaac::messages");
+
+struct RobotState {
+  timestamp @0 :UInt64;
+  position @1 :Vector3d;
+  orientation @2 :Quaternion;
+  joint_angles @3 :List(Float64);
+  joint_velocities @4 :List(Float64);
+}
+
+struct Vector3d {
+  x @0 :Float64;
+  y @1 :Float64;
+  z @2 :Float64;
+}
+
+struct Quaternion {
+  w @0 :Float64;
+  x @1 :Float64;
+  y @2 :Float64;
+  z @3 :Float64;
+}
+```
+
+## Isaac Application Framework
+
+Isaac applications are configured using JSON files that define the component graph and their connections:
+
+```json
+{
+  "name": "robot_perception_app",
+  "modules": [
+    {
+      "name": "camera",
+      "type": "nvidia::isaac::sight::ColorCamera"
+    },
+    {
+      "name": "object_detector",
+      "type": "nvidia::isaac::perception::TensorRTObjectDetector"
+    },
+    {
+      "name": "visualization",
+      "type": "nvidia::isaac::sight::ImageOverlay"
+    }
+  ],
+  "edges": [
+    {
+      "source": "camera/color_image",
+      "target": "object_detector/image"
+    },
+    {
+      "source": "object_detector/detections",
+      "target": "visualization/objects"
+    }
+  ]
+}
+```
+
+## Performance Optimization
+
+The Isaac SDK is designed for high-performance robotics applications:
+
+### GPU Acceleration
+- All perception algorithms are GPU-accelerated using CUDA and TensorRT
+- Custom CUDA kernels for specialized operations
+- Memory management optimized for GPU operations
+
+### Real-time Capabilities
+- Deterministic execution with guaranteed timing
+- Priority-based scheduling for time-critical tasks
+- Efficient memory pooling to reduce allocation overhead
+
+### Multi-threading
+- Component-level parallelism for independent tasks
+- Pipeline parallelism for sequential processing
+- Thread-safe message passing between components
+
+## Integration with External Systems
+
+The Isaac SDK provides extensive integration capabilities:
+
+### ROS 2 Bridge
+```cpp
+// Example: ROS 2 integration
+#include "isaac_ros_bridge/ros_bridge.hpp"
+
+class ROSBridgeNode : public alice::Codelet {
+ public:
+  void start() override {
+    // Initialize ROS 2 node
+    ros_node_ = std::make_shared<rclcpp::Node>("isaac_bridge");
+
+    // Create publishers and subscribers
+    image_pub_ = ros_node_->create_publisher<sensor_msgs::msg::Image>("camera/image_raw");
+    cmd_sub_ = ros_node_->create_subscription<geometry_msgs::msg::Twist>(
+      "cmd_vel", 10, [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
+        // Handle ROS message
+        handleVelocityCommand(*msg);
+      });
+  }
+
+ private:
+  std::shared_ptr<rclcpp::Node> ros_node_;
+  rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_pub_;
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_sub_;
+};
+```
+
+### External Hardware Integration
+- Camera interfaces (USB, GigE, MIPI)
+- Sensor fusion with IMU, LIDAR, and other sensors
+- Actuator control interfaces
+- Communication protocols (CAN, Ethernet, serial)
+
+## Best Practices
+
+### 1. Component Design
+- Keep components focused on single responsibilities
+- Use appropriate message types for communication
+- Implement proper error handling and recovery
+- Follow naming conventions for consistency
+
+### 2. Performance Considerations
+- Minimize message copying and serialization overhead
+- Use memory pools for frequently allocated objects
+- Optimize GPU memory usage
+- Profile applications to identify bottlenecks
+
+### 3. Testing and Validation
+- Write unit tests for individual components
+- Use Isaac's built-in testing framework
+- Validate component interactions
+- Test under various load conditions
+
+The Isaac SDK provides a powerful and flexible foundation for developing sophisticated robotics applications. Its component-based architecture, GPU acceleration, and integration capabilities make it ideal for Physical AI and humanoid robotics applications that require real-time performance and advanced perception capabilities.

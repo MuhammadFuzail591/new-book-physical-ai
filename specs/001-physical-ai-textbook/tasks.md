@@ -63,16 +63,16 @@
 
 ## Phase 6: [US1] Chapter 4 - Nodes, Topics, Services & Actions in ROS 2
 
-- [ ] T041 [P] Create Chapter 4 directory structure under docs/physical-ai/
-- [ ] T042 [P] Create Chapter 4 index.mdx with frontmatter and overview
-- [ ] T043 [P] Create 01-nodes-implementation.mdx section
-- [ ] T044 [P] Create 02-topics-communication.mdx section
-- [ ] T045 [P] Create 03-services-actions.mdx section
-- [ ] T046 [P] Create 04-chapter-summary.mdx section
-- [ ] T047 [P] Add learning outcomes to Chapter 4 files
-- [ ] T048 [P] Add exercises to Chapter 4 with intermediate difficulty
-- [ ] T049 [P] Add comprehensive ROS 2 code examples with proper documentation
-- [ ] T050 [P] Add diagrams showing communication patterns and message flows
+- [X] T041 [P] Create Chapter 4 directory structure under docs/physical-ai/
+- [X] T042 [P] Create Chapter 4 index.mdx with frontmatter and overview
+- [X] T043 [P] Create 01-nodes-implementation.mdx section
+- [X] T044 [P] Create 02-topics-communication.mdx section
+- [X] T045 [P] Create 03-services-actions.mdx section
+- [X] T046 [P] Create 04-chapter-summary.mdx section
+- [X] T047 [P] Add learning outcomes to Chapter 4 files
+- [X] T048 [P] Add exercises to Chapter 4 with intermediate difficulty
+- [X] T049 [P] Add comprehensive ROS 2 code examples with proper documentation
+- [X] T050 [P] Add diagrams showing communication patterns and message flows
 
 ## Phase 7: [US1] Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters
 
@@ -115,16 +115,16 @@
 
 ## Phase 10: [US2] Chapter 8 - Unity Visualization & Human-Robot Interaction
 
-- [ ] T081 [P] Create Chapter 8 directory structure under docs/physical-ai/
-- [ ] T082 [P] Create Chapter 8 index.mdx with frontmatter and overview
-- [ ] T083 [P] Create 01-human-robot-interaction.mdx section
-- [ ] T084 [P] Create 02-visualization.mdx section
-- [ ] T085 [P] Create 03-unity-workflows.mdx section
-- [ ] T086 [P] Create 04-chapter-summary.mdx section
-- [ ] T087 [P] Add learning outcomes to Chapter 8 files
-- [ ] T088 [P] Add exercises to Chapter 8 with intermediate difficulty
-- [ ] T089 [P] Add Unity integration examples for robotics visualization
-- [ ] T090 [P] Add HRI design principles and examples
+- [X] T081 [P] Create Chapter 8 directory structure under docs/physical-ai/
+- [X] T082 [P] Create Chapter 8 index.mdx with frontmatter and overview
+- [X] T083 [P] Create 01-human-robot-interaction.mdx section
+- [X] T084 [P] Create 02-visualization.mdx section
+- [X] T085 [P] Create 03-unity-workflows.mdx section
+- [X] T086 [P] Create 04-chapter-summary.mdx section
+- [X] T087 [P] Add learning outcomes to Chapter 8 files
+- [X] T088 [P] Add exercises to Chapter 8 with intermediate difficulty
+- [X] T089 [P] Add Unity integration examples for robotics visualization
+- [X] T090 [P] Add HRI design principles and examples
 
 ## Phase 11: [US3] Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview
 
