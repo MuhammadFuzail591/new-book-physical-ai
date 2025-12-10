@@ -180,16 +180,16 @@
 
 ## Phase 15: [US3] Chapter 13 - Cognitive Planning with Vision-Language-Action Systems
 
-- [ ] T131 [P] Create Chapter 13 directory structure under docs/physical-ai/
-- [ ] T132 [P] Create Chapter 13 index.mdx with frontmatter and overview
-- [ ] T133 [P] Create 01-vla-systems.mdx section
-- [ ] T134 [P] Create 02-llm-integration.mdx section
-- [ ] T135 [P] Create 03-cognitive-architectures.mdx section
-- [ ] T136 [P] Create 04-chapter-summary.mdx section
-- [ ] T137 [P] Add learning outcomes to Chapter 13 files
-- [ ] T138 [P] Add exercises to Chapter 13 with advanced difficulty
-- [ ] T139 [P] Add VLA system architecture examples
-- [ ] T140 [P] Add LLM integration with ROS 2 examples
+- [X] T131 [P] Create Chapter 13 directory structure under docs/physical-ai/
+- [X] T132 [P] Create Chapter 13 index.mdx with frontmatter and overview
+- [X] T133 [P] Create 01-vla-systems.mdx section
+- [X] T134 [P] Create 02-llm-integration.mdx section
+- [X] T135 [P] Create 03-cognitive-architectures.mdx section
+- [X] T136 [P] Create 04-chapter-summary.mdx section
+- [X] T137 [P] Add learning outcomes to Chapter 13 files
+- [X] T138 [P] Add exercises to Chapter 13 with advanced difficulty
+- [X] T139 [P] Add VLA system architecture examples
+- [X] T140 [P] Add LLM integration with ROS 2 examples
 
 ## Phase 16: [US3] Chapter 14 - Capstone Project: The Autonomous Humanoid
 
