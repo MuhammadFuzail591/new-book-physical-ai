@@ -1,0 +1,835 @@
+---
+title: Sim-to-Real Transfer Techniques in Robotics
+---
+
+# Sim-to-Real Transfer Techniques
+
+## Introduction to Sim-to-Real Transfer
+
+Sim-to-real transfer, also known as domain transfer, refers to the process of transferring policies, controllers, or learning algorithms developed in simulation environments to real-world robotic systems. This critical aspect of robotics research addresses the "reality gap" - the discrepancy between simulated and real environments that can cause policies trained in simulation to fail when deployed on physical robots.
+
+The reality gap encompasses various factors including:
+- Visual differences (textures, lighting, shadows)
+- Physical properties (friction, dynamics, actuator behavior)
+- Sensor noise and calibration differences
+- Environmental uncertainties and disturbances
+- Model inaccuracies in simulation
+
+Successfully bridging this gap is essential for deploying robotics solutions at scale, as real-world training is often expensive, time-consuming, and potentially dangerous.
+
+## Domain Randomization
+
+Domain randomization is a technique that involves randomizing simulation parameters during training to improve policy robustness. The approach trains policies on a wide variety of simulation conditions, making them more adaptable to real-world variations.
+
+### Visual Domain Randomization
+
+Visual domain randomization focuses on randomizing visual properties in simulation:
+
+```python
+import numpy as np
+import cv2
+from dataclasses import dataclass
+from typing import Tuple, Optional
+
+@dataclass
+class DomainRandomizationParams:
+    """Parameters for domain randomization in simulation"""
+    lighting_range: Tuple[float, float] = (0.5, 2.0)  # Lighting intensity range
+    color_variance: float = 0.2  # Color variation factor
+    texture_randomization: bool = True
+    shadow_randomization: bool = True
+    noise_range: Tuple[float, float] = (0.0, 0.05)  # Noise level range
+    blur_range: Tuple[float, float] = (0.0, 1.0)  # Blur kernel size range
+
+class VisualDomainRandomizer:
+    """Applies visual domain randomization to simulated images"""
+
+    def __init__(self, params: DomainRandomizationParams):
+        self.params = params
+
+    def randomize_image(self, image: np.ndarray) -> np.ndarray:
+        """Apply randomization transformations to an image"""
+        # Randomize lighting
+        lighting_factor = np.random.uniform(
+            self.params.lighting_range[0],
+            self.params.lighting_range[1]
+        )
+        randomized = np.clip(image.astype(np.float32) * lighting_factor, 0, 255).astype(np.uint8)
+
+        # Add random noise
+        noise_level = np.random.uniform(
+            self.params.noise_range[0],
+            self.params.noise_range[1]
+        )
+        noise = np.random.normal(0, noise_level * 255, image.shape).astype(np.uint8)
+        randomized = cv2.add(randomized, noise)
+
+        # Apply random blur
+        blur_kernel = np.random.uniform(
+            self.params.blur_range[0],
+            self.params.blur_range[1]
+        )
+        if blur_kernel > 0:
+            kernel_size = int(2 * np.floor(blur_kernel) + 1)
+            if kernel_size > 1:
+                randomized = cv2.GaussianBlur(randomized, (kernel_size, kernel_size), blur_kernel)
+
+        # Randomize colors
+        color_shift = np.random.uniform(-self.params.color_variance, self.params.color_variance, 3)
+        randomized = randomized.astype(np.float32)
+        randomized[:, :, 0] = np.clip(randomized[:, :, 0] * (1 + color_shift[0]), 0, 255)
+        randomized[:, :, 1] = np.clip(randomized[:, :, 1] * (1 + color_shift[1]), 0, 255)
+        randomized[:, :, 2] = np.clip(randomized[:, :, 2] * (1 + color_shift[2]), 0, 255)
+
+        return randomized.astype(np.uint8)
+```
+
+### Physical Domain Randomization
+
+Physical domain randomization involves randomizing physical parameters such as friction coefficients, mass, and actuator dynamics:
+
+```python
+import numpy as np
+from dataclasses import dataclass
+from typing import Dict, Any
+
+@dataclass
+class PhysicalDomainParams:
+    """Parameters for physical domain randomization"""
+    mass_range: Tuple[float, float] = (0.8, 1.2)  # Mass multiplier range
+    friction_range: Tuple[float, float] = (0.5, 2.0)  # Friction multiplier range
+    damping_range: Tuple[float, float] = (0.8, 1.2)  # Damping multiplier range
+    actuator_noise_range: Tuple[float, float] = (0.0, 0.05)  # Actuator noise level
+    sensor_noise_range: Tuple[float, float] = (0.0, 0.02)  # Sensor noise level
+    com_offset_range: Tuple[float, float] = (-0.01, 0.01)  # Center of mass offset
+
+class PhysicalDomainRandomizer:
+    """Applies physical domain randomization to robot parameters"""
+
+    def __init__(self, params: PhysicalDomainParams):
+        self.params = params
+        self.randomized_params = {}
+
+    def randomize_robot_parameters(self, base_params: Dict[str, Any]) -> Dict[str, Any]:
+        """Randomize physical parameters for a robot"""
+        randomized = base_params.copy()
+
+        # Randomize mass
+        mass_multiplier = np.random.uniform(
+            self.params.mass_range[0],
+            self.params.mass_range[1]
+        )
+        for link_name, mass in randomized.get('masses', {}).items():
+            randomized['masses'][link_name] = mass * mass_multiplier
+
+        # Randomize friction
+        friction_multiplier = np.random.uniform(
+            self.params.friction_range[0],
+            self.params.friction_range[1]
+        )
+        for joint_name, friction in randomized.get('friction', {}).items():
+            randomized['friction'][joint_name] = friction * friction_multiplier
+
+        # Randomize damping
+        damping_multiplier = np.random.uniform(
+            self.params.damping_range[0],
+            self.params.damping_range[1]
+        )
+        for joint_name, damping in randomized.get('damping', {}).items():
+            randomized['damping'][joint_name] = damping * damping_multiplier
+
+        # Add actuator noise characteristics
+        actuator_noise = np.random.uniform(
+            self.params.actuator_noise_range[0],
+            self.params.actuator_noise_range[1]
+        )
+        randomized['actuator_noise'] = actuator_noise
+
+        # Add sensor noise characteristics
+        sensor_noise = np.random.uniform(
+            self.params.sensor_noise_range[0],
+            self.params.sensor_noise_range[1]
+        )
+        randomized['sensor_noise'] = sensor_noise
+
+        # Randomize center of mass offsets
+        for link_name in randomized.get('links', []):
+            com_offset = np.random.uniform(
+                self.params.com_offset_range[0],
+                self.params.com_offset_range[1],
+                3
+            )
+            randomized['com_offsets'][link_name] = com_offset
+
+        return randomized
+```
+
+## System Identification
+
+System identification is the process of developing mathematical models of dynamic systems from measured input-output data. In robotics, this technique helps create more accurate models that better match real-world behavior.
+
+### Black-Box System Identification
+
+Black-box identification involves fitting models without detailed knowledge of the underlying physics:
+
+```python
+import numpy as np
+from scipy.optimize import minimize
+from typing import List, Tuple, Callable
+
+class BlackBoxSystemIdentifier:
+    """Identifies system parameters using black-box methods"""
+
+    def __init__(self, model_order: int = 4):
+        self.model_order = model_order
+        self.parameters = None
+
+    def arx_model(self, u: np.ndarray, y: np.ndarray, na: int, nb: int) -> np.ndarray:
+        """
+        ARX (AutoRegressive with eXogenous inputs) model
+        y(t) + a1*y(t-1) + ... + ana*y(t-na) = b1*u(t-1) + ... + bnb*u(t-nb)
+        """
+        n_samples = len(u)
+        n_params = na + nb
+
+        # Build regression matrix
+        Phi = np.zeros((n_samples - max(na, nb), n_params))
+
+        for i in range(max(na, nb), n_samples):
+            row_idx = i - max(na, nb)
+
+            # Add past outputs
+            for j in range(na):
+                Phi[row_idx, j] = -y[i - j - 1]
+
+            # Add past inputs
+            for j in range(nb):
+                Phi[row_idx, na + j] = u[i - j - 1]
+
+        # Solve for parameters using least squares
+        Y = y[max(na, nb):]
+        params = np.linalg.lstsq(Phi, Y, rcond=None)[0]
+
+        return params
+
+    def identify_system(self, input_data: np.ndarray, output_data: np.ndarray) -> np.ndarray:
+        """Identify system parameters using ARX model"""
+        self.parameters = self.arx_model(
+            input_data,
+            output_data,
+            self.model_order,
+            self.model_order
+        )
+        return self.parameters
+
+    def simulate_system(self, input_sequence: np.ndarray, initial_state: np.ndarray = None) -> np.ndarray:
+        """Simulate the identified system"""
+        if self.parameters is None:
+            raise ValueError("System must be identified first")
+
+        na = self.model_order
+        nb = self.model_order
+
+        output = np.zeros(len(input_sequence))
+
+        if initial_state is not None:
+            # Initialize with provided initial state
+            for i in range(min(len(initial_state), na)):
+                if i < len(output):
+                    output[i] = initial_state[i]
+
+        for t in range(max(na, nb), len(input_sequence)):
+            # Calculate output based on ARX model
+            output[t] = 0
+
+            # Add contribution from past outputs
+            for i in range(na):
+                if t - i - 1 >= 0:
+                    output[t] += -self.parameters[i] * output[t - i - 1]
+
+            # Add contribution from past inputs
+            for i in range(nb):
+                if t - i - 1 >= 0:
+                    output[t] += self.parameters[na + i] * input_sequence[t - i - 1]
+
+        return output
+```
+
+### Grey-Box System Identification
+
+Grey-box identification incorporates partial knowledge of the system structure:
+
+```python
+import numpy as np
+from scipy.optimize import minimize
+from typing import Dict, Any
+
+class GreyBoxSystemIdentifier:
+    """Identifies system parameters using grey-box methods"""
+
+    def __init__(self, robot_model: Dict[str, Any]):
+        self.robot_model = robot_model
+        self.identified_params = {}
+
+    def dynamics_model_error(self, params: np.ndarray, input_data: np.ndarray,
+                           output_data: np.ndarray) -> float:
+        """Calculate error between model prediction and actual data"""
+        # Update model with current parameters
+        self.update_model_parameters(params)
+
+        # Simulate model with input data
+        simulated_output = self.simulate_robot_dynamics(input_data)
+
+        # Calculate error
+        error = np.mean((simulated_output - output_data) ** 2)
+        return error
+
+    def update_model_parameters(self, params: np.ndarray):
+        """Update robot model parameters with identified values"""
+        # This would update the robot model with the current parameter set
+        # For example, updating masses, inertias, friction coefficients, etc.
+        param_idx = 0
+
+        # Update link masses
+        for link_name in self.robot_model.get('links', []):
+            if f'{link_name}_mass' in self.robot_model:
+                self.robot_model[f'{link_name}_mass'] = params[param_idx]
+                param_idx += 1
+
+        # Update joint friction coefficients
+        for joint_name in self.robot_model.get('joints', []):
+            if f'{joint_name}_friction' in self.robot_model:
+                self.robot_model[f'{joint_name}_friction'] = params[param_idx]
+                param_idx += 1
+
+        # Update other parameters as needed
+        # (inertias, damping, etc.)
+
+    def simulate_robot_dynamics(self, input_sequence: np.ndarray) -> np.ndarray:
+        """Simulate robot dynamics with current model parameters"""
+        # This would use the robot model to simulate dynamics
+        # For simplicity, returning a placeholder implementation
+        return np.zeros_like(input_sequence)
+
+    def identify_parameters(self, input_data: np.ndarray,
+                          output_data: np.ndarray) -> Dict[str, Any]:
+        """Identify system parameters using optimization"""
+        # Define initial parameter guesses
+        n_params = len(self.get_parameter_names())
+        initial_params = np.ones(n_params)  # Initial guess
+
+        # Optimize parameters to minimize error
+        result = minimize(
+            self.dynamics_model_error,
+            initial_params,
+            args=(input_data, output_data),
+            method='BFGS'
+        )
+
+        # Store identified parameters
+        param_names = self.get_parameter_names()
+        self.identified_params = {
+            name: result.x[i] for i, name in enumerate(param_names)
+        }
+
+        return self.identified_params
+
+    def get_parameter_names(self) -> List[str]:
+        """Get names of parameters to be identified"""
+        names = []
+
+        # Add link mass parameters
+        for link_name in self.robot_model.get('links', []):
+            if f'{link_name}_mass' in self.robot_model:
+                names.append(f'{link_name}_mass')
+
+        # Add joint friction parameters
+        for joint_name in self.robot_model.get('joints', []):
+            if f'{joint_name}_friction' in self.robot_model:
+                names.append(f'{joint_name}_friction')
+
+        return names
+```
+
+## Sensor Noise Modeling
+
+Real sensors exhibit various types of noise that must be modeled in simulation for effective sim-to-real transfer:
+
+```python
+import numpy as np
+from typing import Tuple
+import random
+
+class SensorNoiseModel:
+    """Models various types of sensor noise for sim-to-real transfer"""
+
+    def __init__(self):
+        self.noise_params = {}
+
+    def add_gaussian_noise(self, signal: np.ndarray, std_dev: float) -> np.ndarray:
+        """Add Gaussian (white) noise to a signal"""
+        noise = np.random.normal(0, std_dev, signal.shape)
+        return signal + noise
+
+    def add_bias_drift(self, signal: np.ndarray, drift_rate: float,
+                      initial_bias: float = 0.0) -> np.ndarray:
+        """Add slowly varying bias to a signal"""
+        time_steps = len(signal)
+        bias = initial_bias
+        drifted_signal = signal.copy()
+
+        for i in range(time_steps):
+            bias += np.random.normal(0, drift_rate)
+            drifted_signal[i] += bias
+
+        return drifted_signal
+
+    def add_quantization_noise(self, signal: np.ndarray, resolution: float) -> np.ndarray:
+        """Add quantization noise based on sensor resolution"""
+        quantized = np.round(signal / resolution) * resolution
+        return quantized
+
+    def add_delay(self, signal: np.ndarray, delay_steps: int) -> np.ndarray:
+        """Add delay to a signal"""
+        delayed = np.zeros_like(signal)
+        if delay_steps < len(signal):
+            delayed[delay_steps:] = signal[:-delay_steps]
+        else:
+            delayed[:] = signal[0]  # Hold first value if delay is too large
+        return delayed
+
+    def model_lidar_noise(self, distances: np.ndarray,
+                         base_std: float = 0.01) -> np.ndarray:
+        """Model LiDAR sensor noise (typically increases with distance)"""
+        # LiDAR noise typically increases with distance
+        distance_based_std = base_std * (1 + 0.1 * distances)
+        noise = np.random.normal(0, distance_based_std, distances.shape)
+        noisy_distances = distances + noise
+        # Ensure non-negative distances
+        return np.maximum(noisy_distances, 0.01)
+
+    def model_camera_noise(self, image: np.ndarray,
+                          noise_params: Dict[str, float]) -> np.ndarray:
+        """Model camera sensor noise including various effects"""
+        noisy_image = image.astype(np.float32)
+
+        # Add Gaussian noise
+        gaussian_noise = np.random.normal(
+            0, noise_params.get('gaussian_std', 0.01), image.shape
+        )
+        noisy_image += gaussian_noise
+
+        # Add Poisson noise (shot noise)
+        poisson_noise = np.random.poisson(noisy_image) - noisy_image
+        noisy_image += poisson_noise * noise_params.get('poisson_factor', 0.1)
+
+        # Add salt and pepper noise
+        salt_pepper_prob = noise_params.get('salt_pepper_prob', 0.001)
+        salt_pepper_mask = np.random.random(image.shape[:2]) < salt_pepper_prob
+        noisy_image[salt_pepper_mask] = 255  # Salt
+        noisy_image[np.random.random(image.shape[:2]) < salt_pepper_prob] = 0  # Pepper
+
+        # Clip values to valid range
+        noisy_image = np.clip(noisy_image, 0, 255)
+
+        return noisy_image.astype(np.uint8)
+
+    def model_imu_noise(self, acceleration: np.ndarray, angular_velocity: np.ndarray,
+                       noise_params: Dict[str, float]) -> Tuple[np.ndarray, np.ndarray]:
+        """Model IMU sensor noise"""
+        # Accelerometer noise
+        acc_noise_std = noise_params.get('accelerometer_noise_std', 0.01)
+        acc_bias_std = noise_params.get('accelerometer_bias_std', 0.001)
+
+        noisy_acc = acceleration + np.random.normal(0, acc_noise_std, acceleration.shape)
+        acc_bias = np.random.normal(0, acc_bias_std, acceleration.shape)
+        noisy_acc += acc_bias
+
+        # Gyroscope noise
+        gyro_noise_std = noise_params.get('gyroscope_noise_std', 0.001)
+        gyro_bias_std = noise_params.get('gyroscope_bias_std', 0.0001)
+
+        noisy_gyro = angular_velocity + np.random.normal(0, gyro_noise_std, angular_velocity.shape)
+        gyro_bias = np.random.normal(0, gyro_bias_std, angular_velocity.shape)
+        noisy_gyro += gyro_bias
+
+        return noisy_acc, noisy_gyro
+```
+
+## Reality Gap Mitigation Strategies
+
+### Progressive Domain Randomization
+
+Progressive domain randomization gradually increases the randomization range during training:
+
+```python
+class ProgressiveDomainRandomizer:
+    """Applies progressive domain randomization during training"""
+
+    def __init__(self, initial_params: DomainRandomizationParams,
+                 final_params: DomainRandomizationParams,
+                 total_steps: int):
+        self.initial_params = initial_params
+        self.final_params = final_params
+        self.total_steps = total_steps
+        self.current_step = 0
+
+    def get_current_params(self) -> DomainRandomizationParams:
+        """Get domain randomization parameters for current training step"""
+        progress = min(self.current_step / self.total_steps, 1.0)
+
+        # Interpolate between initial and final parameters
+        lighting_range = self.interpolate_range(
+            self.initial_params.lighting_range,
+            self.final_params.lighting_range,
+            progress
+        )
+
+        color_variance = (
+            self.initial_params.color_variance +
+            progress * (self.final_params.color_variance - self.initial_params.color_variance)
+        )
+
+        noise_range = self.interpolate_range(
+            self.initial_params.noise_range,
+            self.final_params.noise_range,
+            progress
+        )
+
+        blur_range = self.interpolate_range(
+            self.initial_params.blur_range,
+            self.final_params.blur_range,
+            progress
+        )
+
+        return DomainRandomizationParams(
+            lighting_range=lighting_range,
+            color_variance=color_variance,
+            texture_randomization=self.final_params.texture_randomization,
+            shadow_randomization=self.final_params.shadow_randomization,
+            noise_range=noise_range,
+            blur_range=blur_range
+        )
+
+    def interpolate_range(self, initial_range: Tuple[float, float],
+                         final_range: Tuple[float, float],
+                         progress: float) -> Tuple[float, float]:
+        """Interpolate between two ranges"""
+        start = initial_range[0] + progress * (final_range[0] - initial_range[0])
+        end = initial_range[1] + progress * (final_range[1] - initial_range[1])
+        return (start, end)
+
+    def update_step(self):
+        """Increment training step"""
+        self.current_step += 1
+```
+
+### Domain Adaptation with Adversarial Training
+
+Adversarial domain adaptation uses a discriminator to distinguish between real and simulated data:
+
+```python
+import numpy as np
+from typing import Tuple, Optional
+
+class AdversarialDomainAdapter:
+    """Implements adversarial domain adaptation for sim-to-real transfer"""
+
+    def __init__(self, feature_dim: int, learning_rate: float = 0.001):
+        # Initialize discriminator weights
+        self.discriminator_weights = np.random.normal(0, 0.1, feature_dim)
+        self.feature_extractor_weights = np.random.normal(0, 0.1, feature_dim)
+        self.learning_rate = learning_rate
+        self.discriminator_optim = {'momentum': 0.9, 'velocity': np.zeros_like(self.discriminator_weights)}
+        self.feature_optim = {'momentum': 0.9, 'velocity': np.zeros_like(self.feature_extractor_weights)}
+
+    def discriminator_forward(self, features: np.ndarray) -> np.ndarray:
+        """Forward pass through discriminator"""
+        logits = np.dot(features, self.discriminator_weights)
+        # Apply sigmoid to get probability
+        return 1 / (1 + np.exp(-np.clip(logits, -500, 500)))
+
+    def extract_features(self, data: np.ndarray) -> np.ndarray:
+        """Extract domain-invariant features"""
+        # Simple linear feature extraction (in practice, this would be a neural network)
+        return np.dot(data, self.feature_extractor_weights)
+
+    def train_step(self, sim_features: np.ndarray, real_features: np.ndarray) -> Tuple[float, float]:
+        """Perform one training step for domain adaptation"""
+        # Extract features from both domains
+        sim_feat = self.extract_features(sim_features)
+        real_feat = self.extract_features(real_features)
+
+        # Train discriminator to distinguish domains
+        sim_pred = self.discriminator_forward(sim_feat)
+        real_pred = self.discriminator_forward(real_feat)
+
+        # Discriminator loss: should predict 0 for sim, 1 for real
+        disc_sim_loss = -np.log(1 - sim_pred + 1e-8)  # Want to predict 0
+        disc_real_loss = -np.log(real_pred + 1e-8)    # Want to predict 1
+        disc_loss = np.mean(disc_sim_loss + disc_real_loss)
+
+        # Update discriminator
+        disc_sim_grad = sim_pred  # Gradient for fake data (want to predict 0)
+        disc_real_grad = real_pred - 1  # Gradient for real data (want to predict 1)
+
+        avg_sim_grad = np.mean(sim_feat * disc_sim_grad[:, np.newaxis], axis=0)
+        avg_real_grad = np.mean(real_feat * disc_real_grad[:, np.newaxis], axis=0)
+
+        disc_grad = avg_sim_grad + avg_real_grad
+        self._update_discriminator(disc_grad)
+
+        # Train feature extractor to fool discriminator (minimize 1 - disc output)
+        # This means we want discriminator to predict 0.5 for both domains
+        feat_loss = np.mean(-np.log(sim_pred + 1e-8) - np.log(1 - real_pred + 1e-8))
+
+        # Update feature extractor to minimize domain discrepancy
+        feat_sim_grad = -(1 - sim_pred)  # Gradient to make discriminator output closer to 1
+        feat_real_grad = -real_pred      # Gradient to make discriminator output closer to 0
+
+        avg_sim_grad = np.mean(sim_feat * feat_sim_grad[:, np.newaxis], axis=0)
+        avg_real_grad = np.mean(real_feat * feat_real_grad[:, np.newaxis], axis=0)
+
+        feat_grad = avg_sim_grad + avg_real_grad
+        self._update_features(feat_grad)
+
+        return disc_loss, feat_loss
+
+    def _update_discriminator(self, grad: np.ndarray):
+        """Update discriminator weights using momentum"""
+        self.discriminator_optim['velocity'] = (
+            self.discriminator_optim['momentum'] * self.discriminator_optim['velocity'] -
+            self.learning_rate * grad
+        )
+        self.discriminator_weights += self.discriminator_optim['velocity']
+
+    def _update_features(self, grad: np.ndarray):
+        """Update feature extractor weights using momentum"""
+        self.feature_optim['velocity'] = (
+            self.feature_optim['momentum'] * self.feature_optim['velocity'] -
+            self.learning_rate * grad
+        )
+        self.feature_extractor_weights += self.feature_optim['velocity']
+```
+
+## Practical Implementation Guidelines
+
+### Sim-to-Real Transfer Pipeline
+
+A comprehensive pipeline for sim-to-real transfer involves multiple stages:
+
+```python
+class SimToRealPipeline:
+    """Complete pipeline for sim-to-real transfer"""
+
+    def __init__(self, robot_model: Dict[str, Any]):
+        self.robot_model = robot_model
+        self.visual_randomizer = VisualDomainRandomizer(DomainRandomizationParams())
+        self.physical_randomizer = PhysicalDomainRandomizer(PhysicalDomainParams())
+        self.system_identifier = GreyBoxSystemIdentifier(robot_model)
+        self.sensor_model = SensorNoiseModel()
+        self.adversarial_adapter = AdversarialDomainAdapter(feature_dim=128)
+        self.simulation_env = None
+        self.real_robot = None
+
+    def setup_simulation(self, env_config: Dict[str, Any]):
+        """Setup simulation environment with randomization"""
+        # Apply physical domain randomization
+        randomized_params = self.physical_randomizer.randomize_robot_parameters(
+            self.robot_model
+        )
+
+        # Update simulation with randomized parameters
+        self.simulation_env = self.create_simulation(randomized_params, env_config)
+
+    def collect_training_data(self, policy, num_episodes: int) -> Tuple[np.ndarray, ...]:
+        """Collect training data from simulation"""
+        sim_states = []
+        sim_actions = []
+        sim_rewards = []
+
+        for episode in range(num_episodes):
+            state = self.simulation_env.reset()
+            episode_states = []
+            episode_actions = []
+            episode_rewards = []
+
+            done = False
+            while not done:
+                action = policy.select_action(state)
+                next_state, reward, done, info = self.simulation_env.step(action)
+
+                episode_states.append(state)
+                episode_actions.append(action)
+                episode_rewards.append(reward)
+
+                state = next_state
+
+            sim_states.extend(episode_states)
+            sim_actions.extend(episode_actions)
+            sim_rewards.extend(episode_rewards)
+
+        return (
+            np.array(sim_states),
+            np.array(sim_actions),
+            np.array(sim_rewards)
+        )
+
+    def system_identification_phase(self, input_data: np.ndarray,
+                                  output_data: np.ndarray):
+        """Perform system identification to improve model accuracy"""
+        # Identify system parameters
+        identified_params = self.system_identifier.identify_parameters(
+            input_data, output_data
+        )
+
+        # Update robot model with identified parameters
+        self.update_robot_model(identified_params)
+
+    def adversarial_adaptation_phase(self, sim_features: np.ndarray,
+                                   real_features: np.ndarray,
+                                   num_steps: int = 1000):
+        """Perform adversarial domain adaptation"""
+        for step in range(num_steps):
+            disc_loss, feat_loss = self.adversarial_adapter.train_step(
+                sim_features, real_features
+            )
+
+            if step % 100 == 0:
+                print(f"Step {step}: Discriminator Loss: {disc_loss:.4f}, "
+                      f"Feature Loss: {feat_loss:.4f}")
+
+    def real_world_validation(self, policy, num_episodes: int = 10):
+        """Validate policy on real robot"""
+        if self.real_robot is None:
+            raise ValueError("Real robot not connected")
+
+        real_rewards = []
+
+        for episode in range(num_episodes):
+            state = self.real_robot.reset()
+            total_reward = 0
+            done = False
+
+            while not done:
+                # Apply sensor noise model to real observations
+                noisy_state = self.add_sensor_noise_to_state(state)
+
+                action = policy.select_action(noisy_state)
+                next_state, reward, done, info = self.real_robot.step(action)
+
+                total_reward += reward
+                state = next_state
+
+            real_rewards.append(total_reward)
+            print(f"Real episode {episode + 1}: Total reward = {total_reward}")
+
+        avg_reward = np.mean(real_rewards)
+        print(f"Average reward over {num_episodes} real episodes: {avg_reward}")
+        return avg_reward
+
+    def add_sensor_noise_to_state(self, state: np.ndarray) -> np.ndarray:
+        """Add realistic sensor noise to real robot state"""
+        # Apply appropriate noise models based on sensor types
+        # This is a simplified example - in practice, you'd apply different
+        # noise models to different sensor modalities
+        noise_level = 0.01
+        noise = np.random.normal(0, noise_level, state.shape)
+        return state + noise
+
+    def create_simulation(self, params: Dict[str, Any],
+                         config: Dict[str, Any]) -> Any:
+        """Create simulation environment with specified parameters"""
+        # This would create a physics simulation environment
+        # (e.g., PyBullet, Gazebo, Mujoco) with the specified parameters
+        pass
+
+    def update_robot_model(self, params: Dict[str, Any]):
+        """Update robot model with new parameters"""
+        for param_name, param_value in params.items():
+            if param_name in self.robot_model:
+                self.robot_model[param_name] = param_value
+```
+
+## Evaluation Metrics for Sim-to-Real Transfer
+
+Evaluating the effectiveness of sim-to-real transfer techniques requires appropriate metrics:
+
+```python
+import numpy as np
+from typing import List, Dict, Any
+
+class SimToRealEvaluator:
+    """Evaluates sim-to-real transfer effectiveness"""
+
+    def __init__(self):
+        self.metrics = {}
+
+    def policy_performance_gap(self, sim_rewards: List[float],
+                              real_rewards: List[float]) -> float:
+        """Calculate the performance gap between simulation and reality"""
+        sim_mean = np.mean(sim_rewards)
+        real_mean = np.mean(real_rewards)
+
+        if sim_mean != 0:
+            gap = abs(sim_mean - real_mean) / abs(sim_mean)
+        else:
+            gap = abs(real_mean) if real_mean != 0 else 0.0
+
+        return gap
+
+    def domain_similarity_score(self, sim_features: np.ndarray,
+                               real_features: np.ndarray) -> float:
+        """Calculate domain similarity using maximum mean discrepancy"""
+        from scipy.stats import wasserstein_distance
+
+        # Calculate Wasserstein distance between sim and real feature distributions
+        # This is a simplified version - in practice, you'd use more sophisticated methods
+        distances = []
+        for i in range(sim_features.shape[1]):  # For each feature dimension
+            dist = wasserstein_distance(sim_features[:, i], real_features[:, i])
+            distances.append(dist)
+
+        # Return average distance (lower is better)
+        return np.mean(distances)
+
+    def transfer_success_rate(self, real_episodes: int,
+                            successful_episodes: int) -> float:
+        """Calculate the success rate of transfer to real world"""
+        return successful_episodes / real_episodes if real_episodes > 0 else 0.0
+
+    def evaluate_transfer_method(self, method_name: str,
+                                sim_rewards: List[float],
+                                real_rewards: List[float],
+                                sim_features: np.ndarray,
+                                real_features: np.ndarray) -> Dict[str, float]:
+        """Comprehensive evaluation of a transfer method"""
+        gap = self.policy_performance_gap(sim_rewards, real_rewards)
+        similarity = self.domain_similarity_score(sim_features, real_features)
+        success_rate = self.transfer_success_rate(len(real_rewards),
+                                                sum(1 for r in real_rewards if r > 0))
+
+        self.metrics[method_name] = {
+            'performance_gap': gap,
+            'domain_similarity': similarity,
+            'success_rate': success_rate,
+            'sim_mean_reward': np.mean(sim_rewards),
+            'real_mean_reward': np.mean(real_rewards)
+        }
+
+        return self.metrics[method_name]
+```
+
+## Best Practices and Considerations
+
+When implementing sim-to-real transfer techniques, consider the following best practices:
+
+1. **Start Simple**: Begin with basic domain randomization before implementing complex techniques
+2. **Validate Gradually**: Test on simple tasks before moving to complex ones
+3. **Monitor Reality Gap**: Continuously measure the performance gap between sim and real
+4. **Use Multiple Sensors**: Leverage sensor fusion to reduce the impact of individual sensor inaccuracies
+5. **Implement Safety Mechanisms**: Always have safety measures when deploying to real robots
+6. **Iterative Improvement**: Continuously refine models based on real-world performance
+7. **Robust Control**: Use robust control techniques that can handle model uncertainties
+
+Sim-to-real transfer remains an active area of research with ongoing developments in techniques such as domain adaptation, system identification, and robust control. The key to success lies in understanding the specific challenges of your application domain and carefully selecting and tuning appropriate techniques.

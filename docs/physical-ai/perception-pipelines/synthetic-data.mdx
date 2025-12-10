@@ -1,1 +1,913 @@
----\ntitle: Chapter Placeholder - Synthetic Data\n---\n\n# Synthetic Data\n\nPlaceholder content for synthetic data section.
+---
+title: Synthetic Data Generation for AI Perception
+---
+
+# Synthetic Data Generation for AI Perception
+
+## Introduction to Synthetic Data in Robotics
+
+Synthetic data generation has become a cornerstone of modern AI perception systems, particularly in robotics where real-world data collection can be expensive, time-consuming, and sometimes dangerous. Synthetic data refers to artificially created datasets that mimic real-world observations, enabling the training of machine learning models without the need for extensive physical data collection.
+
+In robotics and Physical AI applications, synthetic data serves several critical purposes:
+- **Data Augmentation**: Expanding limited real-world datasets
+- **Edge Case Generation**: Creating rare or dangerous scenarios safely
+- **Domain Randomization**: Improving model generalization across environments
+- **Sensor Simulation**: Modeling different sensor configurations
+- **Label Generation**: Providing perfect ground truth annotations
+
+## Physics-Based Rendering for Synthetic Data
+
+### Photorealistic Scene Generation
+
+Physics-based rendering engines create synthetic data by simulating the physical processes of light transport, material properties, and sensor characteristics. This approach ensures that synthetic data closely matches real-world physics:
+
+```python
+import numpy as np
+import torch
+import torch.nn.functional as F
+
+class PhysicsBasedRenderer:
+    def __init__(self, width=640, height=480):
+        self.width = width
+        self.height = height
+        self.camera_intrinsics = np.array([
+            [500.0, 0.0, width/2],
+            [0.0, 500.0, height/2],
+            [0.0, 0.0, 1.0]
+        ])
+
+    def render_scene(self, objects, lighting, camera_pose):
+        """
+        Render a scene with physically accurate lighting and materials
+        """
+        # Initialize buffers
+        depth_buffer = np.full((self.height, self.width), np.inf)
+        color_buffer = np.zeros((self.height, self.width, 3))
+        normal_buffer = np.zeros((self.height, self.width, 3))
+
+        # For each pixel, calculate ray intersection with scene
+        for y in range(self.height):
+            for x in range(self.width):
+                # Calculate ray direction in world space
+                ray_dir = self.pixel_to_ray(x, y, camera_pose)
+
+                # Find closest intersection
+                closest_obj, closest_dist = self.find_closest_intersection(
+                    camera_pose[:3, 3], ray_dir, objects
+                )
+
+                if closest_obj is not None:
+                    # Calculate surface properties
+                    surface_point = camera_pose[:3, 3] + closest_dist * ray_dir
+                    surface_normal = closest_obj.get_normal_at(surface_point)
+
+                    # Calculate lighting using Phong model
+                    color = self.calculate_phong_lighting(
+                        surface_point, surface_normal, ray_dir, lighting, closest_obj
+                    )
+
+                    # Update buffers
+                    depth_buffer[y, x] = closest_dist
+                    color_buffer[y, x] = color
+                    normal_buffer[y, x] = surface_normal
+
+        return {
+            'rgb': color_buffer,
+            'depth': depth_buffer,
+            'normals': normal_buffer
+        }
+
+    def pixel_to_ray(self, x, y, camera_pose):
+        """
+        Convert pixel coordinates to world-space ray direction
+        """
+        # Convert to normalized device coordinates
+        ndc_x = (x - self.camera_intrinsics[0, 2]) / self.camera_intrinsics[0, 0]
+        ndc_y = (y - self.camera_intrinsics[1, 2]) / self.camera_intrinsics[1, 1]
+
+        # Create ray in camera space
+        ray_cam = np.array([ndc_x, ndc_y, 1.0])
+
+        # Transform to world space
+        ray_world = camera_pose[:3, :3] @ ray_cam
+        return ray_world / np.linalg.norm(ray_world)
+
+    def calculate_phong_lighting(self, point, normal, view_dir, lighting, obj):
+        """
+        Calculate Phong lighting model for surface point
+        """
+        # Ambient component
+        ambient = lighting.ambient_intensity * obj.material.ambient
+
+        # Diffuse and specular components for each light
+        diffuse = np.zeros(3)
+        specular = np.zeros(3)
+
+        for light in lighting.lights:
+            light_dir = light.position - point
+            light_dir = light_dir / np.linalg.norm(light_dir)
+
+            # Diffuse reflection
+            diff = max(0.0, np.dot(normal, light_dir))
+            diffuse += light.color * obj.material.diffuse * diff * light.intensity
+
+            # Specular reflection
+            reflect_dir = 2 * np.dot(normal, light_dir) * normal - light_dir
+            spec = max(0.0, np.dot(view_dir, reflect_dir)) ** obj.material.shininess
+            specular += light.color * obj.material.specular * spec * light.intensity
+
+        return ambient + diffuse + specular
+```
+
+### Material and Texture Synthesis
+
+Creating realistic materials is crucial for synthetic data quality:
+
+```python
+class MaterialSynthesizer:
+    def __init__(self):
+        self.texture_generator = self.initialize_texture_generator()
+        self.material_properties = {
+            'metallic': self.generate_metallic_map,
+            'roughness': self.generate_roughness_map,
+            'normal': self.generate_normal_map,
+            'albedo': self.generate_albedo_map
+        }
+
+    def generate_procedural_texture(self, size, material_type):
+        """
+        Generate procedural textures for different material types
+        """
+        if material_type == 'wood':
+            return self.generate_wood_texture(size)
+        elif material_type == 'metal':
+            return self.generate_metal_texture(size)
+        elif material_type == 'fabric':
+            return self.generate_fabric_texture(size)
+        else:
+            return self.generate_generic_texture(size)
+
+    def generate_wood_texture(self, size):
+        """
+        Generate wood-like texture with grain patterns
+        """
+        height, width = size
+        texture = np.zeros((height, width, 3))
+
+        # Create base wood color
+        base_color = np.array([0.6, 0.4, 0.2])  # Brown wood color
+
+        # Add grain patterns using noise
+        x_coords = np.linspace(0, 4*np.pi, width)
+        y_coords = np.linspace(0, 4*np.pi, height)
+        X, Y = np.meshgrid(x_coords, y_coords)
+
+        # Create wood grain pattern
+        grain_pattern = 0.1 * np.sin(20 * X) * np.exp(-0.5 * Y**2)
+
+        # Add radial patterns for wood rings
+        center_x, center_y = width/2, height/2
+        radial_dist = np.sqrt((X - center_x)**2 + (Y - center_y)**2)
+        ring_pattern = 0.05 * np.sin(5 * radial_dist)
+
+        # Combine patterns
+        variation = grain_pattern + ring_pattern
+        texture = base_color + variation[..., np.newaxis] * 0.3
+
+        # Clamp to valid range
+        texture = np.clip(texture, 0, 1)
+
+        return texture
+
+    def generate_metal_texture(self, size):
+        """
+        Generate metal-like texture with surface variations
+        """
+        height, width = size
+        texture = np.zeros((height, width, 3))
+
+        # Base metal color (aluminum-like)
+        base_color = np.array([0.9, 0.9, 0.9])
+
+        # Add surface imperfections
+        noise = np.random.normal(0, 0.1, (height, width, 3))
+        scratches = self.generate_scratches_pattern(size)
+
+        texture = base_color + noise + scratches * 0.1
+        texture = np.clip(texture, 0, 1)
+
+        return texture
+
+    def generate_scratches_pattern(self, size):
+        """
+        Generate scratch patterns for metal surfaces
+        """
+        height, width = size
+        pattern = np.zeros((height, width))
+
+        # Add random scratches
+        for _ in range(20):
+            start_x = np.random.randint(0, width)
+            start_y = np.random.randint(0, height)
+            length = np.random.randint(10, 50)
+            angle = np.random.uniform(0, 2*np.pi)
+
+            x_coords = np.linspace(start_x, start_x + length*np.cos(angle), length)
+            y_coords = np.linspace(start_y, start_y + length*np.sin(angle), length)
+
+            x_coords = np.clip(x_coords, 0, width-1).astype(int)
+            y_coords = np.clip(y_coords, 0, height-1).astype(int)
+
+            for x, y in zip(x_coords, y_coords):
+                if 0 <= x < width and 0 <= y < height:
+                    pattern[y, x] = 1.0
+
+        # Apply blur to make scratches more realistic
+        from scipy import ndimage
+        pattern = ndimage.gaussian_filter(pattern, sigma=0.5)
+
+        return pattern
+```
+
+## Domain Randomization Techniques
+
+Domain randomization is a key technique for improving the transferability of models trained on synthetic data to real-world scenarios:
+
+```python
+import random
+
+class DomainRandomizer:
+    def __init__(self):
+        self.randomization_ranges = {
+            'lighting': {
+                'intensity': (0.5, 2.0),
+                'color_temperature': (3000, 8000),  # Kelvin
+                'position_variance': 2.0
+            },
+            'materials': {
+                'albedo_variance': 0.3,
+                'roughness_range': (0.1, 0.9),
+                'metallic_range': (0.0, 1.0)
+            },
+            'camera': {
+                'exposure_range': (0.1, 2.0),
+                'white_balance_range': (0.8, 1.2),
+                'noise_std_range': (0.001, 0.01)
+            }
+        }
+
+    def randomize_lighting(self, base_lighting):
+        """
+        Randomize lighting conditions
+        """
+        randomized_lighting = base_lighting.copy()
+
+        # Randomize intensity
+        intensity_factor = random.uniform(
+            self.randomization_ranges['lighting']['intensity'][0],
+            self.randomization_ranges['lighting']['intensity'][1]
+        )
+        randomized_lighting['intensity'] *= intensity_factor
+
+        # Randomize color temperature
+        color_temp = random.uniform(
+            self.randomization_ranges['lighting']['color_temperature'][0],
+            self.randomization_ranges['lighting']['color_temperature'][1]
+        )
+        randomized_lighting['color'] = self.color_temperature_to_rgb(color_temp)
+
+        # Randomize position
+        pos_variance = self.randomization_ranges['lighting']['position_variance']
+        randomized_lighting['position'] += np.random.uniform(-pos_variance, pos_variance, 3)
+
+        return randomized_lighting
+
+    def randomize_materials(self, materials):
+        """
+        Randomize material properties
+        """
+        randomized_materials = []
+
+        for material in materials:
+            new_material = material.copy()
+
+            # Randomize albedo
+            albedo_variance = self.randomization_ranges['materials']['albedo_variance']
+            new_material['albedo'] += np.random.uniform(-albedo_variance, albedo_variance, 3)
+            new_material['albedo'] = np.clip(new_material['albedo'], 0, 1)
+
+            # Randomize roughness
+            roughness_range = self.randomization_ranges['materials']['roughness_range']
+            new_material['roughness'] = random.uniform(roughness_range[0], roughness_range[1])
+
+            # Randomize metallic
+            metallic_range = self.randomization_ranges['materials']['metallic_range']
+            new_material['metallic'] = random.uniform(metallic_range[0], metallic_range[1])
+
+            randomized_materials.append(new_material)
+
+        return randomized_materials
+
+    def randomize_camera(self, base_camera_params):
+        """
+        Randomize camera parameters to simulate different sensors
+        """
+        randomized_params = base_camera_params.copy()
+
+        # Randomize exposure
+        exposure_range = self.randomization_ranges['camera']['exposure_range']
+        exposure_factor = random.uniform(exposure_range[0], exposure_range[1])
+        randomized_params['exposure'] *= exposure_factor
+
+        # Randomize white balance
+        wb_range = self.randomization_ranges['camera']['white_balance_range']
+        randomized_params['white_balance'] *= random.uniform(wb_range[0], wb_range[1])
+
+        # Add noise
+        noise_std_range = self.randomization_ranges['camera']['noise_std_range']
+        noise_std = random.uniform(noise_std_range[0], noise_std_range[1])
+        randomized_params['noise_std'] = noise_std
+
+        return randomized_params
+
+    def color_temperature_to_rgb(self, color_temp):
+        """
+        Convert color temperature in Kelvin to RGB values
+        """
+        temp = color_temp / 100.0
+
+        if temp <= 66:
+            red = 255
+            green = temp
+            green = 99.4708025861 * np.log(green) - 161.1195681661
+        else:
+            red = temp - 60
+            red = 329.698727446 * (red ** -0.1332047592)
+            green = temp - 60
+            green = 288.1221695283 * (green ** -0.0755148492)
+
+        if temp >= 66:
+            blue = 255
+        elif temp <= 19:
+            blue = 0
+        else:
+            blue = temp - 10
+            blue = 138.5177312231 * np.log(blue) - 305.0447927307
+
+        return np.clip([red, green, blue] / 255.0, 0, 1)
+```
+
+## Synthetic Data Pipeline for Perception Tasks
+
+### Object Detection Data Generation
+
+```python
+class SyntheticObjectDetectionGenerator:
+    def __init__(self, object_library, scene_generator):
+        self.object_library = object_library
+        self.scene_generator = scene_generator
+        self.domain_randomizer = DomainRandomizer()
+
+    def generate_detection_dataset(self, num_samples, output_dir):
+        """
+        Generate synthetic dataset for object detection
+        """
+        import os
+        import json
+        from PIL import Image
+
+        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(os.path.join(output_dir, 'images'), exist_ok=True)
+        os.makedirs(os.path.join(output_dir, 'labels'), exist_ok=True)
+
+        annotations = []
+
+        for i in range(num_samples):
+            # Randomize scene parameters
+            randomized_params = self.domain_randomizer.randomize_lighting({})
+            randomized_materials = self.domain_randomizer.randomize_materials([])
+            randomized_camera = self.domain_randomizer.randomize_camera({})
+
+            # Generate random scene
+            scene = self.scene_generator.generate_random_scene(
+                objects=self.select_random_objects(),
+                lighting=randomized_params,
+                camera=randomized_camera
+            )
+
+            # Render the scene
+            render_result = self.scene_generator.render_scene(scene)
+
+            # Extract bounding boxes and annotations
+            bboxes = self.extract_bounding_boxes(scene['objects'], scene['camera'])
+
+            # Save image
+            img_path = os.path.join(output_dir, 'images', f'{i:06d}.png')
+            Image.fromarray((render_result['rgb'] * 255).astype(np.uint8)).save(img_path)
+
+            # Save annotations
+            annotation = {
+                'image_id': i,
+                'image_path': img_path,
+                'width': render_result['rgb'].shape[1],
+                'height': render_result['rgb'].shape[0],
+                'objects': []
+            }
+
+            for j, (bbox, obj_class) in enumerate(zip(bboxes, scene['object_classes'])):
+                annotation['objects'].append({
+                    'id': j,
+                    'bbox': bbox.tolist(),  # [x, y, width, height]
+                    'class': obj_class,
+                    'occluded': self.is_occluded(bbox, bboxes)
+                })
+
+            annotations.append(annotation)
+
+            # Save individual annotation file
+            annot_path = os.path.join(output_dir, 'labels', f'{i:06d}.json')
+            with open(annot_path, 'w') as f:
+                json.dump(annotation, f)
+
+        # Save overall dataset annotation
+        with open(os.path.join(output_dir, 'annotations.json'), 'w') as f:
+            json.dump(annotations, f)
+
+        return annotations
+
+    def select_random_objects(self):
+        """
+        Select random objects from the library
+        """
+        num_objects = np.random.randint(1, 5)  # 1-4 objects per scene
+        selected_objects = []
+
+        for _ in range(num_objects):
+            obj = random.choice(self.object_library)
+            obj_instance = {
+                'model': obj['model'],
+                'class': obj['class'],
+                'scale': random.uniform(0.5, 2.0),
+                'position': np.random.uniform(-2, 2, 3),
+                'rotation': np.random.uniform(0, 2*np.pi, 3)
+            }
+            selected_objects.append(obj_instance)
+
+        return selected_objects
+
+    def extract_bounding_boxes(self, objects, camera):
+        """
+        Extract 2D bounding boxes from 3D objects in camera view
+        """
+        bboxes = []
+
+        for obj in objects:
+            # Project 3D bounding box to 2D
+            corners_3d = self.get_object_bounding_box_3d(obj)
+            corners_2d = self.project_3d_to_2d(corners_3d, camera)
+
+            # Calculate 2D bounding box
+            min_x = np.min(corners_2d[:, 0])
+            max_x = np.max(corners_2d[:, 0])
+            min_y = np.min(corners_2d[:, 1])
+            max_y = np.max(corners_2d[:, 1])
+
+            bbox = np.array([min_x, min_y, max_x - min_x, max_y - min_y])
+            bboxes.append(bbox)
+
+        return np.array(bboxes)
+
+    def is_occluded(self, bbox, all_bboxes, threshold=0.5):
+        """
+        Check if a bounding box is significantly occluded by others
+        """
+        bbox_area = bbox[2] * bbox[3]
+        if bbox_area == 0:
+            return False
+
+        total_occlusion = 0
+        for other_bbox in all_bboxes:
+            if not np.array_equal(bbox, other_bbox):
+                # Calculate intersection
+                x1 = max(bbox[0], other_bbox[0])
+                y1 = max(bbox[1], other_bbox[1])
+                x2 = min(bbox[0] + bbox[2], other_bbox[0] + other_bbox[2])
+                y2 = min(bbox[1] + bbox[3], other_bbox[1] + other_bbox[3])
+
+                if x2 > x1 and y2 > y1:
+                    intersection_area = (x2 - x1) * (y2 - y1)
+                    total_occlusion += intersection_area
+
+        occlusion_ratio = total_occlusion / bbox_area
+        return occlusion_ratio > threshold
+```
+
+### Semantic Segmentation Data Generation
+
+```python
+class SyntheticSegmentationGenerator:
+    def __init__(self, object_library, scene_generator):
+        self.object_library = object_library
+        self.scene_generator = scene_generator
+        self.domain_randomizer = DomainRandomizer()
+
+        # Define class mapping
+        self.class_mapping = {
+            'background': 0,
+            'person': 1,
+            'chair': 2,
+            'table': 3,
+            'monitor': 4,
+            'keyboard': 5,
+            'mouse': 6,
+            'cup': 7,
+            'book': 8,
+            'plant': 9
+        }
+
+    def generate_segmentation_dataset(self, num_samples, output_dir):
+        """
+        Generate synthetic dataset for semantic segmentation
+        """
+        import os
+        from PIL import Image
+
+        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(os.path.join(output_dir, 'images'), exist_ok=True)
+        os.makedirs(os.path.join(output_dir, 'masks'), exist_ok=True)
+
+        for i in range(num_samples):
+            # Generate scene with domain randomization
+            randomized_params = self.domain_randomizer.randomize_lighting({})
+            randomized_materials = self.domain_randomizer.randomize_materials([])
+            randomized_camera = self.domain_randomizer.randomize_camera({})
+
+            scene = self.scene_generator.generate_random_scene(
+                objects=self.select_random_objects(),
+                lighting=randomized_params,
+                camera=randomized_camera
+            )
+
+            # Render RGB and segmentation
+            render_result = self.scene_generator.render_scene(scene)
+            segmentation_mask = self.render_segmentation_mask(scene)
+
+            # Save RGB image
+            img_path = os.path.join(output_dir, 'images', f'{i:06d}.png')
+            Image.fromarray((render_result['rgb'] * 255).astype(np.uint8)).save(img_path)
+
+            # Save segmentation mask
+            mask_path = os.path.join(output_dir, 'masks', f'{i:06d}.png')
+            Image.fromarray(segmentation_mask.astype(np.uint8)).save(mask_path)
+
+        return f"Generated {num_samples} segmentation samples in {output_dir}"
+
+    def render_segmentation_mask(self, scene):
+        """
+        Render semantic segmentation mask for the scene
+        """
+        height, width = scene['camera']['resolution']
+        mask = np.zeros((height, width), dtype=np.uint8)
+
+        # Render each object with its class ID
+        for obj in scene['objects']:
+            class_id = self.class_mapping.get(obj['class'], 0)
+
+            # Project object mesh to get pixel mask
+            obj_mask = self.project_object_to_image(obj, scene['camera'])
+            mask[obj_mask > 0] = class_id
+
+        return mask
+
+    def project_object_to_image(self, obj, camera):
+        """
+        Project object mesh to 2D image to create pixel mask
+        """
+        # This is a simplified version - in practice, you'd use a proper
+        # 3D projection with depth testing
+        height, width = camera['resolution']
+
+        # Get object bounding box in 2D
+        corners_3d = self.get_object_bounding_box_3d(obj)
+        corners_2d = self.project_3d_to_2d(corners_3d, camera)
+
+        # Create mask for bounding box region
+        min_x = max(0, int(np.min(corners_2d[:, 0])))
+        max_x = min(width, int(np.max(corners_2d[:, 0])) + 1)
+        min_y = max(0, int(np.min(corners_2d[:, 1])))
+        max_y = min(height, int(np.max(corners_2d[:, 1])) + 1)
+
+        obj_mask = np.zeros((height, width), dtype=np.uint8)
+        obj_mask[min_y:max_y, min_x:max_x] = 1
+
+        return obj_mask
+```
+
+## Sim-to-Real Transfer Techniques
+
+### Domain Adaptation Networks
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class DomainAdaptationNetwork(nn.Module):
+    def __init__(self, num_classes=10):
+        super(DomainAdaptationNetwork, self).__init__()
+
+        # Feature extractor (shared between domains)
+        self.feature_extractor = nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((8, 8))
+        )
+
+        # Label prediction head (for semantic task)
+        self.label_predictor = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(256 * 8 * 8, 512),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, num_classes)
+        )
+
+        # Domain prediction head (for domain adaptation)
+        self.domain_predictor = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(256 * 8 * 8, 256),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(256, 2)  # 2 domains: synthetic and real
+        )
+
+        # Gradient reversal layer
+        self.grad_reverse = GradientReversalLayer()
+
+    def forward(self, x, alpha=1.0):
+        features = self.feature_extractor(x)
+
+        # Label prediction (classification)
+        label_pred = self.label_predictor(features)
+
+        # Domain prediction with gradient reversal
+        reversed_features = self.grad_reverse(features, alpha)
+        domain_pred = self.domain_predictor(reversed_features)
+
+        return label_pred, domain_pred
+
+class GradientReversalLayer(torch.autograd.Function):
+    """
+    Gradient Reversal Layer for Domain Adversarial Training
+    """
+    @staticmethod
+    def forward(ctx, input, alpha):
+        ctx.alpha = alpha
+        return input
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        output = grad_output.neg() * ctx.alpha
+        return output, None
+
+def train_domain_adaptation(model, synthetic_loader, real_loader, num_epochs=10):
+    """
+    Train model with domain adaptation using adversarial loss
+    """
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    label_criterion = nn.CrossEntropyLoss()
+    domain_criterion = nn.CrossEntropyLoss()
+
+    for epoch in range(num_epochs):
+        for (synth_batch, real_batch) in zip(synthetic_loader, real_loader):
+            optimizer.zero_grad()
+
+            # Combine synthetic and real data
+            combined_data = torch.cat([synth_batch[0], real_batch[0]], dim=0)
+            combined_domains = torch.cat([
+                torch.zeros(synth_batch[0].size(0)),  # Synthetic domain: 0
+                torch.ones(real_batch[0].size(0))     # Real domain: 1
+            ]).long()
+
+            # Forward pass
+            label_pred, domain_pred = model(combined_data)
+
+            # Label prediction loss (only on synthetic data)
+            synth_labels = synth_batch[1]  # Assuming synthetic data has labels
+            label_loss = label_criterion(
+                label_pred[:synth_batch[0].size(0)],
+                synth_labels
+            )
+
+            # Domain classification loss (try to fool domain classifier)
+            domain_loss = domain_criterion(domain_pred, combined_domains)
+
+            # Total loss
+            total_loss = label_loss + domain_loss
+
+            total_loss.backward()
+            optimizer.step()
+```
+
+## Quality Assessment and Validation
+
+### Synthetic Data Quality Metrics
+
+```python
+class SyntheticDataQualityAssessment:
+    def __init__(self):
+        pass
+
+    def assess_realism_score(self, synthetic_img, real_img_distribution):
+        """
+        Assess how realistic synthetic images appear compared to real images
+        """
+        # Calculate statistical similarity between synthetic and real image distributions
+        synth_features = self.extract_image_features(synthetic_img)
+        real_features_mean = real_img_distribution['mean_features']
+        real_features_std = real_img_distribution['std_features']
+
+        # Calculate z-score for feature similarity
+        z_scores = (synth_features - real_features_mean) / real_features_std
+        realism_score = 1.0 / (1.0 + np.mean(np.abs(z_scores)))
+
+        return realism_score
+
+    def assess_diversity_score(self, synthetic_dataset):
+        """
+        Assess the diversity of synthetic data samples
+        """
+        features_list = []
+        for img in synthetic_dataset:
+            features = self.extract_image_features(img)
+            features_list.append(features)
+
+        features_array = np.array(features_list)
+
+        # Calculate pairwise distances
+        distances = []
+        for i in range(len(features_array)):
+            for j in range(i+1, len(features_array)):
+                dist = np.linalg.norm(features_array[i] - features_array[j])
+                distances.append(dist)
+
+        # Diversity is the average distance between samples
+        diversity_score = np.mean(distances)
+        return diversity_score
+
+    def assess_task_performance(self, model, synthetic_data, real_data, task='classification'):
+        """
+        Assess synthetic data quality by comparing model performance
+        on synthetic-trained vs real-trained models
+        """
+        # Train model on synthetic data
+        synthetic_model = self.train_model(model, synthetic_data, task)
+        synth_performance = self.evaluate_model(synthetic_model, real_data)
+
+        # Train model on real data (if available)
+        real_model = self.train_model(model, real_data, task)
+        real_performance = self.evaluate_model(real_model, real_data)
+
+        # Calculate sim-to-real gap
+        performance_gap = real_performance - synth_performance
+
+        return {
+            'synthetic_performance': synth_performance,
+            'real_performance': real_performance,
+            'performance_gap': performance_gap,
+            'transfer_score': max(0, 1 - performance_gap / real_performance)
+        }
+
+    def extract_image_features(self, img):
+        """
+        Extract perceptually relevant features from image
+        """
+        # Convert to grayscale
+        if len(img.shape) == 3:
+            gray = np.dot(img[...,:3], [0.299, 0.587, 0.114])
+        else:
+            gray = img
+
+        # Extract texture features using Local Binary Patterns (simplified)
+        texture_features = self.extract_lbp_features(gray)
+
+        # Extract color histogram features (if color image)
+        if len(img.shape) == 3:
+            color_features = self.extract_color_histogram(img)
+        else:
+            color_features = np.array([])
+
+        # Combine features
+        features = np.concatenate([texture_features, color_features])
+
+        return features
+
+    def extract_lbp_features(self, img, num_points=8, radius=1):
+        """
+        Extract Local Binary Pattern features (simplified)
+        """
+        # This is a simplified version - in practice, use scikit-image or OpenCV
+        features = []
+
+        # Calculate gradients as a simple texture measure
+        grad_x = np.gradient(img, axis=1)
+        grad_y = np.gradient(img, axis=0)
+        gradient_magnitude = np.sqrt(grad_x**2 + grad_y**2)
+
+        # Histogram of gradient magnitudes
+        hist, _ = np.histogram(gradient_magnitude, bins=10, range=(0, np.max(gradient_magnitude)))
+        features.extend(hist)
+
+        return np.array(features)
+
+    def extract_color_histogram(self, img, bins=8):
+        """
+        Extract color histogram features
+        """
+        hists = []
+        for channel in range(img.shape[2]):
+            hist, _ = np.histogram(img[:,:,channel], bins=bins, range=(0, 1))
+            hists.extend(hist)
+
+        return np.array(hists)
+
+    def train_model(self, base_model, data, task):
+        """
+        Train a model on given data (simplified)
+        """
+        # In practice, implement proper training loop
+        return base_model
+
+    def evaluate_model(self, model, data):
+        """
+        Evaluate model performance (simplified)
+        """
+        # In practice, implement proper evaluation
+        return 0.85  # Placeholder accuracy
+```
+
+## Best Practices for Synthetic Data Generation
+
+### 1. Progressive Domain Randomization
+
+Start with limited randomization and gradually increase complexity:
+
+```python
+class ProgressiveDomainRandomizer:
+    def __init__(self):
+        self.stages = [
+            {'lighting': 0.1, 'textures': 0.1, 'camera': 0.05},
+            {'lighting': 0.3, 'textures': 0.2, 'camera': 0.1},
+            {'lighting': 0.6, 'textures': 0.4, 'camera': 0.2},
+            {'lighting': 1.0, 'textures': 0.8, 'camera': 0.3}
+        ]
+        self.current_stage = 0
+
+    def get_randomization_params(self):
+        """Get randomization parameters for current stage"""
+        return self.stages[self.current_stage]
+
+    def advance_stage(self):
+        """Advance to next randomization stage"""
+        if self.current_stage < len(self.stages) - 1:
+            self.current_stage += 1
+```
+
+### 2. Validation Against Real Data
+
+Always validate synthetic data quality against real-world distributions:
+
+```python
+def validate_synthetic_data_quality(synthetic_data, real_data_samples):
+    """
+    Validate synthetic data quality against real data
+    """
+    quality_assessment = SyntheticDataQualityAssessment()
+
+    # Assess realism
+    avg_realism = 0
+    for synth_img in synthetic_data[:10]:  # Sample for efficiency
+        realism = quality_assessment.assess_realism_score(
+            synth_img,
+            {'mean_features': np.mean(real_data_samples, axis=0),
+             'std_features': np.std(real_data_samples, axis=0)}
+        )
+        avg_realism += realism
+
+    avg_realism /= min(10, len(synthetic_data))
+
+    # Assess diversity
+    diversity = quality_assessment.assess_diversity_score(synthetic_data)
+
+    return {
+        'realism_score': avg_realism,
+        'diversity_score': diversity,
+        'quality_ok': avg_realism > 0.5 and diversity > 0.1  # Thresholds are example values
+    }
+```
+
+Synthetic data generation is a powerful technique for training AI perception systems in robotics. By combining physics-based rendering, domain randomization, and careful validation, we can create synthetic datasets that enable effective sim-to-real transfer for Physical AI applications. The key is to balance realism with diversity while ensuring that models trained on synthetic data can generalize to real-world scenarios.
