@@ -1,0 +1,933 @@
+---
+title: Cognitive Architectures for Robotics
+---
+
+# Cognitive Architectures for Robotics
+
+## Introduction to Cognitive Architectures
+
+Cognitive architectures in robotics represent structured frameworks that organize and coordinate the various cognitive processes required for intelligent behavior. These architectures provide the organizational structure that enables robots to perceive, reason, plan, learn, and act in complex environments. Unlike simple control systems, cognitive architectures support higher-level reasoning, memory management, and adaptive behavior that mimics aspects of human cognition.
+
+In the context of Physical AI and humanoid robotics, cognitive architectures must handle real-time perception-action loops while maintaining long-term reasoning capabilities. They serve as the "operating system" for robot intelligence, coordinating multiple subsystems including perception, planning, learning, and execution.
+
+## Classical Cognitive Architectures
+
+### Subsumption Architecture
+
+The subsumption architecture, developed by Rodney Brooks, represents a layered approach to robot control where higher-level behaviors can "subsume" or override lower-level behaviors. This architecture operates without a central world model, instead relying on the interaction of multiple behavior layers.
+
+```python
+import time
+import threading
+from dataclasses import dataclass
+from typing import List, Optional, Callable
+from enum import Enum
+
+class BehaviorPriority(Enum):
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+    CRITICAL = 4
+
+@dataclass
+class SensorData:
+    """Container for sensor information"""
+    proximity_sensors: List[float]  # Distance readings from range sensors
+    camera_data: Optional[List] = None  # Camera image data
+    imu_data: Optional[dict] = None  # Inertial measurement unit data
+    velocity: Optional[dict] = None  # Current velocity (linear, angular)
+
+@dataclass
+class MotorCommand:
+    """Container for motor commands"""
+    linear_velocity: float  # Forward/backward speed
+    angular_velocity: float  # Turning speed
+    gripper_position: Optional[float] = None  # Gripper position if available
+
+class Behavior:
+    """Base class for robot behaviors in subsumption architecture"""
+
+    def __init__(self, name: str, priority: BehaviorPriority):
+        self.name = name
+        self.priority = priority
+        self.active = False
+        self.command = MotorCommand(0.0, 0.0)
+
+    def sense(self, sensor_data: SensorData) -> bool:
+        """Determine if this behavior should be active based on sensor data"""
+        raise NotImplementedError
+
+    def act(self, sensor_data: SensorData) -> MotorCommand:
+        """Generate motor commands for this behavior"""
+        raise NotImplementedError
+
+    def execute(self, sensor_data: SensorData) -> Optional[MotorCommand]:
+        """Execute the behavior if active"""
+        if self.sense(sensor_data):
+            self.active = True
+            return self.act(sensor_data)
+        else:
+            self.active = False
+            return None
+
+class AvoidObstaclesBehavior(Behavior):
+    """High-priority behavior to avoid obstacles"""
+
+    def __init__(self):
+        super().__init__("Avoid Obstacles", BehaviorPriority.HIGH)
+        self.safe_distance = 0.5  # meters
+
+    def sense(self, sensor_data: SensorData) -> bool:
+        # Activate if any proximity sensor detects obstacle within safe distance
+        return any(dist < self.safe_distance for dist in sensor_data.proximity_sensors)
+
+    def act(self, sensor_data: SensorData) -> MotorCommand:
+        # Turn away from the closest obstacle
+        min_dist = min(sensor_data.proximity_sensors)
+        closest_idx = sensor_data.proximity_sensors.index(min_dist)
+
+        # Simple strategy: turn away from closest obstacle
+        turn_direction = 1.0 if closest_idx < len(sensor_data.proximity_sensors) / 2 else -1.0
+        return MotorCommand(0.0, turn_direction * 0.5)  # Stop moving forward, turn
+
+class WanderBehavior(Behavior):
+    """Low-priority behavior for exploration"""
+
+    def __init__(self):
+        super().__init__("Wander", BehaviorPriority.LOW)
+
+    def sense(self, sensor_data: SensorData) -> bool:
+        # Activate when no higher priority behaviors are active
+        return True  # Always sense, but lower priority will be overridden
+
+    def act(self, sensor_data: SensorData) -> MotorCommand:
+        # Move forward with occasional turns
+        import random
+        if random.random() < 0.1:  # 10% chance to turn
+            return MotorCommand(0.0, random.uniform(-0.5, 0.5))
+        else:
+            return MotorCommand(0.3, 0.0)  # Move forward slowly
+
+class ExploreBehavior(Behavior):
+    """Medium-priority behavior for goal-oriented exploration"""
+
+    def __init__(self, goal_x: float, goal_y: float):
+        super().__init__("Explore", BehaviorPriority.MEDIUM)
+        self.goal_x = goal_x
+        self.goal_y = goal_y
+        self.position = (0.0, 0.0)  # Current position estimate
+
+    def sense(self, sensor_data: SensorData) -> bool:
+        # Activate if we have a goal and are not too close
+        distance_to_goal = ((self.position[0] - self.goal_x)**2 +
+                           (self.position[1] - self.goal_y)**2)**0.5
+        return distance_to_goal > 0.5  # More than 0.5m from goal
+
+    def act(self, sensor_data: SensorData) -> MotorCommand:
+        # Simple proportional controller toward goal
+        angle_to_goal = 0.0  # Simplified - in real implementation, this would come from localization
+        return MotorCommand(0.2, angle_to_goal * 0.5)  # Move toward goal
+
+class SubsumptionArchitecture:
+    """Implementation of subsumption architecture for robot control"""
+
+    def __init__(self):
+        self.behaviors = []
+        self.active_behavior = None
+        self.sensor_data = SensorData([])
+
+    def add_behavior(self, behavior: Behavior):
+        """Add a behavior to the architecture, sorted by priority"""
+        self.behaviors.append(behavior)
+        # Sort by priority (highest first)
+        self.behaviors.sort(key=lambda b: b.priority.value, reverse=True)
+
+    def update_sensors(self, sensor_data: SensorData):
+        """Update sensor data for the architecture"""
+        self.sensor_data = sensor_data
+
+    def execute(self) -> MotorCommand:
+        """Execute the highest priority active behavior"""
+        for behavior in self.behaviors:
+            command = behavior.execute(self.sensor_data)
+            if command is not None:
+                self.active_behavior = behavior
+                return command
+
+        # If no behavior is active, return stop command
+        return MotorCommand(0.0, 0.0)
+```
+
+### Three-Layer Architecture
+
+The three-layer architecture divides robot control into reactive, executive, and deliberative layers:
+
+- **Reactive Layer**: Handles immediate responses to sensor inputs (reflexes)
+- **Executive Layer**: Manages behavior sequences and resource allocation
+- **Deliberative Layer**: Performs high-level planning and reasoning
+
+```python
+class ThreeLayerArchitecture:
+    """Three-layer cognitive architecture implementation"""
+
+    def __init__(self):
+        self.reactive_layer = ReactiveLayer()
+        self.executive_layer = ExecutiveLayer()
+        self.deliberative_layer = DeliberativeLayer()
+
+        # Communication channels between layers
+        self.layer_communication = LayerCommunication()
+
+    def process_input(self, sensor_data: SensorData):
+        """Process input through all three layers"""
+        # Reactive layer processes immediate threats
+        reactive_commands = self.reactive_layer.process(sensor_data)
+
+        # Executive layer manages behavior sequences
+        executive_commands = self.executive_layer.process(
+            sensor_data, reactive_commands, self.layer_communication
+        )
+
+        # Deliberative layer handles high-level planning
+        deliberative_commands = self.deliberative_layer.process(
+            sensor_data, executive_commands, self.layer_communication
+        )
+
+        return deliberative_commands
+
+class ReactiveLayer:
+    """Handles immediate, reflexive responses"""
+
+    def __init__(self):
+        self.behaviors = [
+            EmergencyStopBehavior(),
+            CollisionAvoidanceBehavior(),
+            BasicNavigationBehavior()
+        ]
+
+    def process(self, sensor_data: SensorData):
+        """Process sensor data and return immediate commands"""
+        for behavior in self.behaviors:
+            command = behavior.react(sensor_data)
+            if command is not None:
+                return command
+        return None
+
+class ExecutiveLayer:
+    """Manages behavior sequences and resource allocation"""
+
+    def __init__(self):
+        self.current_behavior = None
+        self.behavior_queue = []
+
+    def process(self, sensor_data: SensorData, reactive_commands, communication):
+        """Process executive-level decisions"""
+        if reactive_commands is not None:
+            # Reactive commands take precedence
+            return reactive_commands
+
+        # Execute current behavior or get next from queue
+        if self.current_behavior is None and self.behavior_queue:
+            self.current_behavior = self.behavior_queue.pop(0)
+
+        if self.current_behavior:
+            command = self.current_behavior.execute(sensor_data)
+            if self.current_behavior.is_complete():
+                self.current_behavior = None
+            return command
+
+        return None
+
+class DeliberativeLayer:
+    """Handles high-level planning and reasoning"""
+
+    def __init__(self):
+        self.planner = TaskPlanner()
+        self.world_model = WorldModel()
+        self.goal_manager = GoalManager()
+
+    def process(self, sensor_data: SensorData, executive_commands, communication):
+        """Process high-level planning and reasoning"""
+        # Update world model with sensor data
+        self.world_model.update(sensor_data)
+
+        # Check if current goals are still valid
+        current_goals = self.goal_manager.get_active_goals()
+
+        # Plan new actions if needed
+        if not self.planner.has_active_plan() or self.planner.plan_needs_replanning():
+            new_plan = self.planner.create_plan(current_goals, self.world_model)
+            self.planner.set_active_plan(new_plan)
+
+        # Get next action from plan
+        next_action = self.planner.get_next_action()
+        return next_action
+```
+
+## Modern Cognitive Architectures
+
+### Neural-Symbolic Integration
+
+Modern cognitive architectures increasingly combine neural networks for perception and learning with symbolic reasoning for planning and decision-making. This hybrid approach leverages the pattern recognition capabilities of neural networks while maintaining the interpretability and logical consistency of symbolic systems.
+
+```python
+import torch
+import torch.nn as nn
+from typing import Dict, Any, List, Tuple
+import numpy as np
+
+class NeuralSymbolicArchitecture:
+    """A cognitive architecture combining neural and symbolic processing"""
+
+    def __init__(self):
+        self.perception_module = PerceptionModule()
+        self.symbolic_reasoner = SymbolicReasoner()
+        self.planning_module = PlanningModule()
+        self.memory_system = MemorySystem()
+
+        # Knowledge base for symbolic reasoning
+        self.knowledge_base = KnowledgeBase()
+
+    def process_perception(self, raw_sensor_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Process raw sensor data through neural networks"""
+        return self.perception_module.forward(raw_sensor_data)
+
+    def update_beliefs(self, perceptual_output: Dict[str, Any]) -> List[str]:
+        """Update symbolic beliefs based on perception"""
+        # Convert neural outputs to symbolic facts
+        new_facts = self.perception_module.to_symbolic_facts(perceptual_output)
+
+        # Update knowledge base with new facts
+        self.knowledge_base.add_facts(new_facts)
+
+        return new_facts
+
+    def reason(self, goals: List[str]) -> List[str]:
+        """Perform symbolic reasoning to determine actions"""
+        return self.symbolic_reasoner.reason(self.knowledge_base, goals)
+
+    def plan(self, goals: List[str], current_state: Dict[str, Any]) -> List[str]:
+        """Generate a plan to achieve goals"""
+        return self.planning_module.create_plan(goals, current_state)
+
+class PerceptionModule(nn.Module):
+    """Neural network module for perception and concept formation"""
+
+    def __init__(self):
+        super().__init__()
+        # Visual perception network
+        self.vision_net = nn.Sequential(
+            nn.Conv2d(3, 32, 3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 64, 3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Flatten(),
+            nn.Linear(64 * 16 * 16, 128),  # Assuming 64x64 input
+            nn.ReLU(),
+            nn.Linear(128, 64)
+        )
+
+        # Language processing network
+        self.lang_net = nn.Sequential(
+            nn.Linear(300, 128),  # Assuming 300-dim word embeddings
+            nn.ReLU(),
+            nn.Linear(128, 64)
+        )
+
+        # Multimodal fusion
+        self.fusion = nn.Sequential(
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 32)
+        )
+
+    def forward(self, sensor_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Process multimodal sensor data"""
+        outputs = {}
+
+        if 'image' in sensor_data:
+            visual_features = self.vision_net(sensor_data['image'])
+            outputs['visual_features'] = visual_features
+
+        if 'language' in sensor_data:
+            lang_features = self.lang_net(sensor_data['language'])
+            outputs['language_features'] = lang_features
+
+        # Fuse multimodal information
+        if 'visual_features' in outputs and 'language_features' in outputs:
+            fused = torch.cat([outputs['visual_features'], outputs['language_features']], dim=1)
+            outputs['fused_features'] = self.fusion(fused)
+
+        return outputs
+
+    def to_symbolic_facts(self, neural_output: Dict[str, Any]) -> List[str]:
+        """Convert neural outputs to symbolic facts"""
+        facts = []
+
+        if 'fused_features' in neural_output:
+            features = neural_output['fused_features']
+            # Example: if object detected with high confidence, add fact
+            if features[0] > 0.8:  # Example threshold
+                facts.append("object_present(robot_view)")
+            if features[1] > 0.7:
+                facts.append("obstacle_ahead(robot)")
+
+        return facts
+
+class SymbolicReasoner:
+    """Symbolic reasoning engine"""
+
+    def __init__(self):
+        self.inference_engine = InferenceEngine()
+
+    def reason(self, knowledge_base: 'KnowledgeBase', goals: List[str]) -> List[str]:
+        """Perform logical reasoning to determine actions"""
+        # Example: backward chaining to achieve goals
+        actions = []
+
+        for goal in goals:
+            # Try to prove the goal using available facts and rules
+            proof = self.inference_engine.prove(goal, knowledge_base)
+            if proof:
+                # Extract actions from the proof
+                actions.extend(self.extract_actions_from_proof(proof))
+
+        return actions
+
+    def extract_actions_from_proof(self, proof) -> List[str]:
+        """Extract executable actions from a proof trace"""
+        # Implementation would extract actions from the proof steps
+        return ["move_forward()", "turn_left()"]  # Placeholder
+
+class PlanningModule:
+    """High-level planning module"""
+
+    def __init__(self):
+        self.planner = HierarchicalTaskNetworkPlanner()
+
+    def create_plan(self, goals: List[str], current_state: Dict[str, Any]) -> List[str]:
+        """Create a plan to achieve specified goals"""
+        return self.planner.plan(goals, current_state)
+
+class MemorySystem:
+    """Memory management for the cognitive architecture"""
+
+    def __init__(self):
+        self.episodic_memory = EpisodicMemory()
+        self.semantic_memory = SemanticMemory()
+        self.working_memory = WorkingMemory()
+
+    def store_episode(self, experience: Dict[str, Any]):
+        """Store an episodic memory"""
+        self.episodic_memory.add(experience)
+
+    def retrieve_relevant(self, query: str) -> List[Any]:
+        """Retrieve relevant memories based on query"""
+        relevant_episodes = self.episodic_memory.query(query)
+        relevant_semantic = self.semantic_memory.query(query)
+        return relevant_episodes + relevant_semantic
+
+class KnowledgeBase:
+    """Symbolic knowledge representation"""
+
+    def __init__(self):
+        self.facts = set()
+        self.rules = []
+
+    def add_fact(self, fact: str):
+        """Add a fact to the knowledge base"""
+        self.facts.add(fact)
+
+    def add_facts(self, facts: List[str]):
+        """Add multiple facts to the knowledge base"""
+        for fact in facts:
+            self.add_fact(fact)
+
+    def add_rule(self, rule: 'Rule'):
+        """Add a rule to the knowledge base"""
+        self.rules.append(rule)
+```
+
+## Vision-Language-Action (VLA) Integration
+
+### VLA System Architecture
+
+Vision-Language-Action systems represent a unified approach to robot intelligence that tightly couples perception, language understanding, and action execution. These systems enable robots to understand natural language commands, perceive their environment visually, and execute appropriate actions in a coordinated manner.
+
+```python
+class VLASystem:
+    """Vision-Language-Action system for robot control"""
+
+    def __init__(self):
+        self.vision_module = VisionModule()
+        self.language_module = LanguageModule()
+        self.action_module = ActionModule()
+        self.fusion_module = MultimodalFusionModule()
+        self.execution_module = ExecutionModule()
+
+        # Shared attention mechanism
+        self.attention_mechanism = CrossModalAttention()
+
+    def process_command(self, command: str, visual_input) -> List[str]:
+        """Process a natural language command with visual context"""
+        # Extract visual features
+        visual_features = self.vision_module.extract_features(visual_input)
+
+        # Parse language command
+        language_features = self.language_module.parse_command(command)
+
+        # Fuse multimodal information
+        fused_features = self.fusion_module.fuse(
+            visual_features, language_features
+        )
+
+        # Generate action sequence
+        action_sequence = self.action_module.generate_actions(
+            fused_features, command
+        )
+
+        return action_sequence
+
+    def execute_plan(self, action_sequence: List[str]):
+        """Execute a sequence of actions"""
+        for action in action_sequence:
+            self.execution_module.execute(action)
+
+class VisionModule:
+    """Vision processing for VLA systems"""
+
+    def __init__(self):
+        # Pre-trained vision model (e.g., CLIP, DETR)
+        self.feature_extractor = self.load_pretrained_model()
+        self.object_detector = ObjectDetectionModel()
+        self.scene_understanding = SceneUnderstandingModel()
+
+    def extract_features(self, image):
+        """Extract visual features from an image"""
+        return self.feature_extractor(image)
+
+    def detect_objects(self, image) -> List[Dict[str, Any]]:
+        """Detect objects in the image with bounding boxes"""
+        return self.object_detector(image)
+
+    def understand_scene(self, image) -> Dict[str, Any]:
+        """Understand the scene context and relationships"""
+        return self.scene_understanding(image)
+
+class LanguageModule:
+    """Language processing for VLA systems"""
+
+    def __init__(self):
+        # Pre-trained language model (e.g., GPT, T5)
+        self.parser = LanguageParser()
+        self.semantic_analyzer = SemanticAnalyzer()
+        self.action_generator = ActionGenerator()
+
+    def parse_command(self, command: str) -> Dict[str, Any]:
+        """Parse natural language command into structured representation"""
+        return self.parser.parse(command)
+
+    def analyze_semantics(self, command: str) -> Dict[str, Any]:
+        """Analyze the semantic meaning of the command"""
+        return self.semantic_analyzer.analyze(command)
+
+    def generate_actions(self, command: str, context: Dict[str, Any]) -> List[str]:
+        """Generate executable actions from command and context"""
+        return self.action_generator.generate(command, context)
+
+class MultimodalFusionModule:
+    """Fusion of vision and language information"""
+
+    def __init__(self):
+        self.cross_attention = CrossModalAttention()
+        self.fusion_network = FusionNetwork()
+
+    def fuse(self, visual_features, language_features):
+        """Fuse visual and language features"""
+        # Apply cross-attention to align modalities
+        attended_visual = self.cross_attention(
+            visual_features, language_features, language_features
+        )
+        attended_language = self.cross_attention(
+            language_features, visual_features, visual_features
+        )
+
+        # Concatenate and pass through fusion network
+        combined_features = torch.cat([attended_visual, attended_language], dim=-1)
+        return self.fusion_network(combined_features)
+
+class ExecutionModule:
+    """Action execution and monitoring"""
+
+    def __init__(self):
+        self.action_executor = ActionExecutor()
+        self.monitor = ExecutionMonitor()
+        self.error_handler = ErrorHandler()
+
+    def execute(self, action: str):
+        """Execute a single action"""
+        try:
+            result = self.action_executor.execute(action)
+            self.monitor.log_execution(action, result)
+            return result
+        except Exception as e:
+            return self.error_handler.handle(action, e)
+```
+
+## LLM Integration with ROS 2
+
+### ROS 2 Cognitive Node Architecture
+
+Integrating Large Language Models (LLMs) with ROS 2 requires careful consideration of real-time constraints, message passing, and distributed computing patterns. The cognitive node architecture provides a framework for incorporating LLM-based reasoning into the ROS 2 ecosystem.
+
+```python
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile
+from std_msgs.msg import String
+from geometry_msgs.msg import PoseStamped
+from sensor_msgs.msg import Image
+import asyncio
+import openai
+from typing import Dict, Any, Optional
+
+class LLMCognitiveNode(Node):
+    """ROS 2 node integrating LLM for cognitive processing"""
+
+    def __init__(self):
+        super().__init__('llm_cognitive_node')
+
+        # LLM configuration
+        self.llm_client = self.initialize_llm_client()
+
+        # ROS 2 interfaces
+        self.command_subscriber = self.create_subscription(
+            String, 'robot_commands', self.command_callback, 10
+        )
+        self.vision_subscriber = self.create_subscription(
+            Image, 'camera/image_raw', self.vision_callback, 10
+        )
+        self.action_publisher = self.create_publisher(
+            String, 'cognitive_actions', 10
+        )
+        self.feedback_publisher = self.create_publisher(
+            String, 'cognitive_feedback', 10
+        )
+
+        # Internal state
+        self.current_context = []
+        self.vision_buffer = None
+        self.command_queue = asyncio.Queue()
+
+        # Timer for periodic processing
+        self.process_timer = self.create_timer(0.1, self.process_commands)
+
+    def initialize_llm_client(self):
+        """Initialize the LLM client"""
+        # In practice, this would initialize your preferred LLM client
+        # (OpenAI API, Hugging Face, local model, etc.)
+        return None  # Placeholder
+
+    def command_callback(self, msg: String):
+        """Handle incoming natural language commands"""
+        command_text = msg.data
+        self.get_logger().info(f'Received command: {command_text}')
+
+        # Add to processing queue
+        asyncio.create_task(self.add_command_to_queue(command_text))
+
+    def vision_callback(self, msg: Image):
+        """Handle incoming vision data"""
+        # Process image and store in buffer
+        self.vision_buffer = self.process_image(msg)
+
+    async def add_command_to_queue(self, command: str):
+        """Add command to processing queue"""
+        await self.command_queue.put(command)
+
+    def process_commands(self):
+        """Process commands in the queue"""
+        # Use a separate thread or async task for LLM processing
+        # to avoid blocking the ROS 2 main loop
+        if not self.command_queue.empty():
+            # In practice, you'd use a thread pool or async processing
+            # to handle the potentially long-running LLM calls
+            pass
+
+    def generate_response(self, command: str, context: Dict[str, Any]) -> str:
+        """Generate LLM-based response to command with context"""
+        # Format prompt for LLM
+        prompt = self.format_prompt(command, context)
+
+        # Call LLM (this would be async in practice)
+        response = self.llm_client.generate(prompt)
+
+        return response
+
+    def format_prompt(self, command: str, context: Dict[str, Any]) -> str:
+        """Format the prompt for the LLM"""
+        prompt = f"""
+        You are a helpful robot assistant. The robot has received the following command:
+        "{command}"
+
+        Current context:
+        - Environment: {context.get('environment', 'unknown')}
+        - Available actions: {context.get('actions', 'unknown')}
+        - Current state: {context.get('state', 'unknown')}
+
+        Respond with a sequence of executable actions for the robot, formatted as a list.
+        Each action should be a valid ROS 2 command.
+        """
+        return prompt
+
+class CognitivePlannerNode(Node):
+    """ROS 2 node for high-level cognitive planning using LLMs"""
+
+    def __init__(self):
+        super().__init__('cognitive_planner_node')
+
+        # Publishers and subscribers
+        self.goal_subscriber = self.create_subscription(
+            String, 'high_level_goals', self.goal_callback, 10
+        )
+        self.plan_publisher = self.create_publisher(
+            String, 'cognitive_plan', 10
+        )
+        self.status_publisher = self.create_publisher(
+            String, 'cognitive_status', 10
+        )
+
+        # LLM integration
+        self.llm_planner = LLMPlanner()
+
+        # Knowledge base
+        self.knowledge_base = ROS2KnowledgeBase(self)
+
+    def goal_callback(self, msg: String):
+        """Handle high-level goals from user or other systems"""
+        goal = msg.data
+        self.get_logger().info(f'Received high-level goal: {goal}')
+
+        # Plan using LLM
+        plan = self.llm_planner.create_plan(goal, self.knowledge_base)
+
+        # Publish the plan
+        plan_msg = String()
+        plan_msg.data = plan
+        self.plan_publisher.publish(plan_msg)
+
+        # Publish status
+        status_msg = String()
+        status_msg.data = f"Plan created for goal: {goal}"
+        self.status_publisher.publish(status_msg)
+
+class LLMPlanner:
+    """LLM-based planning system"""
+
+    def __init__(self):
+        self.llm_client = self.initialize_client()
+
+    def create_plan(self, goal: str, knowledge_base) -> str:
+        """Create a detailed plan for achieving the goal"""
+        # Gather relevant information from knowledge base
+        relevant_info = knowledge_base.query_relevant_info(goal)
+
+        # Create detailed prompt for planning
+        prompt = self.create_planning_prompt(goal, relevant_info)
+
+        # Generate plan using LLM
+        plan = self.llm_client.generate(prompt)
+
+        return plan
+
+    def create_planning_prompt(self, goal: str, relevant_info: Dict[str, Any]) -> str:
+        """Create a detailed prompt for planning"""
+        return f"""
+        Create a detailed step-by-step plan to achieve the following goal:
+        "{goal}"
+
+        Available information:
+        {relevant_info}
+
+        The plan should be executable by a ROS 2-based robot system.
+        Include specific ROS 2 action calls, topic publications, and service calls.
+        Consider robot capabilities, environment constraints, and safety requirements.
+        Format the plan as a sequence of executable steps with clear preconditions and expected outcomes.
+        """
+```
+
+## Cognitive Architecture Design Patterns
+
+### Blackboard Architecture
+
+The blackboard architecture provides a shared workspace where different knowledge sources contribute to problem-solving:
+
+```python
+class BlackboardArchitecture:
+    """Blackboard architecture for cognitive systems"""
+
+    def __init__(self):
+        self.blackboard = Blackboard()
+        self.knowledge_sources = []
+        self.control_mechanism = ControlMechanism()
+
+    def add_knowledge_source(self, source: 'KnowledgeSource'):
+        """Add a knowledge source to the architecture"""
+        self.knowledge_sources.append(source)
+
+    def solve_problem(self, problem: str):
+        """Solve a problem using the blackboard architecture"""
+        self.blackboard.set_problem(problem)
+
+        while not self.blackboard.is_solved():
+            # Select the most active knowledge source
+            active_source = self.control_mechanism.select_source(
+                self.knowledge_sources, self.blackboard
+            )
+
+            # Apply the knowledge source to the blackboard
+            active_source.apply(self.blackboard)
+
+class Blackboard:
+    """Shared workspace for the blackboard architecture"""
+
+    def __init__(self):
+        self.data = {}
+        self.problem = None
+        self.solution = None
+        self.is_solution_found = False
+
+    def set_problem(self, problem: str):
+        """Set the problem to solve"""
+        self.problem = problem
+
+    def add_data(self, key: str, value: Any):
+        """Add data to the blackboard"""
+        self.data[key] = value
+
+    def get_data(self, key: str) -> Any:
+        """Get data from the blackboard"""
+        return self.data.get(key)
+
+    def is_solved(self) -> bool:
+        """Check if the problem is solved"""
+        return self.is_solution_found
+
+class KnowledgeSource:
+    """Abstract knowledge source for the blackboard architecture"""
+
+    def __init__(self, name: str, activation_threshold: float = 0.5):
+        self.name = name
+        self.activation_threshold = activation_threshold
+
+    def can_apply(self, blackboard: Blackboard) -> float:
+        """Calculate activation level for this knowledge source"""
+        raise NotImplementedError
+
+    def apply(self, blackboard: Blackboard):
+        """Apply this knowledge source to the blackboard"""
+        raise NotImplementedError
+
+class VisionKnowledgeSource(KnowledgeSource):
+    """Knowledge source for vision-based reasoning"""
+
+    def __init__(self):
+        super().__init__("Vision", 0.6)
+
+    def can_apply(self, blackboard: Blackboard) -> float:
+        """Check if vision processing is needed"""
+        if blackboard.get_data("image_available") and not blackboard.get_data("objects_detected"):
+            return 0.9
+        return 0.0
+
+    def apply(self, blackboard: Blackboard):
+        """Apply vision processing"""
+        image = blackboard.get_data("current_image")
+        if image:
+            objects = self.detect_objects(image)
+            blackboard.add_data("detected_objects", objects)
+            blackboard.add_data("objects_detected", True)
+
+class PlanningKnowledgeSource(KnowledgeSource):
+    """Knowledge source for planning and reasoning"""
+
+    def __init__(self):
+        super().__init__("Planning", 0.7)
+
+    def can_apply(self, blackboard: Blackboard) -> float:
+        """Check if planning is needed"""
+        if blackboard.get_data("goal_set") and not blackboard.get_data("plan_generated"):
+            return 0.8
+        return 0.0
+
+    def apply(self, blackboard: Blackboard):
+        """Apply planning"""
+        goal = blackboard.get_data("current_goal")
+        objects = blackboard.get_data("detected_objects")
+
+        if goal and objects:
+            plan = self.generate_plan(goal, objects)
+            blackboard.add_data("generated_plan", plan)
+            blackboard.add_data("plan_generated", True)
+```
+
+## Implementation Considerations
+
+### Real-Time Constraints
+
+Cognitive architectures in robotics must balance sophisticated reasoning with real-time performance requirements:
+
+```python
+import time
+from collections import deque
+
+class RealTimeCognitiveSystem:
+    """Cognitive system with real-time performance guarantees"""
+
+    def __init__(self, max_response_time: float = 0.1):  # 100ms
+        self.max_response_time = max_response_time
+        self.processing_queue = deque()
+        self.low_priority_tasks = []
+        self.emergency_behavior = EmergencyBehavior()
+
+    def process_input(self, sensor_data: SensorData) -> MotorCommand:
+        """Process input with real-time guarantees"""
+        start_time = time.time()
+
+        # Check for emergency situations first
+        emergency_command = self.emergency_behavior.check(sensor_data)
+        if emergency_command:
+            return emergency_command
+
+        # Perform time-critical processing
+        if time.time() - start_time < self.max_response_time * 0.7:  # Use 70% of time
+            critical_result = self.process_critical_tasks(sensor_data)
+            if critical_result:
+                return critical_result
+
+        # Schedule non-critical tasks for later processing
+        self.schedule_low_priority_tasks(sensor_data)
+
+        # Return default command if time is running out
+        remaining_time = self.max_response_time - (time.time() - start_time)
+        if remaining_time < 0.01:  # Less than 10ms remaining
+            return MotorCommand(0.0, 0.0)  # Stop to be safe
+
+        return self.get_default_command()
+
+    def process_critical_tasks(self, sensor_data: SensorData):
+        """Process only critical cognitive tasks"""
+        # Implement critical path processing
+        pass
+
+    def schedule_low_priority_tasks(self, sensor_data: SensorData):
+        """Schedule non-critical tasks for background processing"""
+        # Add to low-priority queue for processing when system is idle
+        pass
+```
+
+Cognitive architectures provide the organizational framework that enables robots to exhibit intelligent behavior by coordinating perception, reasoning, planning, and action. Modern architectures increasingly integrate neural and symbolic approaches, enabling more sophisticated reasoning while maintaining real-time performance. The integration of LLMs and VLA systems represents the cutting edge of cognitive robotics, enabling more natural human-robot interaction and more flexible task execution.
+
+The choice of cognitive architecture depends on the specific requirements of the robotic application, including real-time constraints, environmental complexity, and the level of autonomous decision-making required.
