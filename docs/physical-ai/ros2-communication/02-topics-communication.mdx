@@ -1,0 +1,614 @@
+---
+title: Chapter 4 - Topics Communication in ROS 2
+---
+
+# Topics Communication in ROS 2
+
+## Introduction
+
+Topics form the backbone of ROS 2's publish/subscribe communication model. They enable asynchronous, decoupled communication between multiple publishers and subscribers, making them ideal for continuous data streams like sensor readings, status updates, and robot state information.
+
+## Basic Topic Implementation
+
+Topics enable asynchronous, many-to-many communication for continuous data streams. Here's a basic implementation:
+
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String, Int32, Float64
+from sensor_msgs.msg import LaserScan, Imu, JointState
+from geometry_msgs.msg import Twist, PoseStamped
+from nav_msgs.msg import Odometry
+import threading
+import time
+from collections import deque
+import numpy as np
+
+class BasicTopicNode(Node):
+    def __init__(self):
+        super().__init__('basic_topic_node')
+
+        # Publishers for different data types
+        self.status_publisher = self.create_publisher(String, 'robot_status', 10)
+        self.odometry_publisher = self.create_publisher(Odometry, 'odometry', 10)
+        self.cmd_vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.joint_states_publisher = self.create_publisher(JointState, 'joint_states', 10)
+
+        # Subscribers with different QoS profiles
+        self.command_subscriber = self.create_subscription(
+            Twist, 'cmd_vel', self.cmd_vel_callback, 10
+        )
+        self.sensor_subscriber = self.create_subscription(
+            LaserScan, 'laser_scan', self.laser_callback, 10
+        )
+        self.imu_subscriber = self.create_subscription(
+            Imu, 'imu/data', self.imu_callback, 10
+        )
+
+        # Timer for periodic publishing
+        self.publish_timer = self.create_timer(0.1, self.publish_robot_state)
+
+        # Robot state data
+        self.robot_state = {
+            'position': {'x': 0.0, 'y': 0.0, 'theta': 0.0},
+            'velocity': {'linear': 0.0, 'angular': 0.0},
+            'joint_positions': [0.0] * 6,  # Example 6-DOF robot
+            'battery_level': 100.0
+        }
+
+    def cmd_vel_callback(self, msg):
+        """Handle velocity commands."""
+        # Update robot state based on command
+        self.robot_state['velocity']['linear'] = msg.linear.x
+        self.robot_state['velocity']['angular'] = msg.angular.z
+
+        self.get_logger().info(
+            f'Received velocity command: linear={msg.linear.x}, angular={msg.angular.z}'
+        )
+
+    def laser_callback(self, msg):
+        """Handle laser scan data."""
+        # Process laser data for obstacle detection
+        min_range = min([r for r in msg.ranges if not np.isnan(r)], default=float('inf'))
+
+        if min_range < 1.0:  # Obstacle within 1 meter
+            self.get_logger().warn(f'Obstacle detected at {min_range:.2f}m')
+
+    def imu_callback(self, msg):
+        """Handle IMU data."""
+        # Extract orientation and angular velocity
+        orientation = msg.orientation
+        angular_velocity = msg.angular_velocity
+
+        self.get_logger().info(
+            f'IMU: orientation=({orientation.x:.3f}, {orientation.y:.3f}, {orientation.z:.3f}, {orientation.w:.3f})'
+        )
+
+    def publish_robot_state(self):
+        """Publish robot state information."""
+        # Update odometry message
+        odom_msg = Odometry()
+        odom_msg.header.stamp = self.get_clock().now().to_msg()
+        odom_msg.header.frame_id = 'odom'
+        odom_msg.child_frame_id = 'base_link'
+
+        # Set position (simplified for example)
+        odom_msg.pose.pose.position.x = self.robot_state['position']['x']
+        odom_msg.pose.pose.position.y = self.robot_state['position']['y']
+
+        # Set velocity
+        odom_msg.twist.twist.linear.x = self.robot_state['velocity']['linear']
+        odom_msg.twist.twist.angular.z = self.robot_state['velocity']['angular']
+
+        # Update joint states
+        joint_msg = JointState()
+        joint_msg.header.stamp = self.get_clock().now().to_msg()
+        joint_msg.name = [f'joint_{i}' for i in range(6)]
+        joint_msg.position = self.robot_state['joint_positions']
+
+        # Update status
+        status_msg = String()
+        status_msg.data = f'Battery: {self.robot_state["battery_level"]:.1f}%, Pos: ({self.robot_state["position"]["x"]:.2f}, {self.robot_state["position"]["y"]:.2f})'
+
+        # Publish all messages
+        self.odometry_publisher.publish(odom_msg)
+        self.joint_states_publisher.publish(joint_msg)
+        self.status_publisher.publish(status_msg)
+```
+
+## Advanced Topic Patterns
+
+### Topic Filtering and Transformation
+
+Advanced topic handling often requires filtering, transforming, or aggregating data:
+
+```python
+from sensor_msgs.msg import PointCloud2, LaserScan
+import sensor_msgs.point_cloud2 as pc2
+from std_msgs.msg import Header
+from geometry_msgs.msg import Point32
+
+class TopicFilterNode(Node):
+    def __init__(self):
+        super().__init__('topic_filter_node')
+
+        # Subscribe to raw sensor data
+        self.pointcloud_sub = self.create_subscription(
+            PointCloud2, 'raw_pointcloud', self.pointcloud_callback, 10
+        )
+
+        self.laser_sub = self.create_subscription(
+            LaserScan, 'raw_laser', self.laser_callback, 10
+        )
+
+        # Publish filtered data
+        self.filtered_pc_pub = self.create_publisher(PointCloud2, 'filtered_pointcloud', 10)
+        self.filtered_laser_pub = self.create_publisher(LaserScan, 'filtered_laser', 10)
+
+        # Parameters for filtering
+        self.declare_parameter('min_distance', 0.5)
+        self.declare_parameter('max_distance', 10.0)
+        self.declare_parameter('x_min', -5.0)
+        self.declare_parameter('x_max', 5.0)
+        self.declare_parameter('y_min', -5.0)
+        self.declare_parameter('y_max', 5.0)
+
+    def pointcloud_callback(self, msg):
+        """Filter point cloud data."""
+        try:
+            # Convert PointCloud2 to list of points
+            points = list(pc2.read_points(msg, field_names=("x", "y", "z"), skip_nans=True))
+
+            # Apply spatial filtering
+            filtered_points = []
+            min_dist = self.get_parameter('min_distance').value
+            max_dist = self.get_parameter('max_distance').value
+            x_min = self.get_parameter('x_min').value
+            x_max = self.get_parameter('x_max').value
+            y_min = self.get_parameter('y_min').value
+            y_max = self.get_parameter('y_max').value
+
+            for point in points:
+                x, y, z = point
+                distance = np.sqrt(x**2 + y**2 + z**2)
+
+                if (min_dist <= distance <= max_dist and
+                    x_min <= x <= x_max and
+                    y_min <= y <= y_max):
+                    filtered_points.append([x, y, z])
+
+            # Create new PointCloud2 message with filtered points
+            header = Header()
+            header.stamp = msg.header.stamp
+            header.frame_id = msg.header.frame_id
+
+            filtered_msg = pc2.create_cloud_xyz32(header, filtered_points)
+            self.filtered_pc_pub.publish(filtered_msg)
+
+        except Exception as e:
+            self.get_logger().error(f'Error filtering point cloud: {e}')
+
+    def laser_callback(self, msg):
+        """Filter laser scan data."""
+        # Apply range filtering
+        filtered_ranges = []
+        min_range = self.get_parameter('min_distance').value
+        max_range = self.get_parameter('max_distance').value
+
+        for range_val in msg.ranges:
+            if np.isnan(range_val) or range_val < min_range or range_val > max_range:
+                filtered_ranges.append(float('inf'))  # Mark as invalid
+            else:
+                filtered_ranges.append(range_val)
+
+        # Create filtered message
+        filtered_msg = LaserScan()
+        filtered_msg.header = msg.header
+        filtered_msg.angle_min = msg.angle_min
+        filtered_msg.angle_max = msg.angle_max
+        filtered_msg.angle_increment = msg.angle_increment
+        filtered_msg.time_increment = msg.time_increment
+        filtered_msg.scan_time = msg.scan_time
+        filtered_msg.range_min = min_range
+        filtered_msg.range_max = max_range
+        filtered_msg.ranges = filtered_ranges
+        filtered_msg.intensities = msg.intensities  # Keep original intensities
+
+        self.filtered_laser_pub.publish(filtered_msg)
+```
+
+### Topic Monitoring and Statistics
+
+Monitoring topic performance is essential for robust robotic systems:
+
+```python
+from rclpy.qos import qos_profile_sensor_data
+from std_msgs.msg import String
+import time
+from collections import deque
+import statistics
+
+class TopicMonitorNode(Node):
+    def __init__(self):
+        super().__init__('topic_monitor')
+
+        # Subscribe to topic with monitoring
+        self.monitored_sub = self.create_subscription(
+            String, 'monitored_topic', self.monitored_callback,
+            qos_profile=qos_profile_sensor_data
+        )
+
+        # Statistics publishers
+        self.stats_pub = self.create_publisher(String, 'topic_statistics', 10)
+        self.health_pub = self.create_publisher(String, 'topic_health', 10)
+
+        # Statistics tracking
+        self.message_count = 0
+        self.message_times = deque(maxlen=1000)  # Store timestamps
+        self.message_sizes = deque(maxlen=1000)  # Store sizes
+        self.message_intervals = deque(maxlen=1000)  # Store intervals
+        self.start_time = self.get_clock().now()
+
+        # Monitoring timer
+        self.monitor_timer = self.create_timer(5.0, self.publish_monitoring_data)
+
+        # Health monitoring
+        self.last_message_time = self.get_clock().now()
+        self.health_timer = self.create_timer(1.0, self.check_health)
+
+    def monitored_callback(self, msg):
+        """Monitor incoming messages."""
+        current_time = self.get_clock().now()
+        self.message_count += 1
+
+        # Store timing information
+        self.message_times.append(current_time.nanoseconds)
+        self.message_sizes.append(len(msg.data.encode('utf-8')))
+
+        # Calculate interval if we have previous message
+        if len(self.message_times) > 1:
+            interval = (self.message_times[-1] - self.message_times[-2]) / 1e9
+            self.message_intervals.append(interval)
+
+        # Update last message time for health monitoring
+        self.last_message_time = current_time
+
+        # Process the message
+        self.process_monitored_message(msg)
+
+    def process_monitored_message(self, msg):
+        """Process the monitored message."""
+        # Implement specific message processing logic here
+        self.get_logger().debug(f'Monitored: {msg.data}')
+
+    def publish_monitoring_data(self):
+        """Publish monitoring statistics."""
+        if self.message_count == 0:
+            return
+
+        # Calculate statistics
+        elapsed_time = (self.get_clock().now() - self.start_time).nanoseconds / 1e9
+        message_rate = self.message_count / elapsed_time if elapsed_time > 0 else 0
+
+        # Calculate interval statistics
+        avg_interval = statistics.mean(self.message_intervals) if self.message_intervals else 0
+        std_interval = statistics.stdev(self.message_intervals) if len(self.message_intervals) > 1 else 0
+        min_interval = min(self.message_intervals) if self.message_intervals else 0
+        max_interval = max(self.message_intervals) if self.message_intervals else 0
+
+        # Calculate size statistics
+        avg_size = statistics.mean(self.message_sizes) if self.message_sizes else 0
+        std_size = statistics.stdev(self.message_sizes) if len(self.message_sizes) > 1 else 0
+
+        # Create statistics message
+        stats_msg = String()
+        stats_msg.data = (
+            f"Topic Statistics:\n"
+            f"  Total Messages: {self.message_count}\n"
+            f"  Message Rate: {message_rate:.2f} Hz\n"
+            f"  Avg Interval: {avg_interval:.4f}s (±{std_interval:.4f}s)\n"
+            f"  Interval Range: {min_interval:.4f}s - {max_interval:.4f}s\n"
+            f"  Avg Size: {avg_size:.2f} bytes (±{std_size:.2f} bytes)\n"
+            f"  Elapsed Time: {elapsed_time:.2f}s\n"
+        )
+
+        self.stats_pub.publish(stats_msg)
+
+    def check_health(self):
+        """Check topic health."""
+        current_time = self.get_clock().now()
+        time_since_last = (current_time - self.last_message_time).nanoseconds / 1e9
+
+        health_msg = String()
+        if time_since_last > 5.0:  # No message in 5 seconds
+            health_msg.data = f"ALERT: No messages received for {time_since_last:.2f}s"
+        else:
+            health_msg.data = f"OK: Last message {time_since_last:.2f}s ago"
+
+        self.health_pub.publish(health_msg)
+```
+
+## Quality of Service (QoS) Profiles
+
+QoS profiles control how messages are delivered between publishers and subscribers:
+
+```python
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy, DurabilityPolicy, LivelinessPolicy
+
+class QoSTopicNode(Node):
+    def __init__(self):
+        super().__init__('qos_topic_node')
+
+        # Different QoS profiles for different use cases
+        # For sensor data (high frequency, best effort)
+        sensor_qos = QoSProfile(
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+            durability=DurabilityPolicy.VOLATILE
+        )
+
+        # For critical commands (reliable delivery)
+        command_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_ALL,
+            depth=1,
+            durability=DurabilityPolicy.TRANSIENT_LOCAL
+        )
+
+        # For status updates (balance between performance and reliability)
+        status_qos = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=5,
+            durability=DurabilityPolicy.VOLATILE
+        )
+
+        # Publishers with different QoS profiles
+        self.sensor_pub = self.create_publisher(
+            LaserScan, 'sensor_data', sensor_qos
+        )
+        self.command_pub = self.create_publisher(
+            Twist, 'robot_command', command_qos
+        )
+        self.status_pub = self.create_publisher(
+            String, 'robot_status', status_qos
+        )
+
+        # Subscribers with matching QoS profiles
+        self.sensor_sub = self.create_subscription(
+            LaserScan, 'sensor_data', self.sensor_callback, sensor_qos
+        )
+        self.command_sub = self.create_subscription(
+            Twist, 'robot_command', self.command_callback, command_qos
+        )
+        self.status_sub = self.create_subscription(
+            String, 'robot_status', self.status_callback, status_qos
+        )
+
+    def sensor_callback(self, msg):
+        """Handle sensor data with best-effort delivery."""
+        self.get_logger().debug('Received sensor data')
+
+    def command_callback(self, msg):
+        """Handle critical commands with reliable delivery."""
+        self.get_logger().info('Received critical command')
+
+    def status_callback(self, msg):
+        """Handle status updates."""
+        self.get_logger().info(f'Robot status: {msg.data}')
+```
+
+## Topic Bridge and Data Transformation
+
+Topic bridges allow connecting different parts of a system:
+
+```python
+class TopicBridgeNode(Node):
+    def __init__(self):
+        super().__init__('topic_bridge')
+
+        # Subscribe to input topics
+        self.input_sub = self.create_subscription(
+            String, 'input_topic', self.input_callback, 10
+        )
+
+        # Publish to output topics
+        self.output_pub = self.create_publisher(
+            Float64, 'output_topic', 10
+        )
+
+        # Bridge between different message types
+        self.transform_sub = self.create_subscription(
+            Float64, 'raw_value', self.transform_callback, 10
+        )
+        self.transformed_pub = self.create_publisher(
+            String, 'processed_value', 10
+        )
+
+    def input_callback(self, msg):
+        """Bridge input to output with transformation."""
+        try:
+            # Convert string to number (with error handling)
+            value = float(msg.data)
+
+            # Create output message
+            output_msg = Float64()
+            output_msg.data = value * 2  # Example transformation
+
+            self.output_pub.publish(output_msg)
+
+        except ValueError:
+            self.get_logger().error(f'Cannot convert {msg.data} to float')
+
+    def transform_callback(self, msg):
+        """Transform data from one format to another."""
+        # Apply processing to the input value
+        processed_value = msg.data ** 2  # Example: square the value
+
+        # Create and publish transformed message
+        output_msg = String()
+        output_msg.data = f'Processed: {processed_value:.2f}'
+        self.transformed_pub.publish(output_msg)
+```
+
+## Performance Optimization
+
+### Memory Optimization with Pre-allocation
+
+```python
+class OptimizedTopicNode(Node):
+    def __init__(self):
+        super().__init__('optimized_topic_node')
+
+        # Pre-allocate message objects to reduce allocation overhead
+        self._string_msg = String()
+        self._float_msg = Float64()
+        self._twist_msg = Twist()
+
+        # Publisher for high-frequency data
+        self.optimized_pub = self.create_publisher(
+            String, 'optimized_topic', 10
+        )
+
+        # Timer for optimized publishing
+        self.timer = self.create_timer(0.001, self.optimized_publish)
+
+    def optimized_publish(self):
+        """Optimized publishing using pre-allocated messages."""
+        # Reuse message object instead of creating new ones
+        self._string_msg.data = f'Optimized message at {self.get_clock().now().nanoseconds}'
+        self.optimized_pub.publish(self._string_msg)
+```
+
+## Topic Communication Best Practices
+
+### Error Handling and Robustness
+
+```python
+class RobustTopicNode(Node):
+    def __init__(self):
+        super().__init__('robust_topic_node')
+
+        # Publishers with error handling
+        self.status_pub = self.create_publisher(String, 'status', 10)
+        self.error_pub = self.create_publisher(String, 'errors', 10)
+
+        # Subscribers with validation
+        self.data_sub = self.create_subscription(
+            String, 'input_data', self.robust_callback, 10
+        )
+
+        # Statistics for monitoring
+        self.message_stats = {
+            'received': 0,
+            'errors': 0,
+            'processed': 0
+        }
+
+    def robust_callback(self, msg):
+        """Handle messages with comprehensive error handling."""
+        try:
+            # Validate message content
+            if not self.validate_message(msg):
+                self.get_logger().error(f'Invalid message: {msg.data}')
+                self.message_stats['errors'] += 1
+                self.publish_error(f'Invalid message: {msg.data}')
+                return
+
+            # Process the message
+            processed_data = self.process_message(msg.data)
+            self.message_stats['processed'] += 1
+
+            # Publish status update
+            status_msg = String()
+            status_msg.data = f'Processed: {processed_data}'
+            self.status_pub.publish(status_msg)
+
+        except Exception as e:
+            self.get_logger().error(f'Error processing message: {e}')
+            self.message_stats['errors'] += 1
+            self.publish_error(f'Processing error: {str(e)}')
+
+        finally:
+            self.message_stats['received'] += 1
+
+    def validate_message(self, msg):
+        """Validate incoming message."""
+        if not msg.data or len(msg.data) == 0:
+            return False
+        if len(msg.data) > 1000:  # Max message size check
+            self.get_logger().warn(f'Message too large: {len(msg.data)} chars')
+            return False
+        return True
+
+    def process_message(self, data):
+        """Process message data."""
+        # Implement actual processing logic here
+        return data.upper()  # Example transformation
+
+    def publish_error(self, error_msg):
+        """Publish error message."""
+        error = String()
+        error.data = error_msg
+        self.error_pub.publish(error)
+```
+
+## Integration with Other Communication Patterns
+
+Topics work together with services and actions in complex systems:
+
+```python
+class IntegratedTopicNode(Node):
+    def __init__(self):
+        super().__init__('integrated_topic_node')
+
+        # Topic publishers and subscribers
+        self.state_pub = self.create_publisher(String, 'robot_state', 10)
+        self.command_sub = self.create_subscription(
+            String, 'commands', self.command_callback, 10
+        )
+
+        # Service client for coordination
+        self.service_client = self.create_client(
+            SetBool, 'system_status'
+        )
+
+        # Timer for periodic state updates
+        self.state_timer = self.create_timer(1.0, self.publish_state)
+
+    def command_callback(self, msg):
+        """Handle commands received via topic."""
+        command = msg.data
+        self.get_logger().info(f'Received command: {command}')
+
+        # Process command and potentially call service
+        if command == 'status_check':
+            self.check_system_status()
+
+    def check_system_status(self):
+        """Check system status using service."""
+        if self.service_client.service_is_ready():
+            request = SetBool.Request()
+            request.data = True
+            self.service_client.call_async(request)
+
+    def publish_state(self):
+        """Publish current robot state."""
+        state_msg = String()
+        state_msg.data = 'ACTIVE'
+        self.state_pub.publish(state_msg)
+```
+
+## Chapter Summary
+
+This section covered the comprehensive implementation of topics in ROS 2:
+
+1. **Basic Implementation**: Creating publishers and subscribers for different message types
+2. **Advanced Patterns**: Topic filtering, transformation, and monitoring
+3. **QoS Configuration**: Using Quality of Service profiles for different communication needs
+4. **Performance Optimization**: Memory optimization and pre-allocation techniques
+5. **Error Handling**: Building robust topic communication with validation
+6. **Integration**: How topics work with other communication patterns
+
+Topics provide the foundation for asynchronous, decoupled communication in ROS 2 systems, making them essential for sensor data, status updates, and other continuous data streams.

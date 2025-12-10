@@ -39,53 +39,53 @@
 
 ## Phase 4: [US1] Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations
 
-- [ ] T023 [P] Create Chapter 2 directory structure under docs/physical-ai/
-- [ ] T024 [P] Create Chapter 2 index.mdx with frontmatter and overview
-- [ ] T025 [P] Create 01-landscape.mdx section
-- [ ] T026 [P] Create 02-sensor-foundations.mdx section
-- [ ] T027 [P] Create 03-chapter-summary.mdx section
-- [ ] T028 [P] Add learning outcomes to Chapter 2 files
-- [ ] T029 [P] Add exercises to Chapter 2 with beginner difficulty
-- [ ] T030 [P] Add glossary terms related to Humanoid Robotics
+- [X] T023 [P] Create Chapter 2 directory structure under docs/physical-ai/
+- [X] T024 [P] Create Chapter 2 index.mdx with frontmatter and overview
+- [X] T025 [P] Create 01-landscape.mdx section
+- [X] T026 [P] Create 02-sensor-foundations.mdx section
+- [X] T027 [P] Create 03-chapter-summary.mdx section
+- [X] T028 [P] Add learning outcomes to Chapter 2 files
+- [X] T029 [P] Add exercises to Chapter 2 with beginner difficulty
+- [X] T030 [P] Add glossary terms related to Humanoid Robotics
 - [ ] T031 [P] Add diagrams for sensor systems and humanoid architectures
 
 ## Phase 5: [US1] Chapter 3 - Understanding the Robotic Nervous System: ROS 2 Architecture
 
-- [ ] T032 [P] Create Chapter 3 directory structure under docs/physical-ai/
-- [ ] T033 [P] Create Chapter 3 index.mdx with frontmatter and overview
-- [ ] T034 [P] Create 01-nodes-topics.mdx section
-- [ ] T035 [P] Create 02-services-actions.mdx section
-- [ ] T036 [P] Create 03-chapter-summary.mdx section
-- [ ] T037 [P] Add learning outcomes to Chapter 3 files
-- [ ] T038 [P] Add exercises to Chapter 3 with intermediate difficulty
-- [ ] T039 [P] Add ROS 2 code examples in Python with rclpy
+- [X] T032 [P] Create Chapter 3 directory structure under docs/physical-ai/
+- [X] T033 [P] Create Chapter 3 index.mdx with frontmatter and overview
+- [X] T034 [P] Create 01-nodes-topics.mdx section
+- [X] T035 [P] Create 02-services-actions.mdx section
+- [X] T036 [P] Create 03-chapter-summary.mdx section
+- [X] T037 [P] Add learning outcomes to Chapter 3 files
+- [X] T038 [P] Add exercises to Chapter 3 with intermediate difficulty
+- [X] T039 [P] Add ROS 2 code examples in Python with rclpy
 - [ ] T040 [P] Add diagrams showing ROS 2 architecture and communication patterns
 
 ## Phase 6: [US1] Chapter 4 - Nodes, Topics, Services & Actions in ROS 2
 
-- [ ] T041 [P] Create Chapter 4 directory structure under docs/physical-ai/
-- [ ] T042 [P] Create Chapter 4 index.mdx with frontmatter and overview
-- [ ] T043 [P] Create 01-nodes-implementation.mdx section
-- [ ] T044 [P] Create 02-topics-communication.mdx section
-- [ ] T045 [P] Create 03-services-actions.mdx section
-- [ ] T046 [P] Create 04-chapter-summary.mdx section
-- [ ] T047 [P] Add learning outcomes to Chapter 4 files
-- [ ] T048 [P] Add exercises to Chapter 4 with intermediate difficulty
-- [ ] T049 [P] Add comprehensive ROS 2 code examples with proper documentation
-- [ ] T050 [P] Add diagrams showing communication patterns and message flows
+- [X] T041 [P] Create Chapter 4 directory structure under docs/physical-ai/
+- [X] T042 [P] Create Chapter 4 index.mdx with frontmatter and overview
+- [X] T043 [P] Create 01-nodes-implementation.mdx section
+- [X] T044 [P] Create 02-topics-communication.mdx section
+- [X] T045 [P] Create 03-services-actions.mdx section
+- [X] T046 [P] Create 04-chapter-summary.mdx section
+- [X] T047 [P] Add learning outcomes to Chapter 4 files
+- [X] T048 [P] Add exercises to Chapter 4 with intermediate difficulty
+- [X] T049 [P] Add comprehensive ROS 2 code examples with proper documentation
+- [X] T050 [P] Add diagrams showing communication patterns and message flows
 
 ## Phase 7: [US1] Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters
 
-- [ ] T051 [P] Create Chapter 5 directory structure under docs/physical-ai/
-- [ ] T052 [P] Create Chapter 5 index.mdx with frontmatter and overview
-- [ ] T053 [P] Create 01-building-packages.mdx section
-- [ ] T054 [P] Create 02-launch-files.mdx section
-- [ ] T055 [P] Create 03-parameters.mdx section
-- [ ] T056 [P] Create 04-chapter-summary.mdx section
-- [ ] T057 [P] Add learning outcomes to Chapter 5 files
-- [ ] T058 [P] Add exercises to Chapter 5 with intermediate difficulty
-- [ ] T059 [P] Add ROS 2 package examples with CMakeLists.txt and package.xml
-- [ ] T060 [P] Add launch file examples in Python and XML
+- [X] T051 [P] Create Chapter 5 directory structure under docs/physical-ai/
+- [X] T052 [P] Create Chapter 5 index.mdx with frontmatter and overview
+- [X] T053 [P] Create 01-building-packages.mdx section
+- [X] T054 [P] Create 02-launch-files.mdx section
+- [X] T055 [P] Create 03-parameters.mdx section
+- [X] T056 [P] Create 04-chapter-summary.mdx section
+- [X] T057 [P] Add learning outcomes to Chapter 5 files
+- [X] T058 [P] Add exercises to Chapter 5 with intermediate difficulty
+- [X] T059 [P] Add ROS 2 package examples with CMakeLists.txt and package.xml
+- [X] T060 [P] Add launch file examples in Python and XML
 
 ## Phase 8: [US1] Chapter 6 - URDF/SDF for Humanoid Robots
 
@@ -115,16 +115,16 @@
 
 ## Phase 10: [US2] Chapter 8 - Unity Visualization & Human-Robot Interaction
 
-- [ ] T081 [P] Create Chapter 8 directory structure under docs/physical-ai/
-- [ ] T082 [P] Create Chapter 8 index.mdx with frontmatter and overview
-- [ ] T083 [P] Create 01-human-robot-interaction.mdx section
-- [ ] T084 [P] Create 02-visualization.mdx section
-- [ ] T085 [P] Create 03-unity-workflows.mdx section
-- [ ] T086 [P] Create 04-chapter-summary.mdx section
-- [ ] T087 [P] Add learning outcomes to Chapter 8 files
-- [ ] T088 [P] Add exercises to Chapter 8 with intermediate difficulty
-- [ ] T089 [P] Add Unity integration examples for robotics visualization
-- [ ] T090 [P] Add HRI design principles and examples
+- [X] T081 [P] Create Chapter 8 directory structure under docs/physical-ai/
+- [X] T082 [P] Create Chapter 8 index.mdx with frontmatter and overview
+- [X] T083 [P] Create 01-human-robot-interaction.mdx section
+- [X] T084 [P] Create 02-visualization.mdx section
+- [X] T085 [P] Create 03-unity-workflows.mdx section
+- [X] T086 [P] Create 04-chapter-summary.mdx section
+- [X] T087 [P] Add learning outcomes to Chapter 8 files
+- [X] T088 [P] Add exercises to Chapter 8 with intermediate difficulty
+- [X] T089 [P] Add Unity integration examples for robotics visualization
+- [X] T090 [P] Add HRI design principles and examples
 
 ## Phase 11: [US3] Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview
 

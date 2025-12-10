@@ -1,0 +1,1405 @@
+---
+title: Chapter 8 - Unity Workflows for Robotics
+---
+
+# Unity Workflows for Robotics
+
+## Introduction to Unity Robotics Workflows
+
+Unity workflows for robotics encompass the complete pipeline from setting up the development environment to deploying applications for robot visualization and interaction. These workflows integrate Unity's powerful rendering engine with robotics frameworks to create immersive and functional interfaces for human-robot interaction, teleoperation, and robot monitoring.
+
+## Development Environment Setup
+
+### Unity Installation for Robotics
+
+Setting up Unity for robotics applications requires specific configurations and packages:
+
+```bash
+# Unity Hub is the recommended way to manage Unity installations
+# Download from: https://unity3d.com/get-unity/download
+
+# Install Unity LTS version (recommended for stability)
+# At the time of writing, Unity 2022.3.x LTS is recommended
+
+# During installation, select the following modules:
+# - Android Build Support (if targeting mobile VR)
+# - iOS Build Support (if targeting iOS devices)
+# - Windows Build Support
+# - Linux Build Support
+# - Visual Studio integration
+```
+
+### Essential Unity Packages for Robotics
+
+```csharp
+// Unity Robotics Package Manager entries (Packages/manifest.json)
+{
+  "dependencies": {
+    "com.unity.robotics.ros-tcp-connector": "0.7.0",
+    "com.unity.robotics.urdf-importer": "0.5.2",
+    "com.unity.robotics.visualizations": "0.1.0",
+    "com.unity.xr.legacyinputhelpers": "2.1.10",
+    "com.unity.inputsystem": "1.5.1"
+  }
+}
+```
+
+### Project Configuration
+
+```csharp
+using UnityEngine;
+using UnityEditor;
+
+public class RoboticsProjectSetup : MonoBehaviour
+{
+    [MenuItem("Robotics/Setup Project")]
+    public static void SetupRoboticsProject()
+    {
+        // Configure project settings for robotics applications
+        ConfigureGraphicsSettings();
+        ConfigurePhysicsSettings();
+        ConfigureXRSettings();
+        ConfigureLayers();
+
+        Debug.Log("Robotics project setup completed!");
+    }
+
+    private static void ConfigureGraphicsSettings()
+    {
+        // Set up rendering for real-time robotics visualization
+        QualitySettings.vSyncCount = 0; // Disable VSync for consistent frame rate
+        Application.targetFrameRate = 60;
+
+        // Configure rendering pipeline (URP/HDRP/Standard)
+        // For robotics visualization, Standard is often sufficient
+    }
+
+    private static void ConfigurePhysicsSettings()
+    {
+        // Adjust physics settings for robotics simulation
+        Physics.defaultSolverIterations = 8;
+        Physics.defaultSolverVelocityIterations = 2;
+        Physics.sleepThreshold = 0.001f;
+    }
+
+    private static void ConfigureXRSettings()
+    {
+        // Configure XR settings if using VR/AR
+        // This is optional for basic visualization
+    }
+
+    private static void ConfigureLayers()
+    {
+        // Set up layers for different robot components
+        // Layer 8: RobotBase
+        // Layer 9: RobotLinks
+        // Layer 10: RobotJoints
+        // Layer 11: Environment
+        // Layer 12: Sensors
+        // Layer 13: UI
+    }
+}
+```
+
+## Importing Robot Models
+
+### URDF Import Workflow
+
+Unity provides tools for importing URDF (Unified Robot Description Format) files:
+
+```csharp
+using UnityEngine;
+using Unity.Robotics.URDF;
+
+public class RobotModelImporter : MonoBehaviour
+{
+    [Header("URDF Import Settings")]
+    public string urdfPath = "Assets/Robots/my_robot.urdf";
+    public ImportSettings importSettings;
+
+    [System.Serializable]
+    public class ImportSettings
+    {
+        public bool useCollisionMeshes = true;
+        public bool createArticulations = true;
+        public bool importInertial = true;
+        public bool importMaterials = true;
+        public float scale = 1.0f;
+    }
+
+    public void ImportURDF()
+    {
+        if (string.IsNullOrEmpty(urdfPath))
+        {
+            Debug.LogError("URDF path is not set!");
+            return;
+        }
+
+        try
+        {
+            // Import the URDF model
+            GameObject robot = URDFRobotExtensions.LoadRobot(urdfPath);
+
+            if (robot != null)
+            {
+                robot.name = "ImportedRobot";
+
+                // Configure the imported robot
+                ConfigureImportedRobot(robot);
+
+                Debug.Log($"Successfully imported robot from: {urdfPath}");
+            }
+            else
+            {
+                Debug.LogError($"Failed to import robot from: {urdfPath}");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error importing URDF: {e.Message}");
+        }
+    }
+
+    void ConfigureImportedRobot(GameObject robot)
+    {
+        // Add robotics-specific components to the imported model
+        RobotModelVisualizer visualizer = robot.AddComponent<RobotModelVisualizer>();
+        visualizer.InitializeFromURDF();
+
+        // Set up joint controllers
+        SetupJointControllers(robot);
+    }
+
+    void SetupJointControllers(GameObject robot)
+    {
+        // Find all joint objects and set up controllers
+        Joint[] joints = robot.GetComponentsInChildren<Joint>();
+
+        foreach (Joint joint in joints)
+        {
+            // Configure joint for Unity physics
+            if (joint is HingeJoint)
+            {
+                HingeJoint hinge = joint as HingeJoint;
+                // Configure hinge joint parameters
+                hinge.useLimits = true;
+                JointLimits limits = hinge.limits;
+                limits.min = -180f;
+                limits.max = 180f;
+                hinge.limits = limits;
+            }
+        }
+    }
+}
+```
+
+### Model Optimization Workflow
+
+```csharp
+using UnityEngine;
+
+public class RobotModelOptimizer : MonoBehaviour
+{
+    [Header("Optimization Settings")]
+    public bool optimizeMeshes = true;
+    public bool optimizeMaterials = true;
+    public bool optimizeTextures = true;
+    public int targetPolyCount = 50000; // Target polygon count
+
+    [Header("LOD Settings")]
+    public bool generateLODs = true;
+    public int lodCount = 3;
+    public float[] lodDistances = {10f, 20f, 50f};
+
+    public void OptimizeRobotModel()
+    {
+        GameObject robot = gameObject;
+
+        if (optimizeMeshes)
+        {
+            OptimizeMeshes(robot);
+        }
+
+        if (optimizeMaterials)
+        {
+            OptimizeMaterials(robot);
+        }
+
+        if (generateLODs)
+        {
+            GenerateLODs(robot);
+        }
+
+        Debug.Log("Robot model optimization completed!");
+    }
+
+    void OptimizeMeshes(GameObject robot)
+    {
+        // Reduce polygon count while maintaining visual quality
+        MeshFilter[] meshFilters = robot.GetComponentsInChildren<MeshFilter>();
+
+        foreach (MeshFilter filter in meshFilters)
+        {
+            // Apply mesh optimization techniques
+            OptimizeSingleMesh(filter);
+        }
+    }
+
+    void OptimizeSingleMesh(MeshFilter filter)
+    {
+        // In a real implementation, this would use mesh optimization algorithms
+        // Unity's built-in tools or third-party solutions like Simplygon
+        Mesh originalMesh = filter.mesh;
+
+        // Apply optimization based on target polygon count
+        // This is a simplified placeholder
+        Debug.Log($"Optimizing mesh: {filter.name}");
+    }
+
+    void OptimizeMaterials(GameObject robot)
+    {
+        // Combine similar materials and reduce texture count
+        Renderer[] renderers = robot.GetComponentsInChildren<Renderer>();
+
+        // Group renderers by material properties
+        System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<Renderer>> materialGroups =
+            new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<Renderer>>();
+
+        foreach (Renderer renderer in renderers)
+        {
+            foreach (Material material in renderer.sharedMaterials)
+            {
+                string materialKey = GetMaterialKey(material);
+
+                if (!materialGroups.ContainsKey(materialKey))
+                {
+                    materialGroups[materialKey] = new System.Collections.Generic.List<Renderer>();
+                }
+
+                materialGroups[materialKey].Add(renderer);
+            }
+        }
+
+        // Combine materials where possible
+        CombineSimilarMaterials(materialGroups);
+    }
+
+    string GetMaterialKey(Material material)
+    {
+        // Create a unique key based on material properties
+        return material.shader.name + "_" +
+               material.GetTexture("_MainTex")?.name ?? "NoTexture";
+    }
+
+    void CombineSimilarMaterials(System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<Renderer>> materialGroups)
+    {
+        // Combine renderers that use similar materials
+        foreach (var group in materialGroups)
+        {
+            if (group.Value.Count > 1)
+            {
+                // Combine meshes that use the same material
+                CombineRenderersWithSameMaterial(group.Value);
+            }
+        }
+    }
+
+    void CombineRenderersWithSameMaterial(System.Collections.Generic.List<Renderer> renderers)
+    {
+        // Combine multiple renderers into a single renderer
+        // This reduces draw calls and improves performance
+        Debug.Log($"Combining {renderers.Count} renderers with similar materials");
+    }
+
+    void GenerateLODs(GameObject robot)
+    {
+        // Create Level of Detail (LOD) groups for the robot
+        LODGroup lodGroup = robot.GetComponent<LODGroup>();
+        if (lodGroup == null)
+        {
+            lodGroup = robot.AddComponent<LODGroup>();
+        }
+
+        // Create LOD levels with different detail
+        LOD[] lods = new LOD[lodCount];
+
+        for (int i = 0; i < lodCount; i++)
+        {
+            float screenRelativeTransitionHeight = lodDistances[i] / 100f; // Normalize
+            Renderer[] renderers = GetLODRenderers(robot, i);
+
+            lods[i] = new LOD(screenRelativeTransitionHeight, renderers);
+        }
+
+        lodGroup.SetLODs(lods);
+        lodGroup.RecalculateBounds();
+    }
+
+    Renderer[] GetLODRenderers(GameObject robot, int lodLevel)
+    {
+        // Return appropriate renderers for each LOD level
+        // In practice, this would involve hiding/showing different components
+        return robot.GetComponentsInChildren<Renderer>();
+    }
+}
+```
+
+## Unity-ROS Integration Workflows
+
+### Setting up ROS Connection
+
+```csharp
+using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
+using RosMessageTypes.Std;
+
+public class ROSConnectionManager : MonoBehaviour
+{
+    [Header("ROS Connection Settings")]
+    public string rosIP = "127.0.0.1";
+    public int rosPort = 10000;
+    public float connectionTimeout = 10.0f;
+
+    [Header("Connection Status")]
+    public bool isConnected = false;
+    public float lastHeartbeatTime;
+
+    private ROSConnection rosConnection;
+    private float connectionAttemptTime;
+
+    void Start()
+    {
+        InitializeROSConnection();
+    }
+
+    void InitializeROSConnection()
+    {
+        try
+        {
+            rosConnection = ROSConnection.instance;
+
+            // Set up connection event handlers
+            rosConnection.OnConnected += OnConnected;
+            rosConnection.OnDisconnected += OnDisconnected;
+
+            // Attempt to connect to ROS
+            ConnectToROS();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error initializing ROS connection: {e.Message}");
+        }
+    }
+
+    public void ConnectToROS()
+    {
+        try
+        {
+            rosConnection.Initialize(rosIP, rosPort);
+            connectionAttemptTime = Time.time;
+            Debug.Log($"Attempting to connect to ROS at {rosIP}:{rosPort}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to initialize ROS connection: {e.Message}");
+        }
+    }
+
+    void OnConnected()
+    {
+        isConnected = true;
+        lastHeartbeatTime = Time.time;
+        Debug.Log("Connected to ROS!");
+
+        // Subscribe to relevant topics
+        SetupROSTopics();
+    }
+
+    void OnDisconnected()
+    {
+        isConnected = false;
+        Debug.LogWarning("Disconnected from ROS!");
+
+        // Attempt reconnection after delay
+        Invoke("ConnectToROS", 2.0f);
+    }
+
+    void SetupROSTopics()
+    {
+        // Subscribe to robot state topics
+        rosConnection.Subscribe<UInt8Msg>("robot_mode", OnRobotModeReceived);
+        rosConnection.Subscribe<UInt32Msg>("robot_status", OnRobotStatusReceived);
+
+        // Subscribe to sensor topics
+        rosConnection.Subscribe<UInt8MultiArrayMsg>("sensor_data", OnSensorDataReceived);
+
+        Debug.Log("Subscribed to ROS topics");
+    }
+
+    void OnRobotModeReceived(UInt8Msg mode)
+    {
+        // Handle robot mode updates
+        Debug.Log($"Robot mode updated: {mode.data}");
+    }
+
+    void OnRobotStatusReceived(UInt32Msg status)
+    {
+        // Handle robot status updates
+        Debug.Log($"Robot status: {status.data}");
+        lastHeartbeatTime = Time.time;
+    }
+
+    void OnSensorDataReceived(UInt8MultiArrayMsg data)
+    {
+        // Handle sensor data
+        Debug.Log($"Received sensor data: {data.data.Length} bytes");
+    }
+
+    void Update()
+    {
+        CheckConnectionHealth();
+    }
+
+    void CheckConnectionHealth()
+    {
+        if (isConnected && (Time.time - lastHeartbeatTime) > 5.0f)
+        {
+            // Consider connection stale, check if still alive
+            // Send a heartbeat message to verify connection
+            SendHeartbeat();
+        }
+
+        if (!isConnected && (Time.time - connectionAttemptTime) > connectionTimeout)
+        {
+            // Force reconnection if timeout reached
+            ConnectToROS();
+        }
+    }
+
+    void SendHeartbeat()
+    {
+        // Send a heartbeat message to verify connection
+        var heartbeat = new UInt32Msg();
+        heartbeat.data = (uint)System.DateTime.Now.Ticks;
+
+        rosConnection.Send("unity_heartbeat", heartbeat);
+    }
+
+    void OnApplicationQuit()
+    {
+        if (rosConnection != null)
+        {
+            rosConnection.OnConnected -= OnConnected;
+            rosConnection.OnDisconnected -= OnDisconnected;
+        }
+    }
+}
+```
+
+### Publisher and Subscriber Patterns
+
+```csharp
+using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
+using RosMessageTypes.Std;
+using RosMessageTypes.Geometry;
+using RosMessageTypes.Sensor;
+
+public class RobotControlPublisher : MonoBehaviour
+{
+    [Header("ROS Topics")]
+    public string jointCommandTopic = "joint_group_position_controller/command";
+    public string twistCommandTopic = "cmd_vel";
+    public string trajectoryTopic = "move_group/display_planned_path";
+
+    [Header("Control Settings")]
+    public float commandRate = 10.0f; // Hz
+    public float lastCommandTime;
+
+    private ROSConnection ros;
+
+    void Start()
+    {
+        ros = ROSConnection.instance;
+        lastCommandTime = Time.time;
+    }
+
+    void Update()
+    {
+        // Send commands at specified rate
+        if (Time.time - lastCommandTime >= 1.0f/commandRate)
+        {
+            SendRobotCommands();
+            lastCommandTime = Time.time;
+        }
+    }
+
+    public void SendJointCommands(float[] positions)
+    {
+        if (ros == null) return;
+
+        // Create joint trajectory message
+        var jointMsg = new JointTrajectoryMsg();
+        jointMsg.header.stamp = new TimeStamp(ROSConnection.GetNodeTime());
+        jointMsg.header.frame_id = "base_link";
+
+        // Set joint names (this should match your robot's joint names)
+        jointMsg.joint_names = new string[] { "joint1", "joint2", "joint3", "joint4", "joint5", "joint6" };
+
+        // Create trajectory point
+        var point = new JointTrajectoryPointMsg();
+        point.positions = new double[positions.Length];
+        for (int i = 0; i < positions.Length; i++)
+        {
+            point.positions[i] = positions[i];
+        }
+
+        // Set velocities to smooth movement
+        point.velocities = new double[positions.Length];
+        for (int i = 0; i < positions.Length; i++)
+        {
+            point.velocities[i] = 0.0; // Let the controller handle velocities
+        }
+
+        // Set time from start
+        point.time_from_start = new Duration(1, 0); // 1 second
+
+        jointMsg.points = new JointTrajectoryPointMsg[] { point };
+
+        ros.Send(jointCommandTopic, jointMsg);
+    }
+
+    public void SendVelocityCommand(float linearX, float angularZ)
+    {
+        if (ros == null) return;
+
+        var twistMsg = new TwistMsg();
+        twistMsg.linear = new Vector3Msg(linearX, 0, 0);
+        twistMsg.angular = new Vector3Msg(0, 0, angularZ);
+
+        ros.Send(twistCommandTopic, twistMsg);
+    }
+
+    public void SendTrajectoryCommand(JointTrajectoryPointMsg[] trajectoryPoints)
+    {
+        if (ros == null) return;
+
+        var trajMsg = new JointTrajectoryMsg();
+        trajMsg.header.stamp = new TimeStamp(ROSConnection.GetNodeTime());
+        trajMsg.header.frame_id = "base_link";
+        trajMsg.joint_names = new string[] { "joint1", "joint2", "joint3", "joint4", "joint5", "joint6" };
+        trajMsg.points = trajectoryPoints;
+
+        ros.Send(trajectoryTopic, trajMsg);
+    }
+
+    void SendRobotCommands()
+    {
+        // This method is called at the specified rate
+        // Override with specific command logic as needed
+    }
+}
+
+public class RobotStateSubscriber : MonoBehaviour
+{
+    [Header("ROS Topics")]
+    public string jointStateTopic = "joint_states";
+    public string odometryTopic = "odom";
+    public string tfTopic = "tf";
+
+    [Header("Visualization Settings")]
+    public GameObject robotModel;
+    public bool updateRobotPosition = true;
+    public bool updateJointPositions = true;
+
+    private ROSConnection ros;
+    private float[] currentJointPositions;
+    private Vector3 currentRobotPosition;
+    private Quaternion currentRobotRotation;
+
+    void Start()
+    {
+        ros = ROSConnection.instance;
+
+        // Subscribe to robot state topics
+        ros.Subscribe<JointStateMsg>(jointStateTopic, OnJointStateReceived);
+        ros.Subscribe<OdometryMsg>(odometryTopic, OnOdometryReceived);
+    }
+
+    void OnJointStateReceived(JointStateMsg jointState)
+    {
+        if (!updateJointPositions || robotModel == null) return;
+
+        // Update joint positions in the Unity model
+        if (jointState.position.Length > 0)
+        {
+            currentJointPositions = new float[jointState.position.Length];
+            for (int i = 0; i < jointState.position.Length; i++)
+            {
+                currentJointPositions[i] = (float)jointState.position[i];
+            }
+
+            // Update the robot model with new joint positions
+            UpdateRobotJoints();
+        }
+    }
+
+    void OnOdometryReceived(OdometryMsg odometry)
+    {
+        if (!updateRobotPosition || robotModel == null) return;
+
+        // Update robot position and orientation
+        currentRobotPosition = new Vector3(
+            (float)odometry.pose.pose.position.x,
+            (float)odometry.pose.pose.position.y,
+            (float)odometry.pose.pose.position.z
+        );
+
+        currentRobotRotation = new Quaternion(
+            (float)odometry.pose.pose.orientation.x,
+            (float)odometry.pose.pose.orientation.y,
+            (float)odometry.pose.pose.orientation.z,
+            (float)odometry.pose.pose.orientation.w
+        );
+
+        // Apply to robot model
+        robotModel.transform.position = currentRobotPosition;
+        robotModel.transform.rotation = currentRobotRotation;
+    }
+
+    void UpdateRobotJoints()
+    {
+        if (robotModel == null || currentJointPositions == null) return;
+
+        // Find all joint objects in the robot model
+        Transform[] allTransforms = robotModel.GetComponentsInChildren<Transform>();
+
+        for (int i = 0; i < currentJointPositions.Length && i < allTransforms.Length; i++)
+        {
+            // Update joint rotation based on received position
+            // This is a simplified example - real implementation would depend on joint types
+            allTransforms[i].Rotate(Vector3.up, currentJointPositions[i] * Mathf.Rad2Deg);
+        }
+    }
+}
+```
+
+## Visualization Workflows
+
+### Real-time Data Visualization
+
+```csharp
+using UnityEngine;
+using System.Collections.Generic;
+
+public class RealTimeDataVisualizer : MonoBehaviour
+{
+    [Header("Data Visualization")]
+    public GameObject trajectoryPrefab;
+    public GameObject sensorPointPrefab;
+    public GameObject velocityVectorPrefab;
+    public Material trajectoryMaterial;
+
+    [Header("Visualization Settings")]
+    public int maxTrajectoryPoints = 1000;
+    public float trajectoryUpdateInterval = 0.1f;
+    public Color trajectoryColor = Color.blue;
+    public bool showVelocityVectors = true;
+    public bool showSensorData = true;
+
+    private List<Vector3> trajectoryPoints;
+    private float lastTrajectoryUpdate;
+    private LineRenderer trajectoryRenderer;
+    private GameObject[] velocityVectors;
+    private GameObject[] sensorPoints;
+
+    void Start()
+    {
+        InitializeVisualization();
+    }
+
+    void InitializeVisualization()
+    {
+        trajectoryPoints = new List<Vector3>();
+
+        // Setup trajectory renderer
+        SetupTrajectoryRenderer();
+
+        // Initialize visualization objects
+        velocityVectors = new GameObject[0]; // Will be created as needed
+        sensorPoints = new GameObject[0]; // Will be created as needed
+    }
+
+    void SetupTrajectoryRenderer()
+    {
+        trajectoryRenderer = gameObject.AddComponent<LineRenderer>();
+        trajectoryRenderer.material = trajectoryMaterial ?? new Material(Shader.Find("Sprites/Default"));
+        trajectoryRenderer.startColor = trajectoryColor;
+        trajectoryRenderer.endColor = trajectoryColor;
+        trajectoryRenderer.startWidth = 0.05f;
+        trajectoryRenderer.endWidth = 0.02f;
+    }
+
+    public void AddTrajectoryPoint(Vector3 point)
+    {
+        if (Time.time - lastTrajectoryUpdate >= trajectoryUpdateInterval)
+        {
+            trajectoryPoints.Add(point);
+
+            // Limit trajectory length
+            if (trajectoryPoints.Count > maxTrajectoryPoints)
+            {
+                trajectoryPoints.RemoveAt(0);
+            }
+
+            // Update the line renderer
+            trajectoryRenderer.positionCount = trajectoryPoints.Count;
+            trajectoryRenderer.SetPositions(trajectoryPoints.ToArray());
+
+            lastTrajectoryUpdate = Time.time;
+        }
+    }
+
+    public void UpdateTrajectory(List<Vector3> newTrajectory)
+    {
+        trajectoryPoints.Clear();
+        trajectoryPoints.AddRange(newTrajectory);
+
+        // Limit trajectory length
+        if (trajectoryPoints.Count > maxTrajectoryPoints)
+        {
+            int removeCount = trajectoryPoints.Count - maxTrajectoryPoints;
+            trajectoryPoints.RemoveRange(0, removeCount);
+        }
+
+        // Update the line renderer
+        trajectoryRenderer.positionCount = trajectoryPoints.Count;
+        trajectoryRenderer.SetPositions(trajectoryPoints.ToArray());
+    }
+
+    public void VisualizeVelocity(Vector3 position, Vector3 velocity, float scale = 1.0f)
+    {
+        if (!showVelocityVectors) return;
+
+        // Create or reuse velocity vector object
+        GameObject velocityObj = GetOrCreateVelocityVector();
+
+        // Position and orient the velocity vector
+        velocityObj.transform.position = position;
+        velocityObj.transform.LookAt(position + velocity * scale);
+        velocityObj.transform.localScale = new Vector3(0.1f, 0.1f, velocity.magnitude * scale);
+    }
+
+    GameObject GetOrCreateVelocityVector()
+    {
+        // Find an inactive velocity vector or create a new one
+        foreach (GameObject obj in velocityVectors)
+        {
+            if (obj != null && !obj.activeInHierarchy)
+            {
+                obj.SetActive(true);
+                return obj;
+            }
+        }
+
+        // Create new velocity vector
+        GameObject newObj = Instantiate(velocityVectorPrefab, transform);
+        newObj.name = $"VelocityVector_{velocityVectors.Length}";
+
+        // Resize array and add new object
+        System.Array.Resize(ref velocityVectors, velocityVectors.Length + 1);
+        velocityVectors[velocityVectors.Length - 1] = newObj;
+
+        return newObj;
+    }
+
+    public void VisualizeSensorData(Vector3[] sensorPointsData)
+    {
+        if (!showSensorData) return;
+
+        // Clear existing sensor points
+        foreach (GameObject point in sensorPoints)
+        {
+            if (point != null)
+            {
+                point.SetActive(false);
+            }
+        }
+
+        // Create new sensor points
+        System.Array.Resize(ref sensorPoints, sensorPointsData.Length);
+
+        for (int i = 0; i < sensorPointsData.Length; i++)
+        {
+            GameObject pointObj = Instantiate(sensorPointPrefab, sensorPointsData[i], Quaternion.identity);
+            pointObj.transform.SetParent(transform);
+            sensorPoints[i] = pointObj;
+        }
+    }
+
+    public void ClearTrajectory()
+    {
+        trajectoryPoints.Clear();
+        trajectoryRenderer.positionCount = 0;
+    }
+
+    public void ClearAllVisualizations()
+    {
+        ClearTrajectory();
+
+        // Deactivate all visualization objects
+        foreach (GameObject obj in velocityVectors)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+
+        foreach (GameObject obj in sensorPoints)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
+}
+```
+
+## Performance Optimization Workflows
+
+### Scene Optimization
+
+```csharp
+using UnityEngine;
+using System.Collections.Generic;
+
+public class SceneOptimizer : MonoBehaviour
+{
+    [Header("Optimization Settings")]
+    public bool enableOcclusionCulling = true;
+    public bool enableLOD = true;
+    public bool enableFrustumCulling = true;
+    public int targetFrameRate = 60;
+
+    [Header("Dynamic Batching")]
+    public bool enableDynamicBatching = true;
+    public int dynamicBatchThreshold = 300; // vertices
+
+    [Header("Quality Settings")]
+    public int qualityLevel = 2; // Medium
+    public bool useQualitySettings = true;
+
+    private List<Renderer> staticRenderers;
+    private List<Renderer> dynamicRenderers;
+    private Dictionary<Renderer, float> rendererDistances;
+
+    void Start()
+    {
+        InitializeOptimization();
+    }
+
+    void InitializeOptimization()
+    {
+        // Apply quality settings
+        if (useQualitySettings)
+        {
+            QualitySettings.SetQualityLevel(qualityLevel);
+            Application.targetFrameRate = targetFrameRate;
+        }
+
+        // Find all renderers in the scene
+        FindAllRenderers();
+
+        // Configure occlusion culling
+        ConfigureOcclusionCulling();
+
+        // Setup LOD groups where appropriate
+        SetupLODGroups();
+    }
+
+    void FindAllRenderers()
+    {
+        staticRenderers = new List<Renderer>();
+        dynamicRenderers = new List<Renderer>();
+        rendererDistances = new Dictionary<Renderer, float>();
+
+        Renderer[] allRenderers = FindObjectsOfType<Renderer>();
+
+        foreach (Renderer renderer in allRenderers)
+        {
+            // Classify renderers as static or dynamic
+            if (renderer.CompareTag("Static"))
+            {
+                staticRenderers.Add(renderer);
+            }
+            else
+            {
+                dynamicRenderers.Add(renderer);
+            }
+
+            rendererDistances[renderer] = float.MaxValue; // Initialize distance
+        }
+    }
+
+    void ConfigureOcclusionCulling()
+    {
+        if (enableOcclusionCulling)
+        {
+            // Enable occlusion culling in the scene
+            // This is typically done in the Lighting window in Unity Editor
+            // At runtime, we can adjust occlusion area settings
+            OcclusionArea[] occlusionAreas = FindObjectsOfType<OcclusionArea>();
+
+            foreach (OcclusionArea area in occlusionAreas)
+            {
+                area.center = area.transform.position;
+                area.size = area.transform.localScale;
+            }
+        }
+    }
+
+    void SetupLODGroups()
+    {
+        if (!enableLOD) return;
+
+        // Find robot models and setup LOD groups
+        GameObject[] robotModels = GameObject.FindGameObjectsWithTag("Robot");
+
+        foreach (GameObject robot in robotModels)
+        {
+            LODGroup lodGroup = robot.GetComponent<LODGroup>();
+            if (lodGroup == null)
+            {
+                lodGroup = robot.AddComponent<LODGroup>();
+            }
+
+            // Create LOD levels for robot model
+            SetupRobotLOD(robot, lodGroup);
+        }
+    }
+
+    void SetupRobotLOD(GameObject robot, LODGroup lodGroup)
+    {
+        // Create LOD levels for robot model
+        // This is a simplified example - real implementation would be more complex
+        Renderer[] renderers = robot.GetComponentsInChildren<Renderer>();
+
+        // Create LODs with different levels of detail
+        LOD[] lods = new LOD[3];
+
+        // LOD 0: High detail (full model)
+        Renderer[] lod0Renderers = renderers; // All renderers
+        lods[0] = new LOD(0.5f, lod0Renderers); // Visible at 50% screen height
+
+        // LOD 1: Medium detail (simplified model)
+        // For this example, we'll use the same renderers but could use simplified versions
+        lods[1] = new LOD(0.2f, lod0Renderers); // Visible at 20% screen height
+
+        // LOD 2: Low detail (bounding box or simple representation)
+        Renderer[] lod2Renderers = GetSimpleRepresentation(robot);
+        lods[2] = new LOD(0.05f, lod2Renderers); // Visible at 5% screen height
+
+        lodGroup.SetLODs(lods);
+        lodGroup.RecalculateBounds();
+    }
+
+    Renderer[] GetSimpleRepresentation(GameObject robot)
+    {
+        // Return simplified representation of the robot
+        // This could be a single mesh, bounding box, or simple primitive
+        GameObject simpleRep = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        simpleRep.transform.SetParent(robot.transform);
+        simpleRep.transform.localPosition = Vector3.zero;
+        simpleRep.transform.localRotation = Quaternion.identity;
+        simpleRep.transform.localScale = Vector3.one * 0.5f;
+
+        return new Renderer[] { simpleRep.GetComponent<Renderer>() };
+    }
+
+    void Update()
+    {
+        OptimizeBasedOnPerformance();
+    }
+
+    void OptimizeBasedOnPerformance()
+    {
+        // Adjust rendering quality based on current performance
+        float currentFrameRate = 1.0f / Time.unscaledDeltaTime;
+
+        if (currentFrameRate < targetFrameRate * 0.8f)
+        {
+            // Performance is poor, reduce quality
+            ReduceRenderingQuality();
+        }
+        else if (currentFrameRate > targetFrameRate * 0.95f)
+        {
+            // Performance is good, increase quality
+            IncreaseRenderingQuality();
+        }
+
+        // Update renderer visibility based on distance and frustum
+        UpdateRendererVisibility();
+    }
+
+    void ReduceRenderingQuality()
+    {
+        // Reduce quality settings to improve performance
+        QualitySettings.currentLevel = QualitySettings.GetQualityLevel() - 1;
+
+        // Reduce shadow quality
+        QualitySettings.shadows = ShadowQuality.HardOnly;
+        QualitySettings.shadowResolution = ShadowResolution.Low;
+
+        // Reduce anti-aliasing
+        QualitySettings.antiAliasing = 0;
+    }
+
+    void IncreaseRenderingQuality()
+    {
+        // Increase quality settings if performance allows
+        int currentLevel = QualitySettings.GetQualityLevel();
+        if (currentLevel < QualitySettings.names.Length - 1)
+        {
+            QualitySettings.currentLevel = currentLevel + 1;
+        }
+    }
+
+    void UpdateRendererVisibility()
+    {
+        // Update which renderers should be visible based on distance and frustum
+        Camera mainCamera = Camera.main;
+        if (mainCamera == null) return;
+
+        Vector3 cameraPos = mainCamera.transform.position;
+
+        // Update distances for all renderers
+        foreach (Renderer renderer in staticRenderers)
+        {
+            float distance = Vector3.Distance(cameraPos, renderer.bounds.center);
+            rendererDistances[renderer] = distance;
+
+            // Update visibility based on distance and frustum
+            if (enableFrustumCulling)
+            {
+                renderer.enabled = IsInFrustum(renderer, mainCamera) &&
+                                 distance < 100.0f; // Cull beyond 100 units
+            }
+        }
+    }
+
+    bool IsInFrustum(Renderer renderer, Camera camera)
+    {
+        // Check if renderer bounds are within camera frustum
+        return GeometryUtility.TestPlanesAABB(
+            GeometryUtility.CalculateFrustumPlanes(camera),
+            renderer.bounds
+        );
+    }
+}
+```
+
+## Build and Deployment Workflows
+
+### Building for Different Platforms
+
+```csharp
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+
+public class RoboticsBuildManager : MonoBehaviour
+{
+    [Header("Build Settings")]
+    public BuildTarget buildTarget = BuildTarget.StandaloneWindows64;
+    public string buildPath = "Builds/RoboticsVisualization";
+    public bool developmentBuild = false;
+    public bool autoRunBuild = false;
+
+    [Header("Platform Specific")]
+    public bool enableXR = false;
+    public bool enableMobileOptimizations = false;
+
+    [MenuItem("Robotics/Build Visualization")]
+    public static void BuildVisualization()
+    {
+        RoboticsBuildManager buildManager = FindObjectOfType<RoboticsBuildManager>();
+        if (buildManager != null)
+        {
+            buildManager.PerformBuild();
+        }
+        else
+        {
+            Debug.LogError("RoboticsBuildManager not found in scene!");
+        }
+    }
+
+    public void PerformBuild()
+    {
+        // Configure build settings
+        PlayerSettings.companyName = "RoboticsLab";
+        PlayerSettings.productName = "Robotics Visualization";
+        PlayerSettings.bundleVersion = "1.0.0";
+
+        // Set up scenes to include in build
+        string[] scenes = GetBuildScenes();
+
+        // Configure platform-specific settings
+        ConfigurePlatformSettings();
+
+        // Perform the build
+        BuildPipeline.BuildPlayer(scenes, GetBuildPath(), buildTarget,
+                                developmentBuild ? BuildOptions.Development : BuildOptions.None);
+
+        Debug.Log($"Build completed to: {GetBuildPath()}");
+
+        if (autoRunBuild)
+        {
+            RunBuild();
+        }
+    }
+
+    string[] GetBuildScenes()
+    {
+        // Get all enabled scenes in build settings
+        System.Collections.Generic.List<string> scenePaths =
+            new System.Collections.Generic.List<string>();
+
+        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        {
+            if (scene.enabled)
+            {
+                scenePaths.Add(scene.path);
+            }
+        }
+
+        return scenePaths.ToArray();
+    }
+
+    string GetBuildPath()
+    {
+        // Ensure build path exists
+        string fullPath = Path.Combine(Application.dataPath, "..", buildPath);
+        Directory.CreateDirectory(fullPath);
+
+        return fullPath;
+    }
+
+    void ConfigurePlatformSettings()
+    {
+        switch (buildTarget)
+        {
+            case BuildTarget.StandaloneWindows64:
+                ConfigureWindowsBuild();
+                break;
+            case BuildTarget.StandaloneLinux64:
+                ConfigureLinuxBuild();
+                break;
+            case BuildTarget.Android:
+                ConfigureAndroidBuild();
+                break;
+            case BuildTarget.iOS:
+                ConfigureIOSBuild();
+                break;
+            default:
+                Debug.LogWarning($"Build target {buildTarget} not specifically configured");
+                break;
+        }
+    }
+
+    void ConfigureWindowsBuild()
+    {
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+        PlayerSettings.Standalone.allowAudioAutoplayInWebBrowser = true;
+
+        if (enableXR)
+        {
+            // Configure XR settings for Windows
+            PlayerSettings.virtualRealitySupported = true;
+        }
+    }
+
+    void ConfigureLinuxBuild()
+    {
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+
+        if (enableXR)
+        {
+            PlayerSettings.virtualRealitySupported = true;
+        }
+    }
+
+    void ConfigureAndroidBuild()
+    {
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
+        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24; // Android 7.0
+
+        if (enableMobileOptimizations)
+        {
+            // Optimize for mobile
+            QualitySettings.SetQualityLevel(0); // Lowest quality
+            PlayerSettings.stripEngineCode = true;
+        }
+
+        if (enableXR)
+        {
+            PlayerSettings.virtualRealitySupported = true;
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+        }
+    }
+
+    void ConfigureIOSBuild()
+    {
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.iOS, ScriptingImplementation.IL2CPP);
+
+        if (enableMobileOptimizations)
+        {
+            QualitySettings.SetQualityLevel(0); // Lowest quality
+            PlayerSettings.stripEngineCode = true;
+        }
+
+        if (enableXR)
+        {
+            PlayerSettings.virtualRealitySupported = true;
+        }
+    }
+
+    void RunBuild()
+    {
+        string buildPath = GetBuildPath();
+        string executablePath = "";
+
+        switch (buildTarget)
+        {
+            case BuildTarget.StandaloneWindows64:
+                executablePath = Path.Combine(buildPath, PlayerSettings.productName + ".exe");
+                break;
+            case BuildTarget.StandaloneLinux64:
+                executablePath = Path.Combine(buildPath, PlayerSettings.productName);
+                break;
+        }
+
+        if (!string.IsNullOrEmpty(executablePath) && File.Exists(executablePath))
+        {
+            System.Diagnostics.Process.Start(executablePath);
+        }
+        else
+        {
+            Debug.LogWarning("Could not run build - executable not found or not supported platform");
+        }
+    }
+}
+```
+
+## Testing and Validation Workflows
+
+### Automated Testing for Robotics Visualization
+
+```csharp
+using UnityEngine;
+using UnityEngine.TestTools;
+using NUnit.Framework;
+using System.Collections;
+
+public class RoboticsVisualizationTests
+{
+    [Test]
+    public void TestROSConnectionInitialization()
+    {
+        // Test that ROS connection initializes properly
+        GameObject testObject = new GameObject("TestROSConnection");
+        ROSConnectionManager connectionManager = testObject.AddComponent<ROSConnectionManager>();
+
+        // Verify default values
+        Assert.IsFalse(connectionManager.isConnected);
+        Assert.AreEqual("127.0.0.1", connectionManager.rosIP);
+        Assert.AreEqual(10000, connectionManager.rosPort);
+
+        // Clean up
+        Object.DestroyImmediate(testObject);
+    }
+
+    [Test]
+    public void TestTrajectoryVisualization()
+    {
+        // Test trajectory visualization functionality
+        GameObject testObject = new GameObject("TestTrajectory");
+        RealTimeDataVisualizer visualizer = testObject.AddComponent<RealTimeDataVisualizer>();
+
+        // Initialize visualization
+        visualizer.Start();
+
+        // Add some trajectory points
+        Vector3 point1 = new Vector3(0, 0, 0);
+        Vector3 point2 = new Vector3(1, 0, 0);
+        Vector3 point3 = new Vector3(2, 0, 0);
+
+        visualizer.AddTrajectoryPoint(point1);
+        visualizer.AddTrajectoryPoint(point2);
+        visualizer.AddTrajectoryPoint(point3);
+
+        // Verify trajectory was added
+        // Note: This is a simplified test - in reality you'd need to check the LineRenderer
+        Assert.IsTrue(true); // Placeholder - actual implementation would check LineRenderer positions
+
+        // Clean up
+        Object.DestroyImmediate(testObject);
+    }
+
+    [Test]
+    public void TestRobotModelOptimizer()
+    {
+        // Test robot model optimization
+        GameObject robot = new GameObject("TestRobot");
+        GameObject link = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        link.transform.SetParent(robot.transform);
+
+        RobotModelOptimizer optimizer = robot.AddComponent<RobotModelOptimizer>();
+
+        // Run optimization
+        optimizer.OptimizeRobotModel();
+
+        // Verify optimization ran without errors
+        Assert.IsTrue(true); // Placeholder for actual optimization verification
+
+        // Clean up
+        Object.DestroyImmediate(robot);
+    }
+}
+
+// Performance test for visualization
+public class RoboticsPerformanceTests
+{
+    [UnityTest]
+    public IEnumerator TestVisualizationPerformance()
+    {
+        // Create a visualization with many objects
+        GameObject visualizerObject = new GameObject("PerformanceTestVisualizer");
+        RealTimeDataVisualizer visualizer = visualizerObject.AddComponent<RealTimeDataVisualizer>();
+        visualizer.Start();
+
+        // Add many trajectory points to test performance
+        for (int i = 0; i < 1000; i++)
+        {
+            Vector3 point = new Vector3(i * 0.01f, 0, 0);
+            visualizer.AddTrajectoryPoint(point);
+
+            // Yield occasionally to prevent editor lockup
+            if (i % 100 == 0)
+            {
+                yield return null;
+            }
+        }
+
+        // Verify that frame rate remains acceptable
+        float frameTime = Time.deltaTime;
+        Assert.Less(frameTime, 1.0f/30.0f); // Should maintain at least 30 FPS
+
+        // Clean up
+        Object.DestroyImmediate(visualizerObject);
+    }
+}
+```
+
+Unity workflows for robotics visualization provide a structured approach to developing, optimizing, and deploying applications that bridge the gap between complex robotics data and intuitive human interfaces. By following these workflows, developers can create efficient, maintainable, and high-performance visualization systems for robotics applications.
