@@ -1,24 +1,26 @@
 {
   "id": "ros2-advanced/parameters",
-  "title": "parameters",
-  "description": "",
+  "title": "Dynamic Parameters in ROS 2",
+  "description": "Introduction to Dynamic Parameters",
   "source": "@site/docs/physical-ai/ros2-advanced/parameters.mdx",
   "sourceDirName": "ros2-advanced",
   "slug": "/ros2-advanced/parameters",
   "permalink": "/ros2-advanced/parameters",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Dynamic Parameters in ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "index",
+    "title": "Chapter 6 - Advanced ROS 2 Concepts",
     "permalink": "/ros2-advanced/"
   },
   "next": {
-    "title": "quality-of-service",
+    "title": "Quality of Service (QoS) in ROS 2",
     "permalink": "/ros2-advanced/quality-of-service"
   }
 }

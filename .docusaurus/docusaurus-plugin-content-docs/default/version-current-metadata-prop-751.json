@@ -169,21 +169,21 @@
             "items": [
               {
                 "type": "link",
-                "label": "parameters",
+                "label": "Dynamic Parameters in ROS 2",
                 "href": "/ros2-advanced/parameters",
                 "docId": "ros2-advanced/parameters",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "quality-of-service",
+                "label": "Quality of Service (QoS) in ROS 2",
                 "href": "/ros2-advanced/quality-of-service",
                 "docId": "ros2-advanced/quality-of-service",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
+                "label": "Chapter 6 Summary - Advanced ROS 2 Concepts",
                 "href": "/ros2-advanced/chapter-summary",
                 "docId": "ros2-advanced/chapter-summary",
                 "unlisted": false
@@ -349,7 +349,7 @@
             "items": [
               {
                 "type": "link",
-                "label": "whisper-integration",
+                "label": "Whisper Integration in Voice-to-Action Robotics",
                 "href": "/voice-robotics/whisper-integration",
                 "docId": "voice-robotics/whisper-integration",
                 "unlisted": false
@@ -363,7 +363,7 @@
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
+                "label": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
                 "href": "/voice-robotics/chapter-summary",
                 "docId": "voice-robotics/chapter-summary",
                 "unlisted": false
@@ -575,7 +575,7 @@
     "index": {
       "id": "index",
       "title": "Physical AI & Humanoid Robotics Textbook",
-      "description": "Welcome to the comprehensive textbook on Physical AI and Humanoid Robotics. This AI-native educational resource covers the complete journey from foundational concepts to advanced integration, providing both theoretical understanding and practical implementation skills."
+      "description": "An AI-Native Technical Textbook on Embodied Intelligence"
     },
     "introduction/chapter-summary": {
       "id": "introduction/chapter-summary",
@@ -680,26 +680,26 @@
     },
     "ros2-advanced/chapter-summary": {
       "id": "ros2-advanced/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
+      "description": "Overview",
       "sidebar": "tutorialSidebar"
     },
     "ros2-advanced/index": {
       "id": "ros2-advanced/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 6 - Advanced ROS 2 Concepts",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "ros2-advanced/parameters": {
       "id": "ros2-advanced/parameters",
-      "title": "parameters",
-      "description": "",
+      "title": "Dynamic Parameters in ROS 2",
+      "description": "Introduction to Dynamic Parameters",
       "sidebar": "tutorialSidebar"
     },
     "ros2-advanced/quality-of-service": {
       "id": "ros2-advanced/quality-of-service",
-      "title": "quality-of-service",
-      "description": "",
+      "title": "Quality of Service (QoS) in ROS 2",
+      "description": "Introduction to Quality of Service",
       "sidebar": "tutorialSidebar"
     },
     "ros2-architecture/chapter-summary": {
@@ -840,8 +840,8 @@
     },
     "voice-robotics/chapter-summary": {
       "id": "voice-robotics/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
+      "description": "Overview",
       "sidebar": "tutorialSidebar"
     },
     "voice-robotics/index": {
@@ -858,8 +858,8 @@
     },
     "voice-robotics/whisper-integration": {
       "id": "voice-robotics/whisper-integration",
-      "title": "whisper-integration",
-      "description": "",
+      "title": "Whisper Integration in Voice-to-Action Robotics",
+      "description": "Introduction to Whisper in Robotics",
       "sidebar": "tutorialSidebar"
     }
   }

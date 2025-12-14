@@ -39,7 +39,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/fuzailpalook/new-book/tree/main/',
+            'https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/',
         },
         blog: false, // Disable blog
         theme: {
@@ -63,7 +63,7 @@ const config = {
         logo: {
           alt: 'Physical AI Logo',
           src: 'img/logo.svg',
-          href: '/', // Point to the main docs page
+          href: '/', // Point to the landing page
         },
         items: [
           {

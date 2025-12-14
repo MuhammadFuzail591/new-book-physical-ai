@@ -1,1 +1,579 @@
----\ntitle: Chapter Placeholder - Quality of Service\n---\n\n# Quality of Service\n\nPlaceholder content for QoS section.
+---
+title: Quality of Service (QoS) in ROS 2
+---
+
+# Quality of Service (QoS) in ROS 2
+
+## Introduction to Quality of Service
+
+Quality of Service (QoS) in ROS 2 provides fine-grained control over communication behavior between nodes. QoS policies determine how messages are delivered, stored, and handled in the face of network issues or system constraints. Proper QoS configuration is essential for ensuring reliable communication in robotic systems with diverse requirements.
+
+Unlike traditional communication systems where reliability is an all-or-nothing proposition, ROS 2's QoS system allows you to tune communication characteristics to match the specific needs of your robotic application. This is particularly important in robotics where different types of data have vastly different requirements - sensor data may be high-frequency but can tolerate some loss, while control commands must be delivered reliably.
+
+## QoS Policy Overview
+
+### Core QoS Policies
+
+ROS 2's QoS system consists of several key policies that can be configured independently:
+
+1. **Reliability Policy**: Controls whether messages are delivered reliably or on a best-effort basis
+2. **Durability Policy**: Determines how messages persist for late-joining subscribers
+3. **History Policy**: Specifies how many messages to store and when to store them
+4. **Deadline Policy**: Sets the maximum time between consecutive messages
+5. **Lifespan Policy**: Defines how long messages remain valid after publication
+6. **Liveliness Policy**: Ensures publishers and subscribers are active
+7. **Depth Policy**: Controls the size of the message queue
+
+### Predefined QoS Profiles
+
+ROS 2 provides several predefined QoS profiles optimized for common use cases:
+
+```python
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import (
+    QoSProfile,
+    QoSDurabilityPolicy,
+    QoSHistoryPolicy,
+    QoSReliabilityPolicy,
+    QoSLivelinessPolicy
+)
+from sensor_msgs.msg import LaserScan
+from std_msgs.msg import String
+from geometry_msgs.msg import Twist
+
+class QoSProfileDemoNode(Node):
+    def __init__(self):
+        super().__init__('qos_profile_demo')
+
+        # Default QoS profile - balanced for general use
+        default_qos = rclpy.qos.qos_profile_default
+
+        # Sensor data QoS - optimized for high-frequency data
+        sensor_qos = rclpy.qos.qos_profile_sensor_data
+
+        # Services QoS - for reliable service calls
+        services_qos = rclpy.qos.qos_profile_services_default
+
+        # Parameters QoS - for reliable parameter updates
+        parameters_qos = rclpy.qos.qos_profile_parameters
+
+        # Create publishers with different QoS profiles
+        self.sensor_pub = self.create_publisher(LaserScan, 'laser_scan', sensor_qos)
+        self.cmd_pub = self.create_publisher(Twist, 'cmd_vel', default_qos)
+        self.status_pub = self.create_publisher(String, 'robot_status', parameters_qos)
+
+        # Create subscribers with matching QoS profiles
+        self.sensor_sub = self.create_subscription(
+            LaserScan, 'laser_scan', self.sensor_callback, sensor_qos
+        )
+        self.cmd_sub = self.create_subscription(
+            Twist, 'cmd_vel', self.cmd_callback, default_qos
+        )
+
+    def sensor_callback(self, msg):
+        """Handle sensor data with best-effort delivery"""
+        self.get_logger().debug(f'Sensor data received: {len(msg.ranges)} ranges')
+
+    def cmd_callback(self, msg):
+        """Handle command data with reliable delivery"""
+        self.get_logger().info(f'Command received: linear={msg.linear.x}, angular={msg.angular.z}')
+```
+
+## Reliability Policy
+
+### Best Effort vs Reliable Delivery
+
+The reliability policy determines whether ROS 2 should guarantee message delivery:
+
+```python
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy
+
+class ReliabilityDemoNode(Node):
+    def __init__(self):
+        super().__init__('reliability_demo')
+
+        # Best effort - no guarantee of delivery, maximum performance
+        best_effort_qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=rclpy.qos.QoSHistoryPolicy.KEEP_LAST,
+            depth=10
+        )
+
+        # Reliable - guaranteed delivery, may impact performance
+        reliable_qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            history=rclpy.qos.QoSHistoryPolicy.KEEP_LAST,
+            depth=10
+        )
+
+        # High-frequency sensor data (e.g., LIDAR) - best effort
+        self.sensor_pub = self.create_publisher(LaserScan, 'sensor_data', best_effort_qos)
+        self.sensor_sub = self.create_subscription(
+            LaserScan, 'sensor_data', self.sensor_callback, best_effort_qos
+        )
+
+        # Critical control commands - reliable
+        self.control_pub = self.create_publisher(Twist, 'control_commands', reliable_qos)
+        self.control_sub = self.create_subscription(
+            Twist, 'control_commands', self.control_callback, reliable_qos
+        )
+
+        self.get_logger().info('Reliability demo node initialized')
+
+    def sensor_callback(self, msg):
+        """Handle sensor data - occasional dropped messages are acceptable"""
+        self.get_logger().debug(f'Received sensor data, timestamp: {msg.header.stamp}')
+
+    def control_callback(self, msg):
+        """Handle control commands - must be delivered reliably"""
+        self.get_logger().info(f'Received critical control command')
+```
+
+## Durability Policy
+
+### Volatile vs Transient Local Durability
+
+The durability policy controls how messages are stored for late-joining subscribers:
+
+```python
+from rclpy.qos import QoSProfile, QoSDurabilityPolicy
+from rclpy.duration import Duration
+
+class DurabilityDemoNode(Node):
+    def __init__(self):
+        super().__init__('durability_demo')
+
+        # Volatile - messages are not stored for late joiners
+        volatile_qos = QoSProfile(
+            durability=QoSDurabilityPolicy.VOLATILE,
+            history=rclpy.qos.QoSHistoryPolicy.KEEP_LAST,
+            depth=5
+        )
+
+        # Transient Local - messages are stored and delivered to late joiners
+        transient_qos = QoSProfile(
+            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+            history=rclpy.qos.QoSHistoryPolicy.KEEP_LAST,
+            depth=1
+        )
+
+        # Sensor data - no need to store for late joiners
+        self.volatile_pub = self.create_publisher(String, 'sensor_updates', volatile_qos)
+        self.volatile_sub = self.create_subscription(
+            String, 'sensor_updates', self.volatile_callback, volatile_qos
+        )
+
+        # Configuration/status updates - should be available to late joiners
+        self.transient_pub = self.create_publisher(String, 'config_updates', transient_qos)
+        self.transient_sub = self.create_subscription(
+            String, 'config_updates', self.transient_callback, transient_qos
+        )
+
+        # Timer to periodically publish status updates
+        self.status_timer = self.create_timer(2.0, self.publish_status)
+        self.config_timer = self.create_timer(5.0, self.publish_config)
+
+        self.status_counter = 0
+        self.config_counter = 0
+
+    def publish_status(self):
+        """Publish status updates with volatile durability"""
+        msg = String()
+        msg.data = f'Status update {self.status_counter}'
+        self.volatile_pub.publish(msg)
+        self.status_counter += 1
+
+    def publish_config(self):
+        """Publish configuration updates with transient durability"""
+        msg = String()
+        msg.data = f'Config update {self.config_counter}'
+        self.transient_pub.publish(msg)
+        self.config_counter += 1
+
+    def volatile_callback(self, msg):
+        """Handle volatile messages"""
+        self.get_logger().debug(f'Volatile message: {msg.data}')
+
+    def transient_callback(self, msg):
+        """Handle transient messages - these will include old messages for late joiners"""
+        self.get_logger().info(f'Transient message: {msg.data}')
+```
+
+## History Policy and Depth
+
+### Managing Message History
+
+The history and depth policies control how many messages are stored and when:
+
+```python
+from rclpy.qos import QoSProfile, QoSHistoryPolicy
+
+class HistoryDemoNode(Node):
+    def __init__(self):
+        super().__init__('history_demo')
+
+        # Keep last N messages - maintains a fixed-size queue
+        keep_last_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=10,  # Keep the 10 most recent messages
+            reliability=rclpy.qos.QoSReliabilityPolicy.BEST_EFFORT
+        )
+
+        # Keep all messages - stores all messages (use with caution!)
+        keep_all_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_ALL,
+            reliability=rclpy.qos.QoSReliabilityPolicy.RELIABLE
+        )
+
+        # For real-time sensor data - only keep recent values
+        self.sensor_pub = self.create_publisher(LaserScan, 'realtime_sensor', keep_last_qos)
+
+        # For logging/analysis - keep all messages
+        self.log_pub = self.create_publisher(String, 'log_messages', keep_all_qos)
+
+        # Timer to generate sensor data
+        self.sensor_timer = self.create_timer(0.1, self.publish_sensor_data)
+        self.log_timer = self.create_timer(1.0, self.publish_log_message)
+
+        self.scan_counter = 0
+        self.log_counter = 0
+
+    def publish_sensor_data(self):
+        """Publish high-frequency sensor data with limited history"""
+        msg = LaserScan()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = 'sensor_frame'
+        msg.ranges = [1.0 + (self.scan_counter % 100) * 0.01] * 360  # Simulated data
+        self.sensor_pub.publish(msg)
+        self.scan_counter += 1
+
+    def publish_log_message(self):
+        """Publish log messages that should all be preserved"""
+        msg = String()
+        msg.data = f'Log entry {self.log_counter}: System status normal at {self.get_clock().now().seconds_nanoseconds()}'
+        self.log_pub.publish(msg)
+        self.log_counter += 1
+```
+
+## Advanced QoS Configuration
+
+### Custom QoS Profiles for Specialized Requirements
+
+For specialized applications, you can create custom QoS profiles that combine policies optimally:
+
+```python
+from rclpy.qos import QoSProfile, QoSLivelinessPolicy
+from rclpy.duration import Duration
+
+class CustomQoSNode(Node):
+    def __init__(self):
+        super().__init__('custom_qos_node')
+
+        # Safety-critical messages - must be delivered within deadline
+        safety_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=5,
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+            deadline=Duration(seconds=1),  # Must be delivered within 1 second
+            lifespan=Duration(seconds=30),  # Keep for 30 seconds
+            liveliness=QoSLivelinessPolicy.AUTOMATIC,
+            liveliness_lease_duration=Duration(seconds=2)
+        )
+
+        # High-frequency data with strict timing requirements
+        high_freq_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=1,  # Only keep the most recent message
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            durability=QoSDurabilityPolicy.VOLATILE,
+            deadline=Duration(nanoseconds=100000000),  # 100ms deadline
+            lifespan=Duration(nanoseconds=50000000)   # 50ms lifespan
+        )
+
+        # Diagnostic data - keep all with best effort
+        diagnostic_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_ALL,
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            durability=QoSDurabilityPolicy.VOLATILE,
+            lifespan=Duration(seconds=60)  # Keep diagnostics for 60 seconds
+        )
+
+        # Create publishers with custom QoS
+        self.safety_pub = self.create_publisher(String, 'safety_critical', safety_qos)
+        self.high_freq_pub = self.create_publisher(String, 'high_frequency', high_freq_qos)
+        self.diag_pub = self.create_publisher(String, 'diagnostics', diagnostic_qos)
+
+        # Create subscribers with matching QoS
+        self.safety_sub = self.create_subscription(
+            String, 'safety_critical', self.safety_callback, safety_qos
+        )
+        self.high_freq_sub = self.create_subscription(
+            String, 'high_frequency', self.high_freq_callback, high_freq_qos
+        )
+        self.diag_sub = self.create_subscription(
+            String, 'diagnostics', self.diag_callback, diagnostic_qos
+        )
+
+        # Timer for safety-critical messages
+        self.safety_timer = self.create_timer(0.5, self.publish_safety_message)
+        self.safety_counter = 0
+
+    def publish_safety_message(self):
+        """Publish safety-critical messages with strict QoS requirements"""
+        msg = String()
+        msg.data = f'Safety check {self.safety_counter}: OK'
+        self.safety_pub.publish(msg)
+        self.safety_counter += 1
+
+    def safety_callback(self, msg):
+        """Handle safety-critical messages - must arrive within deadline"""
+        self.get_logger().warn(f'SAFETY: {msg.data}')
+
+    def high_freq_callback(self, msg):
+        """Handle high-frequency messages - only process the most recent"""
+        self.get_logger().debug(f'High freq: {msg.data}')
+
+    def diag_callback(self, msg):
+        """Handle diagnostic messages - all should be preserved"""
+        self.get_logger().info(f'Diagnostic: {msg.data}')
+```
+
+## QoS Matching and Compatibility
+
+### Understanding QoS Compatibility
+
+When a publisher and subscriber have different QoS policies, ROS 2 attempts to find a compatible configuration:
+
+```python
+class QoSCompatibilityDemo(Node):
+    def __init__(self):
+        super().__init__('qos_compatibility_demo')
+
+        # Publisher with specific QoS requirements
+        publisher_qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=5
+        )
+
+        # Subscriber with different (but compatible) QoS
+        subscriber_qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,  # Less strict than publisher
+            durability=QoSDurabilityPolicy.VOLATILE,       # Less strict than publisher
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=10  # More generous than publisher
+        )
+
+        # The actual QoS used will be the "intersection" of requirements
+        # In this case: BEST_EFFORT reliability and VOLATILE durability
+        self.publisher = self.create_publisher(String, 'qos_test', publisher_qos)
+        self.subscriber = self.create_subscription(
+            String, 'qos_test', self.compatibility_callback, subscriber_qos
+        )
+
+        # Timer to send test messages
+        self.test_timer = self.create_timer(1.0, self.send_test_message)
+        self.message_counter = 0
+
+    def send_test_message(self):
+        """Send test message to demonstrate QoS compatibility"""
+        msg = String()
+        msg.data = f'Test message {self.message_counter}'
+        self.publisher.publish(msg)
+        self.message_counter += 1
+
+    def compatibility_callback(self, msg):
+        """Receive message with negotiated QoS"""
+        self.get_logger().info(f'Received: {msg.data}')
+
+        # Check the actual QoS being used
+        # Note: There's no direct API to query the negotiated QoS in current ROS 2 versions
+        # but you can infer it from behavior
+```
+
+## Practical QoS Examples
+
+### Sensor Data Pipeline
+
+A practical example showing how to configure QoS for a sensor data pipeline:
+
+```python
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image, LaserScan, Imu
+from std_msgs.msg import Header
+from rclpy.qos import QoSProfile, QoSHistoryPolicy, QoSReliabilityPolicy, QoSDurabilityPolicy
+
+class SensorPipelineNode(Node):
+    def __init__(self):
+        super().__init__('sensor_pipeline')
+
+        # Camera images - high frequency, can tolerate some loss
+        self.image_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=1,  # Only keep most recent image to avoid lag
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
+
+        # LIDAR scans - high frequency, can tolerate some loss
+        self.lidar_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=5,  # Keep a few recent scans
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
+
+        # IMU data - high frequency, can tolerate some loss
+        self.imu_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=10,  # Keep more IMU data for filtering
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
+
+        # Processed sensor fusion data - reliable delivery
+        self.fusion_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=5,
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
+
+        # Create publishers and subscribers
+        self.image_pub = self.create_publisher(Image, 'camera/image_raw', self.image_qos)
+        self.lidar_pub = self.create_publisher(LaserScan, 'lidar/scan', self.lidar_qos)
+        self.imu_pub = self.create_publisher(Imu, 'imu/data', self.imu_qos)
+        self.fusion_pub = self.create_publisher(String, 'sensor_fusion', self.fusion_qos)
+
+        self.image_sub = self.create_subscription(
+            Image, 'camera/image_raw', self.image_callback, self.image_qos
+        )
+        self.lidar_sub = self.create_subscription(
+            LaserScan, 'lidar/scan', self.lidar_callback, self.lidar_qos
+        )
+        self.imu_sub = self.create_subscription(
+            Imu, 'imu/data', self.imu_callback, self.imu_qos
+        )
+
+        # Timer to simulate sensor data
+        self.image_timer = self.create_timer(0.033, self.publish_image)  # ~30 FPS
+        self.lidar_timer = self.create_timer(0.1, self.publish_lidar)     # 10 Hz
+        self.imu_timer = self.create_timer(0.01, self.publish_imu)       # 100 Hz
+
+        self.image_counter = 0
+        self.lidar_counter = 0
+        self.imu_counter = 0
+
+    def publish_image(self):
+        """Publish camera image with appropriate QoS"""
+        msg = Image()
+        msg.header = Header()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = 'camera_frame'
+        msg.height = 480
+        msg.width = 640
+        msg.encoding = 'rgb8'
+        msg.is_bigendian = False
+        msg.step = 640 * 3
+        msg.data = [0] * (640 * 480 * 3)  # Simulated data
+
+        self.image_pub.publish(msg)
+        self.image_counter += 1
+
+    def publish_lidar(self):
+        """Publish LIDAR scan with appropriate QoS"""
+        msg = LaserScan()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = 'lidar_frame'
+        msg.angle_min = -3.14
+        msg.angle_max = 3.14
+        msg.angle_increment = 0.01
+        msg.time_increment = 0.0
+        msg.scan_time = 0.1
+        msg.range_min = 0.1
+        msg.range_max = 30.0
+        msg.ranges = [1.0 + (self.lidar_counter % 100) * 0.01] * 628  # Simulated data
+
+        self.lidar_pub.publish(msg)
+        self.lidar_counter += 1
+
+    def publish_imu(self):
+        """Publish IMU data with appropriate QoS"""
+        msg = Imu()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = 'imu_frame'
+        # Simulated data
+        self.imu_pub.publish(msg)
+        self.imu_counter += 1
+
+    def image_callback(self, msg):
+        """Process camera image"""
+        self.get_logger().debug(f'Processed image {self.image_counter}')
+
+    def lidar_callback(self, msg):
+        """Process LIDAR scan"""
+        self.get_logger().debug(f'Processed LIDAR scan {self.lidar_counter}')
+
+    def imu_callback(self, msg):
+        """Process IMU data"""
+        self.get_logger().debug(f'Processed IMU data {self.imu_counter}')
+```
+
+## Performance Considerations
+
+### Optimizing QoS for Performance
+
+Proper QoS configuration can significantly impact system performance:
+
+```python
+class QoSPerformanceNode(Node):
+    def __init__(self):
+        super().__init__('qos_performance')
+
+        # For high-frequency data, minimize overhead
+        self.high_freq_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=1,  # Minimal queue size
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,  # No ACK overhead
+            durability=QoSDurabilityPolicy.VOLATILE,  # No storage overhead
+        )
+
+        # For critical data, optimize for reliability
+        self.critical_qos = QoSProfile(
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=10,  # Larger queue for burst handling
+            reliability=QoSReliabilityPolicy.RELIABLE,  # Guarantee delivery
+            durability=QoSDurabilityPolicy.VOLATILE,  # But don't store for late joiners
+        )
+
+        # Performance monitoring
+        self.create_timer(1.0, self.performance_report)
+        self.message_count = 0
+        self.start_time = self.get_clock().now()
+
+    def performance_report(self):
+        """Report QoS performance metrics"""
+        current_time = self.get_clock().now()
+        elapsed = (current_time - self.start_time).nanoseconds * 1e-9
+        rate = self.message_count / elapsed if elapsed > 0 else 0
+
+        self.get_logger().info(f'Performance: {rate:.2f} msg/s, {self.message_count} total')
+```
+
+## Best Practices for QoS Configuration
+
+### Guidelines for QoS Selection
+
+When selecting QoS policies, consider these guidelines:
+
+1. **Sensor Data**: Use BEST_EFFORT reliability and VOLATILE durability
+2. **Control Commands**: Use RELIABLE reliability and appropriate durability
+3. **Configuration Parameters**: Use RELIABLE reliability and TRANSIENT_LOCAL durability
+4. **Diagnostic Information**: Use BEST_EFFORT reliability and VOLATILE durability
+5. **Safety-Critical Messages**: Use RELIABLE reliability with deadlines
+
+Quality of Service policies in ROS 2 provide powerful control over communication behavior, allowing you to optimize your robotic applications for specific requirements regarding reliability, performance, and resource usage. Understanding and properly configuring QoS is essential for building robust and efficient robotic systems.

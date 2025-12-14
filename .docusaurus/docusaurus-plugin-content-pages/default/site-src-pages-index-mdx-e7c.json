@@ -1,0 +1,8 @@
+{
+  "type": "mdx",
+  "permalink": "/",
+  "source": "@site/src/pages/index.mdx",
+  "description": "function HomepageHeader() {",
+  "frontMatter": {},
+  "unlisted": false
+}

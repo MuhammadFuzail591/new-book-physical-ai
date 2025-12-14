@@ -1,338 +1,295 @@
 {
-  "/__docusaurus/debug-81a": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
-  "/__docusaurus/debug/config-054": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
-  "/__docusaurus/debug/content-798": {
-    "__comp": "__comp---theme-debug-contentba-8-ce7",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    },
-    "allContent": "allContent---docusaurus-debug-content-246-9aa"
-  },
-  "/__docusaurus/debug/globalData-eb3": {
-    "__comp": "__comp---theme-debug-global-dataede-0fa",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
-  "/__docusaurus/debug/metadata-48a": {
-    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
-  "/__docusaurus/debug/registry-6bc": {
-    "__comp": "__comp---theme-debug-registry-679-501",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
-  "/__docusaurus/debug/routes-87c": {
-    "__comp": "__comp---theme-debug-routes-946-699",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugbbb-2b7"
-    }
-  },
   "/-767": {
-    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__comp": "5e95c892",
     "__context": {
-      "plugin": "plugin---724-aa2"
+      "plugin": "7243c1ac"
     }
   },
   "/-15e": {
-    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
-    "version": "version---935-fcf"
+    "__comp": "a7bd4aaa",
+    "version": "935f2afb"
   },
   "/-034": {
-    "__comp": "__comp---theme-doc-roota-94-67a"
+    "__comp": "a94703ab"
   },
   "/capstone-project-8bd": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-87-e-332"
+    "__comp": "17896441",
+    "content": "87e92902"
   },
   "/capstone-project/chapter-summary-6ed": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-chapter-summary-82-d-5ff"
+    "__comp": "17896441",
+    "content": "82d446dd"
   },
   "/capstone-project/conclusion-bac": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-conclusion-01-d-e13"
+    "__comp": "17896441",
+    "content": "01dc1668"
   },
   "/capstone-project/deployment-565": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-deployment-67-d-bda"
+    "__comp": "17896441",
+    "content": "67df4fe3"
   },
   "/capstone-project/implementation-5b3": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-implementationce-4-071"
+    "__comp": "17896441",
+    "content": "ce44e7b3"
   },
   "/capstone-project/project-overview-6cb": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---capstone-project-project-overview-06-f-559"
+    "__comp": "17896441",
+    "content": "06f0efda"
   },
   "/cognitive-planning-9c9": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cognitive-planningbfa-a5c"
+    "__comp": "17896441",
+    "content": "bfac78c2"
   },
   "/cognitive-planning/chapter-summary-254": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cognitive-planning-chapter-summary-6-ea-d02"
+    "__comp": "17896441",
+    "content": "6eaa7362"
   },
   "/cognitive-planning/cognitive-architectures-47b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cognitive-planning-cognitive-architectures-777-b95"
+    "__comp": "17896441",
+    "content": "777d5a7e"
   },
   "/cognitive-planning/llm-integration-830": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cognitive-planning-llm-integration-63-f-c3f"
+    "__comp": "17896441",
+    "content": "63f426f9"
   },
   "/cognitive-planning/vla-systems-93a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cognitive-planning-vla-systems-99-d-d3b"
+    "__comp": "17896441",
+    "content": "99d9cb8f"
   },
   "/gazebo-simulation-166": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---gazebo-simulationf-2-d-eda"
+    "__comp": "17896441",
+    "content": "f2d595a2"
   },
   "/gazebo-simulation/chapter-summary-742": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---gazebo-simulation-chapter-summarye-91-fc8"
+    "__comp": "17896441",
+    "content": "e914545c"
   },
   "/gazebo-simulation/physics-engines-a4c": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---gazebo-simulation-physics-enginesdcb-5e1"
+    "__comp": "17896441",
+    "content": "dcba44f7"
   },
   "/gazebo-simulation/world-building-163": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---gazebo-simulation-world-building-11-a-746"
+    "__comp": "17896441",
+    "content": "11a0006d"
   },
   "/glossary-03f": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---glossary-65-a-2dd"
+    "__comp": "17896441",
+    "content": "65a191ba"
   },
   "/humanoid-robotics-9a3": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---humanoid-roboticsf-85-7c3"
+    "__comp": "17896441",
+    "content": "f85c1945"
   },
   "/humanoid-robotics/chapter-summary-2e6": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---humanoid-robotics-chapter-summary-69-f-bad"
+    "__comp": "17896441",
+    "content": "69fcf207"
   },
   "/humanoid-robotics/landscape-fba": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---humanoid-robotics-landscape-3-bf-0ba"
+    "__comp": "17896441",
+    "content": "3bf16ff5"
   },
   "/humanoid-robotics/sensor-foundations-1be": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---humanoid-robotics-sensor-foundations-98-b-79f"
+    "__comp": "17896441",
+    "content": "98bb3c3b"
   },
   "/introduction-38b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---introductionedd-14d"
+    "__comp": "17896441",
+    "content": "edd3bb0f"
   },
   "/introduction/chapter-summary-f73": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---introduction-chapter-summarye-5-f-302"
+    "__comp": "17896441",
+    "content": "e5fdbb98"
   },
   "/introduction/embodied-intelligence-d06": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---introduction-embodied-intelligence-341-8a9"
+    "__comp": "17896441",
+    "content": "3410e48d"
   },
   "/introduction/what-is-physical-ai-dfc": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---introduction-what-is-physical-ai-2-f-5-f7b"
+    "__comp": "17896441",
+    "content": "2f5c7d7e"
   },
   "/navigation-systems-9e4": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---navigation-systemsbfd-084"
+    "__comp": "17896441",
+    "content": "bfd4acf6"
   },
   "/navigation-systems/chapter-summary-67b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---navigation-systems-chapter-summarycab-f1e"
+    "__comp": "17896441",
+    "content": "cab2f49a"
   },
   "/navigation-systems/navigation-450": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---navigation-systems-navigation-034-66f"
+    "__comp": "17896441",
+    "content": "0343b305"
   },
   "/navigation-systems/sim-to-real-390": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---navigation-systems-sim-to-real-3-fa-02f"
+    "__comp": "17896441",
+    "content": "3fa8f1f6"
   },
   "/navigation-systems/vslam-382": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---navigation-systems-vslamb-41-6b9"
+    "__comp": "17896441",
+    "content": "b411f634"
   },
   "/nvidia-isaac-dfa": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---nvidia-isaac-9-b-5-90c"
+    "__comp": "17896441",
+    "content": "9b5b405f"
   },
   "/nvidia-isaac/chapter-summary-29c": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---nvidia-isaac-chapter-summarya-06-24d"
+    "__comp": "17896441",
+    "content": "a0658761"
   },
   "/nvidia-isaac/isaac-sim-2bc": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---nvidia-isaac-isaac-sim-81-e-49b"
+    "__comp": "17896441",
+    "content": "81ea0160"
   },
   "/nvidia-isaac/sdk-overview-87a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---nvidia-isaac-sdk-overview-543-0f5"
+    "__comp": "17896441",
+    "content": "5439bc3d"
   },
   "/perception-pipelines-0c1": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---perception-pipelinese-30-926"
+    "__comp": "17896441",
+    "content": "e303e610"
   },
   "/perception-pipelines/chapter-summary-28c": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---perception-pipelines-chapter-summary-098-ffa"
+    "__comp": "17896441",
+    "content": "098bdd13"
   },
   "/perception-pipelines/perception-stacks-4ee": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---perception-pipelines-perception-stacks-4-b-7-f89"
+    "__comp": "17896441",
+    "content": "4b735e18"
   },
   "/perception-pipelines/synthetic-data-75c": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---perception-pipelines-synthetic-datae-1-c-643"
+    "__comp": "17896441",
+    "content": "e1cc76fc"
   },
   "/ros2-advanced-80f": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-advanced-233-e7a"
+    "__comp": "17896441",
+    "content": "2334f9b4"
   },
   "/ros2-advanced/chapter-summary-275": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-advanced-chapter-summary-038-828"
+    "__comp": "17896441",
+    "content": "03809ef8"
   },
   "/ros2-advanced/parameters-2c7": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-advanced-parametersf-4-a-179"
+    "__comp": "17896441",
+    "content": "f4a16366"
   },
   "/ros2-advanced/quality-of-service-65a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-advanced-quality-of-service-094-f4a"
+    "__comp": "17896441",
+    "content": "0945621e"
   },
   "/ros2-architecture-613": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-architecture-634-802"
+    "__comp": "17896441",
+    "content": "63469ce0"
   },
   "/ros2-architecture/chapter-summary-f83": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-architecture-chapter-summary-48-f-4f9"
+    "__comp": "17896441",
+    "content": "48f91f48"
   },
   "/ros2-architecture/nodes-topics-6b0": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-architecture-nodes-topics-85-c-0ef"
+    "__comp": "17896441",
+    "content": "85cb16f5"
   },
   "/ros2-architecture/services-actions-823": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-architecture-services-actions-038-cfd"
+    "__comp": "17896441",
+    "content": "03856b0c"
   },
   "/ros2-communication-17d": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communicationf-49-e98"
+    "__comp": "17896441",
+    "content": "f49de7c4"
   },
   "/ros2-communication/chapter-summary-6ac": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communication-chapter-summarydf-5-083"
+    "__comp": "17896441",
+    "content": "df5782c3"
   },
   "/ros2-communication/nodes-implementation-0d2": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communication-nodes-implementation-4-bc-ae0"
+    "__comp": "17896441",
+    "content": "4bcf66a3"
   },
   "/ros2-communication/services-actions-e96": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communication-services-actions-7-be-6e4"
+    "__comp": "17896441",
+    "content": "7be924da"
   },
   "/ros2-communication/topics-communication-800": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communication-topics-communication-383-cec"
+    "__comp": "17896441",
+    "content": "3836b6d8"
   },
   "/ros2-communication/topics-services-actions-a9e": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-communication-topics-services-actions-1-bb-e83"
+    "__comp": "17896441",
+    "content": "1bb9dbf5"
   },
   "/ros2-packages-541": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-packagesceb-b98"
+    "__comp": "17896441",
+    "content": "ceb4929a"
   },
   "/ros2-packages/building-packages-23b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-packages-building-packagesdb-8-797"
+    "__comp": "17896441",
+    "content": "db8955dc"
   },
   "/ros2-packages/chapter-summary-794": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-packages-chapter-summaryd-2-f-935"
+    "__comp": "17896441",
+    "content": "d2fce099"
   },
   "/ros2-packages/launch-files-495": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-packages-launch-files-50-d-3cc"
+    "__comp": "17896441",
+    "content": "50d26300"
   },
   "/ros2-packages/parameters-db6": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-packages-parameters-3-f-0-4a3"
+    "__comp": "17896441",
+    "content": "3f0fc7df"
   },
   "/ros2-urdf-c82": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-urdf-89-f-3b6"
+    "__comp": "17896441",
+    "content": "89f39b5c"
   },
   "/ros2-urdf/chapter-summary-e3b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-urdf-chapter-summary-929-df8"
+    "__comp": "17896441",
+    "content": "92958513"
   },
   "/ros2-urdf/sdf-for-simulation-a67": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-urdf-sdf-for-simulation-2-ed-35e"
+    "__comp": "17896441",
+    "content": "2ed568eb"
   },
   "/ros2-urdf/urdf-basics-26e": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ros-2-urdf-urdf-basicsd-46-e24"
+    "__comp": "17896441",
+    "content": "d463488c"
   },
   "/unity-visualization-b19": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---unity-visualization-751-33d"
+    "__comp": "17896441",
+    "content": "75176b70"
   },
   "/unity-visualization/chapter-summary-25b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---unity-visualization-chapter-summary-1-bc-c29"
+    "__comp": "17896441",
+    "content": "1bcc2d00"
   },
   "/unity-visualization/human-robot-interaction-f2c": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---unity-visualization-human-robot-interactiona-65-1fc"
+    "__comp": "17896441",
+    "content": "a655e2d0"
   },
   "/unity-visualization/unity-workflows-6ff": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---unity-visualization-unity-workflows-390-1f3"
+    "__comp": "17896441",
+    "content": "390c8430"
   },
   "/unity-visualization/visualization-697": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---unity-visualization-visualization-528-261"
+    "__comp": "17896441",
+    "content": "52899682"
   },
   "/voice-robotics-9d5": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---voice-robotics-5-d-3-47a"
+    "__comp": "17896441",
+    "content": "5d38124a"
   },
   "/voice-robotics/chapter-summary-e18": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---voice-robotics-chapter-summary-6-c-7-502"
+    "__comp": "17896441",
+    "content": "6c733723"
   },
   "/voice-robotics/voice-to-action-17a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---voice-robotics-voice-to-action-0-b-3-895"
+    "__comp": "17896441",
+    "content": "0b31dbaa"
   },
   "/voice-robotics/whisper-integration-4e3": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---voice-robotics-whisper-integrationdd-6-4a1"
+    "__comp": "17896441",
+    "content": "dd6f5ea1"
   },
   "/-cfb": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---720-2ec"
+    "__comp": "17896441",
+    "content": "7203f477"
   }
 }

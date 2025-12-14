@@ -1,14 +1,14 @@
 {
   "id": "index",
   "title": "Physical AI & Humanoid Robotics Textbook",
-  "description": "Welcome to the comprehensive textbook on Physical AI and Humanoid Robotics. This AI-native educational resource covers the complete journey from foundational concepts to advanced integration, providing both theoretical understanding and practical implementation skills.",
+  "description": "An AI-Native Technical Textbook on Embodied Intelligence",
   "source": "@site/docs/physical-ai/index.mdx",
   "sourceDirName": ".",
   "slug": "/",
   "permalink": "/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/index.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
