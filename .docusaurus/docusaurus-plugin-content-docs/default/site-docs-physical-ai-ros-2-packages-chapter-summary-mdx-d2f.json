@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/ros2-packages/chapter-summary.mdx",
   "sourceDirName": "physical-ai/ros2-packages",
   "slug": "/physical-ai/ros2-packages/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/chapter-summary",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/chapter-summary.mdx",
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Launch Files in ROS 2",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/launch-files"
   },
   "next": {
     "title": "Chapter 6 - URDF/SDF for Humanoid Robots",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-urdf/"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/"
   }
 }

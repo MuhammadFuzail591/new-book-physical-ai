@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/ros2-architecture/index.mdx",
   "sourceDirName": "physical-ai/ros2-architecture",
   "slug": "/physical-ai/ros2-architecture/",
-  "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/index.mdx",
@@ -16,11 +16,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
+    "title": "Chapter 2 - Humanoid Robotics Chapter Summary",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/chapter-summary"
   },
   "next": {
     "title": "Nodes and Topics in ROS 2",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/nodes-topics"
   }
 }

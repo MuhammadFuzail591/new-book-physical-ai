@@ -1,24 +1,26 @@
 {
   "id": "physical-ai/perception-pipelines/synthetic-data",
-  "title": "synthetic-data",
-  "description": "",
+  "title": "Synthetic Data Generation for AI Perception",
+  "description": "Introduction to Synthetic Data in Robotics",
   "source": "@site/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
   "sourceDirName": "physical-ai/perception-pipelines",
   "slug": "/physical-ai/perception-pipelines/synthetic-data",
-  "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/synthetic-data",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Synthetic Data Generation for AI Perception"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "index",
-    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
+    "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/"
   },
   "next": {
-    "title": "perception-stacks",
-    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+    "title": "Perception Stacks - Multi-Modal Sensor Processing",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/perception-stacks"
   }
 }

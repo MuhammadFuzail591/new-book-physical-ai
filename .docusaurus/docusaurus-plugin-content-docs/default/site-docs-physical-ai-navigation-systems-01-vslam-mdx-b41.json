@@ -1,0 +1,27 @@
+{
+  "id": "physical-ai/navigation-systems/vslam",
+  "title": "Chapter 11 - Visual SLAM Fundamentals",
+  "description": "Chapter Overview",
+  "source": "@site/docs/physical-ai/navigation-systems/01-vslam.mdx",
+  "sourceDirName": "physical-ai/navigation-systems",
+  "slug": "/physical-ai/navigation-systems/vslam",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/vslam",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/01-vslam.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Chapter 11 - Visual SLAM Fundamentals"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/"
+  },
+  "next": {
+    "title": "Chapter 11 - Navigation Systems for Physical AI",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/navigation"
+  }
+}

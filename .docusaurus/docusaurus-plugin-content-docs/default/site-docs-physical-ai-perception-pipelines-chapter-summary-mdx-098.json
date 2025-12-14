@@ -1,24 +1,26 @@
 {
   "id": "physical-ai/perception-pipelines/chapter-summary",
-  "title": "chapter-summary",
-  "description": "",
+  "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
+  "description": "Key Concepts Covered",
   "source": "@site/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
   "sourceDirName": "physical-ai/perception-pipelines",
   "slug": "/physical-ai/perception-pipelines/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/chapter-summary",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "perception-stacks",
-    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
+    "title": "Perception Stacks - Multi-Modal Sensor Processing",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/perception-stacks"
   },
   "next": {
-    "title": "index",
-    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
+    "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/"
   }
 }

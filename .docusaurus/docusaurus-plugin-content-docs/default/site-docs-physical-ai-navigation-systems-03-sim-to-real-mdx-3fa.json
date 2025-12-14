@@ -1,0 +1,27 @@
+{
+  "id": "physical-ai/navigation-systems/sim-to-real",
+  "title": "Sim-to-Real Transfer Techniques in Robotics",
+  "description": "Introduction to Sim-to-Real Transfer",
+  "source": "@site/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
+  "sourceDirName": "physical-ai/navigation-systems",
+  "slug": "/physical-ai/navigation-systems/sim-to-real",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/sim-to-real",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Sim-to-Real Transfer Techniques in Robotics"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 11 - Navigation Systems for Physical AI",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/navigation"
+  },
+  "next": {
+    "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/"
+  }
+}

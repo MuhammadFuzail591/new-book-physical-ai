@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/capstone-project/implementation.mdx",
   "sourceDirName": "physical-ai/capstone-project",
   "slug": "/physical-ai/capstone-project/implementation",
-  "permalink": "/physical-ai-textbook/physical-ai/capstone-project/implementation",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/implementation",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/implementation.mdx",
@@ -15,10 +15,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "project-overview",
-    "permalink": "/physical-ai-textbook/physical-ai/capstone-project/project-overview"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/project-overview"
   },
   "next": {
     "title": "deployment",
-    "permalink": "/physical-ai-textbook/physical-ai/capstone-project/deployment"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/deployment"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/capstone-project/conclusion.mdx",
   "sourceDirName": "physical-ai/capstone-project",
   "slug": "/physical-ai/capstone-project/conclusion",
-  "permalink": "/physical-ai-textbook/physical-ai/capstone-project/conclusion",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/conclusion",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/conclusion.mdx",
@@ -15,10 +15,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "deployment",
-    "permalink": "/physical-ai-textbook/physical-ai/capstone-project/deployment"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/deployment"
   },
   "next": {
     "title": "Glossary of Physical AI & Humanoid Robotics Terms",
-    "permalink": "/physical-ai-textbook/physical-ai/glossary"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/glossary"
   }
 }

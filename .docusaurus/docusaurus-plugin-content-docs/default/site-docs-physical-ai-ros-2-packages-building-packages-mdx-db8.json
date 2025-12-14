@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/ros2-packages/building-packages.mdx",
   "sourceDirName": "physical-ai/ros2-packages",
   "slug": "/physical-ai/ros2-packages/building-packages",
-  "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/building-packages",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/building-packages.mdx",
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/"
   },
   "next": {
     "title": "Launch Files in ROS 2",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/launch-files"
   }
 }

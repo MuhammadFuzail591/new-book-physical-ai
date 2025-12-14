@@ -1,24 +1,26 @@
 {
   "id": "physical-ai/ros2-architecture/services-actions",
-  "title": "services-actions",
-  "description": "",
+  "title": "Services and Actions in ROS 2",
+  "description": "Introduction",
   "source": "@site/docs/physical-ai/ros2-architecture/services-actions.mdx",
   "sourceDirName": "physical-ai/ros2-architecture",
   "slug": "/physical-ai/ros2-architecture/services-actions",
-  "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/services-actions",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/services-actions.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Services and Actions in ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Nodes and Topics in ROS 2",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/nodes-topics"
   },
   "next": {
-    "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
+    "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/chapter-summary"
   }
 }
