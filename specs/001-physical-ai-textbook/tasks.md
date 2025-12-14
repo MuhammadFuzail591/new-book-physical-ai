@@ -193,16 +193,16 @@
 
 ## Phase 16: [US3] Chapter 14 - Capstone Project: The Autonomous Humanoid
 
-- [ ] T141 [P] Create Chapter 14 directory structure under docs/physical-ai/
-- [ ] T142 [P] Create Chapter 14 index.mdx with frontmatter and overview
-- [ ] T143 [P] Create 01-project-overview.mdx section
-- [ ] T144 [P] Create 02-implementation.mdx section
-- [ ] T145 [P] Create 03-deployment.mdx section
-- [ ] T146 [P] Create 04-conclusion.mdx section
-- [ ] T147 [P] Add learning outcomes to Chapter 14 files
-- [ ] T148 [P] Add exercises to Chapter 14 with advanced difficulty
-- [ ] T149 [P] Add end-to-end integration example combining all technologies
-- [ ] T150 [P] Add Jetson Orin deployment instructions
+- [X] T141 [P] Create Chapter 14 directory structure under docs/physical-ai/
+- [X] T142 [P] Create Chapter 14 index.mdx with frontmatter and overview
+- [X] T143 [P] Create 01-project-overview.mdx section
+- [X] T144 [P] Create 02-implementation.mdx section
+- [X] T145 [P] Create 03-deployment.mdx section
+- [X] T146 [P] Create 04-conclusion.mdx section
+- [X] T147 [P] Add learning outcomes to Chapter 14 files
+- [X] T148 [P] Add exercises to Chapter 14 with advanced difficulty
+- [X] T149 [P] Add end-to-end integration example combining all technologies
+- [X] T150 [P] Add Jetson Orin deployment instructions
 
 ## Phase 17: Cross-Cutting Concerns
 

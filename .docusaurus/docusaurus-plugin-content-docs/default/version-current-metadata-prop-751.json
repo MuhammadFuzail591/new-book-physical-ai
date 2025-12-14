@@ -409,36 +409,36 @@
             "items": [
               {
                 "type": "link",
-                "label": "project-overview",
-                "href": "/capstone-project/project-overview",
+                "label": "01 - Capstone Project Overview",
+                "href": "/physical-ai/capstone-project/01-project-overview",
                 "docId": "capstone-project/project-overview",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "implementation",
-                "href": "/capstone-project/implementation",
+                "label": "02 - Capstone Project Implementation",
+                "href": "/physical-ai/capstone-project/02-implementation",
                 "docId": "capstone-project/implementation",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "deployment",
-                "href": "/capstone-project/deployment",
+                "label": "03 - Capstone Project Deployment",
+                "href": "/physical-ai/capstone-project/03-deployment",
                 "docId": "capstone-project/deployment",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "conclusion",
-                "href": "/capstone-project/conclusion",
+                "label": "04 - Capstone Project Conclusion",
+                "href": "/physical-ai/capstone-project/04-conclusion",
                 "docId": "capstone-project/conclusion",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/capstone-project/"
+            "href": "/physical-ai/capstone-project"
           },
           {
             "type": "link",
@@ -461,32 +461,32 @@
     },
     "capstone-project/conclusion": {
       "id": "capstone-project/conclusion",
-      "title": "conclusion",
-      "description": "",
+      "title": "04 - Capstone Project Conclusion",
+      "description": "Reviewing the project and planning future enhancements",
       "sidebar": "tutorialSidebar"
     },
     "capstone-project/deployment": {
       "id": "capstone-project/deployment",
-      "title": "deployment",
-      "description": "",
+      "title": "03 - Capstone Project Deployment",
+      "description": "Deploying the system on NVIDIA Jetson Orin hardware",
       "sidebar": "tutorialSidebar"
     },
     "capstone-project/implementation": {
       "id": "capstone-project/implementation",
-      "title": "implementation",
-      "description": "",
+      "title": "02 - Capstone Project Implementation",
+      "description": "Building the integrated system combining all technologies",
       "sidebar": "tutorialSidebar"
     },
     "capstone-project/index": {
       "id": "capstone-project/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+      "description": "Complete end-to-end integration of all technologies learned throughout the textbook sidebar_position: 14",
       "sidebar": "tutorialSidebar"
     },
     "capstone-project/project-overview": {
       "id": "capstone-project/project-overview",
-      "title": "project-overview",
-      "description": "",
+      "title": "01 - Capstone Project Overview",
+      "description": "Understanding the requirements and architecture of the autonomous humanoid",
       "sidebar": "tutorialSidebar"
     },
     "cognitive-planning/chapter-summary": {

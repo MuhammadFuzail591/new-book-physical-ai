@@ -1,0 +1,30 @@
+{
+  "id": "capstone-project/conclusion",
+  "title": "04 - Capstone Project Conclusion",
+  "description": "Reviewing the project and planning future enhancements",
+  "source": "@site/docs/physical-ai/capstone-project/04-conclusion.mdx",
+  "sourceDirName": "capstone-project",
+  "slug": "/physical-ai/capstone-project/04-conclusion",
+  "permalink": "/physical-ai/capstone-project/04-conclusion",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/04-conclusion.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "04 - Capstone Project Conclusion",
+    "description": "Reviewing the project and planning future enhancements",
+    "sidebar_position": 5,
+    "slug": "/physical-ai/capstone-project/04-conclusion"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "03 - Capstone Project Deployment",
+    "permalink": "/physical-ai/capstone-project/03-deployment"
+  },
+  "next": {
+    "title": "Glossary of Physical AI & Humanoid Robotics Terms",
+    "permalink": "/glossary"
+  }
+}

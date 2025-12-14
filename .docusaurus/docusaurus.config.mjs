@@ -66,7 +66,7 @@ export default {
           "label": "Textbook"
         },
         {
-          "href": "https://github.com/fuzailpalook/new-book",
+          "href": "https://github.com/MuhammadFuzail591/new-book-physical-ai",
           "label": "GitHub",
           "position": "right"
         }
@@ -320,13 +320,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -343,6 +336,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

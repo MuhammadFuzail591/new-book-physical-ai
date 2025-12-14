@@ -73,7 +73,7 @@ const config = {
             label: 'Textbook',
           },
           {
-            href: 'https://github.com/fuzailpalook/new-book',
+            href: 'https://github.com/MuhammadFuzail591/new-book-physical-ai',
             label: 'GitHub',
             position: 'right',
           },

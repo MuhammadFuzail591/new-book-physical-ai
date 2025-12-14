@@ -1,24 +1,28 @@
 {
   "id": "capstone-project/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+  "description": "Complete end-to-end integration of all technologies learned throughout the textbook sidebar_position: 14",
   "source": "@site/docs/physical-ai/capstone-project/index.mdx",
   "sourceDirName": "capstone-project",
-  "slug": "/capstone-project/",
-  "permalink": "/capstone-project/",
+  "slug": "/physical-ai/capstone-project",
+  "permalink": "/physical-ai/capstone-project",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+    "description": "Complete end-to-end integration of all technologies learned throughout the textbook sidebar_position: 14",
+    "slug": "/physical-ai/capstone-project"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter Summary - Cognitive Planning with Vision-Language-Action Systems",
     "permalink": "/cognitive-planning/chapter-summary"
   },
   "next": {
-    "title": "project-overview",
-    "permalink": "/capstone-project/project-overview"
+    "title": "01 - Capstone Project Overview",
+    "permalink": "/physical-ai/capstone-project/01-project-overview"
   }
 }

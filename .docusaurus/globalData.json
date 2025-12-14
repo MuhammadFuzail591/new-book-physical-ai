@@ -16,27 +16,27 @@
             },
             {
               "id": "capstone-project/conclusion",
-              "path": "/capstone-project/conclusion",
+              "path": "/physical-ai/capstone-project/04-conclusion",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "capstone-project/deployment",
-              "path": "/capstone-project/deployment",
+              "path": "/physical-ai/capstone-project/03-deployment",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "capstone-project/implementation",
-              "path": "/capstone-project/implementation",
+              "path": "/physical-ai/capstone-project/02-implementation",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "capstone-project/index",
-              "path": "/capstone-project/",
+              "path": "/physical-ai/capstone-project",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "capstone-project/project-overview",
-              "path": "/capstone-project/project-overview",
+              "path": "/physical-ai/capstone-project/01-project-overview",
               "sidebar": "tutorialSidebar"
             },
             {

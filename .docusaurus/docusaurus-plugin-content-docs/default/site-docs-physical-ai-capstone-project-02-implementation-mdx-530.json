@@ -1,0 +1,30 @@
+{
+  "id": "capstone-project/implementation",
+  "title": "02 - Capstone Project Implementation",
+  "description": "Building the integrated system combining all technologies",
+  "source": "@site/docs/physical-ai/capstone-project/02-implementation.mdx",
+  "sourceDirName": "capstone-project",
+  "slug": "/physical-ai/capstone-project/02-implementation",
+  "permalink": "/physical-ai/capstone-project/02-implementation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/02-implementation.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "02 - Capstone Project Implementation",
+    "description": "Building the integrated system combining all technologies",
+    "sidebar_position": 3,
+    "slug": "/physical-ai/capstone-project/02-implementation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "01 - Capstone Project Overview",
+    "permalink": "/physical-ai/capstone-project/01-project-overview"
+  },
+  "next": {
+    "title": "03 - Capstone Project Deployment",
+    "permalink": "/physical-ai/capstone-project/03-deployment"
+  }
+}
