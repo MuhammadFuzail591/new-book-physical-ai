@@ -1,27 +1,29 @@
 {
-  "id": "physical-ai/introduction/embodied-intelligence",
+  "id": "introduction/embodied-intelligence",
   "title": "Embodied Intelligence",
   "description": "Introduction",
   "source": "@site/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
-  "sourceDirName": "physical-ai/introduction",
-  "slug": "/physical-ai/introduction/embodied-intelligence",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/embodied-intelligence",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/embodied-intelligence",
+  "permalink": "/introduction/embodied-intelligence",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
   "frontMatter": {
-    "title": "Embodied Intelligence"
+    "title": "Embodied Intelligence",
+    "pagination_next": "introduction/chapter-summary",
+    "pagination_prev": "introduction/what-is-physical-ai"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "What is Physical AI?",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/what-is-physical-ai"
+    "permalink": "/introduction/what-is-physical-ai"
   },
   "next": {
     "title": "Chapter 1 Summary",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/chapter-summary"
+    "permalink": "/introduction/chapter-summary"
   }
 }

@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/cognitive-planning/index",
+  "id": "cognitive-planning/index",
   "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/cognitive-planning/index.mdx",
-  "sourceDirName": "physical-ai/cognitive-planning",
-  "slug": "/physical-ai/cognitive-planning/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/",
+  "sourceDirName": "cognitive-planning",
+  "slug": "/cognitive-planning/",
+  "permalink": "/cognitive-planning/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/chapter-summary"
+    "permalink": "/voice-robotics/chapter-summary"
   },
   "next": {
     "title": "Vision-Language-Action Systems in Robotics",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/vla-systems"
+    "permalink": "/cognitive-planning/vla-systems"
   }
 }

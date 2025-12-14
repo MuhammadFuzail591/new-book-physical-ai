@@ -1,24 +1,24 @@
 {
-  "id": "physical-ai/ros2-advanced/index",
+  "id": "ros2-advanced/index",
   "title": "index",
   "description": "",
   "source": "@site/docs/physical-ai/ros2-advanced/index.mdx",
-  "sourceDirName": "physical-ai/ros2-advanced",
-  "slug": "/physical-ai/ros2-advanced/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/",
+  "sourceDirName": "ros2-advanced",
+  "slug": "/ros2-advanced/",
+  "permalink": "/ros2-advanced/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/chapter-summary"
+    "permalink": "/ros2-urdf/chapter-summary"
   },
   "next": {
     "title": "parameters",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/parameters"
+    "permalink": "/ros2-advanced/parameters"
   }
 }

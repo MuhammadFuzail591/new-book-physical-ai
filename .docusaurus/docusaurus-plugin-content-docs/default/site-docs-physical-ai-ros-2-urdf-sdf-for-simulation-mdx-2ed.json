@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/ros2-urdf/sdf-for-simulation",
+  "id": "ros2-urdf/sdf-for-simulation",
   "title": "SDF for Simulation - Advanced Physics and Sensor Modeling",
   "description": "Introduction to Simulation Description Format (SDF)",
   "source": "@site/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
-  "sourceDirName": "physical-ai/ros2-urdf",
-  "slug": "/physical-ai/ros2-urdf/sdf-for-simulation",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/sdf-for-simulation",
+  "sourceDirName": "ros2-urdf",
+  "slug": "/ros2-urdf/sdf-for-simulation",
+  "permalink": "/ros2-urdf/sdf-for-simulation",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "URDF Basics - Links, Joints, and Robot Modeling",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/urdf-basics"
+    "permalink": "/ros2-urdf/urdf-basics"
   },
   "next": {
     "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/chapter-summary"
+    "permalink": "/ros2-urdf/chapter-summary"
   }
 }

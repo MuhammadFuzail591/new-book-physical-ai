@@ -1,299 +1,338 @@
 {
-  "/physical-ai-textbook/physical-ai/-b8d": {
-    "__comp": "5e95c892",
+  "/__docusaurus/debug-81a": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "7243c1ac"
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
     }
   },
-  "/physical-ai-textbook/physical-ai/-aa3": {
-    "__comp": "a7bd4aaa",
-    "version": "935f2afb"
-  },
-  "/physical-ai-textbook/physical-ai/-adf": {
-    "__comp": "a94703ab"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai-75c": {
-    "__comp": "17896441",
-    "content": "7203f477"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project-ed6": {
-    "__comp": "17896441",
-    "content": "87e92902"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/chapter-summary-645": {
-    "__comp": "17896441",
-    "content": "82d446dd"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/conclusion-a31": {
-    "__comp": "17896441",
-    "content": "01dc1668"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/deployment-866": {
-    "__comp": "17896441",
-    "content": "67df4fe3"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/implementation-ce6": {
-    "__comp": "17896441",
-    "content": "ce44e7b3"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/project-overview-e44": {
-    "__comp": "17896441",
-    "content": "06f0efda"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning-25e": {
-    "__comp": "17896441",
-    "content": "bfac78c2"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/chapter-summary-005": {
-    "__comp": "17896441",
-    "content": "6eaa7362"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/chapter-summary-633": {
-    "__comp": "17896441",
-    "content": "83536b81"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/cognitive-architectures-e99": {
-    "__comp": "17896441",
-    "content": "777d5a7e"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/llm-integration-de3": {
-    "__comp": "17896441",
-    "content": "63f426f9"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/vla-systems-2fd": {
-    "__comp": "17896441",
-    "content": "99d9cb8f"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation-883": {
-    "__comp": "17896441",
-    "content": "f2d595a2"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/chapter-summary-a47": {
-    "__comp": "17896441",
-    "content": "e914545c"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/physics-engines-d5b": {
-    "__comp": "17896441",
-    "content": "dcba44f7"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/world-building-c81": {
-    "__comp": "17896441",
-    "content": "11a0006d"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/glossary-7f0": {
-    "__comp": "17896441",
-    "content": "65a191ba"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics-c5d": {
-    "__comp": "17896441",
-    "content": "f85c1945"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/chapter-summary-f90": {
-    "__comp": "17896441",
-    "content": "69fcf207"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/landscape-aa9": {
-    "__comp": "17896441",
-    "content": "3bf16ff5"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/sensor-foundations-97f": {
-    "__comp": "17896441",
-    "content": "98bb3c3b"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/introduction-678": {
-    "__comp": "17896441",
-    "content": "edd3bb0f"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/introduction/chapter-summary-c5a": {
-    "__comp": "17896441",
-    "content": "e5fdbb98"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/introduction/embodied-intelligence-fee": {
-    "__comp": "17896441",
-    "content": "3410e48d"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/introduction/what-is-physical-ai-527": {
-    "__comp": "17896441",
-    "content": "2f5c7d7e"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems-6c1": {
-    "__comp": "17896441",
-    "content": "bfd4acf6"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/chapter-summary-3ef": {
-    "__comp": "17896441",
-    "content": "cab2f49a"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/navigation-91d": {
-    "__comp": "17896441",
-    "content": "0343b305"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/sim-to-real-36e": {
-    "__comp": "17896441",
-    "content": "3fa8f1f6"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/vslam-c56": {
-    "__comp": "17896441",
-    "content": "b411f634"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac-bff": {
-    "__comp": "17896441",
-    "content": "9b5b405f"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/chapter-summary-1a9": {
-    "__comp": "17896441",
-    "content": "a0658761"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/isaac-sim-545": {
-    "__comp": "17896441",
-    "content": "81ea0160"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/sdk-overview-6bc": {
-    "__comp": "17896441",
-    "content": "5439bc3d"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines-344": {
-    "__comp": "17896441",
-    "content": "e303e610"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/chapter-summary-da0": {
-    "__comp": "17896441",
-    "content": "098bdd13"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/perception-stacks-1ac": {
-    "__comp": "17896441",
-    "content": "4b735e18"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/synthetic-data-9f9": {
-    "__comp": "17896441",
-    "content": "e1cc76fc"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced-106": {
-    "__comp": "17896441",
-    "content": "2334f9b4"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/chapter-summary-c94": {
-    "__comp": "17896441",
-    "content": "03809ef8"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/parameters-0ee": {
-    "__comp": "17896441",
-    "content": "f4a16366"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/quality-of-service-8ec": {
-    "__comp": "17896441",
-    "content": "0945621e"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture-1dd": {
-    "__comp": "17896441",
-    "content": "63469ce0"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/chapter-summary-ee1": {
-    "__comp": "17896441",
-    "content": "48f91f48"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/nodes-topics-bba": {
-    "__comp": "17896441",
-    "content": "85cb16f5"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/services-actions-63d": {
-    "__comp": "17896441",
-    "content": "03856b0c"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication-b66": {
-    "__comp": "17896441",
-    "content": "f49de7c4"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/chapter-summary-5d3": {
-    "__comp": "17896441",
-    "content": "df5782c3"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/nodes-implementation-473": {
-    "__comp": "17896441",
-    "content": "4bcf66a3"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/services-actions-2c7": {
-    "__comp": "17896441",
-    "content": "7be924da"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/topics-communication-50c": {
-    "__comp": "17896441",
-    "content": "3836b6d8"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/topics-services-actions-f4b": {
-    "__comp": "17896441",
-    "content": "1bb9dbf5"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages-904": {
-    "__comp": "17896441",
-    "content": "ceb4929a"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/building-packages-181": {
-    "__comp": "17896441",
-    "content": "db8955dc"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/chapter-summary-f15": {
-    "__comp": "17896441",
-    "content": "d2fce099"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/launch-files-cbe": {
-    "__comp": "17896441",
-    "content": "50d26300"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/parameters-a08": {
-    "__comp": "17896441",
-    "content": "3f0fc7df"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf-9e7": {
-    "__comp": "17896441",
-    "content": "89f39b5c"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/chapter-summary-6b6": {
-    "__comp": "17896441",
-    "content": "92958513"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/sdf-for-simulation-9cd": {
-    "__comp": "17896441",
-    "content": "2ed568eb"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/urdf-basics-0d6": {
-    "__comp": "17896441",
-    "content": "d463488c"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization-fb6": {
-    "__comp": "17896441",
-    "content": "75176b70"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/chapter-summary-a63": {
-    "__comp": "17896441",
-    "content": "1bcc2d00"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/human-robot-interaction-ae0": {
-    "__comp": "17896441",
-    "content": "a655e2d0"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/unity-workflows-67e": {
-    "__comp": "17896441",
-    "content": "390c8430"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/visualization-641": {
-    "__comp": "17896441",
-    "content": "52899682"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics-b56": {
-    "__comp": "17896441",
-    "content": "5d38124a"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/chapter-summary-9ac": {
-    "__comp": "17896441",
-    "content": "6c733723"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/voice-to-action-9fa": {
-    "__comp": "17896441",
-    "content": "0b31dbaa"
-  },
-  "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/whisper-integration-5b8": {
-    "__comp": "17896441",
-    "content": "dd6f5ea1"
+  "/__docusaurus/debug/config-054": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    }
+  },
+  "/__docusaurus/debug/content-798": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    },
+    "allContent": "allContent---docusaurus-debug-content-246-9aa"
+  },
+  "/__docusaurus/debug/globalData-eb3": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    }
+  },
+  "/__docusaurus/debug/metadata-48a": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    }
+  },
+  "/__docusaurus/debug/registry-6bc": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    }
+  },
+  "/__docusaurus/debug/routes-87c": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugbbb-2b7"
+    }
+  },
+  "/-767": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---724-aa2"
+    }
+  },
+  "/-15e": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "version": "version---935-fcf"
+  },
+  "/-034": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/capstone-project-8bd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-87-e-332"
+  },
+  "/capstone-project/chapter-summary-6ed": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-chapter-summary-82-d-5ff"
+  },
+  "/capstone-project/conclusion-bac": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-conclusion-01-d-e13"
+  },
+  "/capstone-project/deployment-565": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-deployment-67-d-bda"
+  },
+  "/capstone-project/implementation-5b3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-implementationce-4-071"
+  },
+  "/capstone-project/project-overview-6cb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---capstone-project-project-overview-06-f-559"
+  },
+  "/cognitive-planning-9c9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cognitive-planningbfa-a5c"
+  },
+  "/cognitive-planning/chapter-summary-254": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cognitive-planning-chapter-summary-6-ea-d02"
+  },
+  "/cognitive-planning/cognitive-architectures-47b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cognitive-planning-cognitive-architectures-777-b95"
+  },
+  "/cognitive-planning/llm-integration-830": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cognitive-planning-llm-integration-63-f-c3f"
+  },
+  "/cognitive-planning/vla-systems-93a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cognitive-planning-vla-systems-99-d-d3b"
+  },
+  "/gazebo-simulation-166": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---gazebo-simulationf-2-d-eda"
+  },
+  "/gazebo-simulation/chapter-summary-742": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---gazebo-simulation-chapter-summarye-91-fc8"
+  },
+  "/gazebo-simulation/physics-engines-a4c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---gazebo-simulation-physics-enginesdcb-5e1"
+  },
+  "/gazebo-simulation/world-building-163": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---gazebo-simulation-world-building-11-a-746"
+  },
+  "/glossary-03f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---glossary-65-a-2dd"
+  },
+  "/humanoid-robotics-9a3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---humanoid-roboticsf-85-7c3"
+  },
+  "/humanoid-robotics/chapter-summary-2e6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---humanoid-robotics-chapter-summary-69-f-bad"
+  },
+  "/humanoid-robotics/landscape-fba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---humanoid-robotics-landscape-3-bf-0ba"
+  },
+  "/humanoid-robotics/sensor-foundations-1be": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---humanoid-robotics-sensor-foundations-98-b-79f"
+  },
+  "/introduction-38b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---introductionedd-14d"
+  },
+  "/introduction/chapter-summary-f73": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---introduction-chapter-summarye-5-f-302"
+  },
+  "/introduction/embodied-intelligence-d06": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---introduction-embodied-intelligence-341-8a9"
+  },
+  "/introduction/what-is-physical-ai-dfc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---introduction-what-is-physical-ai-2-f-5-f7b"
+  },
+  "/navigation-systems-9e4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---navigation-systemsbfd-084"
+  },
+  "/navigation-systems/chapter-summary-67b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---navigation-systems-chapter-summarycab-f1e"
+  },
+  "/navigation-systems/navigation-450": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---navigation-systems-navigation-034-66f"
+  },
+  "/navigation-systems/sim-to-real-390": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---navigation-systems-sim-to-real-3-fa-02f"
+  },
+  "/navigation-systems/vslam-382": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---navigation-systems-vslamb-41-6b9"
+  },
+  "/nvidia-isaac-dfa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---nvidia-isaac-9-b-5-90c"
+  },
+  "/nvidia-isaac/chapter-summary-29c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---nvidia-isaac-chapter-summarya-06-24d"
+  },
+  "/nvidia-isaac/isaac-sim-2bc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---nvidia-isaac-isaac-sim-81-e-49b"
+  },
+  "/nvidia-isaac/sdk-overview-87a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---nvidia-isaac-sdk-overview-543-0f5"
+  },
+  "/perception-pipelines-0c1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---perception-pipelinese-30-926"
+  },
+  "/perception-pipelines/chapter-summary-28c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---perception-pipelines-chapter-summary-098-ffa"
+  },
+  "/perception-pipelines/perception-stacks-4ee": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---perception-pipelines-perception-stacks-4-b-7-f89"
+  },
+  "/perception-pipelines/synthetic-data-75c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---perception-pipelines-synthetic-datae-1-c-643"
+  },
+  "/ros2-advanced-80f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-advanced-233-e7a"
+  },
+  "/ros2-advanced/chapter-summary-275": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-advanced-chapter-summary-038-828"
+  },
+  "/ros2-advanced/parameters-2c7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-advanced-parametersf-4-a-179"
+  },
+  "/ros2-advanced/quality-of-service-65a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-advanced-quality-of-service-094-f4a"
+  },
+  "/ros2-architecture-613": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-architecture-634-802"
+  },
+  "/ros2-architecture/chapter-summary-f83": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-architecture-chapter-summary-48-f-4f9"
+  },
+  "/ros2-architecture/nodes-topics-6b0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-architecture-nodes-topics-85-c-0ef"
+  },
+  "/ros2-architecture/services-actions-823": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-architecture-services-actions-038-cfd"
+  },
+  "/ros2-communication-17d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communicationf-49-e98"
+  },
+  "/ros2-communication/chapter-summary-6ac": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communication-chapter-summarydf-5-083"
+  },
+  "/ros2-communication/nodes-implementation-0d2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communication-nodes-implementation-4-bc-ae0"
+  },
+  "/ros2-communication/services-actions-e96": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communication-services-actions-7-be-6e4"
+  },
+  "/ros2-communication/topics-communication-800": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communication-topics-communication-383-cec"
+  },
+  "/ros2-communication/topics-services-actions-a9e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-communication-topics-services-actions-1-bb-e83"
+  },
+  "/ros2-packages-541": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-packagesceb-b98"
+  },
+  "/ros2-packages/building-packages-23b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-packages-building-packagesdb-8-797"
+  },
+  "/ros2-packages/chapter-summary-794": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-packages-chapter-summaryd-2-f-935"
+  },
+  "/ros2-packages/launch-files-495": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-packages-launch-files-50-d-3cc"
+  },
+  "/ros2-packages/parameters-db6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-packages-parameters-3-f-0-4a3"
+  },
+  "/ros2-urdf-c82": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-urdf-89-f-3b6"
+  },
+  "/ros2-urdf/chapter-summary-e3b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-urdf-chapter-summary-929-df8"
+  },
+  "/ros2-urdf/sdf-for-simulation-a67": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-urdf-sdf-for-simulation-2-ed-35e"
+  },
+  "/ros2-urdf/urdf-basics-26e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ros-2-urdf-urdf-basicsd-46-e24"
+  },
+  "/unity-visualization-b19": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---unity-visualization-751-33d"
+  },
+  "/unity-visualization/chapter-summary-25b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---unity-visualization-chapter-summary-1-bc-c29"
+  },
+  "/unity-visualization/human-robot-interaction-f2c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---unity-visualization-human-robot-interactiona-65-1fc"
+  },
+  "/unity-visualization/unity-workflows-6ff": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---unity-visualization-unity-workflows-390-1f3"
+  },
+  "/unity-visualization/visualization-697": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---unity-visualization-visualization-528-261"
+  },
+  "/voice-robotics-9d5": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---voice-robotics-5-d-3-47a"
+  },
+  "/voice-robotics/chapter-summary-e18": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---voice-robotics-chapter-summary-6-c-7-502"
+  },
+  "/voice-robotics/voice-to-action-17a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---voice-robotics-voice-to-action-0-b-3-895"
+  },
+  "/voice-robotics/whisper-integration-4e3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---voice-robotics-whisper-integrationdd-6-4a1"
+  },
+  "/-cfb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---720-2ec"
   }
 }

@@ -1,24 +1,24 @@
 {
-  "id": "physical-ai/ros2-advanced/chapter-summary",
+  "id": "ros2-advanced/chapter-summary",
   "title": "chapter-summary",
   "description": "",
   "source": "@site/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
-  "sourceDirName": "physical-ai/ros2-advanced",
-  "slug": "/physical-ai/ros2-advanced/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/chapter-summary",
+  "sourceDirName": "ros2-advanced",
+  "slug": "/ros2-advanced/chapter-summary",
+  "permalink": "/ros2-advanced/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "quality-of-service",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/quality-of-service"
+    "permalink": "/ros2-advanced/quality-of-service"
   },
   "next": {
     "title": "Chapter 7 - Gazebo Simulation: Physics, Sensors & World Building",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/"
+    "permalink": "/gazebo-simulation/"
   }
 }

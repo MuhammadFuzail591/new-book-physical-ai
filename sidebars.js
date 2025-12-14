@@ -10,145 +10,145 @@ const sidebars = {
         {
           type: 'category',
           label: '1. Introduction to Physical AI',
-          link: {type: 'doc', id: 'physical-ai/introduction/index'},
+          link: {type: 'doc', id: 'introduction/index'},
           items: [
-            'physical-ai/introduction/what-is-physical-ai',
-            'physical-ai/introduction/embodied-intelligence',
-            'physical-ai/introduction/chapter-summary'
+            'introduction/what-is-physical-ai',
+            'introduction/embodied-intelligence',
+            'introduction/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '2. Humanoid Robotics Landscape',
-          link: {type: 'doc', id: 'physical-ai/humanoid-robotics/index'},
+          link: {type: 'doc', id: 'humanoid-robotics/index'},
           items: [
-            'physical-ai/humanoid-robotics/landscape',
-            'physical-ai/humanoid-robotics/sensor-foundations',
-            'physical-ai/humanoid-robotics/chapter-summary'
+            'humanoid-robotics/landscape',
+            'humanoid-robotics/sensor-foundations',
+            'humanoid-robotics/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '3. ROS 2 Architecture',
-          link: {type: 'doc', id: 'physical-ai/ros2-architecture/index'},
+          link: {type: 'doc', id: 'ros2-architecture/index'},
           items: [
-            'physical-ai/ros2-architecture/nodes-topics',
-            'physical-ai/ros2-architecture/services-actions',
-            'physical-ai/ros2-architecture/chapter-summary'
+            'ros2-architecture/nodes-topics',
+            'ros2-architecture/services-actions',
+            'ros2-architecture/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '4. Building ROS 2 Packages',
-          link: {type: 'doc', id: 'physical-ai/ros2-packages/index'},
+          link: {type: 'doc', id: 'ros2-packages/index'},
           items: [
-            'physical-ai/ros2-packages/building-packages',
-            'physical-ai/ros2-packages/launch-files',
-            'physical-ai/ros2-packages/chapter-summary'
+            'ros2-packages/building-packages',
+            'ros2-packages/launch-files',
+            'ros2-packages/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '5. URDF/SDF for Humanoid Robots',
-          link: {type: 'doc', id: 'physical-ai/ros2-urdf/index'},
+          link: {type: 'doc', id: 'ros2-urdf/index'},
           items: [
-            'physical-ai/ros2-urdf/urdf-basics',
-            'physical-ai/ros2-urdf/sdf-for-simulation',
-            'physical-ai/ros2-urdf/chapter-summary'
+            'ros2-urdf/urdf-basics',
+            'ros2-urdf/sdf-for-simulation',
+            'ros2-urdf/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '6. Advanced ROS 2 Concepts',
-          link: {type: 'doc', id: 'physical-ai/ros2-advanced/index'},
+          link: {type: 'doc', id: 'ros2-advanced/index'},
           items: [
-            'physical-ai/ros2-advanced/parameters',
-            'physical-ai/ros2-advanced/quality-of-service',
-            'physical-ai/ros2-advanced/chapter-summary'
+            'ros2-advanced/parameters',
+            'ros2-advanced/quality-of-service',
+            'ros2-advanced/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '7. Gazebo Simulation',
-          link: {type: 'doc', id: 'physical-ai/gazebo-simulation/index'},
+          link: {type: 'doc', id: 'gazebo-simulation/index'},
           items: [
-            'physical-ai/gazebo-simulation/physics-engines',
-            'physical-ai/gazebo-simulation/world-building',
-            'physical-ai/gazebo-simulation/chapter-summary'
+            'gazebo-simulation/physics-engines',
+            'gazebo-simulation/world-building',
+            'gazebo-simulation/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '8. Unity Visualization',
-          link: {type: 'doc', id: 'physical-ai/unity-visualization/index'},
+          link: {type: 'doc', id: 'unity-visualization/index'},
           items: [
-            'physical-ai/unity-visualization/human-robot-interaction',
-            'physical-ai/unity-visualization/visualization',
-            'physical-ai/unity-visualization/chapter-summary'
+            'unity-visualization/human-robot-interaction',
+            'unity-visualization/visualization',
+            'unity-visualization/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '9. NVIDIA Isaac SDK',
-          link: {type: 'doc', id: 'physical-ai/nvidia-isaac/index'},
+          link: {type: 'doc', id: 'nvidia-isaac/index'},
           items: [
-            'physical-ai/nvidia-isaac/sdk-overview',
-            'physical-ai/nvidia-isaac/isaac-sim',
-            'physical-ai/nvidia-isaac/chapter-summary'
+            'nvidia-isaac/sdk-overview',
+            'nvidia-isaac/isaac-sim',
+            'nvidia-isaac/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '10. AI Perception & Manipulation',
-          link: {type: 'doc', id: 'physical-ai/perception-pipelines/index'},
+          link: {type: 'doc', id: 'perception-pipelines/index'},
           items: [
-            'physical-ai/perception-pipelines/synthetic-data',
-            'physical-ai/perception-pipelines/perception-stacks',
-            'physical-ai/perception-pipelines/chapter-summary'
+            'perception-pipelines/synthetic-data',
+            'perception-pipelines/perception-stacks',
+            'perception-pipelines/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '11. VSLAM & Navigation',
-          link: {type: 'doc', id: 'physical-ai/navigation-systems/index'},
+          link: {type: 'doc', id: 'navigation-systems/index'},
           items: [
-            'physical-ai/navigation-systems/vslam',
-            'physical-ai/navigation-systems/navigation',
-            'physical-ai/navigation-systems/sim-to-real'
+            'navigation-systems/vslam',
+            'navigation-systems/navigation',
+            'navigation-systems/sim-to-real'
           ]
         },
         {
           type: 'category',
           label: '12. Voice-to-Action Robotics',
-          link: {type: 'doc', id: 'physical-ai/voice-robotics/index'},
+          link: {type: 'doc', id: 'voice-robotics/index'},
           items: [
-            'physical-ai/voice-robotics/whisper-integration',
-            'physical-ai/voice-robotics/voice-to-action',
-            'physical-ai/voice-robotics/chapter-summary'
+            'voice-robotics/whisper-integration',
+            'voice-robotics/voice-to-action',
+            'voice-robotics/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '13. Cognitive Planning with VLA',
-          link: {type: 'doc', id: 'physical-ai/cognitive-planning/index'},
+          link: {type: 'doc', id: 'cognitive-planning/index'},
           items: [
-            'physical-ai/cognitive-planning/vla-systems',
-            'physical-ai/cognitive-planning/llm-integration',
-            'physical-ai/cognitive-planning/chapter-summary'
+            'cognitive-planning/vla-systems',
+            'cognitive-planning/llm-integration',
+            'cognitive-planning/chapter-summary'
           ]
         },
         {
           type: 'category',
           label: '14. Capstone Project',
-          link: {type: 'doc', id: 'physical-ai/capstone-project/index'},
+          link: {type: 'doc', id: 'capstone-project/index'},
           items: [
-            'physical-ai/capstone-project/project-overview',
-            'physical-ai/capstone-project/implementation',
-            'physical-ai/capstone-project/deployment',
-            'physical-ai/capstone-project/conclusion'
+            'capstone-project/project-overview',
+            'capstone-project/implementation',
+            'capstone-project/deployment',
+            'capstone-project/conclusion'
           ]
         },
-        'physical-ai/glossary'  // Glossary page
+        'glossary'  // Glossary page
       ],
     },
   ],

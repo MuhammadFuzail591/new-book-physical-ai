@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/nvidia-isaac/sdk-overview",
+  "id": "nvidia-isaac/sdk-overview",
   "title": "NVIDIA Isaac SDK - Core Components and Architecture",
   "description": "Introduction to Isaac SDK",
   "source": "@site/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
-  "sourceDirName": "physical-ai/nvidia-isaac",
-  "slug": "/physical-ai/nvidia-isaac/sdk-overview",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/sdk-overview",
+  "sourceDirName": "nvidia-isaac",
+  "slug": "/nvidia-isaac/sdk-overview",
+  "permalink": "/nvidia-isaac/sdk-overview",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/"
+    "permalink": "/nvidia-isaac/"
   },
   "next": {
     "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/isaac-sim"
+    "permalink": "/nvidia-isaac/isaac-sim"
   }
 }

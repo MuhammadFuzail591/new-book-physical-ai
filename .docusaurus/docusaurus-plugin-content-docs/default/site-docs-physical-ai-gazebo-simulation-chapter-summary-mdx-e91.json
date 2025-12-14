@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/gazebo-simulation/chapter-summary",
+  "id": "gazebo-simulation/chapter-summary",
   "title": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
   "description": "Key Concepts Covered",
   "source": "@site/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
-  "sourceDirName": "physical-ai/gazebo-simulation",
-  "slug": "/physical-ai/gazebo-simulation/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/chapter-summary",
+  "sourceDirName": "gazebo-simulation",
+  "slug": "/gazebo-simulation/chapter-summary",
+  "permalink": "/gazebo-simulation/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "World Building in Gazebo - Environments, Objects, and Scenarios",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/world-building"
+    "permalink": "/gazebo-simulation/world-building"
   },
   "next": {
     "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/"
+    "permalink": "/unity-visualization/"
   }
 }

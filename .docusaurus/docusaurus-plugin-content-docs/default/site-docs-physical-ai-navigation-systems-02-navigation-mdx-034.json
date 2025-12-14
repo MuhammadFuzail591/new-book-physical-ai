@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/navigation-systems/navigation",
+  "id": "navigation-systems/navigation",
   "title": "Chapter 11 - Navigation Systems for Physical AI",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/navigation-systems/02-navigation.mdx",
-  "sourceDirName": "physical-ai/navigation-systems",
-  "slug": "/physical-ai/navigation-systems/navigation",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/navigation",
+  "sourceDirName": "navigation-systems",
+  "slug": "/navigation-systems/navigation",
+  "permalink": "/navigation-systems/navigation",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/02-navigation.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/02-navigation.mdx",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -18,10 +18,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 11 - Visual SLAM Fundamentals",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/vslam"
+    "permalink": "/navigation-systems/vslam"
   },
   "next": {
     "title": "Sim-to-Real Transfer Techniques in Robotics",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/sim-to-real"
+    "permalink": "/navigation-systems/sim-to-real"
   }
 }

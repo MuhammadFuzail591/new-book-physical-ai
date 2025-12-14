@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/ros2-urdf/index",
+  "id": "ros2-urdf/index",
   "title": "Chapter 6 - URDF/SDF for Humanoid Robots",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/ros2-urdf/index.mdx",
-  "sourceDirName": "physical-ai/ros2-urdf",
-  "slug": "/physical-ai/ros2-urdf/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/",
+  "sourceDirName": "ros2-urdf",
+  "slug": "/ros2-urdf/",
+  "permalink": "/ros2-urdf/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 5 Summary - Building ROS 2 Packages, Launch Files & Parameters",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/chapter-summary"
+    "permalink": "/ros2-packages/chapter-summary"
   },
   "next": {
     "title": "URDF Basics - Links, Joints, and Robot Modeling",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/urdf-basics"
+    "permalink": "/ros2-urdf/urdf-basics"
   }
 }

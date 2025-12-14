@@ -7,12 +7,9 @@ export default {
   "title": "Physical AI & Humanoid Robotics Textbook",
   "tagline": "An AI-Native Technical Textbook on Embodied Intelligence",
   "favicon": "img/favicon.ico",
-  "url": "https://your-username.github.io",
-  "baseUrl": "/physical-ai-textbook/physical-ai/",
-  "organizationName": "your-organization",
-  "projectName": "physical-ai-textbook",
+  "url": "https://new-book-physical-ai-rhyl.vercel.app",
+  "baseUrl": "/",
   "trailingSlash": false,
-  "deploymentBranch": "gh-pages",
   "onBrokenLinks": "throw",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
@@ -28,9 +25,10 @@ export default {
       "classic",
       {
         "docs": {
+          "path": "docs/physical-ai",
           "sidebarPath": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/sidebars.js",
           "routeBasePath": "/",
-          "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/"
+          "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/"
         },
         "blog": false,
         "theme": {
@@ -58,7 +56,7 @@ export default {
       "logo": {
         "alt": "Physical AI Logo",
         "src": "img/logo.svg",
-        "href": "/physical-ai"
+        "href": "/"
       },
       "items": [
         {
@@ -68,7 +66,7 @@ export default {
           "label": "Textbook"
         },
         {
-          "href": "https://github.com/your-username/physical-ai-textbook",
+          "href": "https://github.com/fuzailpalook/new-book",
           "label": "GitHub",
           "position": "right"
         }
@@ -83,7 +81,7 @@ export default {
           "items": [
             {
               "label": "Introduction",
-              "to": "/physical-ai/introduction"
+              "to": "/introduction"
             }
           ]
         },
