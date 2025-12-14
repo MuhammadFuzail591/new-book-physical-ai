@@ -1,24 +1,26 @@
 {
   "id": "ros2-advanced/quality-of-service",
-  "title": "quality-of-service",
-  "description": "",
+  "title": "Quality of Service (QoS) in ROS 2",
+  "description": "Introduction to Quality of Service",
   "source": "@site/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
   "sourceDirName": "ros2-advanced",
   "slug": "/ros2-advanced/quality-of-service",
   "permalink": "/ros2-advanced/quality-of-service",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Quality of Service (QoS) in ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "parameters",
+    "title": "Dynamic Parameters in ROS 2",
     "permalink": "/ros2-advanced/parameters"
   },
   "next": {
-    "title": "chapter-summary",
+    "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
     "permalink": "/ros2-advanced/chapter-summary"
   }
 }

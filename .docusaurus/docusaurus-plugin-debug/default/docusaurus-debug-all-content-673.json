@@ -11,8 +11,8 @@
           "className": "docs-version-current",
           "path": "/",
           "tagsPath": "/tags",
-          "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai",
-          "editUrlLocalized": "https://github.com/fuzailpalook/new-book/tree/main/i18n/en/docusaurus-plugin-content-docs/current",
+          "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai",
+          "editUrlLocalized": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
           "sidebarFilePath": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/sidebars.js",
@@ -29,7 +29,7 @@
               "permalink": "/capstone-project/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {}
@@ -44,7 +44,7 @@
               "permalink": "/capstone-project/conclusion",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/conclusion.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/conclusion.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {},
@@ -68,7 +68,7 @@
               "permalink": "/capstone-project/deployment",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/deployment.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/deployment.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {},
@@ -92,7 +92,7 @@
               "permalink": "/capstone-project/implementation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/implementation.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/implementation.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {},
@@ -116,7 +116,7 @@
               "permalink": "/capstone-project/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {},
@@ -140,7 +140,7 @@
               "permalink": "/capstone-project/project-overview",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {},
@@ -164,7 +164,7 @@
               "permalink": "/cognitive-planning/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/04-chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/cognitive-planning/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -191,7 +191,7 @@
               "permalink": "/cognitive-planning/cognitive-architectures",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/03-cognitive-architectures.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/cognitive-planning/03-cognitive-architectures.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 3,
@@ -209,7 +209,7 @@
               "permalink": "/cognitive-planning/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -217,7 +217,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
                 "permalink": "/voice-robotics/chapter-summary"
               },
               "next": {
@@ -235,7 +235,7 @@
               "permalink": "/cognitive-planning/llm-integration",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 2,
@@ -262,7 +262,7 @@
               "permalink": "/cognitive-planning/vla-systems",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -289,7 +289,7 @@
               "permalink": "/gazebo-simulation/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/gazebo-simulation/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -315,7 +315,7 @@
               "permalink": "/gazebo-simulation/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/gazebo-simulation/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -323,7 +323,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
                 "permalink": "/ros2-advanced/chapter-summary"
               },
               "next": {
@@ -341,7 +341,7 @@
               "permalink": "/gazebo-simulation/physics-engines",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -367,7 +367,7 @@
               "permalink": "/gazebo-simulation/world-building",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/world-building.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/gazebo-simulation/world-building.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -393,7 +393,7 @@
               "permalink": "/glossary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/glossary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/glossary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -415,7 +415,7 @@
               "permalink": "/humanoid-robotics/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -441,7 +441,7 @@
               "permalink": "/humanoid-robotics/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/humanoid-robotics/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/humanoid-robotics/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -469,7 +469,7 @@
               "permalink": "/humanoid-robotics/landscape",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/humanoid-robotics/landscape.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/humanoid-robotics/landscape.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -495,7 +495,7 @@
               "permalink": "/humanoid-robotics/sensor-foundations",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -514,14 +514,14 @@
             {
               "id": "index",
               "title": "Physical AI & Humanoid Robotics Textbook",
-              "description": "Welcome to the comprehensive textbook on Physical AI and Humanoid Robotics. This AI-native educational resource covers the complete journey from foundational concepts to advanced integration, providing both theoretical understanding and practical implementation skills.",
+              "description": "An AI-Native Technical Textbook on Embodied Intelligence",
               "source": "@site/docs/physical-ai/index.mdx",
               "sourceDirName": ".",
               "slug": "/",
               "permalink": "/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -538,7 +538,7 @@
               "permalink": "/introduction/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/03-chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/introduction/03-chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 3,
@@ -567,7 +567,7 @@
               "permalink": "/introduction/embodied-intelligence",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/introduction/02-embodied-intelligence.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 2,
@@ -596,7 +596,7 @@
               "permalink": "/introduction/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/introduction/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -620,7 +620,7 @@
               "permalink": "/introduction/what-is-physical-ai",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/01-what-is-physical-ai.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/introduction/01-what-is-physical-ai.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -649,7 +649,7 @@
               "permalink": "/navigation-systems/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/04-chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/navigation-systems/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -667,7 +667,7 @@
               "permalink": "/navigation-systems/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/navigation-systems/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -693,7 +693,7 @@
               "permalink": "/navigation-systems/navigation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/02-navigation.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/navigation-systems/02-navigation.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 2,
@@ -720,7 +720,7 @@
               "permalink": "/navigation-systems/sim-to-real",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 3,
@@ -747,7 +747,7 @@
               "permalink": "/navigation-systems/vslam",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/navigation-systems/01-vslam.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/navigation-systems/01-vslam.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -774,7 +774,7 @@
               "permalink": "/nvidia-isaac/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -800,7 +800,7 @@
               "permalink": "/nvidia-isaac/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/nvidia-isaac/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -826,7 +826,7 @@
               "permalink": "/nvidia-isaac/isaac-sim",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -852,7 +852,7 @@
               "permalink": "/nvidia-isaac/sdk-overview",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -878,7 +878,7 @@
               "permalink": "/perception-pipelines/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -904,7 +904,7 @@
               "permalink": "/perception-pipelines/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -930,7 +930,7 @@
               "permalink": "/perception-pipelines/perception-stacks",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -956,7 +956,7 @@
               "permalink": "/perception-pipelines/synthetic-data",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -974,21 +974,23 @@
             },
             {
               "id": "ros2-advanced/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
+              "description": "Overview",
               "source": "@site/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
               "sourceDirName": "ros2-advanced",
               "slug": "/ros2-advanced/chapter-summary",
               "permalink": "/ros2-advanced/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 6 Summary - Advanced ROS 2 Concepts"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "quality-of-service",
+                "title": "Quality of Service (QoS) in ROS 2",
                 "permalink": "/ros2-advanced/quality-of-service"
               },
               "next": {
@@ -998,73 +1000,79 @@
             },
             {
               "id": "ros2-advanced/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 6 - Advanced ROS 2 Concepts",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/ros2-advanced/index.mdx",
               "sourceDirName": "ros2-advanced",
               "slug": "/ros2-advanced/",
               "permalink": "/ros2-advanced/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 6 - Advanced ROS 2 Concepts"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
                 "permalink": "/ros2-urdf/chapter-summary"
               },
               "next": {
-                "title": "parameters",
+                "title": "Dynamic Parameters in ROS 2",
                 "permalink": "/ros2-advanced/parameters"
               }
             },
             {
               "id": "ros2-advanced/parameters",
-              "title": "parameters",
-              "description": "",
+              "title": "Dynamic Parameters in ROS 2",
+              "description": "Introduction to Dynamic Parameters",
               "source": "@site/docs/physical-ai/ros2-advanced/parameters.mdx",
               "sourceDirName": "ros2-advanced",
               "slug": "/ros2-advanced/parameters",
               "permalink": "/ros2-advanced/parameters",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/parameters.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Dynamic Parameters in ROS 2"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 6 - Advanced ROS 2 Concepts",
                 "permalink": "/ros2-advanced/"
               },
               "next": {
-                "title": "quality-of-service",
+                "title": "Quality of Service (QoS) in ROS 2",
                 "permalink": "/ros2-advanced/quality-of-service"
               }
             },
             {
               "id": "ros2-advanced/quality-of-service",
-              "title": "quality-of-service",
-              "description": "",
+              "title": "Quality of Service (QoS) in ROS 2",
+              "description": "Introduction to Quality of Service",
               "source": "@site/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
               "sourceDirName": "ros2-advanced",
               "slug": "/ros2-advanced/quality-of-service",
               "permalink": "/ros2-advanced/quality-of-service",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/quality-of-service.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Quality of Service (QoS) in ROS 2"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "parameters",
+                "title": "Dynamic Parameters in ROS 2",
                 "permalink": "/ros2-advanced/parameters"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
                 "permalink": "/ros2-advanced/chapter-summary"
               }
             },
@@ -1078,7 +1086,7 @@
               "permalink": "/ros2-architecture/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1104,7 +1112,7 @@
               "permalink": "/ros2-architecture/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-architecture/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-architecture/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1130,7 +1138,7 @@
               "permalink": "/ros2-architecture/nodes-topics",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-architecture/nodes-topics.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1156,7 +1164,7 @@
               "permalink": "/ros2-architecture/services-actions",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-architecture/services-actions.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-architecture/services-actions.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1182,7 +1190,7 @@
               "permalink": "/ros2-communication/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/04-chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -1200,7 +1208,7 @@
               "permalink": "/ros2-communication/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1217,7 +1225,7 @@
               "permalink": "/ros2-communication/nodes-implementation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/01-nodes-implementation.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/01-nodes-implementation.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -1235,7 +1243,7 @@
               "permalink": "/ros2-communication/services-actions",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/03-services-actions.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/03-services-actions.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 3,
@@ -1253,7 +1261,7 @@
               "permalink": "/ros2-communication/topics-communication",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/02-topics-communication.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/02-topics-communication.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 2,
@@ -1271,7 +1279,7 @@
               "permalink": "/ros2-communication/topics-services-actions",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-communication/topics-services-actions.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-communication/topics-services-actions.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1288,7 +1296,7 @@
               "permalink": "/ros2-packages/building-packages",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/building-packages.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-packages/building-packages.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1314,7 +1322,7 @@
               "permalink": "/ros2-packages/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-packages/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1340,7 +1348,7 @@
               "permalink": "/ros2-packages/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-packages/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1366,7 +1374,7 @@
               "permalink": "/ros2-packages/launch-files",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/launch-files.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-packages/launch-files.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1392,7 +1400,7 @@
               "permalink": "/ros2-packages/parameters",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/parameters.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-packages/parameters.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1409,7 +1417,7 @@
               "permalink": "/ros2-urdf/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1421,7 +1429,7 @@
                 "permalink": "/ros2-urdf/sdf-for-simulation"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 6 - Advanced ROS 2 Concepts",
                 "permalink": "/ros2-advanced/"
               }
             },
@@ -1435,7 +1443,7 @@
               "permalink": "/ros2-urdf/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-urdf/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1461,7 +1469,7 @@
               "permalink": "/ros2-urdf/sdf-for-simulation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-urdf/sdf-for-simulation.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1487,7 +1495,7 @@
               "permalink": "/ros2-urdf/urdf-basics",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/urdf-basics.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-urdf/urdf-basics.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1513,7 +1521,7 @@
               "permalink": "/unity-visualization/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -1540,7 +1548,7 @@
               "permalink": "/unity-visualization/human-robot-interaction",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/unity-visualization/01-human-robot-interaction.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/unity-visualization/01-human-robot-interaction.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -1567,7 +1575,7 @@
               "permalink": "/unity-visualization/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/unity-visualization/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/unity-visualization/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1593,7 +1601,7 @@
               "permalink": "/unity-visualization/unity-workflows",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 3,
@@ -1611,7 +1619,7 @@
               "permalink": "/unity-visualization/visualization",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/unity-visualization/02-visualization.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/unity-visualization/02-visualization.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 2,
@@ -1630,18 +1638,20 @@
             },
             {
               "id": "voice-robotics/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
+              "description": "Overview",
               "source": "@site/docs/physical-ai/voice-robotics/chapter-summary.mdx",
               "sourceDirName": "voice-robotics",
               "slug": "/voice-robotics/chapter-summary",
               "permalink": "/voice-robotics/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/chapter-summary.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Voice-to-Action Command Processing in Robotics",
@@ -1662,7 +1672,7 @@
               "permalink": "/voice-robotics/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/index.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/index.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1674,7 +1684,7 @@
                 "permalink": "/navigation-systems/sim-to-real"
               },
               "next": {
-                "title": "whisper-integration",
+                "title": "Whisper Integration in Voice-to-Action Robotics",
                 "permalink": "/voice-robotics/whisper-integration"
               }
             },
@@ -1688,7 +1698,7 @@
               "permalink": "/voice-robotics/voice-to-action",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/voice-to-action.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/voice-to-action.mdx",
               "tags": [],
               "version": "current",
               "frontMatter": {
@@ -1696,28 +1706,30 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "whisper-integration",
+                "title": "Whisper Integration in Voice-to-Action Robotics",
                 "permalink": "/voice-robotics/whisper-integration"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
                 "permalink": "/voice-robotics/chapter-summary"
               }
             },
             {
               "id": "voice-robotics/whisper-integration",
-              "title": "whisper-integration",
-              "description": "",
+              "title": "Whisper Integration in Voice-to-Action Robotics",
+              "description": "Introduction to Whisper in Robotics",
               "source": "@site/docs/physical-ai/voice-robotics/whisper-integration.mdx",
               "sourceDirName": "voice-robotics",
               "slug": "/voice-robotics/whisper-integration",
               "permalink": "/voice-robotics/whisper-integration",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Whisper Integration in Voice-to-Action Robotics"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
@@ -2091,7 +2103,7 @@
     }
   },
   "docusaurus-plugin-content-pages": {
-    "default": null
+    "default": []
   },
   "docusaurus-plugin-debug": {},
   "docusaurus-theme-classic": {},

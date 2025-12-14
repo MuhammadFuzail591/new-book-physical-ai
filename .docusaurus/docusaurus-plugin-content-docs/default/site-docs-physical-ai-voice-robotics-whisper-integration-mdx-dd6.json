@@ -1,17 +1,19 @@
 {
   "id": "voice-robotics/whisper-integration",
-  "title": "whisper-integration",
-  "description": "",
+  "title": "Whisper Integration in Voice-to-Action Robotics",
+  "description": "Introduction to Whisper in Robotics",
   "source": "@site/docs/physical-ai/voice-robotics/whisper-integration.mdx",
   "sourceDirName": "voice-robotics",
   "slug": "/voice-robotics/whisper-integration",
   "permalink": "/voice-robotics/whisper-integration",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/whisper-integration.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Whisper Integration in Voice-to-Action Robotics"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",

@@ -28,7 +28,7 @@ export default {
           "path": "docs/physical-ai",
           "sidebarPath": "/media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/sidebars.js",
           "routeBasePath": "/",
-          "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/"
+          "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/"
         },
         "blog": false,
         "theme": {
@@ -320,6 +320,13 @@ export default {
         }
       ]
     },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
+    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -336,13 +343,6 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
-    },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

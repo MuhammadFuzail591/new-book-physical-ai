@@ -8,7 +8,7 @@
   "permalink": "/gazebo-simulation/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/index.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/gazebo-simulation/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -16,7 +16,7 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "chapter-summary",
+    "title": "Chapter 6 Summary - Advanced ROS 2 Concepts",
     "permalink": "/ros2-advanced/chapter-summary"
   },
   "next": {

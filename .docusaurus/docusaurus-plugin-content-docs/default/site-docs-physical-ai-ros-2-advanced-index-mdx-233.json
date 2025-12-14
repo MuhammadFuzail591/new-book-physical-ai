@@ -1,24 +1,26 @@
 {
   "id": "ros2-advanced/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 6 - Advanced ROS 2 Concepts",
+  "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/ros2-advanced/index.mdx",
   "sourceDirName": "ros2-advanced",
   "slug": "/ros2-advanced/",
   "permalink": "/ros2-advanced/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-advanced/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 6 - Advanced ROS 2 Concepts"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
     "permalink": "/ros2-urdf/chapter-summary"
   },
   "next": {
-    "title": "parameters",
+    "title": "Dynamic Parameters in ROS 2",
     "permalink": "/ros2-advanced/parameters"
   }
 }

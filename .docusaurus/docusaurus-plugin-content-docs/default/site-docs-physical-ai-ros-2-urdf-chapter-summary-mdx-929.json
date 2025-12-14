@@ -8,7 +8,7 @@
   "permalink": "/ros2-urdf/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/ros2-urdf/chapter-summary.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -20,7 +20,7 @@
     "permalink": "/ros2-urdf/sdf-for-simulation"
   },
   "next": {
-    "title": "index",
+    "title": "Chapter 6 - Advanced ROS 2 Concepts",
     "permalink": "/ros2-advanced/"
   }
 }

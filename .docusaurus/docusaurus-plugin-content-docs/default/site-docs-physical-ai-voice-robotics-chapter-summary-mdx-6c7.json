@@ -1,17 +1,19 @@
 {
   "id": "voice-robotics/chapter-summary",
-  "title": "chapter-summary",
-  "description": "",
+  "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2",
+  "description": "Overview",
   "source": "@site/docs/physical-ai/voice-robotics/chapter-summary.mdx",
   "sourceDirName": "voice-robotics",
   "slug": "/voice-robotics/chapter-summary",
   "permalink": "/voice-robotics/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/voice-robotics/chapter-summary.mdx",
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/voice-robotics/chapter-summary.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 12 Summary - Voice-to-Action Robotics with Whisper & ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Voice-to-Action Command Processing in Robotics",
