@@ -8,7 +8,7 @@ export default {
   "tagline": "An AI-Native Technical Textbook on Embodied Intelligence",
   "favicon": "img/favicon.ico",
   "url": "https://your-username.github.io",
-  "baseUrl": "/physical-ai-textbook/",
+  "baseUrl": "/physical-ai-textbook/physical-ai/",
   "organizationName": "your-organization",
   "projectName": "physical-ai-textbook",
   "trailingSlash": false,
@@ -322,13 +322,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -345,6 +338,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

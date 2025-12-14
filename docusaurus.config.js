@@ -12,7 +12,7 @@ const config = {
   url: 'https://your-username.github.io', // TODO: Update with actual GitHub Pages URL
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub Pages, this is usually '/<project-name>/'
-  baseUrl: '/physical-ai-textbook/',
+  baseUrl: '/physical-ai-textbook/physical-ai',
 
   // GitHub pages deployment config.
   organizationName: 'your-organization', // TODO: Update with actual GitHub username/organization

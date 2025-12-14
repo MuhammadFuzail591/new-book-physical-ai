@@ -1,24 +1,26 @@
 {
   "id": "physical-ai/voice-robotics/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
+  "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/voice-robotics/index.mdx",
   "sourceDirName": "physical-ai/voice-robotics",
   "slug": "/physical-ai/voice-robotics/",
-  "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "sim-to-real",
-    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
+    "title": "Sim-to-Real Transfer Techniques in Robotics",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/sim-to-real"
   },
   "next": {
     "title": "whisper-integration",
-    "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/whisper-integration"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "id": "physical-ai/unity-visualization/unity-workflows",
+  "title": "Chapter 8 - Unity Workflows for Robotics",
+  "description": "Introduction to Unity Robotics Workflows",
+  "source": "@site/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
+  "sourceDirName": "physical-ai/unity-visualization",
+  "slug": "/physical-ai/unity-visualization/unity-workflows",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/unity-workflows",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Chapter 8 - Unity Workflows for Robotics"
+  }
+}

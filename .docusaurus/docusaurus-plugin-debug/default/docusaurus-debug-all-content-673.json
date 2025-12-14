@@ -156,6 +156,33 @@
             },
             {
               "id": "physical-ai/cognitive-planning/chapter-summary",
+              "title": "Chapter Summary - Cognitive Planning with Vision-Language-Action Systems",
+              "description": "Key Concepts Review",
+              "source": "@site/docs/physical-ai/cognitive-planning/04-chapter-summary.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/04-chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Chapter Summary - Cognitive Planning with Vision-Language-Action Systems"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "LLM Integration with ROS 2 for Cognitive Robotics",
+                "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
+              },
+              "next": {
+                "title": "index",
+                "permalink": "/physical-ai-textbook/physical-ai/capstone-project/"
+              }
+            },
+            {
+              "id": "physical-ai/cognitive-planning/chapter-summary",
               "title": "chapter-summary",
               "description": "",
               "source": "@site/docs/physical-ai/cognitive-planning/chapter-summary.mdx",
@@ -170,7 +197,7 @@
               "frontMatter": {},
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "llm-integration",
+                "title": "LLM Integration with ROS 2 for Cognitive Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
               },
               "next": {
@@ -179,9 +206,27 @@
               }
             },
             {
+              "id": "physical-ai/cognitive-planning/cognitive-architectures",
+              "title": "Cognitive Architectures for Robotics",
+              "description": "Introduction to Cognitive Architectures",
+              "source": "@site/docs/physical-ai/cognitive-planning/03-cognitive-architectures.mdx",
+              "sourceDirName": "physical-ai/cognitive-planning",
+              "slug": "/physical-ai/cognitive-planning/cognitive-architectures",
+              "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/cognitive-architectures",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/03-cognitive-architectures.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Cognitive Architectures for Robotics"
+              }
+            },
+            {
               "id": "physical-ai/cognitive-planning/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/cognitive-planning/index.mdx",
               "sourceDirName": "physical-ai/cognitive-planning",
               "slug": "/physical-ai/cognitive-planning/",
@@ -191,34 +236,39 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "chapter-summary",
                 "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary"
               },
               "next": {
-                "title": "vla-systems",
+                "title": "Vision-Language-Action Systems in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems"
               }
             },
             {
               "id": "physical-ai/cognitive-planning/llm-integration",
-              "title": "llm-integration",
-              "description": "",
-              "source": "@site/docs/physical-ai/cognitive-planning/llm-integration.mdx",
+              "title": "LLM Integration with ROS 2 for Cognitive Robotics",
+              "description": "Introduction to LLM Integration in Robotics",
+              "source": "@site/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
               "sourceDirName": "physical-ai/cognitive-planning",
               "slug": "/physical-ai/cognitive-planning/llm-integration",
               "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/llm-integration.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "LLM Integration with ROS 2 for Cognitive Robotics"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "vla-systems",
+                "title": "Vision-Language-Action Systems in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems"
               },
               "next": {
@@ -228,25 +278,28 @@
             },
             {
               "id": "physical-ai/cognitive-planning/vla-systems",
-              "title": "vla-systems",
-              "description": "",
-              "source": "@site/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+              "title": "Vision-Language-Action Systems in Robotics",
+              "description": "Introduction to Vision-Language-Action Systems",
+              "source": "@site/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
               "sourceDirName": "physical-ai/cognitive-planning",
               "slug": "/physical-ai/cognitive-planning/vla-systems",
               "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/vla-systems.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Vision-Language-Action Systems in Robotics"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/"
               },
               "next": {
-                "title": "llm-integration",
+                "title": "LLM Integration with ROS 2 for Cognitive Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration"
               }
             },
@@ -378,8 +431,8 @@
             },
             {
               "id": "physical-ai/humanoid-robotics/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 2 - Humanoid Robotics Chapter Summary",
+              "description": "Key Concepts Review",
               "source": "@site/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
               "sourceDirName": "physical-ai/humanoid-robotics",
               "slug": "/physical-ai/humanoid-robotics/chapter-summary",
@@ -389,10 +442,12 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 2 - Humanoid Robotics Chapter Summary"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "sensor-foundations",
+                "title": "Chapter 2 - Sensor Foundations",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations"
               },
               "next": {
@@ -422,14 +477,14 @@
                 "permalink": "/physical-ai-textbook/physical-ai/introduction/chapter-summary"
               },
               "next": {
-                "title": "landscape",
+                "title": "Chapter 2 - Humanoid Robotics Landscape",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape"
               }
             },
             {
               "id": "physical-ai/humanoid-robotics/landscape",
-              "title": "landscape",
-              "description": "",
+              "title": "Chapter 2 - Humanoid Robotics Landscape",
+              "description": "Introduction to Humanoid Robotics",
               "source": "@site/docs/physical-ai/humanoid-robotics/landscape.mdx",
               "sourceDirName": "physical-ai/humanoid-robotics",
               "slug": "/physical-ai/humanoid-robotics/landscape",
@@ -439,21 +494,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/landscape.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 2 - Humanoid Robotics Landscape"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/"
               },
               "next": {
-                "title": "sensor-foundations",
+                "title": "Chapter 2 - Sensor Foundations",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations"
               }
             },
             {
               "id": "physical-ai/humanoid-robotics/sensor-foundations",
-              "title": "sensor-foundations",
-              "description": "",
+              "title": "Chapter 2 - Sensor Foundations",
+              "description": "Introduction to Sensor Systems",
               "source": "@site/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
               "sourceDirName": "physical-ai/humanoid-robotics",
               "slug": "/physical-ai/humanoid-robotics/sensor-foundations",
@@ -463,14 +520,16 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/sensor-foundations.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 2 - Sensor Foundations"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "landscape",
+                "title": "Chapter 2 - Humanoid Robotics Landscape",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 2 - Humanoid Robotics Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
               }
             },
@@ -596,23 +655,26 @@
             },
             {
               "id": "physical-ai/navigation-systems/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
-              "source": "@site/docs/physical-ai/navigation-systems/chapter-summary.mdx",
+              "title": "Chapter Summary - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+              "description": "Key Concepts Review",
+              "source": "@site/docs/physical-ai/navigation-systems/04-chapter-summary.mdx",
               "sourceDirName": "physical-ai/navigation-systems",
               "slug": "/physical-ai/navigation-systems/chapter-summary",
               "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/chapter-summary.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {}
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Chapter Summary - VSLAM, Navigation & Sim-to-Real Transfer Techniques"
+              }
             },
             {
               "id": "physical-ai/navigation-systems/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/navigation-systems/index.mdx",
               "sourceDirName": "physical-ai/navigation-systems",
               "slug": "/physical-ai/navigation-systems/",
@@ -622,93 +684,104 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary"
               },
               "next": {
-                "title": "vslam",
+                "title": "Chapter 11 - Visual SLAM Fundamentals",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam"
               }
             },
             {
               "id": "physical-ai/navigation-systems/navigation",
-              "title": "navigation",
-              "description": "",
-              "source": "@site/docs/physical-ai/navigation-systems/navigation.mdx",
+              "title": "Chapter 11 - Navigation Systems for Physical AI",
+              "description": "Chapter Overview",
+              "source": "@site/docs/physical-ai/navigation-systems/02-navigation.mdx",
               "sourceDirName": "physical-ai/navigation-systems",
               "slug": "/physical-ai/navigation-systems/navigation",
               "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/navigation.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/02-navigation.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Chapter 11 - Navigation Systems for Physical AI"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "vslam",
+                "title": "Chapter 11 - Visual SLAM Fundamentals",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam"
               },
               "next": {
-                "title": "sim-to-real",
+                "title": "Sim-to-Real Transfer Techniques in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
               }
             },
             {
               "id": "physical-ai/navigation-systems/sim-to-real",
-              "title": "sim-to-real",
-              "description": "",
-              "source": "@site/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+              "title": "Sim-to-Real Transfer Techniques in Robotics",
+              "description": "Introduction to Sim-to-Real Transfer",
+              "source": "@site/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
               "sourceDirName": "physical-ai/navigation-systems",
               "slug": "/physical-ai/navigation-systems/sim-to-real",
               "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/sim-to-real.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/03-sim-to-real.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Sim-to-Real Transfer Techniques in Robotics"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "navigation",
+                "title": "Chapter 11 - Navigation Systems for Physical AI",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
                 "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
               }
             },
             {
               "id": "physical-ai/navigation-systems/vslam",
-              "title": "vslam",
-              "description": "",
-              "source": "@site/docs/physical-ai/navigation-systems/vslam.mdx",
+              "title": "Chapter 11 - Visual SLAM Fundamentals",
+              "description": "Chapter Overview",
+              "source": "@site/docs/physical-ai/navigation-systems/01-vslam.mdx",
               "sourceDirName": "physical-ai/navigation-systems",
               "slug": "/physical-ai/navigation-systems/vslam",
               "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/vslam.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/01-vslam.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Chapter 11 - Visual SLAM Fundamentals"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
               },
               "next": {
-                "title": "navigation",
+                "title": "Chapter 11 - Navigation Systems for Physical AI",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/navigation"
               }
             },
             {
               "id": "physical-ai/nvidia-isaac/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
+              "description": "Key Concepts Covered",
               "source": "@site/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
               "sourceDirName": "physical-ai/nvidia-isaac",
               "slug": "/physical-ai/nvidia-isaac/chapter-summary",
@@ -718,21 +791,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "isaac-sim",
+                "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
               }
             },
             {
               "id": "physical-ai/nvidia-isaac/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/nvidia-isaac/index.mdx",
               "sourceDirName": "physical-ai/nvidia-isaac",
               "slug": "/physical-ai/nvidia-isaac/",
@@ -742,21 +817,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary"
               },
               "next": {
-                "title": "sdk-overview",
+                "title": "NVIDIA Isaac SDK - Core Components and Architecture",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview"
               }
             },
             {
               "id": "physical-ai/nvidia-isaac/isaac-sim",
-              "title": "isaac-sim",
-              "description": "",
+              "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
+              "description": "Introduction to Isaac Sim",
               "source": "@site/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
               "sourceDirName": "physical-ai/nvidia-isaac",
               "slug": "/physical-ai/nvidia-isaac/isaac-sim",
@@ -766,21 +843,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/isaac-sim.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Isaac Sim - High-Fidelity Simulation for Physical AI"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "sdk-overview",
+                "title": "NVIDIA Isaac SDK - Core Components and Architecture",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary"
               }
             },
             {
               "id": "physical-ai/nvidia-isaac/sdk-overview",
-              "title": "sdk-overview",
-              "description": "",
+              "title": "NVIDIA Isaac SDK - Core Components and Architecture",
+              "description": "Introduction to Isaac SDK",
               "source": "@site/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
               "sourceDirName": "physical-ai/nvidia-isaac",
               "slug": "/physical-ai/nvidia-isaac/sdk-overview",
@@ -790,21 +869,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/sdk-overview.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "NVIDIA Isaac SDK - Core Components and Architecture"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
               },
               "next": {
-                "title": "isaac-sim",
+                "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim"
               }
             },
             {
               "id": "physical-ai/perception-pipelines/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
+              "description": "Key Concepts Covered",
               "source": "@site/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
               "sourceDirName": "physical-ai/perception-pipelines",
               "slug": "/physical-ai/perception-pipelines/chapter-summary",
@@ -814,21 +895,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "perception-stacks",
+                "title": "Perception Stacks - Multi-Modal Sensor Processing",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/"
               }
             },
             {
               "id": "physical-ai/perception-pipelines/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/perception-pipelines/index.mdx",
               "sourceDirName": "physical-ai/perception-pipelines",
               "slug": "/physical-ai/perception-pipelines/",
@@ -838,21 +921,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary"
               },
               "next": {
-                "title": "synthetic-data",
+                "title": "Synthetic Data Generation for AI Perception",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data"
               }
             },
             {
               "id": "physical-ai/perception-pipelines/perception-stacks",
-              "title": "perception-stacks",
-              "description": "",
+              "title": "Perception Stacks - Multi-Modal Sensor Processing",
+              "description": "Introduction to Perception Stacks",
               "source": "@site/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
               "sourceDirName": "physical-ai/perception-pipelines",
               "slug": "/physical-ai/perception-pipelines/perception-stacks",
@@ -862,21 +947,23 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/perception-stacks.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Perception Stacks - Multi-Modal Sensor Processing"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "synthetic-data",
+                "title": "Synthetic Data Generation for AI Perception",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary"
               }
             },
             {
               "id": "physical-ai/perception-pipelines/synthetic-data",
-              "title": "synthetic-data",
-              "description": "",
+              "title": "Synthetic Data Generation for AI Perception",
+              "description": "Introduction to Synthetic Data in Robotics",
               "source": "@site/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
               "sourceDirName": "physical-ai/perception-pipelines",
               "slug": "/physical-ai/perception-pipelines/synthetic-data",
@@ -886,14 +973,16 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/synthetic-data.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Synthetic Data Generation for AI Perception"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/"
               },
               "next": {
-                "title": "perception-stacks",
+                "title": "Perception Stacks - Multi-Modal Sensor Processing",
                 "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks"
               }
             },
@@ -995,8 +1084,8 @@
             },
             {
               "id": "physical-ai/ros2-architecture/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
+              "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
+              "description": "Key Concepts Review",
               "source": "@site/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
               "sourceDirName": "physical-ai/ros2-architecture",
               "slug": "/physical-ai/ros2-architecture/chapter-summary",
@@ -1006,10 +1095,12 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 3 - ROS 2 Architecture Chapter Summary"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "services-actions",
+                "title": "Services and Actions in ROS 2",
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
               },
               "next": {
@@ -1035,7 +1126,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 2 - Humanoid Robotics Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary"
               },
               "next": {
@@ -1065,14 +1156,14 @@
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/"
               },
               "next": {
-                "title": "services-actions",
+                "title": "Services and Actions in ROS 2",
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions"
               }
             },
             {
               "id": "physical-ai/ros2-architecture/services-actions",
-              "title": "services-actions",
-              "description": "",
+              "title": "Services and Actions in ROS 2",
+              "description": "Introduction",
               "source": "@site/docs/physical-ai/ros2-architecture/services-actions.mdx",
               "sourceDirName": "physical-ai/ros2-architecture",
               "slug": "/physical-ai/ros2-architecture/services-actions",
@@ -1082,15 +1173,35 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-architecture/services-actions.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Services and Actions in ROS 2"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Nodes and Topics in ROS 2",
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-communication/chapter-summary",
+              "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2 Chapter Summary",
+              "description": "Key Concepts Review",
+              "source": "@site/docs/physical-ai/ros2-communication/04-chapter-summary.mdx",
+              "sourceDirName": "physical-ai/ros2-communication",
+              "slug": "/physical-ai/ros2-communication/chapter-summary",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-communication/chapter-summary",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/04-chapter-summary.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2 Chapter Summary"
               }
             },
             {
@@ -1108,6 +1219,60 @@
               "version": "current",
               "frontMatter": {
                 "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-communication/nodes-implementation",
+              "title": "Chapter 4 - Nodes Implementation in ROS 2",
+              "description": "Introduction",
+              "source": "@site/docs/physical-ai/ros2-communication/01-nodes-implementation.mdx",
+              "sourceDirName": "physical-ai/ros2-communication",
+              "slug": "/physical-ai/ros2-communication/nodes-implementation",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-communication/nodes-implementation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/01-nodes-implementation.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Chapter 4 - Nodes Implementation in ROS 2"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-communication/services-actions",
+              "title": "Chapter 4 - Services and Actions in ROS 2",
+              "description": "Introduction",
+              "source": "@site/docs/physical-ai/ros2-communication/03-services-actions.mdx",
+              "sourceDirName": "physical-ai/ros2-communication",
+              "slug": "/physical-ai/ros2-communication/services-actions",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-communication/services-actions",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/03-services-actions.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Chapter 4 - Services and Actions in ROS 2"
+              }
+            },
+            {
+              "id": "physical-ai/ros2-communication/topics-communication",
+              "title": "Chapter 4 - Topics Communication in ROS 2",
+              "description": "Introduction",
+              "source": "@site/docs/physical-ai/ros2-communication/02-topics-communication.mdx",
+              "sourceDirName": "physical-ai/ros2-communication",
+              "slug": "/physical-ai/ros2-communication/topics-communication",
+              "permalink": "/physical-ai-textbook/physical-ai/ros2-communication/topics-communication",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/02-topics-communication.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Chapter 4 - Topics Communication in ROS 2"
               }
             },
             {
@@ -1197,7 +1362,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "chapter-summary",
+                "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
               },
               "next": {
@@ -1354,42 +1519,48 @@
             },
             {
               "id": "physical-ai/unity-visualization/chapter-summary",
-              "title": "chapter-summary",
-              "description": "",
-              "source": "@site/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+              "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
+              "description": "Key Concepts Review",
+              "source": "@site/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
               "sourceDirName": "physical-ai/unity-visualization",
               "slug": "/physical-ai/unity-visualization/chapter-summary",
               "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/chapter-summary.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Unity Visualization Techniques for Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
                 "permalink": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
               }
             },
             {
               "id": "physical-ai/unity-visualization/human-robot-interaction",
-              "title": "human-robot-interaction",
-              "description": "",
-              "source": "@site/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+              "title": "Chapter 8 - Human-Robot Interaction Design Principles",
+              "description": "Chapter Overview",
+              "source": "@site/docs/physical-ai/unity-visualization/01-human-robot-interaction.mdx",
               "sourceDirName": "physical-ai/unity-visualization",
               "slug": "/physical-ai/unity-visualization/human-robot-interaction",
               "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/human-robot-interaction.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/01-human-robot-interaction.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Chapter 8 - Human-Robot Interaction Design Principles"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
@@ -1422,33 +1593,52 @@
                 "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
               },
               "next": {
-                "title": "human-robot-interaction",
+                "title": "Chapter 8 - Human-Robot Interaction Design Principles",
                 "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction"
+              }
+            },
+            {
+              "id": "physical-ai/unity-visualization/unity-workflows",
+              "title": "Chapter 8 - Unity Workflows for Robotics",
+              "description": "Introduction to Unity Robotics Workflows",
+              "source": "@site/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
+              "sourceDirName": "physical-ai/unity-visualization",
+              "slug": "/physical-ai/unity-visualization/unity-workflows",
+              "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/unity-workflows",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/03-unity-workflows.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Chapter 8 - Unity Workflows for Robotics"
               }
             },
             {
               "id": "physical-ai/unity-visualization/visualization",
               "title": "Unity Visualization Techniques for Robotics",
               "description": "Introduction to Robotics Visualization",
-              "source": "@site/docs/physical-ai/unity-visualization/visualization.mdx",
+              "source": "@site/docs/physical-ai/unity-visualization/02-visualization.mdx",
               "sourceDirName": "physical-ai/unity-visualization",
               "slug": "/physical-ai/unity-visualization/visualization",
               "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/visualization",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/visualization.mdx",
+              "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/02-visualization.mdx",
               "tags": [],
               "version": "current",
+              "sidebarPosition": 2,
               "frontMatter": {
                 "title": "Unity Visualization Techniques for Robotics"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "human-robot-interaction",
+                "title": "Chapter 8 - Human-Robot Interaction Design Principles",
                 "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction"
               },
               "next": {
-                "title": "chapter-summary",
+                "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
                 "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary"
               }
             },
@@ -1468,18 +1658,18 @@
               "frontMatter": {},
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "voice-to-action",
+                "title": "Voice-to-Action Command Processing in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action"
               },
               "next": {
-                "title": "index",
+                "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
                 "permalink": "/physical-ai-textbook/physical-ai/cognitive-planning/"
               }
             },
             {
               "id": "physical-ai/voice-robotics/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
+              "description": "Chapter Overview",
               "source": "@site/docs/physical-ai/voice-robotics/index.mdx",
               "sourceDirName": "physical-ai/voice-robotics",
               "slug": "/physical-ai/voice-robotics/",
@@ -1489,10 +1679,12 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "sim-to-real",
+                "title": "Sim-to-Real Transfer Techniques in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real"
               },
               "next": {
@@ -1502,8 +1694,8 @@
             },
             {
               "id": "physical-ai/voice-robotics/voice-to-action",
-              "title": "voice-to-action",
-              "description": "",
+              "title": "Voice-to-Action Command Processing in Robotics",
+              "description": "Introduction to Voice Command Processing",
               "source": "@site/docs/physical-ai/voice-robotics/voice-to-action.mdx",
               "sourceDirName": "physical-ai/voice-robotics",
               "slug": "/physical-ai/voice-robotics/voice-to-action",
@@ -1513,7 +1705,9 @@
               "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/voice-robotics/voice-to-action.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Voice-to-Action Command Processing in Robotics"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "whisper-integration",
@@ -1540,11 +1734,11 @@
               "frontMatter": {},
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
+                "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
                 "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/"
               },
               "next": {
-                "title": "voice-to-action",
+                "title": "Voice-to-Action Command Processing in Robotics",
                 "permalink": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action"
               }
             }

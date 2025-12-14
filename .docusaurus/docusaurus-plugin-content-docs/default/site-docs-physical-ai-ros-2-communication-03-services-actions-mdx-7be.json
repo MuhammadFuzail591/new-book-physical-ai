@@ -1,0 +1,18 @@
+{
+  "id": "physical-ai/ros2-communication/services-actions",
+  "title": "Chapter 4 - Services and Actions in ROS 2",
+  "description": "Introduction",
+  "source": "@site/docs/physical-ai/ros2-communication/03-services-actions.mdx",
+  "sourceDirName": "physical-ai/ros2-communication",
+  "slug": "/physical-ai/ros2-communication/services-actions",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-communication/services-actions",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-communication/03-services-actions.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Chapter 4 - Services and Actions in ROS 2"
+  }
+}

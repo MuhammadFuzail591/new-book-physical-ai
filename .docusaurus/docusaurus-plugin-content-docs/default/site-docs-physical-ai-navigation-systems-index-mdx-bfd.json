@@ -1,24 +1,26 @@
 {
   "id": "physical-ai/navigation-systems/index",
-  "title": "index",
-  "description": "",
+  "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+  "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/navigation-systems/index.mdx",
   "sourceDirName": "physical-ai/navigation-systems",
   "slug": "/physical-ai/navigation-systems/",
-  "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/navigation-systems/index.mdx",
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "frontMatter": {
+    "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary"
+    "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/chapter-summary"
   },
   "next": {
-    "title": "vslam",
-    "permalink": "/physical-ai-textbook/physical-ai/navigation-systems/vslam"
+    "title": "Chapter 11 - Visual SLAM Fundamentals",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/vslam"
   }
 }

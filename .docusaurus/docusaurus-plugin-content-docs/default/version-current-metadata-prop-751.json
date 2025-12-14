@@ -20,28 +20,28 @@
               {
                 "type": "link",
                 "label": "What is Physical AI?",
-                "href": "/physical-ai-textbook/physical-ai/introduction/what-is-physical-ai",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/introduction/what-is-physical-ai",
                 "docId": "physical-ai/introduction/what-is-physical-ai",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Embodied Intelligence",
-                "href": "/physical-ai-textbook/physical-ai/introduction/embodied-intelligence",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/introduction/embodied-intelligence",
                 "docId": "physical-ai/introduction/embodied-intelligence",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Chapter 1 Summary",
-                "href": "/physical-ai-textbook/physical-ai/introduction/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/introduction/chapter-summary",
                 "docId": "physical-ai/introduction/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/introduction/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/introduction/"
           },
           {
             "type": "category",
@@ -49,29 +49,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "landscape",
-                "href": "/physical-ai-textbook/physical-ai/humanoid-robotics/landscape",
+                "label": "Chapter 2 - Humanoid Robotics Landscape",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/landscape",
                 "docId": "physical-ai/humanoid-robotics/landscape",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "sensor-foundations",
-                "href": "/physical-ai-textbook/physical-ai/humanoid-robotics/sensor-foundations",
+                "label": "Chapter 2 - Sensor Foundations",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/sensor-foundations",
                 "docId": "physical-ai/humanoid-robotics/sensor-foundations",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/humanoid-robotics/chapter-summary",
+                "label": "Chapter 2 - Humanoid Robotics Chapter Summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/chapter-summary",
                 "docId": "physical-ai/humanoid-robotics/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/humanoid-robotics/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/"
           },
           {
             "type": "category",
@@ -80,28 +80,28 @@
               {
                 "type": "link",
                 "label": "Nodes and Topics in ROS 2",
-                "href": "/physical-ai-textbook/physical-ai/ros2-architecture/nodes-topics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/nodes-topics",
                 "docId": "physical-ai/ros2-architecture/nodes-topics",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "services-actions",
-                "href": "/physical-ai-textbook/physical-ai/ros2-architecture/services-actions",
+                "label": "Services and Actions in ROS 2",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/services-actions",
                 "docId": "physical-ai/ros2-architecture/services-actions",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary",
+                "label": "Chapter 3 - ROS 2 Architecture Chapter Summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/chapter-summary",
                 "docId": "physical-ai/ros2-architecture/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/ros2-architecture/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/"
           },
           {
             "type": "category",
@@ -110,28 +110,28 @@
               {
                 "type": "link",
                 "label": "Building ROS 2 Packages",
-                "href": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/building-packages",
                 "docId": "physical-ai/ros2-packages/building-packages",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Launch Files in ROS 2",
-                "href": "/physical-ai-textbook/physical-ai/ros2-packages/launch-files",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/launch-files",
                 "docId": "physical-ai/ros2-packages/launch-files",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Chapter 5 Summary - Building ROS 2 Packages, Launch Files & Parameters",
-                "href": "/physical-ai-textbook/physical-ai/ros2-packages/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/chapter-summary",
                 "docId": "physical-ai/ros2-packages/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/ros2-packages/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/"
           },
           {
             "type": "category",
@@ -140,28 +140,28 @@
               {
                 "type": "link",
                 "label": "URDF Basics - Links, Joints, and Robot Modeling",
-                "href": "/physical-ai-textbook/physical-ai/ros2-urdf/urdf-basics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/urdf-basics",
                 "docId": "physical-ai/ros2-urdf/urdf-basics",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "SDF for Simulation - Advanced Physics and Sensor Modeling",
-                "href": "/physical-ai-textbook/physical-ai/ros2-urdf/sdf-for-simulation",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/sdf-for-simulation",
                 "docId": "physical-ai/ros2-urdf/sdf-for-simulation",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Chapter 6 Summary - URDF/SDF for Humanoid Robots",
-                "href": "/physical-ai-textbook/physical-ai/ros2-urdf/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/chapter-summary",
                 "docId": "physical-ai/ros2-urdf/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/ros2-urdf/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-urdf/"
           },
           {
             "type": "category",
@@ -170,28 +170,28 @@
               {
                 "type": "link",
                 "label": "parameters",
-                "href": "/physical-ai-textbook/physical-ai/ros2-advanced/parameters",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/parameters",
                 "docId": "physical-ai/ros2-advanced/parameters",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "quality-of-service",
-                "href": "/physical-ai-textbook/physical-ai/ros2-advanced/quality-of-service",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/quality-of-service",
                 "docId": "physical-ai/ros2-advanced/quality-of-service",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/ros2-advanced/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/chapter-summary",
                 "docId": "physical-ai/ros2-advanced/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/ros2-advanced/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/ros2-advanced/"
           },
           {
             "type": "category",
@@ -200,28 +200,28 @@
               {
                 "type": "link",
                 "label": "Physics Engines in Gazebo - ODE, Bullet, and Simbody",
-                "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/physics-engines",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/physics-engines",
                 "docId": "physical-ai/gazebo-simulation/physics-engines",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "World Building in Gazebo - Environments, Objects, and Scenarios",
-                "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/world-building",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/world-building",
                 "docId": "physical-ai/gazebo-simulation/world-building",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
-                "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/chapter-summary",
                 "docId": "physical-ai/gazebo-simulation/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/gazebo-simulation/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/"
           },
           {
             "type": "category",
@@ -229,29 +229,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "human-robot-interaction",
-                "href": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction",
+                "label": "Chapter 8 - Human-Robot Interaction Design Principles",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/human-robot-interaction",
                 "docId": "physical-ai/unity-visualization/human-robot-interaction",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Unity Visualization Techniques for Robotics",
-                "href": "/physical-ai-textbook/physical-ai/unity-visualization/visualization",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/visualization",
                 "docId": "physical-ai/unity-visualization/visualization",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/unity-visualization/chapter-summary",
+                "label": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/chapter-summary",
                 "docId": "physical-ai/unity-visualization/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/unity-visualization/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/"
           },
           {
             "type": "category",
@@ -259,29 +259,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "sdk-overview",
-                "href": "/physical-ai-textbook/physical-ai/nvidia-isaac/sdk-overview",
+                "label": "NVIDIA Isaac SDK - Core Components and Architecture",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/sdk-overview",
                 "docId": "physical-ai/nvidia-isaac/sdk-overview",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "isaac-sim",
-                "href": "/physical-ai-textbook/physical-ai/nvidia-isaac/isaac-sim",
+                "label": "Isaac Sim - High-Fidelity Simulation for Physical AI",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/isaac-sim",
                 "docId": "physical-ai/nvidia-isaac/isaac-sim",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/nvidia-isaac/chapter-summary",
+                "label": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/chapter-summary",
                 "docId": "physical-ai/nvidia-isaac/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/nvidia-isaac/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/"
           },
           {
             "type": "category",
@@ -289,29 +289,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "synthetic-data",
-                "href": "/physical-ai-textbook/physical-ai/perception-pipelines/synthetic-data",
+                "label": "Synthetic Data Generation for AI Perception",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/synthetic-data",
                 "docId": "physical-ai/perception-pipelines/synthetic-data",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "perception-stacks",
-                "href": "/physical-ai-textbook/physical-ai/perception-pipelines/perception-stacks",
+                "label": "Perception Stacks - Multi-Modal Sensor Processing",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/perception-stacks",
                 "docId": "physical-ai/perception-pipelines/perception-stacks",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/perception-pipelines/chapter-summary",
+                "label": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/chapter-summary",
                 "docId": "physical-ai/perception-pipelines/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/perception-pipelines/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/"
           },
           {
             "type": "category",
@@ -319,29 +319,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "vslam",
-                "href": "/physical-ai-textbook/physical-ai/navigation-systems/vslam",
+                "label": "Chapter 11 - Visual SLAM Fundamentals",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/vslam",
                 "docId": "physical-ai/navigation-systems/vslam",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "navigation",
-                "href": "/physical-ai-textbook/physical-ai/navigation-systems/navigation",
+                "label": "Chapter 11 - Navigation Systems for Physical AI",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/navigation",
                 "docId": "physical-ai/navigation-systems/navigation",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "sim-to-real",
-                "href": "/physical-ai-textbook/physical-ai/navigation-systems/sim-to-real",
+                "label": "Sim-to-Real Transfer Techniques in Robotics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/sim-to-real",
                 "docId": "physical-ai/navigation-systems/sim-to-real",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/navigation-systems/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/navigation-systems/"
           },
           {
             "type": "category",
@@ -350,28 +350,28 @@
               {
                 "type": "link",
                 "label": "whisper-integration",
-                "href": "/physical-ai-textbook/physical-ai/voice-robotics/whisper-integration",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/whisper-integration",
                 "docId": "physical-ai/voice-robotics/whisper-integration",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "voice-to-action",
-                "href": "/physical-ai-textbook/physical-ai/voice-robotics/voice-to-action",
+                "label": "Voice-to-Action Command Processing in Robotics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/voice-to-action",
                 "docId": "physical-ai/voice-robotics/voice-to-action",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/voice-robotics/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/chapter-summary",
                 "docId": "physical-ai/voice-robotics/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/voice-robotics/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/voice-robotics/"
           },
           {
             "type": "category",
@@ -379,29 +379,29 @@
             "items": [
               {
                 "type": "link",
-                "label": "vla-systems",
-                "href": "/physical-ai-textbook/physical-ai/cognitive-planning/vla-systems",
+                "label": "Vision-Language-Action Systems in Robotics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/vla-systems",
                 "docId": "physical-ai/cognitive-planning/vla-systems",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "llm-integration",
-                "href": "/physical-ai-textbook/physical-ai/cognitive-planning/llm-integration",
+                "label": "LLM Integration with ROS 2 for Cognitive Robotics",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/llm-integration",
                 "docId": "physical-ai/cognitive-planning/llm-integration",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "chapter-summary",
-                "href": "/physical-ai-textbook/physical-ai/cognitive-planning/chapter-summary",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/chapter-summary",
                 "docId": "physical-ai/cognitive-planning/chapter-summary",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/cognitive-planning/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/"
           },
           {
             "type": "category",
@@ -410,40 +410,40 @@
               {
                 "type": "link",
                 "label": "project-overview",
-                "href": "/physical-ai-textbook/physical-ai/capstone-project/project-overview",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/project-overview",
                 "docId": "physical-ai/capstone-project/project-overview",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "implementation",
-                "href": "/physical-ai-textbook/physical-ai/capstone-project/implementation",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/implementation",
                 "docId": "physical-ai/capstone-project/implementation",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "deployment",
-                "href": "/physical-ai-textbook/physical-ai/capstone-project/deployment",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/deployment",
                 "docId": "physical-ai/capstone-project/deployment",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "conclusion",
-                "href": "/physical-ai-textbook/physical-ai/capstone-project/conclusion",
+                "href": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/conclusion",
                 "docId": "physical-ai/capstone-project/conclusion",
                 "unlisted": false
               }
             ],
             "collapsed": true,
             "collapsible": true,
-            "href": "/physical-ai-textbook/physical-ai/capstone-project/"
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/"
           },
           {
             "type": "link",
             "label": "Glossary of Physical AI & Humanoid Robotics Terms",
-            "href": "/physical-ai-textbook/physical-ai/glossary",
+            "href": "/physical-ai-textbook/physical-ai/physical-ai/glossary",
             "docId": "physical-ai/glossary",
             "unlisted": false
           }
@@ -495,22 +495,27 @@
       "description": "",
       "sidebar": "tutorialSidebar"
     },
+    "physical-ai/cognitive-planning/cognitive-architectures": {
+      "id": "physical-ai/cognitive-planning/cognitive-architectures",
+      "title": "Cognitive Architectures for Robotics",
+      "description": "Introduction to Cognitive Architectures"
+    },
     "physical-ai/cognitive-planning/index": {
       "id": "physical-ai/cognitive-planning/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/cognitive-planning/llm-integration": {
       "id": "physical-ai/cognitive-planning/llm-integration",
-      "title": "llm-integration",
-      "description": "",
+      "title": "LLM Integration with ROS 2 for Cognitive Robotics",
+      "description": "Introduction to LLM Integration in Robotics",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/cognitive-planning/vla-systems": {
       "id": "physical-ai/cognitive-planning/vla-systems",
-      "title": "vla-systems",
-      "description": "",
+      "title": "Vision-Language-Action Systems in Robotics",
+      "description": "Introduction to Vision-Language-Action Systems",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/gazebo-simulation/chapter-summary": {
@@ -545,8 +550,8 @@
     },
     "physical-ai/humanoid-robotics/chapter-summary": {
       "id": "physical-ai/humanoid-robotics/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 2 - Humanoid Robotics Chapter Summary",
+      "description": "Key Concepts Review",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/humanoid-robotics/index": {
@@ -557,14 +562,14 @@
     },
     "physical-ai/humanoid-robotics/landscape": {
       "id": "physical-ai/humanoid-robotics/landscape",
-      "title": "landscape",
-      "description": "",
+      "title": "Chapter 2 - Humanoid Robotics Landscape",
+      "description": "Introduction to Humanoid Robotics",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/humanoid-robotics/sensor-foundations": {
       "id": "physical-ai/humanoid-robotics/sensor-foundations",
-      "title": "sensor-foundations",
-      "description": "",
+      "title": "Chapter 2 - Sensor Foundations",
+      "description": "Introduction to Sensor Systems",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/index": {
@@ -598,79 +603,79 @@
     },
     "physical-ai/navigation-systems/chapter-summary": {
       "id": "physical-ai/navigation-systems/chapter-summary",
-      "title": "chapter-summary",
-      "description": ""
+      "title": "Chapter Summary - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+      "description": "Key Concepts Review"
     },
     "physical-ai/navigation-systems/index": {
       "id": "physical-ai/navigation-systems/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 11 - VSLAM, Navigation & Sim-to-Real Transfer Techniques",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/navigation-systems/navigation": {
       "id": "physical-ai/navigation-systems/navigation",
-      "title": "navigation",
-      "description": "",
+      "title": "Chapter 11 - Navigation Systems for Physical AI",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/navigation-systems/sim-to-real": {
       "id": "physical-ai/navigation-systems/sim-to-real",
-      "title": "sim-to-real",
-      "description": "",
+      "title": "Sim-to-Real Transfer Techniques in Robotics",
+      "description": "Introduction to Sim-to-Real Transfer",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/navigation-systems/vslam": {
       "id": "physical-ai/navigation-systems/vslam",
-      "title": "vslam",
-      "description": "",
+      "title": "Chapter 11 - Visual SLAM Fundamentals",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/nvidia-isaac/chapter-summary": {
       "id": "physical-ai/nvidia-isaac/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
+      "description": "Key Concepts Covered",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/nvidia-isaac/index": {
       "id": "physical-ai/nvidia-isaac/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/nvidia-isaac/isaac-sim": {
       "id": "physical-ai/nvidia-isaac/isaac-sim",
-      "title": "isaac-sim",
-      "description": "",
+      "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
+      "description": "Introduction to Isaac Sim",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/nvidia-isaac/sdk-overview": {
       "id": "physical-ai/nvidia-isaac/sdk-overview",
-      "title": "sdk-overview",
-      "description": "",
+      "title": "NVIDIA Isaac SDK - Core Components and Architecture",
+      "description": "Introduction to Isaac SDK",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/perception-pipelines/chapter-summary": {
       "id": "physical-ai/perception-pipelines/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 10 Summary - AI Perception, Synthetic Data & Manipulation Pipelines",
+      "description": "Key Concepts Covered",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/perception-pipelines/index": {
       "id": "physical-ai/perception-pipelines/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/perception-pipelines/perception-stacks": {
       "id": "physical-ai/perception-pipelines/perception-stacks",
-      "title": "perception-stacks",
-      "description": "",
+      "title": "Perception Stacks - Multi-Modal Sensor Processing",
+      "description": "Introduction to Perception Stacks",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/perception-pipelines/synthetic-data": {
       "id": "physical-ai/perception-pipelines/synthetic-data",
-      "title": "synthetic-data",
-      "description": "",
+      "title": "Synthetic Data Generation for AI Perception",
+      "description": "Introduction to Synthetic Data in Robotics",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-advanced/chapter-summary": {
@@ -699,8 +704,8 @@
     },
     "physical-ai/ros2-architecture/chapter-summary": {
       "id": "physical-ai/ros2-architecture/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
+      "description": "Key Concepts Review",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/ros2-architecture/index": {
@@ -717,14 +722,34 @@
     },
     "physical-ai/ros2-architecture/services-actions": {
       "id": "physical-ai/ros2-architecture/services-actions",
-      "title": "services-actions",
-      "description": "",
+      "title": "Services and Actions in ROS 2",
+      "description": "Introduction",
       "sidebar": "tutorialSidebar"
+    },
+    "physical-ai/ros2-communication/chapter-summary": {
+      "id": "physical-ai/ros2-communication/chapter-summary",
+      "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2 Chapter Summary",
+      "description": "Key Concepts Review"
     },
     "physical-ai/ros2-communication/index": {
       "id": "physical-ai/ros2-communication/index",
       "title": "Chapter 4 - Nodes, Topics, Services & Actions in ROS 2",
       "description": "Chapter Overview"
+    },
+    "physical-ai/ros2-communication/nodes-implementation": {
+      "id": "physical-ai/ros2-communication/nodes-implementation",
+      "title": "Chapter 4 - Nodes Implementation in ROS 2",
+      "description": "Introduction"
+    },
+    "physical-ai/ros2-communication/services-actions": {
+      "id": "physical-ai/ros2-communication/services-actions",
+      "title": "Chapter 4 - Services and Actions in ROS 2",
+      "description": "Introduction"
+    },
+    "physical-ai/ros2-communication/topics-communication": {
+      "id": "physical-ai/ros2-communication/topics-communication",
+      "title": "Chapter 4 - Topics Communication in ROS 2",
+      "description": "Introduction"
     },
     "physical-ai/ros2-communication/topics-services-actions": {
       "id": "physical-ai/ros2-communication/topics-services-actions",
@@ -786,14 +811,14 @@
     },
     "physical-ai/unity-visualization/chapter-summary": {
       "id": "physical-ai/unity-visualization/chapter-summary",
-      "title": "chapter-summary",
-      "description": "",
+      "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
+      "description": "Key Concepts Review",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/unity-visualization/human-robot-interaction": {
       "id": "physical-ai/unity-visualization/human-robot-interaction",
-      "title": "human-robot-interaction",
-      "description": "",
+      "title": "Chapter 8 - Human-Robot Interaction Design Principles",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/unity-visualization/index": {
@@ -801,6 +826,11 @@
       "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction",
       "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
+    },
+    "physical-ai/unity-visualization/unity-workflows": {
+      "id": "physical-ai/unity-visualization/unity-workflows",
+      "title": "Chapter 8 - Unity Workflows for Robotics",
+      "description": "Introduction to Unity Robotics Workflows"
     },
     "physical-ai/unity-visualization/visualization": {
       "id": "physical-ai/unity-visualization/visualization",
@@ -816,14 +846,14 @@
     },
     "physical-ai/voice-robotics/index": {
       "id": "physical-ai/voice-robotics/index",
-      "title": "index",
-      "description": "",
+      "title": "Chapter 12 - Voice-to-Action Robotics with Whisper & ROS 2",
+      "description": "Chapter Overview",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/voice-robotics/voice-to-action": {
       "id": "physical-ai/voice-robotics/voice-to-action",
-      "title": "voice-to-action",
-      "description": "",
+      "title": "Voice-to-Action Command Processing in Robotics",
+      "description": "Introduction to Voice Command Processing",
       "sidebar": "tutorialSidebar"
     },
     "physical-ai/voice-robotics/whisper-integration": {

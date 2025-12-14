@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/ros2-packages/index.mdx",
   "sourceDirName": "physical-ai/ros2-packages",
   "slug": "/physical-ai/ros2-packages/",
-  "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/index.mdx",
@@ -16,11 +16,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-architecture/chapter-summary"
+    "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/chapter-summary"
   },
   "next": {
     "title": "Building ROS 2 Packages",
-    "permalink": "/physical-ai-textbook/physical-ai/ros2-packages/building-packages"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/building-packages"
   }
 }

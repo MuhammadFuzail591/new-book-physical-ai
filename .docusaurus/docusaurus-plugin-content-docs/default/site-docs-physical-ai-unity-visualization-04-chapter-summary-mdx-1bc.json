@@ -1,0 +1,27 @@
+{
+  "id": "physical-ai/unity-visualization/chapter-summary",
+  "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
+  "description": "Key Concepts Review",
+  "source": "@site/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
+  "sourceDirName": "physical-ai/unity-visualization",
+  "slug": "/physical-ai/unity-visualization/chapter-summary",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/chapter-summary",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/04-chapter-summary.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Unity Visualization Techniques for Robotics",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/visualization"
+  },
+  "next": {
+    "title": "Chapter 9 - NVIDIA Isaac SDK & Isaac Sim Overview",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/"
+  }
+}

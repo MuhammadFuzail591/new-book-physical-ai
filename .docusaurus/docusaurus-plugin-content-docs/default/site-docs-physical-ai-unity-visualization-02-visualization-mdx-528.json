@@ -1,0 +1,27 @@
+{
+  "id": "physical-ai/unity-visualization/visualization",
+  "title": "Unity Visualization Techniques for Robotics",
+  "description": "Introduction to Robotics Visualization",
+  "source": "@site/docs/physical-ai/unity-visualization/02-visualization.mdx",
+  "sourceDirName": "physical-ai/unity-visualization",
+  "slug": "/physical-ai/unity-visualization/visualization",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/visualization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/02-visualization.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Unity Visualization Techniques for Robotics"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 8 - Human-Robot Interaction Design Principles",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/human-robot-interaction"
+  },
+  "next": {
+    "title": "Chapter 8 - Unity Visualization & Human-Robot Interaction Chapter Summary",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/chapter-summary"
+  }
+}

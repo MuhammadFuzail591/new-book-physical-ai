@@ -5,7 +5,7 @@
   "source": "@site/docs/physical-ai/unity-visualization/index.mdx",
   "sourceDirName": "physical-ai/unity-visualization",
   "slug": "/physical-ai/unity-visualization/",
-  "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/unity-visualization/index.mdx",
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 7 Summary - Gazebo Simulation: Physics, Sensors & World Building",
-    "permalink": "/physical-ai-textbook/physical-ai/gazebo-simulation/chapter-summary"
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/chapter-summary"
   },
   "next": {
-    "title": "human-robot-interaction",
-    "permalink": "/physical-ai-textbook/physical-ai/unity-visualization/human-robot-interaction"
+    "title": "Chapter 8 - Human-Robot Interaction Design Principles",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/unity-visualization/human-robot-interaction"
   }
 }

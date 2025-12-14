@@ -1,0 +1,27 @@
+{
+  "id": "physical-ai/cognitive-planning/vla-systems",
+  "title": "Vision-Language-Action Systems in Robotics",
+  "description": "Introduction to Vision-Language-Action Systems",
+  "source": "@site/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
+  "sourceDirName": "physical-ai/cognitive-planning",
+  "slug": "/physical-ai/cognitive-planning/vla-systems",
+  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/vla-systems",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/01-vla-systems.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Vision-Language-Action Systems in Robotics"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 13 - Cognitive Planning with Vision-Language-Action Systems",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/"
+  },
+  "next": {
+    "title": "LLM Integration with ROS 2 for Cognitive Robotics",
+    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/llm-integration"
+  }
+}
