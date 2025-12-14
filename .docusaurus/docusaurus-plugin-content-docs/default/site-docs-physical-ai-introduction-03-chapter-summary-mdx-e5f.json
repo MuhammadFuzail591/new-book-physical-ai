@@ -1,27 +1,29 @@
 {
-  "id": "physical-ai/introduction/chapter-summary",
+  "id": "introduction/chapter-summary",
   "title": "Chapter 1 Summary",
   "description": "Key Concepts",
   "source": "@site/docs/physical-ai/introduction/03-chapter-summary.mdx",
-  "sourceDirName": "physical-ai/introduction",
-  "slug": "/physical-ai/introduction/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/chapter-summary",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/chapter-summary",
+  "permalink": "/introduction/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/introduction/03-chapter-summary.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/introduction/03-chapter-summary.mdx",
   "tags": [],
   "version": "current",
   "sidebarPosition": 3,
   "frontMatter": {
-    "title": "Chapter 1 Summary"
+    "title": "Chapter 1 Summary",
+    "pagination_next": "humanoid-robotics/index",
+    "pagination_prev": "introduction/embodied-intelligence"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Embodied Intelligence",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/embodied-intelligence"
+    "permalink": "/introduction/embodied-intelligence"
   },
   "next": {
     "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/"
+    "permalink": "/humanoid-robotics/"
   }
 }

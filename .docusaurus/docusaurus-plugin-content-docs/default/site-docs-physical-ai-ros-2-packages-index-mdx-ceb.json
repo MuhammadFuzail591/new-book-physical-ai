@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/ros2-packages/index",
+  "id": "ros2-packages/index",
   "title": "Chapter 5 - Building ROS 2 Packages, Launch Files & Parameters",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/ros2-packages/index.mdx",
-  "sourceDirName": "physical-ai/ros2-packages",
-  "slug": "/physical-ai/ros2-packages/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/",
+  "sourceDirName": "ros2-packages",
+  "slug": "/ros2-packages/",
+  "permalink": "/ros2-packages/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/ros2-packages/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/ros2-packages/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 3 - ROS 2 Architecture Chapter Summary",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-architecture/chapter-summary"
+    "permalink": "/ros2-architecture/chapter-summary"
   },
   "next": {
     "title": "Building ROS 2 Packages",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/ros2-packages/building-packages"
+    "permalink": "/ros2-packages/building-packages"
   }
 }

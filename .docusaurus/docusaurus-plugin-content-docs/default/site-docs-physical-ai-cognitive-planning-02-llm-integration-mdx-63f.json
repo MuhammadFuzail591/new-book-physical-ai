@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/cognitive-planning/llm-integration",
+  "id": "cognitive-planning/llm-integration",
   "title": "LLM Integration with ROS 2 for Cognitive Robotics",
   "description": "Introduction to LLM Integration in Robotics",
   "source": "@site/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
-  "sourceDirName": "physical-ai/cognitive-planning",
-  "slug": "/physical-ai/cognitive-planning/llm-integration",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/llm-integration",
+  "sourceDirName": "cognitive-planning",
+  "slug": "/cognitive-planning/llm-integration",
+  "permalink": "/cognitive-planning/llm-integration",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/cognitive-planning/02-llm-integration.mdx",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -18,10 +18,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Vision-Language-Action Systems in Robotics",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/vla-systems"
+    "permalink": "/cognitive-planning/vla-systems"
   },
   "next": {
-    "title": "chapter-summary",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/cognitive-planning/chapter-summary"
+    "title": "Chapter Summary - Cognitive Planning with Vision-Language-Action Systems",
+    "permalink": "/cognitive-planning/chapter-summary"
   }
 }

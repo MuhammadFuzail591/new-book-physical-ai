@@ -9,16 +9,12 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io', // TODO: Update with actual GitHub Pages URL
+  url: 'https://new-book-physical-ai-rhyl.vercel.app', // Vercel deployment URL
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub Pages, this is usually '/<project-name>/'
-  baseUrl: '/physical-ai-textbook/physical-ai',
+  // For Vercel deployment, use '/' for root path
+  baseUrl: '/',
 
-  // GitHub pages deployment config.
-  organizationName: 'your-organization', // TODO: Update with actual GitHub username/organization
-  projectName: 'physical-ai-textbook', // TODO: Update with actual repository name
   trailingSlash: false,
-  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -37,12 +33,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs/physical-ai', // Read docs from physical-ai subdirectory
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/', // Serve docs at root
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/your-username/physical-ai-textbook/tree/main/',
+            'https://github.com/fuzailpalook/new-book/tree/main/',
         },
         blog: false, // Disable blog
         theme: {
@@ -66,7 +63,7 @@ const config = {
         logo: {
           alt: 'Physical AI Logo',
           src: 'img/logo.svg',
-          href: '/physical-ai', // Point to the main docs page
+          href: '/', // Point to the main docs page
         },
         items: [
           {
@@ -76,7 +73,7 @@ const config = {
             label: 'Textbook',
           },
           {
-            href: 'https://github.com/your-username/physical-ai-textbook',
+            href: 'https://github.com/fuzailpalook/new-book',
             label: 'GitHub',
             position: 'right',
           },
@@ -90,7 +87,7 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/physical-ai/introduction',
+                to: '/introduction',
               },
             ],
           },

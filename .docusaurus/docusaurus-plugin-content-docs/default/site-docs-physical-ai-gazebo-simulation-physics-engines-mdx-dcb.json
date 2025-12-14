@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/gazebo-simulation/physics-engines",
+  "id": "gazebo-simulation/physics-engines",
   "title": "Physics Engines in Gazebo - ODE, Bullet, and Simbody",
   "description": "Introduction to Physics Simulation",
   "source": "@site/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
-  "sourceDirName": "physical-ai/gazebo-simulation",
-  "slug": "/physical-ai/gazebo-simulation/physics-engines",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/physics-engines",
+  "sourceDirName": "gazebo-simulation",
+  "slug": "/gazebo-simulation/physics-engines",
+  "permalink": "/gazebo-simulation/physics-engines",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/gazebo-simulation/physics-engines.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 7 - Gazebo Simulation: Physics, Sensors & World Building",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/"
+    "permalink": "/gazebo-simulation/"
   },
   "next": {
     "title": "World Building in Gazebo - Environments, Objects, and Scenarios",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/gazebo-simulation/world-building"
+    "permalink": "/gazebo-simulation/world-building"
   }
 }

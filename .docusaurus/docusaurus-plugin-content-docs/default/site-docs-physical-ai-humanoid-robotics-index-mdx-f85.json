@@ -1,26 +1,28 @@
 {
-  "id": "physical-ai/humanoid-robotics/index",
+  "id": "humanoid-robotics/index",
   "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/humanoid-robotics/index.mdx",
-  "sourceDirName": "physical-ai/humanoid-robotics",
-  "slug": "/physical-ai/humanoid-robotics/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/",
+  "sourceDirName": "humanoid-robotics",
+  "slug": "/humanoid-robotics/",
+  "permalink": "/humanoid-robotics/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/humanoid-robotics/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/humanoid-robotics/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
-    "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations"
+    "title": "Chapter 2 - Humanoid Robotics Landscape & Sensor Foundations",
+    "pagination_next": "humanoid-robotics/landscape",
+    "pagination_prev": "introduction/chapter-summary"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 1 Summary",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/introduction/chapter-summary"
+    "permalink": "/introduction/chapter-summary"
   },
   "next": {
     "title": "Chapter 2 - Humanoid Robotics Landscape",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/humanoid-robotics/landscape"
+    "permalink": "/humanoid-robotics/landscape"
   }
 }

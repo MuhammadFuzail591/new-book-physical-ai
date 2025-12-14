@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/perception-pipelines/index",
+  "id": "perception-pipelines/index",
   "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
   "description": "Chapter Overview",
   "source": "@site/docs/physical-ai/perception-pipelines/index.mdx",
-  "sourceDirName": "physical-ai/perception-pipelines",
-  "slug": "/physical-ai/perception-pipelines/",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/",
+  "sourceDirName": "perception-pipelines",
+  "slug": "/perception-pipelines/",
+  "permalink": "/perception-pipelines/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/perception-pipelines/index.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/chapter-summary"
+    "permalink": "/nvidia-isaac/chapter-summary"
   },
   "next": {
     "title": "Synthetic Data Generation for AI Perception",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/synthetic-data"
+    "permalink": "/perception-pipelines/synthetic-data"
   }
 }

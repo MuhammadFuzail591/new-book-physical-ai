@@ -1,14 +1,14 @@
 {
-  "id": "physical-ai/nvidia-isaac/chapter-summary",
+  "id": "nvidia-isaac/chapter-summary",
   "title": "Chapter 9 Summary - NVIDIA Isaac SDK & Isaac Sim Overview",
   "description": "Key Concepts Covered",
   "source": "@site/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
-  "sourceDirName": "physical-ai/nvidia-isaac",
-  "slug": "/physical-ai/nvidia-isaac/chapter-summary",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/chapter-summary",
+  "sourceDirName": "nvidia-isaac",
+  "slug": "/nvidia-isaac/chapter-summary",
+  "permalink": "/nvidia-isaac/chapter-summary",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/nvidia-isaac/chapter-summary.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {
@@ -17,10 +17,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Isaac Sim - High-Fidelity Simulation for Physical AI",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/nvidia-isaac/isaac-sim"
+    "permalink": "/nvidia-isaac/isaac-sim"
   },
   "next": {
     "title": "Chapter 10 - AI Perception, Synthetic Data & Manipulation Pipelines",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/perception-pipelines/"
+    "permalink": "/perception-pipelines/"
   }
 }

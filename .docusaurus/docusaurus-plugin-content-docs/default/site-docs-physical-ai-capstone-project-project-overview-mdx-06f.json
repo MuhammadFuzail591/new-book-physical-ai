@@ -1,24 +1,24 @@
 {
-  "id": "physical-ai/capstone-project/project-overview",
+  "id": "capstone-project/project-overview",
   "title": "project-overview",
   "description": "",
   "source": "@site/docs/physical-ai/capstone-project/project-overview.mdx",
-  "sourceDirName": "physical-ai/capstone-project",
-  "slug": "/physical-ai/capstone-project/project-overview",
-  "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/project-overview",
+  "sourceDirName": "capstone-project",
+  "slug": "/capstone-project/project-overview",
+  "permalink": "/capstone-project/project-overview",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/physical-ai-textbook/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
+  "editUrl": "https://github.com/fuzailpalook/new-book/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "index",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/"
+    "permalink": "/capstone-project/"
   },
   "next": {
     "title": "implementation",
-    "permalink": "/physical-ai-textbook/physical-ai/physical-ai/capstone-project/implementation"
+    "permalink": "/capstone-project/implementation"
   }
 }
