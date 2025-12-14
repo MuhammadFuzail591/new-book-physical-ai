@@ -1,0 +1,149 @@
+---
+title: 01 - Capstone Project Overview
+description: "Understanding the requirements and architecture of the autonomous humanoid"
+sidebar_position: 2
+slug: /physical-ai/capstone-project/01-project-overview
+---
+
+# 01 - Capstone Project Overview
+
+## Learning Outcomes
+
+By the end of this section, you will be able to:
+- Define the scope and requirements of the autonomous humanoid system
+- Understand the system architecture and component integration strategy
+- Identify key technical challenges and constraints for the project
+- Plan the integration approach for combining multiple robotics technologies
+
+## Project Vision
+
+The Autonomous Humanoid project represents the integration of all technologies covered throughout this textbook into a single, cohesive system. Our goal is to create a humanoid robot capable of autonomous navigation, perception, cognitive planning, and natural human interaction.
+
+The system will demonstrate:
+- Real-time environmental perception using multiple sensors
+- Cognitive decision-making through Vision-Language-Action systems
+- Natural language interaction with voice-to-action capabilities
+- Robust navigation and manipulation in dynamic environments
+- Efficient operation on embedded hardware platforms
+
+## System Architecture
+
+The autonomous humanoid system follows a modular architecture that combines the technologies learned in previous chapters:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Autonomous Humanoid System               │
+├─────────────────────────────────────────────────────────────┤
+│  Perception Layer                                           │
+│  • Vision processing with Isaac SDK                        │
+│  • Audio processing with Whisper integration               │
+│  • Sensor fusion from multiple modalities                  │
+├─────────────────────────────────────────────────────────────┤
+│  Cognitive Planning Layer                                   │
+│  • LLM-based task planning with ROS 2 integration          │
+│  • VLA system for action selection                         │
+│  • Context-aware decision making                           │
+├─────────────────────────────────────────────────────────────┤
+│  Execution Layer                                            │
+│  • ROS 2-based control system                              │
+│  • Navigation and path planning                            │
+│  • Manipulation and motion control                         │
+├─────────────────────────────────────────────────────────────┤
+│  Hardware Abstraction Layer                                 │
+│  • NVIDIA Jetson Orin deployment                           │
+│  • Real-time performance optimization                      │
+│  • Power and thermal management                            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Core Components Integration
+
+### ROS 2 Communication Framework
+The system utilizes the ROS 2 architecture established in Chapters 3-6:
+- Nodes for each functional component (perception, planning, execution)
+- Topics for real-time data streaming between components
+- Services for synchronous operations
+- Actions for goal-oriented tasks with feedback
+
+### Simulation Environment
+Built using the Gazebo simulation techniques from Chapters 7-8:
+- Physics-based world simulation with realistic robot models
+- Sensor simulation for testing perception algorithms
+- Environment validation before real-world deployment
+
+### AI Perception Stack
+Incorporating the Isaac SDK and perception techniques from Chapters 9-11:
+- Object detection and recognition using synthetic data training
+- VSLAM for simultaneous localization and mapping
+- Multi-modal sensor fusion for robust perception
+
+### Voice Interaction System
+Based on the Whisper integration from Chapter 12:
+- Natural language command processing
+- Voice-to-action translation
+- Context-aware response generation
+
+### Cognitive Planning
+Leveraging the VLA systems from Chapter 13:
+- High-level task planning using LLMs
+- Action sequence optimization
+- Context-aware behavior selection
+
+## Project Scope and Requirements
+
+### Functional Requirements
+1. **Navigation**: Autonomous navigation in unknown environments with obstacle avoidance
+2. **Perception**: Real-time object detection, recognition, and scene understanding
+3. **Interaction**: Voice command processing and natural language responses
+4. **Manipulation**: Object manipulation and task execution in the environment
+5. **Integration**: Seamless coordination between all system components
+
+### Performance Requirements
+1. **Latency**: Perception and response within 100ms for interactive tasks
+2. **Throughput**: Process sensor data streams at 30 FPS minimum
+3. **Reliability**: 99% uptime during autonomous operation
+4. **Power**: Efficient operation within Jetson Orin power constraints
+5. **Accuracy**: 95% accuracy for voice command interpretation
+
+### Technical Constraints
+1. **Hardware**: Deployable on NVIDIA Jetson Orin platform
+2. **Real-time**: All critical systems must meet real-time performance requirements
+3. **Safety**: Built-in safety mechanisms to prevent harm to humans or environment
+4. **Scalability**: Modular design allowing for future enhancements
+5. **Maintainability**: Well-documented code with comprehensive testing
+
+## Development Approach
+
+The project follows an iterative development approach with three main phases:
+
+1. **Component Integration**: Individual components from previous chapters are integrated into a unified system
+2. **System Integration**: All components are connected and tested as a complete system
+3. **Validation and Optimization**: Performance is validated and optimized for real-world deployment
+
+## Success Criteria
+
+The project will be considered successful if the autonomous humanoid system demonstrates:
+- Successful completion of at least 5 different autonomous tasks in simulation
+- Reliable voice command processing with 95% accuracy
+- Safe navigation and manipulation in dynamic environments
+- Successful deployment and operation on NVIDIA Jetson Orin hardware
+- Performance metrics meeting all specified requirements
+
+## Learning Objectives
+
+Through this project, you will demonstrate:
+- Integration of multiple complex robotics systems
+- Problem-solving across multiple technology domains
+- System-level thinking and architectural design
+- Performance optimization and deployment strategies
+- Validation and testing of complex autonomous systems
+
+## Exercises
+
+1. **Architecture Design**: Create a detailed system diagram showing all ROS 2 nodes, topics, and services for the autonomous humanoid system.
+2. **Component Mapping**: Map each technology learned in previous chapters to specific components in the system architecture.
+3. **Constraint Analysis**: Analyze how each technical constraint affects system design decisions and propose mitigation strategies.
+
+## Summary
+
+The capstone project provides an opportunity to synthesize all knowledge gained throughout the textbook into a comprehensive autonomous humanoid system. This project demonstrates the practical application of Physical AI concepts and showcases the integration of ROS 2, simulation, AI perception, and cognitive planning systems.

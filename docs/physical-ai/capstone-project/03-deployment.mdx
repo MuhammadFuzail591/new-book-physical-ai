@@ -1,0 +1,610 @@
+---
+title: 03 - Capstone Project Deployment
+description: Deploying the system on NVIDIA Jetson Orin hardware
+sidebar_position: 4
+slug: /physical-ai/capstone-project/03-deployment
+---
+
+# 03 - Capstone Project Deployment
+
+## Learning Outcomes
+
+By the end of this section, you will be able to:
+- Deploy the autonomous humanoid system on NVIDIA Jetson Orin hardware
+- Optimize system performance for embedded platform constraints
+- Configure system for real-world operation and safety requirements
+- Validate system functionality in real-world environments
+- Monitor and maintain deployed system performance
+
+## Deployment Overview
+
+Deployment of the autonomous humanoid system on NVIDIA Jetson Orin represents the final step in bringing our design to life. This section covers the complete process of moving from simulation to real-world operation, including hardware setup, software optimization, and safety considerations.
+
+## NVIDIA Jetson Orin Platform
+
+### Hardware Specifications
+
+The NVIDIA Jetson Orin platform provides the computational power needed for our autonomous humanoid system:
+
+- **GPU**: 2048-core NVIDIA Ampere architecture GPU
+- **CPU**: 12-core ARM Hercules CPU
+- **Memory**: 32GB LPDDR5 memory (684GB/s)
+- **Power**: Up to 60W operation
+- **Connectivity**: Dual Gigabit Ethernet, PCIe Gen4 x4, 12x I2C, 6x SPI, 16x PWM, 24x GPIO
+
+### Platform Advantages for Robotics
+
+1. **AI Acceleration**: Dedicated Tensor Cores for AI inference
+2. **Power Efficiency**: Optimized for mobile robotics applications
+3. **Real-time Processing**: Low-latency processing for responsive behavior
+4. **Connectivity**: Multiple interfaces for sensor and actuator integration
+5. **ROS 2 Support**: Native support for ROS 2 framework
+
+## System Architecture for Deployment
+
+### Hardware Abstraction Layer
+
+The system uses a hardware abstraction layer to interface with the Jetson Orin platform:
+
+```python
+# Hardware Abstraction Layer for Jetson Orin
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image, Imu, JointState
+from geometry_msgs.msg import Twist
+import jetson.inference
+import jetson.utils
+import cv2
+import numpy as np
+
+class JetsonHardwareInterface(Node):
+    def __init__(self):
+        super().__init__('jetson_hardware_interface')
+
+        # Publishers for sensor data
+        self.camera_pub = self.create_publisher(Image, '/camera/rgb/image_raw', 10)
+        self.imu_pub = self.create_publisher(Imu, '/imu/data', 10)
+        self.joint_states_pub = self.create_publisher(JointState, '/joint_states', 10)
+
+        # Subscribers for commands
+        self.cmd_vel_sub = self.create_subscription(
+            Twist, '/cmd_vel', self.cmd_vel_callback, 10)
+
+        # Initialize Jetson hardware components
+        self.initialize_jetson_hardware()
+
+    def initialize_jetson_hardware(self):
+        # Initialize camera interface
+        self.camera = jetson.utils.gstCamera(640, 480, '/dev/video0')
+
+        # Initialize IMU interface
+        self.imu_interface = self.initialize_imu()
+
+        # Initialize joint control interface
+        self.joint_interface = self.initialize_joints()
+
+    def cmd_vel_callback(self, msg):
+        # Convert Twist command to actual motor control
+        linear_vel = msg.linear.x
+        angular_vel = msg.angular.z
+
+        # Send commands to actual motors
+        self.send_motor_commands(linear_vel, angular_vel)
+
+    def publish_sensor_data(self):
+        # Capture and publish camera data
+        img, width, height = self.camera.CaptureRGBA(zeroCopy=1)
+        img_msg = self.cv_bridge.cv2_to_imgmsg(img, encoding='rgba8')
+        self.camera_pub.publish(img_msg)
+
+        # Publish IMU data
+        imu_data = self.imu_interface.read_data()
+        self.imu_pub.publish(imu_data)
+
+        # Publish joint states
+        joint_states = self.joint_interface.get_states()
+        self.joint_states_pub.publish(joint_states)
+```
+
+### Performance Optimization
+
+The deployment requires optimization for the embedded platform constraints:
+
+```python
+# Performance Optimization Module
+import psutil
+import GPUtil
+import threading
+import time
+from collections import deque
+
+class PerformanceOptimizer:
+    def __init__(self):
+        self.cpu_threshold = 80  # Percentage
+        self.gpu_threshold = 85  # Percentage
+        self.memory_threshold = 85  # Percentage
+        self.performance_history = deque(maxlen=100)
+
+    def monitor_resources(self):
+        """Monitor system resources and adjust performance accordingly"""
+        while True:
+            cpu_percent = psutil.cpu_percent(interval=1)
+            memory_percent = psutil.virtual_memory().percent
+            gpu_percent = self.get_gpu_utilization()
+
+            # Log performance data
+            perf_data = {
+                'timestamp': time.time(),
+                'cpu_percent': cpu_percent,
+                'memory_percent': memory_percent,
+                'gpu_percent': gpu_percent
+            }
+            self.performance_history.append(perf_data)
+
+            # Adjust system based on resource usage
+            if cpu_percent > self.cpu_threshold:
+                self.throttle_cpu_intensive_tasks()
+            if gpu_percent > self.gpu_threshold:
+                self.reduce_gpu_workload()
+            if memory_percent > self.memory_threshold:
+                self.cleanup_memory()
+
+            time.sleep(1)
+
+    def get_gpu_utilization(self):
+        """Get GPU utilization for Jetson platform"""
+        try:
+            gpus = GPUtil.getGPUs()
+            if gpus:
+                return gpus[0].load * 100
+            else:
+                # For Jetson, use nvidia-smi or jetson-stats
+                import subprocess
+                result = subprocess.run(['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv,noheader,nounits'],
+                                      capture_output=True, text=True)
+                if result.returncode == 0:
+                    return float(result.stdout.strip())
+        except:
+            return 0
+
+    def throttle_cpu_intensive_tasks(self):
+        """Reduce CPU-intensive tasks when under pressure"""
+        # Reduce perception processing frequency
+        # Reduce planning update rate
+        # Lower image processing resolution temporarily
+        pass
+
+    def reduce_gpu_workload(self):
+        """Reduce GPU-intensive tasks when under pressure"""
+        # Use lower resolution models
+        # Reduce batch size for inference
+        # Temporarily disable non-critical AI processing
+        pass
+
+    def cleanup_memory(self):
+        """Clean up memory when under pressure"""
+        # Clear perception result cache
+        # Reduce image buffer sizes
+        # Clear temporary data structures
+        pass
+```
+
+## Deployment Process
+
+### Environment Setup
+
+1. **Flash Jetson Orin**: Install JetPack SDK with ROS 2 support
+2. **Install Dependencies**: Install all required ROS 2 packages and AI frameworks
+3. **Configure Network**: Set up networking for development and monitoring
+4. **Test Hardware**: Verify all sensors and actuators are functioning
+
+### Docker-based Deployment
+
+For consistent deployment across development and production environments:
+
+```dockerfile
+# Dockerfile for Autonomous Humanoid System
+FROM nvcr.io/nvidia/ros:humble-ros-base-l4t-r35.4.1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip3 install --upgrade pip && \
+    pip3 install \
+    torch torchvision torchaudio \
+    whisper-openai \
+    transformers \
+    openai \
+    opencv-python \
+    jetson-inference \
+    jetson-utils
+
+# Set up ROS 2 workspace
+WORKDIR /workspace
+COPY . /workspace/src
+RUN source /opt/ros/humble/setup.bash && \
+    colcon build --packages-select autonomous_humanoid_core perception_system voice_to_action cognitive_planning
+
+# Set up entrypoint
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
+```
+
+### Kubernetes for Multi-Node Deployment
+
+For complex humanoid robots with multiple processing nodes:
+
+```yaml
+# deployment.yaml - Autonomous Humanoid System on Kubernetes
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autonomous-humanoid-core
+  namespace: robotics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autonomous-humanoid-core
+  template:
+    metadata:
+      labels:
+        app: autonomous-humanoid-core
+    spec:
+      nodeSelector:
+        hardware: jetson-orin
+      containers:
+      - name: core-system
+        image: autonomous-humanoid:latest
+        resources:
+          limits:
+            cpu: "10"
+            memory: "20Gi"
+            nvidia.com/gpu: 1
+          requests:
+            cpu: "4"
+            memory: "8Gi"
+            nvidia.com/gpu: 1
+        env:
+        - name: ROS_DOMAIN_ID
+          value: "1"
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: "all"
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: usb-devices
+          mountPath: /dev/bus/usb
+        - name: sensors
+          mountPath: /dev/sensors
+      volumes:
+      - name: usb-devices
+        hostPath:
+          path: /dev/bus/usb
+      - name: sensors
+        hostPath:
+          path: /dev/sensors
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: autonomous-humanoid-service
+  namespace: robotics
+spec:
+  selector:
+    app: autonomous-humanoid-core
+  ports:
+  - protocol: TCP
+    port: 9090
+    targetPort: 9090
+  type: LoadBalancer
+```
+
+## Safety and Reliability
+
+### Safety Architecture
+
+```python
+# Safety System for Autonomous Humanoid
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Bool, String
+from sensor_msgs.msg import LaserScan, Imu
+from geometry_msgs.msg import Twist
+
+class SafetySystem(Node):
+    def __init__(self):
+        super().__init__('safety_system')
+
+        # Publishers for safety commands
+        self.emergency_stop_pub = self.create_publisher(Bool, '/emergency_stop', 10)
+        self.safety_status_pub = self.create_publisher(String, '/safety_status', 10)
+
+        # Subscribers for safety-critical data
+        self.laser_scan_sub = self.create_subscription(
+            LaserScan, '/scan', self.laser_scan_callback, 10)
+        self.imu_sub = self.create_subscription(
+            Imu, '/imu/data', self.imu_callback, 10)
+        self.cmd_vel_sub = self.create_subscription(
+            Twist, '/cmd_vel', self.cmd_vel_callback, 10)
+
+        # Safety parameters
+        self.safety_distance = 0.5  # meters
+        self.tilt_threshold = 30.0  # degrees
+        self.emergency_stop_active = False
+
+        # Timer for safety checks
+        self.safety_timer = self.create_timer(0.1, self.safety_check_callback)
+
+    def laser_scan_callback(self, msg):
+        # Check for obstacles in path
+        if min(msg.ranges) < self.safety_distance:
+            self.trigger_safety_stop("Obstacle detected too close")
+
+    def imu_callback(self, msg):
+        # Check for dangerous tilts
+        roll, pitch, yaw = self.quaternion_to_euler(
+            msg.orientation.x,
+            msg.orientation.y,
+            msg.orientation.z,
+            msg.orientation.w
+        )
+
+        if abs(roll) > self.tilt_threshold or abs(pitch) > self.tilt_threshold:
+            self.trigger_safety_stop("Dangerous tilt detected")
+
+    def cmd_vel_callback(self, msg):
+        # Validate velocity commands
+        if abs(msg.linear.x) > 1.0 or abs(msg.angular.z) > 1.0:
+            self.get_logger().warn("High velocity command detected")
+
+    def safety_check_callback(self):
+        # Perform periodic safety checks
+        if self.emergency_stop_active:
+            # Publish emergency stop command
+            stop_msg = Bool()
+            stop_msg.data = True
+            self.emergency_stop_pub.publish(stop_msg)
+
+    def trigger_safety_stop(self, reason):
+        self.get_logger().error(f"Safety stop triggered: {reason}")
+        self.emergency_stop_active = True
+
+        # Publish safety status
+        status_msg = String()
+        status_msg.data = f"EMERGENCY_STOP: {reason}"
+        self.safety_status_pub.publish(status_msg)
+
+    def quaternion_to_euler(self, x, y, z, w):
+        # Convert quaternion to Euler angles
+        import math
+        t0 = +2.0 * (w * x + y * z)
+        t1 = +1.0 - 2.0 * (x * x + y * y)
+        roll = math.atan2(t0, t1)
+
+        t2 = +2.0 * (w * y - z * x)
+        t2 = +1.0 if t2 > +1.0 else t2
+        t2 = -1.0 if t2 < -1.0 else t2
+        pitch = math.asin(t2)
+
+        t3 = +2.0 * (w * z + x * y)
+        t4 = +1.0 - 2.0 * (y * y + z * z)
+        yaw = math.atan2(t3, t4)
+
+        return roll * 180.0 / math.pi, pitch * 180.0 / math.pi, yaw * 180.0 / math.pi
+```
+
+### Monitoring and Logging
+
+```python
+# System Monitoring for Autonomous Humanoid
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+import psutil
+import time
+import json
+
+class SystemMonitor(Node):
+    def __init__(self):
+        super().__init__('system_monitor')
+
+        self.monitor_pub = self.create_publisher(String, '/system_monitor', 10)
+
+        # Timer for monitoring
+        self.monitor_timer = self.create_timer(5.0, self.monitor_system)
+
+    def monitor_system(self):
+        # Collect system metrics
+        metrics = {
+            'timestamp': time.time(),
+            'cpu_percent': psutil.cpu_percent(interval=1),
+            'memory_percent': psutil.virtual_memory().percent,
+            'disk_usage': psutil.disk_usage('/').percent,
+            'temperature': self.get_jetson_temperature(),
+            'power_consumption': self.get_power_consumption()
+        }
+
+        # Publish metrics
+        metrics_msg = String()
+        metrics_msg.data = json.dumps(metrics)
+        self.monitor_pub.publish(metrics_msg)
+
+        # Log metrics
+        self.get_logger().info(f"System Metrics: {metrics}")
+
+    def get_jetson_temperature(self):
+        """Get temperature from Jetson thermal sensors"""
+        try:
+            with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
+                temp = int(f.read().strip()) / 1000.0
+                return temp
+        except:
+            return 0.0
+
+    def get_power_consumption(self):
+        """Get power consumption (if available)"""
+        try:
+            # This would interface with Jetson power management
+            # For now, return a simulated value
+            return 45.0  # watts
+        except:
+            return 0.0
+```
+
+## Jetson Orin Deployment Instructions
+
+### Initial Setup
+
+1. **Flash Jetson Orin**:
+   ```bash
+   # Download and install JetPack
+   wget https://developer.nvidia.com/jetpack-sdk-50
+   sudo ./JetPack-5.0-linux-x64_b42.run
+
+   # Flash the device using SDK Manager
+   ```
+
+2. **Install ROS 2 Humble**:
+   ```bash
+   # Add ROS 2 repository
+   sudo apt update && sudo apt install software-properties-common
+   sudo add-apt-repository universe
+
+   # Install ROS 2 Humble
+   sudo apt update && sudo apt install -y \
+       ros-humble-desktop \
+       ros-humble-ros-base \
+       python3-rosdep \
+       python3-argcomplete \
+       python3-colcon-common-extensions
+   ```
+
+3. **Install Isaac ROS**:
+   ```bash
+   # Add Isaac ROS repository
+   sudo apt update
+   sudo apt install -y nvidia-isaacl-ros-core
+   sudo apt install -y nvidia-isaacl-ros-perception
+   sudo apt install -y nvidia-isaacl-ros-navigation
+   ```
+
+### Build and Deploy
+
+```bash
+# Source ROS 2
+source /opt/ros/humble/setup.bash
+
+# Create workspace
+mkdir -p ~/autonomous_humanoid_ws/src
+cd ~/autonomous_humanoid_ws
+
+# Copy source code
+cp -r /path/to/your/robotic/project/src/* ~/autonomous_humanoid_ws/src/
+
+# Install dependencies
+rosdep install --from-paths src --ignore-src -r -y
+
+# Build the project
+colcon build --packages-select autonomous_humanoid_core perception_system voice_to_action cognitive_planning
+
+# Source the workspace
+source install/setup.bash
+
+# Run the system
+ros2 launch autonomous_humanoid_core deploy.launch.py
+```
+
+### Launch Configuration
+
+```xml
+<!-- deploy.launch.py -->
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+
+def generate_launch_description():
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'),
+
+        Node(
+            package='autonomous_humanoid_core',
+            executable='autonomous_humanoid_core',
+            name='autonomous_humanoid_core',
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+
+        Node(
+            package='perception_system',
+            executable='perception_system',
+            name='perception_system',
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+
+        Node(
+            package='voice_to_action',
+            executable='voice_to_action',
+            name='voice_to_action',
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+
+        Node(
+            package='cognitive_planning',
+            executable='cognitive_planning',
+            name='cognitive_planning',
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+
+        Node(
+            package='safety_system',
+            executable='safety_system',
+            name='safety_system',
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+    ])
+```
+
+## Testing and Validation
+
+### Hardware Integration Testing
+
+1. **Sensor Validation**: Verify all sensors are publishing correct data
+2. **Actuator Testing**: Test all actuators respond to commands
+3. **Communication Testing**: Validate ROS 2 communication between nodes
+4. **Performance Testing**: Measure system performance under load
+
+### Real-World Testing
+
+1. **Safe Environment**: Test in controlled, safe environment first
+2. **Gradual Complexity**: Increase task complexity gradually
+3. **Edge Cases**: Test boundary conditions and error scenarios
+4. **Long-term Operation**: Validate system stability over extended periods
+
+## Exercises
+
+1. **Deployment Challenge**: Create a deployment script that automates the entire setup process for the Jetson Orin platform.
+
+2. **Performance Analysis**: Analyze the performance of different components on the Jetson platform and propose optimization strategies.
+
+3. **Safety Enhancement**: Implement additional safety mechanisms for outdoor operation and human interaction scenarios.
+
+## Summary
+
+Deployment on the NVIDIA Jetson Orin platform brings our autonomous humanoid system to life in the real world. Through careful optimization for embedded constraints, comprehensive safety systems, and thorough validation, we ensure reliable operation in real-world environments. The deployment process demonstrates the practical application of all technologies learned throughout this textbook in a complete, functional robotic system.

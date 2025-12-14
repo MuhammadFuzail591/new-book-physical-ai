@@ -1,0 +1,30 @@
+{
+  "id": "capstone-project/deployment",
+  "title": "03 - Capstone Project Deployment",
+  "description": "Deploying the system on NVIDIA Jetson Orin hardware",
+  "source": "@site/docs/physical-ai/capstone-project/03-deployment.mdx",
+  "sourceDirName": "capstone-project",
+  "slug": "/physical-ai/capstone-project/03-deployment",
+  "permalink": "/physical-ai/capstone-project/03-deployment",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/03-deployment.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "03 - Capstone Project Deployment",
+    "description": "Deploying the system on NVIDIA Jetson Orin hardware",
+    "sidebar_position": 4,
+    "slug": "/physical-ai/capstone-project/03-deployment"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "02 - Capstone Project Implementation",
+    "permalink": "/physical-ai/capstone-project/02-implementation"
+  },
+  "next": {
+    "title": "04 - Capstone Project Conclusion",
+    "permalink": "/physical-ai/capstone-project/04-conclusion"
+  }
+}

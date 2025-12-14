@@ -1,0 +1,30 @@
+{
+  "id": "capstone-project/project-overview",
+  "title": "01 - Capstone Project Overview",
+  "description": "Understanding the requirements and architecture of the autonomous humanoid",
+  "source": "@site/docs/physical-ai/capstone-project/01-project-overview.mdx",
+  "sourceDirName": "capstone-project",
+  "slug": "/physical-ai/capstone-project/01-project-overview",
+  "permalink": "/physical-ai/capstone-project/01-project-overview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/01-project-overview.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "01 - Capstone Project Overview",
+    "description": "Understanding the requirements and architecture of the autonomous humanoid",
+    "sidebar_position": 2,
+    "slug": "/physical-ai/capstone-project/01-project-overview"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+    "permalink": "/physical-ai/capstone-project"
+  },
+  "next": {
+    "title": "02 - Capstone Project Implementation",
+    "permalink": "/physical-ai/capstone-project/02-implementation"
+  }
+}

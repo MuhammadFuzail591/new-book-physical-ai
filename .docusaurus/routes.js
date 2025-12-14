@@ -4,50 +4,20 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/',
-    component: ComponentCreator('/', '767'),
+    component: ComponentCreator('/', '8ad'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '15e'),
+        component: ComponentCreator('/', '783'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '034'),
+            component: ComponentCreator('/', 'fb3'),
             routes: [
-              {
-                path: '/capstone-project',
-                component: ComponentCreator('/capstone-project', '8bd'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
               {
                 path: '/capstone-project/chapter-summary',
                 component: ComponentCreator('/capstone-project/chapter-summary', '6ed'),
                 exact: true
-              },
-              {
-                path: '/capstone-project/conclusion',
-                component: ComponentCreator('/capstone-project/conclusion', 'bac'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/capstone-project/deployment',
-                component: ComponentCreator('/capstone-project/deployment', '565'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/capstone-project/implementation',
-                component: ComponentCreator('/capstone-project/implementation', '5b3'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/capstone-project/project-overview',
-                component: ComponentCreator('/capstone-project/project-overview', '6cb'),
-                exact: true,
-                sidebar: "tutorialSidebar"
               },
               {
                 path: '/cognitive-planning',
@@ -230,6 +200,36 @@ export default [
               {
                 path: '/perception-pipelines/synthetic-data',
                 component: ComponentCreator('/perception-pipelines/synthetic-data', '75c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai/capstone-project',
+                component: ComponentCreator('/physical-ai/capstone-project', 'e67'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai/capstone-project/01-project-overview',
+                component: ComponentCreator('/physical-ai/capstone-project/01-project-overview', 'c28'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai/capstone-project/02-implementation',
+                component: ComponentCreator('/physical-ai/capstone-project/02-implementation', 'f0d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai/capstone-project/03-deployment',
+                component: ComponentCreator('/physical-ai/capstone-project/03-deployment', 'b7b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/physical-ai/capstone-project/04-conclusion',
+                component: ComponentCreator('/physical-ai/capstone-project/04-conclusion', '7f8'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

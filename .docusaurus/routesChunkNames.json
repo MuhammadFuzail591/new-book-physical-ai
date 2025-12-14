@@ -1,40 +1,20 @@
 {
-  "/-767": {
+  "/-8ad": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "7243c1ac"
     }
   },
-  "/-15e": {
+  "/-783": {
     "__comp": "a7bd4aaa",
     "version": "935f2afb"
   },
-  "/-034": {
+  "/-fb3": {
     "__comp": "a94703ab"
-  },
-  "/capstone-project-8bd": {
-    "__comp": "17896441",
-    "content": "87e92902"
   },
   "/capstone-project/chapter-summary-6ed": {
     "__comp": "17896441",
     "content": "82d446dd"
-  },
-  "/capstone-project/conclusion-bac": {
-    "__comp": "17896441",
-    "content": "01dc1668"
-  },
-  "/capstone-project/deployment-565": {
-    "__comp": "17896441",
-    "content": "67df4fe3"
-  },
-  "/capstone-project/implementation-5b3": {
-    "__comp": "17896441",
-    "content": "ce44e7b3"
-  },
-  "/capstone-project/project-overview-6cb": {
-    "__comp": "17896441",
-    "content": "06f0efda"
   },
   "/cognitive-planning-9c9": {
     "__comp": "17896441",
@@ -159,6 +139,26 @@
   "/perception-pipelines/synthetic-data-75c": {
     "__comp": "17896441",
     "content": "e1cc76fc"
+  },
+  "/physical-ai/capstone-project-e67": {
+    "__comp": "17896441",
+    "content": "87e92902"
+  },
+  "/physical-ai/capstone-project/01-project-overview-c28": {
+    "__comp": "17896441",
+    "content": "b6beb94c"
+  },
+  "/physical-ai/capstone-project/02-implementation-f0d": {
+    "__comp": "17896441",
+    "content": "530fd706"
+  },
+  "/physical-ai/capstone-project/03-deployment-b7b": {
+    "__comp": "17896441",
+    "content": "7cf6af2c"
+  },
+  "/physical-ai/capstone-project/04-conclusion-7f8": {
+    "__comp": "17896441",
+    "content": "f8952688"
   },
   "/ros2-advanced-80f": {
     "__comp": "17896441",
