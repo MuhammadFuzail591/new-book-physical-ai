@@ -1,54 +1,25 @@
-# Implementation Plan: RAG Pipeline – Vercel-Deployed Book Ingestion, Embedding Generation, and Vector Storage
+# Implementation Plan: RAG Pipeline
 
-**Branch**: `001-rag-pipeline` | **Date**: 2025-12-15 | **Spec**: specs/001-rag-pipeline/spec.md
+**Branch**: `001-rag-pipeline` | **Date**: 2025-12-15 | **Spec**: /media/fuzail/Work Data/GIAIC/SDD Hackathon/new-book/specs/001-rag-pipeline/spec.md
 **Input**: Feature specification from `/specs/001-rag-pipeline/spec.md`
 
 **Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-The RAG Pipeline implementation will create an automated ingestion system that discovers, extracts, chunks, and stores content from the Vercel-deployed book website (https://new-book-physical-ai.vercel.app/). The system will use URL discovery to find all relevant pages, extract clean content while excluding navigation elements, generate vector embeddings using Cohere models, and store them in Qdrant Cloud with rich metadata for semantic retrieval. The pipeline will be designed as a reusable module suitable for future re-indexing when the site updates.
-
-### Architecture Sketch
-
-```
-Vercel Site (https://new-book-physical-ai.vercel.app/)
-         ↓ (URL Discovery)
-    [URL Discovery Service] ← Sitemap / Crawling Strategy
-         ↓ (URL List)
-    [HTML Fetch Service] ← Concurrent page fetching
-         ↓ (Raw HTML)
-    [Content Extraction Service] ← Docusaurus-optimized extraction
-         ↓ (Clean Text Content)
-    [Text Chunking Service] ← Configurable chunk size/overlap
-         ↓ (Content Chunks)
-    [Embedding Generator] ← Cohere text embedding models
-         ↓ (Vector Embeddings + Metadata)
-    [Qdrant Storage] ← Vector database with URL/section filtering
-         ↓ (Stored vectors ready for RAG)
-    [Similarity Search Interface]
-```
-
-### Key Design Decisions
-
-1. **URL Discovery Strategy**: Implement both sitemap parsing and web crawling fallback for comprehensive page discovery
-2. **Content Extraction**: Use BeautifulSoup with CSS selectors optimized for Docusaurus-generated HTML structure
-3. **Chunking Strategy**: Overlapping chunks with configurable size (512-1024 tokens) to maintain context
-4. **Embedding Model**: Cohere's multilingual-22-12 model for technical content understanding
-5. **Qdrant Configuration**: Cosine distance metric with metadata payload schema for filtering
-6. **Re-indexing Strategy**: Idempotent operations with content hash comparison to detect updates
+The RAG Pipeline feature implements a backend service that ingests content from the Vercel-deployed book website (https://new-book-physical-ai.vercel.app/), extracts clean textual content, chunks it into semantically coherent segments, generates embeddings using Cohere models, and stores them in Qdrant Cloud vector database for semantic retrieval. The pipeline addresses the need to transform static book content into a searchable vector format that enables downstream retrieval agents to access comprehensive book content for RAG applications.
 
 ## Technical Context
 
-**Language/Version**: Python 3.11
+**Language/Version**: Python 3.11+
 **Primary Dependencies**: requests, beautifulsoup4, cohere, qdrant-client, python-dotenv, lxml
 **Storage**: Qdrant Cloud vector database (external), local configuration files
-**Testing**: pytest with integration tests for API calls and vector operations
+**Testing**: pytest with unit and integration tests
 **Target Platform**: Linux server environment (Vercel deployment compatible)
-**Project Type**: Single service application for RAG ingestion pipeline
-**Performance Goals**: Process entire book website within 30 minutes, 99% embedding success rate, 90% precision/recall for similarity search
-**Constraints**: Cohere API rate limits, Qdrant Cloud Free Tier limitations, environment-based configuration only
-**Scale/Scope**: Single Vercel book website (https://new-book-physical-ai.vercel.app/), multiple chapters and sections to be ingested
+**Project Type**: backend/data processing pipeline
+**Performance Goals**: Process entire book website within 30 minutes, 99% embedding generation success rate, 90% precision/recall for similarity search
+**Constraints**: Must use Cohere embedding models, Qdrant Cloud Free Tier, configuration via environment variables, RAG-friendly chunking for semantic retrieval
+**Scale/Scope**: Single book website ingestion (https://new-book-physical-ai.vercel.app/), multiple pages with technical content on Physical AI & Humanoid Robotics
 
 ## Constitution Check
 
@@ -89,7 +60,7 @@ Vercel Site (https://new-book-physical-ai.vercel.app/)
 ### Documentation (this feature)
 
 ```text
-specs/[###-feature]/
+specs/001-rag-pipeline/
 ├── plan.md              # This file (/sp.plan command output)
 ├── research.md          # Phase 0 output (/sp.plan command)
 ├── data-model.md        # Phase 1 output (/sp.plan command)
@@ -101,56 +72,48 @@ specs/[###-feature]/
 ### Source Code (repository root)
 
 ```text
-rag_pipeline/
+backend/
 ├── src/
-│   ├── __init__.py
-│   ├── main.py                 # Entry point for the ingestion pipeline
-│   ├── config/
+│   ├── rag_pipeline/
 │   │   ├── __init__.py
-│   │   └── settings.py         # Environment-based configuration
-│   ├── ingestion/
-│   │   ├── __init__.py
-│   │   ├── url_discovery.py    # URL discovery strategy (sitemap vs crawl)
-│   │   ├── content_fetcher.py  # HTML fetch and content extraction
-│   │   └── content_processor.py # Content extraction optimized for Docusaurus
-│   ├── chunking/
-│   │   ├── __init__.py
-│   │   └── text_chunker.py     # Chunking with size and overlap tradeoffs
-│   ├── embedding/
-│   │   ├── __init__.py
-│   │   └── generator.py        # Cohere embedding generation
-│   ├── storage/
-│   │   ├── __init__.py
-│   │   └── qdrant_client.py    # Qdrant storage and retrieval
-│   └── utils/
+│   │   ├── config/
+│   │   │   ├── __init__.py
+│   │   │   └── settings.py
+│   │   ├── ingestion/
+│   │   │   ├── __init__.py
+│   │   │   ├── url_discovery.py
+│   │   │   ├── content_extractor.py
+│   │   │   └── docusaurus_parser.py
+│   │   ├── processing/
+│   │   │   ├── __init__.py
+│   │   │   ├── chunker.py
+│   │   │   └── text_cleaner.py
+│   │   ├── embedding/
+│   │   │   ├── __init__.py
+│   │   │   └── cohere_client.py
+│   │   ├── storage/
+│   │   │   ├── __init__.py
+│   │   │   └── qdrant_client.py
+│   │   ├── utils/
+│   │   │   ├── __init__.py
+│   │   │   └── logger.py
+│   │   └── main.py
+│   └── tests/
 │       ├── __init__.py
-│       ├── logging.py          # Logging for ingestion progress and failures
-│       └── validators.py       # Validation utilities
-├── tests/
-│   ├── unit/
-│   │   ├── test_url_discovery.py
-│   │   ├── test_content_extraction.py
-│   │   ├── test_chunking.py
-│   │   ├── test_embedding.py
-│   │   └── test_qdrant_storage.py
-│   ├── integration/
-│   │   ├── test_end_to_end_ingestion.py
-│   │   └── test_similarity_search.py
-│   └── fixtures/
-│       └── sample_content.html
-├── scripts/
-│   └── run_ingestion.py        # Script to run the complete pipeline
-├── requirements.txt            # Dependencies: requests, beautifulsoup4, cohere, qdrant-client, python-dotenv, lxml
-└── .env.example               # Example environment file
+│       ├── test_ingestion.py
+│       ├── test_chunking.py
+│       ├── test_embedding.py
+│       └── test_storage.py
+├── pyproject.toml
+├── .env.example
+├── .gitignore
+└── README.md
 ```
 
-**Structure Decision**: Single project structure chosen for the RAG ingestion pipeline with clear separation of concerns across modules: ingestion (URL discovery, content fetching), chunking, embedding, and storage layers.
+**Structure Decision**: Backend-focused RAG pipeline with dedicated modules for URL discovery, content extraction (Docusaurus-aware), text processing, embedding generation using Cohere, and vector storage in Qdrant. The structure follows a clean architecture with separation of concerns for each pipeline component.
 
 ## Complexity Tracking
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+*No constitution check violations identified - all requirements satisfied*

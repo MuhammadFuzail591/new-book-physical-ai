@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.11+ + requests, beautifulsoup4, cohere, qdrant-client, python-dotenv, lxml (001-rag-pipeline)
+- Qdrant Cloud vector database (external), local configuration files (001-rag-pipeline)
+
+## Recent Changes
+- 001-rag-pipeline: Added Python 3.11+ + requests, beautifulsoup4, cohere, qdrant-client, python-dotenv, lxml

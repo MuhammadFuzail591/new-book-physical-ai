@@ -22,14 +22,14 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
 ```bash
-pip install -r rag_pipeline/requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 ## Configuration
 
 1. Copy the example environment file:
 ```bash
-cp rag_pipeline/.env.example .env
+cp backend/.env.example .env
 ```
 
 2. Edit `.env` and add your API keys:
@@ -49,16 +49,16 @@ SOURCE_URL=https://new-book-physical-ai.vercel.app/
 
 1. Run the complete ingestion pipeline:
 ```bash
-python -m rag_pipeline.scripts.run_ingestion
+cd backend && python -m src.rag_pipeline.main
 ```
 
 2. Or run specific modules for testing:
 ```bash
 # Discover URLs
-python -c "from rag_pipeline.src.ingestion.url_discovery import discover_urls; print(discover_urls('https://new-book-physical-ai.vercel.app/'))"
+cd backend && python -c "from src.rag_pipeline.ingestion.url_discovery import discover_urls; print(discover_urls('https://new-book-physical-ai.vercel.app/'))"
 
 # Process a single page
-python -c "from rag_pipeline.src.ingestion.content_fetcher import extract_content; print(extract_content('https://new-book-physical-ai.vercel.app/some-page'))"
+cd backend && python -c "from src.rag_pipeline.ingestion.content_extractor import extract_content; print(extract_content('https://new-book-physical-ai.vercel.app/some-page'))"
 ```
 
 ## Verification
@@ -66,18 +66,24 @@ python -c "from rag_pipeline.src.ingestion.content_fetcher import extract_conten
 After running the pipeline, verify the results:
 
 1. Check that vectors were stored in Qdrant:
-```python
-from rag_pipeline.src.storage.qdrant_client import QdrantStorage
+```bash
+cd backend && python -c "
+from src.rag_pipeline.storage.qdrant_client import QdrantStorage
 storage = QdrantStorage()
-print(f"Total vectors stored: {storage.get_total_vectors()}")
+print(f'Total vectors stored: {storage.get_total_vectors()}')
+"
 ```
 
 2. Test similarity search:
-```python
+```bash
+cd backend && python -c "
+from src.rag_pipeline.storage.qdrant_client import QdrantStorage
+storage = QdrantStorage()
 # Search for relevant content
-results = storage.search_similar("your search query", top_k=5)
+results = storage.search_similar('your search query', top_k=5)
 for result in results:
-    print(f"URL: {result['url']}, Score: {result['score']}, Content: {result['content'][:200]}...")
+    print(f'URL: {result[\"url\"]}, Score: {result[\"score\"]}, Content: {result[\"content\"][:200]}...')
+"
 ```
 
 ## Troubleshooting
