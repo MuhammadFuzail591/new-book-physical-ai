@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  title: RAG Pipeline Ingestion API
+  version: 1.0.0
+  description: API for managing the RAG content ingestion pipeline
+
+paths:
+  /api/v1/ingest:
+    post:
+      summary: Start content ingestion pipeline
+      description: Initiates the process of discovering, extracting, chunking and storing content from a website
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source_url:
+                  type: string
+                  format: uri
+                  description: The base URL of the website to ingest
+                  example: "https://new-book-physical-ai.vercel.app/"
+                force_reindex:
+                  type: boolean
+                  description: Whether to force reprocessing all content even if unchanged
+                  default: false
+                chunk_size:
+                  type: integer
+                  description: Size of text chunks in tokens
+                  default: 800
+                overlap_size:
+                  type: integer
+                  description: Overlap between chunks in tokens
+                  default: 100
+      responses:
+        '202':
+          description: Ingestion process started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                    description: Unique identifier for the ingestion job
+                  status:
+                    type: string
+                    description: Current status of the job
+                    enum: [pending, running]
+                  estimated_completion:
+                    type: string
+                    format: date-time
+                    description: Estimated time of completion
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during ingestion
+
+  /api/v1/ingest/{job_id}:
+    get:
+      summary: Get ingestion job status
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                  status:
+                    type: string
+                    enum: [pending, running, completed, failed]
+                  progress:
+                    type: object
+                    properties:
+                      total_urls:
+                        type: integer
+                      processed_urls:
+                        type: integer
+                      successful_chunks:
+                        type: integer
+                      failed_chunks:
+                        type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                  completed_at:
+                    type: string
+                    format: date-time
+        '404':
+          description: Job not found
+
+  /api/v1/search:
+    post:
+      summary: Semantic search in ingested content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: Search query text
+                top_k:
+                  type: integer
+                  description: Number of results to return (default 5, max 10)
+                  default: 5
+                filters:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: Filter by specific URL
+                    section:
+                      type: string
+                      description: Filter by section/chapter
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Chunk identifier
+                    url:
+                      type: string
+                      format: uri
+                      description: Source URL
+                    title:
+                      type: string
+                      description: Page title
+                    section:
+                      type: string
+                      description: Section identifier
+                    content:
+                      type: string
+                      description: Chunk content text
+                    score:
+                      type: number
+                      format: float
+                      description: Similarity score
+                    chunk_index:
+                      type: integer
+                      description: Index of chunk within source page
+        '400':
+          description: Invalid search parameters
