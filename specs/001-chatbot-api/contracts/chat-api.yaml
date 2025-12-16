@@ -1,0 +1,250 @@
+openapi: 3.0.0
+info:
+  title: Chatbot API for Physical AI & Humanoid Robotics Textbook
+  description: API for querying the Physical AI & Humanoid Robotics textbook content using RAG
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+paths:
+  /chat:
+    post:
+      summary: Submit a query about the textbook content
+      description: Process user query and return a response based on the embedded book content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+      responses:
+        '200':
+          description: Successful response with answer to the query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          description: Invalid query format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Chat
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Verify that the API is running and can access the Qdrant database
+      responses:
+        '200':
+          description: Health status with connectivity information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: Service unavailable due to dependency issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Health
+  /chat/conversation:
+    post:
+      summary: Submit a query with conversation context
+      description: Process user query with session context for multi-turn conversations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationQuery'
+      responses:
+        '200':
+          description: Successful response with answer to the query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          description: Invalid query format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Chat
+components:
+  schemas:
+    Query:
+      type: object
+      required:
+        - query_text
+      properties:
+        query_text:
+          type: string
+          description: The user's natural language question about the book content
+          example: "What are the key principles of physical AI?"
+          minLength: 1
+          maxLength: 1000
+        session_id:
+          type: string
+          description: Session identifier for maintaining conversation context (optional)
+          example: "sess_abc123"
+          pattern: "^[a-zA-Z0-9_-]+$"
+    ConversationQuery:
+      type: object
+      required:
+        - query_text
+        - session_id
+      properties:
+        query_text:
+          type: string
+          description: The user's natural language question about the book content
+          example: "Can you elaborate on that?"
+          minLength: 1
+          maxLength: 1000
+        session_id:
+          type: string
+          description: Session identifier for maintaining conversation context
+          example: "sess_abc123"
+          pattern: "^[a-zA-Z0-9_-]+$"
+        history:
+          type: array
+          description: Previous conversation history for context
+          items:
+            $ref: '#/components/schemas/Message'
+    Message:
+      type: object
+      required:
+        - role
+        - content
+      properties:
+        role:
+          type: string
+          enum: [user, assistant]
+          description: Role of the message sender
+        content:
+          type: string
+          description: Content of the message
+          example: "What are the key principles of physical AI?"
+    Response:
+      type: object
+      required:
+        - response_text
+      properties:
+        response_text:
+          type: string
+          description: The chatbot's answer to the user's query
+          example: "Physical AI combines robotics and artificial intelligence..."
+        sources:
+          type: array
+          description: List of source chunks that informed the response
+          items:
+            $ref: '#/components/schemas/Source'
+        confidence:
+          type: number
+          description: Confidence score of the response (0.0-1.0)
+          minimum: 0.0
+          maximum: 1.0
+          example: 0.85
+        query_id:
+          type: string
+          description: Unique identifier for the query
+          example: "query_abc123"
+    Source:
+      type: object
+      required:
+        - content
+        - score
+      properties:
+        content:
+          type: string
+          description: Retrieved book content chunk relevant to the query
+          example: "Physical AI is defined as the integration of..."
+        score:
+          type: number
+          description: Similarity score from vector search (0.0-1.0)
+          minimum: 0.0
+          maximum: 1.0
+          example: 0.92
+        page_number:
+          type: number
+          description: Page reference in the original book
+          example: 45
+        section_title:
+          type: string
+          description: Section title from the book
+          example: "Introduction to Physical AI"
+    HealthStatus:
+      type: object
+      required:
+        - status
+        - dependencies
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unavailable]
+          description: Overall health status
+          example: "healthy"
+        dependencies:
+          type: object
+          description: Status of various dependencies
+          properties:
+            qdrant:
+              type: string
+              enum: [connected, disconnected, error]
+              description: Qdrant database connection status
+              example: "connected"
+            embeddings_model:
+              type: string
+              enum: [loaded, not_loaded, error]
+              description: Embeddings model status
+              example: "loaded"
+            llm:
+              type: string
+              enum: [available, unavailable, error]
+              description: Language model status
+              example: "available"
+        timestamp:
+          type: string
+          format: date-time
+          description: Time when health check was performed
+          example: "2025-12-16T10:30:00Z"
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "QUERY_TOO_LONG"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Query exceeds maximum length of 1000 characters"
+        details:
+          type: object
+          description: Additional error details (optional)
+          example: {"max_length": 1000, "actual_length": 1200}
+tags:
+  - name: Chat
+    description: Endpoints for chat functionality
+  - name: Health
+    description: Health check endpoints

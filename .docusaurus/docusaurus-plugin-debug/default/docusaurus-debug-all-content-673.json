@@ -36,22 +36,28 @@
             },
             {
               "id": "capstone-project/conclusion",
-              "title": "conclusion",
-              "description": "",
-              "source": "@site/docs/physical-ai/capstone-project/conclusion.mdx",
+              "title": "04 - Capstone Project Conclusion",
+              "description": "Reviewing the project and planning future enhancements",
+              "source": "@site/docs/physical-ai/capstone-project/04-conclusion.mdx",
               "sourceDirName": "capstone-project",
-              "slug": "/capstone-project/conclusion",
-              "permalink": "/capstone-project/conclusion",
+              "slug": "/physical-ai/capstone-project/04-conclusion",
+              "permalink": "/physical-ai/capstone-project/04-conclusion",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/conclusion.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/04-conclusion.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "title": "04 - Capstone Project Conclusion",
+                "description": "Reviewing the project and planning future enhancements",
+                "sidebar_position": 5,
+                "slug": "/physical-ai/capstone-project/04-conclusion"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "deployment",
-                "permalink": "/capstone-project/deployment"
+                "title": "03 - Capstone Project Deployment",
+                "permalink": "/physical-ai/capstone-project/03-deployment"
               },
               "next": {
                 "title": "Glossary of Physical AI & Humanoid Robotics Terms",
@@ -60,98 +66,120 @@
             },
             {
               "id": "capstone-project/deployment",
-              "title": "deployment",
-              "description": "",
-              "source": "@site/docs/physical-ai/capstone-project/deployment.mdx",
+              "title": "03 - Capstone Project Deployment",
+              "description": "Deploying the system on NVIDIA Jetson Orin hardware",
+              "source": "@site/docs/physical-ai/capstone-project/03-deployment.mdx",
               "sourceDirName": "capstone-project",
-              "slug": "/capstone-project/deployment",
-              "permalink": "/capstone-project/deployment",
+              "slug": "/physical-ai/capstone-project/03-deployment",
+              "permalink": "/physical-ai/capstone-project/03-deployment",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/deployment.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/03-deployment.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "03 - Capstone Project Deployment",
+                "description": "Deploying the system on NVIDIA Jetson Orin hardware",
+                "sidebar_position": 4,
+                "slug": "/physical-ai/capstone-project/03-deployment"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "implementation",
-                "permalink": "/capstone-project/implementation"
+                "title": "02 - Capstone Project Implementation",
+                "permalink": "/physical-ai/capstone-project/02-implementation"
               },
               "next": {
-                "title": "conclusion",
-                "permalink": "/capstone-project/conclusion"
+                "title": "04 - Capstone Project Conclusion",
+                "permalink": "/physical-ai/capstone-project/04-conclusion"
               }
             },
             {
               "id": "capstone-project/implementation",
-              "title": "implementation",
-              "description": "",
-              "source": "@site/docs/physical-ai/capstone-project/implementation.mdx",
+              "title": "02 - Capstone Project Implementation",
+              "description": "Building the integrated system combining all technologies",
+              "source": "@site/docs/physical-ai/capstone-project/02-implementation.mdx",
               "sourceDirName": "capstone-project",
-              "slug": "/capstone-project/implementation",
-              "permalink": "/capstone-project/implementation",
+              "slug": "/physical-ai/capstone-project/02-implementation",
+              "permalink": "/physical-ai/capstone-project/02-implementation",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/implementation.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/02-implementation.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "02 - Capstone Project Implementation",
+                "description": "Building the integrated system combining all technologies",
+                "sidebar_position": 3,
+                "slug": "/physical-ai/capstone-project/02-implementation"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "project-overview",
-                "permalink": "/capstone-project/project-overview"
+                "title": "01 - Capstone Project Overview",
+                "permalink": "/physical-ai/capstone-project/01-project-overview"
               },
               "next": {
-                "title": "deployment",
-                "permalink": "/capstone-project/deployment"
+                "title": "03 - Capstone Project Deployment",
+                "permalink": "/physical-ai/capstone-project/03-deployment"
               }
             },
             {
               "id": "capstone-project/index",
-              "title": "index",
-              "description": "",
+              "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+              "description": "Complete end-to-end integration of all technologies learned throughout the textbook sidebar_position: 14",
               "source": "@site/docs/physical-ai/capstone-project/index.mdx",
               "sourceDirName": "capstone-project",
-              "slug": "/capstone-project/",
-              "permalink": "/capstone-project/",
+              "slug": "/physical-ai/capstone-project",
+              "permalink": "/physical-ai/capstone-project",
               "draft": false,
               "unlisted": false,
               "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/index.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "frontMatter": {
+                "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+                "description": "Complete end-to-end integration of all technologies learned throughout the textbook sidebar_position: 14",
+                "slug": "/physical-ai/capstone-project"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Chapter Summary - Cognitive Planning with Vision-Language-Action Systems",
                 "permalink": "/cognitive-planning/chapter-summary"
               },
               "next": {
-                "title": "project-overview",
-                "permalink": "/capstone-project/project-overview"
+                "title": "01 - Capstone Project Overview",
+                "permalink": "/physical-ai/capstone-project/01-project-overview"
               }
             },
             {
               "id": "capstone-project/project-overview",
-              "title": "project-overview",
-              "description": "",
-              "source": "@site/docs/physical-ai/capstone-project/project-overview.mdx",
+              "title": "01 - Capstone Project Overview",
+              "description": "Understanding the requirements and architecture of the autonomous humanoid",
+              "source": "@site/docs/physical-ai/capstone-project/01-project-overview.mdx",
               "sourceDirName": "capstone-project",
-              "slug": "/capstone-project/project-overview",
-              "permalink": "/capstone-project/project-overview",
+              "slug": "/physical-ai/capstone-project/01-project-overview",
+              "permalink": "/physical-ai/capstone-project/01-project-overview",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/project-overview.mdx",
+              "editUrl": "https://github.com/MuhammadFuzail591/new-book-physical-ai/tree/main/docs/physical-ai/capstone-project/01-project-overview.mdx",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "01 - Capstone Project Overview",
+                "description": "Understanding the requirements and architecture of the autonomous humanoid",
+                "sidebar_position": 2,
+                "slug": "/physical-ai/capstone-project/01-project-overview"
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "index",
-                "permalink": "/capstone-project/"
+                "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+                "permalink": "/physical-ai/capstone-project"
               },
               "next": {
-                "title": "implementation",
-                "permalink": "/capstone-project/implementation"
+                "title": "02 - Capstone Project Implementation",
+                "permalink": "/physical-ai/capstone-project/02-implementation"
               }
             },
             {
@@ -177,8 +205,8 @@
                 "permalink": "/cognitive-planning/llm-integration"
               },
               "next": {
-                "title": "index",
-                "permalink": "/capstone-project/"
+                "title": "Chapter 14 - Capstone Project: The Autonomous Humanoid",
+                "permalink": "/physical-ai/capstone-project"
               }
             },
             {
@@ -401,8 +429,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "conclusion",
-                "permalink": "/capstone-project/conclusion"
+                "title": "04 - Capstone Project Conclusion",
+                "permalink": "/physical-ai/capstone-project/04-conclusion"
               }
             },
             {
