@@ -1,0 +1,189 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Book Chatbot API",
+    "version": "1.0.0",
+    "description": "API for the book chatbot frontend to communicate with backend services"
+  },
+  "paths": {
+    "/chat/send": {
+      "post": {
+        "summary": "Send a message to the chatbot",
+        "description": "Sends a user message to the chatbot and returns a response",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The user's message"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The current chat session ID"
+                  },
+                  "bookId": {
+                    "type": "string",
+                    "description": "The ID of the book being referenced"
+                  }
+                },
+                "required": ["message"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response from the chatbot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Message ID"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The chatbot's response"
+                    },
+                    "sessionId": {
+                      "type": "string",
+                      "description": "The session ID"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "When the message was sent"
+                    },
+                    "sender": {
+                      "type": "string",
+                      "enum": ["bot"],
+                      "description": "The sender of the response"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/chat/session": {
+      "post": {
+        "summary": "Start a new chat session",
+        "description": "Starts a new chat session for a book",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookId": {
+                    "type": "string",
+                    "description": "The ID of the book for this session"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "New session created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionId": {
+                      "type": "string",
+                      "description": "The new session ID"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "When the session was created"
+                    },
+                    "bookId": {
+                      "type": "string",
+                      "description": "The book ID for this session"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/session/{sessionId}/history": {
+      "get": {
+        "summary": "Get session history",
+        "description": "Retrieves the message history for a specific session",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session history retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionId": {
+                      "type": "string",
+                      "description": "The session ID"
+                    },
+                    "messages": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Message ID"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "The message content"
+                          },
+                          "sender": {
+                            "type": "string",
+                            "enum": ["user", "bot"],
+                            "description": "The sender of the message"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "When the message was sent"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
